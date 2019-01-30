@@ -1,0 +1,14 @@
+\babel@toc {czech}{}
+\babel@toc {czech}{}
+\contentsline {subsection}{Odkaz na tuto pr{\' a}ci}{vi}{section*.1}
+\contentsline {chapter}{{\' U}vod}{1}{chapter*.5}
+\contentsline {chapter}{\chapternumberline {1}C\IeC {\'\i }l pr\IeC {\'a}ce}{3}{chapter.1}
+\contentsline {chapter}{\chapternumberline {2}Anal\IeC {\'y}za a n\IeC {\'a}vrh}{5}{chapter.2}
+\contentsline {section}{\numberline {2.1}Anal\IeC {\'y}za konkurence}{5}{section.2.1}
+\contentsline {subsection}{\numberline {2.1.1}ParseHub}{5}{subsection.2.1.1}
+\contentsline {subsection}{\numberline {2.1.2}Octoparse}{6}{subsection.2.1.2}
+\contentsline {chapter}{\chapternumberline {3}Realizace}{7}{chapter.3}
+\contentsline {chapter}{Z{\' a}v{\v e}r}{9}{chapter*.6}
+\contentsline {chapter}{Literatura}{11}{chapter*.7}
+\contentsline {appendix}{\chapternumberline {A}Seznam pou\IeC {\v z}it\IeC {\'y}ch zkratek}{13}{appendix.A}
+\contentsline {appendix}{\chapternumberline {B}Obsah p\IeC {\v r}ilo\IeC {\v z}en\IeC {\'e}ho CD}{15}{appendix.B}
