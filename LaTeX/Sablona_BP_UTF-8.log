@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.12.1)  30 JAN 2019 18:34
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.12.1)  31 JAN 2019 23:26
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -771,12 +771,17 @@ l.61 \chapter
 
 ] [3] [4
 
-] [5] [6] [7
+] [5]
+Overfull \hbox (1.4747pt too wide) in paragraph at lines 92--94
+\OT1/lmr/m/n/10.95 Celkov^^Sy do-jem - za-tim roz-hodn^^Te nej-lep^^Ts^^S^^P ap
+li-kace. Jed-no-duch^^Sa in-sta-lace (pouze
+ []
+
+[6] [7
 
 ] [8
 
-] (./Sablona_BP_UTF-8.bbl
-[9] [10
+] (./Sablona_BP_UTF-8.bbl [9] [10
 
 ]
 bibitemlist
@@ -788,7 +793,7 @@ LaTeX Warning: Empty `thebibliography' environment on input line 11.
 ] [13] [14
 
 ]
-LaTeX Font Info:    Try loading font information for OT1+lmtt on input line 232
+LaTeX Font Info:    Try loading font information for OT1+lmtt on input line 243
 .
  (/app/texmf-dist/tex/latex/lm/ot1lmtt.fd
 File: ot1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
@@ -799,25 +804,25 @@ File: ot1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 \tf@lof=\write6
 \openout6 = `Sablona_BP_UTF-8.lof'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 235.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 235.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 246.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 246.
 
 (./Sablona_BP_UTF-8.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 235.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 235.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 246.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 246.
 Package rerunfilecheck Info: File `Sablona_BP_UTF-8.out' has not changed.
 (rerunfilecheck)             Checksum: 506FB96BA30DF66BDFBBE243116AA503;1036.
 
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 235.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 246.
  ) 
 Here is how much of TeX's memory you used:
- 13017 strings out of 492649
- 179425 string characters out of 6138594
- 316757 words of memory out of 5000000
- 16753 multiletter control sequences out of 15000+600000
+ 13020 strings out of 492649
+ 179457 string characters out of 6138594
+ 317757 words of memory out of 5000000
+ 16755 multiletter control sequences out of 15000+600000
  58530 words of font info for 41 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  37i,11n,29p,1100b,377s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -831,10 +836,10 @@ public/lm/lmr12.pfb></app/texmf-dist/fonts/type1/public/lm/lmr8.pfb></app/texmf
 -dist/fonts/type1/public/lm/lmri10.pfb></app/texmf-dist/fonts/type1/public/lm/l
 mssbx10.pfb></app/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></app/texmf-dist/
 fonts/type1/public/lm/lmtt10.pfb>
-Output written on Sablona_BP_UTF-8.pdf (29 pages, 253960 bytes).
+Output written on Sablona_BP_UTF-8.pdf (29 pages, 255299 bytes).
 PDF statistics:
- 242 PDF objects out of 1000 (max. 8388607)
- 197 compressed objects within 2 object streams
- 43 named destinations out of 1000 (max. 500000)
+ 243 PDF objects out of 1000 (max. 8388607)
+ 198 compressed objects within 2 object streams
+ 44 named destinations out of 1000 (max. 500000)
  78 words of extra memory for PDF output out of 10000 (max. 10000000)
 
