@@ -91,7 +91,15 @@ Podob pro uplatnění scrapování dat z webu je nespočet, a to obzvláš\v{t} 
 
 \newpage
 \section{Analýza konkurence}
+První skupinou, na kterou můžeme při hledání na internetu narazit, jsou společnosti, které nabízejí zákazníkům kompletní péči v rámci extrakce dat. Cílí především na velké korporace, jimž postaví scrapovací nástroj přesně na míru, který poté také hostují a spravují. Zákazník tedy dostane data a o nic víc se již nemusí starat. Jako příklad můžeme jmenovat třeba \emph{ContentGrabber, Mozenda} a další.
 
+Pro nás mnohem relevantnější kategorií je konkurenční nabídku nástrojů poskytujících uživatelům rozhraní k web scrapingu. Budeme se zaměřovat pouze na takové nástroje, které nevyžadují jakoukoli znalost programování -- tedy žádné knihovny, API a nástroje pro budování vlastních scraperů.
+
+Mezi ty největší představitele patří \emph{ParseHub, Octoparse, WebScraper} a \emph{Dexi.io}. Tři z nich jsou volně dostupné nástroje (které mají ale velmi omezenou funkcionalitu a pokročilejší operace se odemknou až s určitým platebním plánem) a jeden poskytuje bezplatně pouze 7 denní zkušební verzi.
+
+Předtím, než začneme jednotlivé nástroje porovnávat, musíme si určit nějaká kritéria, podle kterých budeme hodnotit kvalitu daného nástroje. Především nám půjde o jednoduchost používání, celkovou přehlednost a rychlost, se kterou se uživatel dostane k požadovaným datům. Také nás bude zajímat způsob výběru dat, možnosti exportu získaných dat, jak aplikace sama dokáže seznámit uživatele s používáním a také, v jaké formě se nástroj vůbec používá a jestli něčím vybočuje (a\v{t} už v pozitivním nebo negativním smyslu). 
+
+Poj\v{d}me se tedy na některé nástroje podívat blíže:
 
 \subsection{ParseHub}
 \begin{figure}[h]
@@ -102,17 +110,17 @@ Podob pro uplatnění scrapování dat z webu je nespočet, a to obzvláš\v{t} 
 
 \textbf{Výhody:}
 \begin{itemize}
-	\item Výběr dat pomocí klikání (inteligentní hledání vzorců/podobností na základě prvních dvou kliknutí)
+	\item Výběr dat jak pomocí klikání (inteligentní hledání vzorců/podobností na základě prvních dvou kliknutí), tak pomocí XPath, regulárních výrazů nebo CSS selektorů
 	\item Aplikace obsahuje interaktivní tutoriál, který na jednoduchých příkladech ukáže, jak s nástrojem zacházet
 	\item Možnost získání dat různými formami - přes API, jako CSV/Excel, do GoogleSheets nebo do Tableau
 	\item Různé módy kliknutí (výběr, relativní výběr, kliknutí), zooming in/out na HTML elementy -- když se uživatel netrefí (nebo ani trefit nemůže) přesně na požadovaný element, lze na něj lehce přejít pomocí této funkce
+	\item Automatická rotace IP adresy (tedy nedochází k blokování ze strany serveru)
 \end{itemize}
 
 \textbf{Nevýhody:}
 \begin{itemize}
 	\item Nutnost stažení aplikace (ale je zde podpora pro Windows, Linux i Mac)
 	\item Aplikace je celkem těžkopádná, nemá moc přívětivé uživatelské rozhraní, ovládání působí nepřehledně a přehlceně -- na uživatele se vyvalí hodně informací a možností najednou
-	\item Nelze vyhledávat podle klíčových slov ani podle HTML nebo CSS, tudíž všechno se musí poctivě naklikat
 \end{itemize}
 
 
@@ -159,7 +167,7 @@ Podob pro uplatnění scrapování dat z webu je nespočet, a to obzvláš\v{t} 
 	\item Možnost získání dat různými formami - přes API, jako CSV/Excel nebo do Dropboxu
 	\item Klávesové zkratky při výběru elementů velmi usnad\v{n}ují práci
 	\item Možnost využít jejich cloud k automatizaci celého procesu
-	\item Přehledné rozhraní, rychlé a jednoduché používání
+	\item Oproti konkurenci nabízí přehledné rozhraní, rychlé a jednoduché používání
 \end{itemize}
 
 \textbf{Nevýhody:}
@@ -186,7 +194,6 @@ Podob pro uplatnění scrapování dat z webu je nespočet, a to obzvláš\v{t} 
 	\item Možnost exportovat data do CSV, JSON, XLS, získat přes API, poslat do Google Drive, Google Sheets nebo Amazon S3
 	\item Různé módy aplikace -- scraping, crawler, pipes (skládání menších scrape botů) a autobot (extrahování z více stránek najednou se stejným rozložením). Možnost takto automatizovat celý proces.
 	\item Různé addony (např. na obcházení Captchy)
-	\item Rozhraní je přívětivé a používání celkem snadné
 \end{itemize}
 
 \textbf{Nevýhody:}
@@ -195,6 +202,29 @@ Podob pro uplatnění scrapování dat z webu je nespočet, a to obzvláš\v{t} 
 	\item Placený nástroj, zadarmo je dostupná pouze týdenní zkušební verze
 	\item Úvodní tutoriál je velmi strohý a žádné velké seznámení s nástrojem se nekoná
 \end{itemize}
+
+
+\newpage
+\subsection{Data Scraper}
+\begin{figure}[h]
+	\includegraphics[width=\linewidth]{images/DataScraper.png}
+	\caption{Data Scraper}
+	\label{fig:dataScraper}
+\end{figure}
+\textbf{Výhody:}
+\begin{itemize}
+	\item Jednoduchá instalace (jedná se pouze o rozšíření do prohlížeče Google Chrome).
+	\item Velmi jednoduché ovládání a přehledné rozhraní
+	\item Výběr dat probíhá pomocí klikání. Skvělé je, že klikáním se utváří JQuery selektor, který si uživatel může podle svého upravit a doladit tak drobné detaily, které by jinak nutně zahltily uživatelské rozhraní. Tedy je možné vyhledávat i podle HTML tagů, id, CSS selektorů -- zkrátka vše, co umí klasické JQuery
+	\item Různé druhy kliknutí, možnost spustit na stránce libovolný JavaScriptový kód v rámci scrapování
+\end{itemize}
+
+\textbf{Nevýhody:}
+\begin{itemize}
+	\item Nutnost používat Google Chrome, což pro některé uživatele může být překážka
+	\item Oproti ostatním nástrojům se může zdát velmi chudý na různé vychytávky
+\end{itemize}
+
 
 % -----------------------------------------------------------------
 
