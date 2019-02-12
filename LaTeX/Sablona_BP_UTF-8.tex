@@ -57,62 +57,150 @@
 	%sem napište úvod Vaší práce
 \end{introduction}
 
+% -----------------------------------------------------------------
 
 \chapter{Cíl práce}
 
+Cílem této práce je navržení a tvorba webové aplikace, která bude umož\v{n}ovat uživatelům vytáhnout požadovaná data z libovolné stránky v reálném čase bez jakékoli nutné znalosti programování.
+
+Hlavním specifikem aplikace bude \emph{přehlednost a jednoduchost uživatelského rozhraní} -- je klíčové, aby bylo ovládání intuitivní, rychlé a jednoduché.
+
+Naopak v rozsahu této práce není tvorba web crawlera ani žádného jiného podobného mechanismu, který by procházel danou oblast webu.
+
+% -----------------------------------------------------------------
 
 \chapter{Analýza a návrh}
 
+\section{Co je to vlastně ten web scraping?}
+\paragraph{Web sraping}
+(nebo také \emph{web harvesting, web data extraction}) je technika získávání nejrůznějších dat z webových stránek. Nejčastěji se v tomto kontextu jedná o automatizovaný proces strojového zpracování a získávání dat, nicméně může jít i o manuální extrakci zadanou uživatelem skrze nějaký software (jako je tomu právě v našem případě). [citace z Wiki]
+
+Často se také v souvislosti s pojmem web scraping používá spojení \emph{web crawler} (nebo také \emph{bot, spider, spiderbot}). Jedná se o automatizovaný software, který systematicky prochází danou oblast webu a během toho extrahuje kýžená data. Jak již bylo řečeno v úvodu, touto částí web scrapingu se práce nebude zabývat.
+
+\section{Využití web scrapingu}
+Podob pro uplatnění scrapování dat z webu je nespočet, a to obzvláš\v{t} v dnešní době, kdy jsme přímo zaplaveni daty (pohybujeme se v řádech Zettabajtů -- $1024^{7}$ B [citace z https://www.nodegraph.se/big-data-facts/]). Mezi ty hlavní patří:
+\begin{itemize}
+	\item Získání kontaktních informací (např. e-mail) pro marketingové účely
+	\item Indexování webových stránek
+	\item Data mining - proces hledání vzorců ve velkých datových setech [odkaz na Wiki]
+	\item Monitorování různých proměných (např. sledování cen nebo hodnocení produktů)
+	\item Recyklace již někdy použitých dat za účelem vytváření \uv{nového} obsahu
+	\item Analýza a zpracování dat k výzkumným účelům
+\end{itemize}
+
+
+\newpage
 \section{Analýza konkurence}
 
+
 \subsection{ParseHub}
-Celkový dojem - je to trošku sloppy, během 5 minut používání to stihlo crashnout. Rozhraní mi nepřijde super přívětivé, je toho na uživatele moc najednou, nepůsobí to na mě moc přehledně. Všechno se musí naklikat, což není úplně ideální. Na druhou stranu je klikání někdy tou nejlepší možností. V kombinaci s chytrým hledáním patternů (např. kdy uživateli stačí označit dvě položky a všechny stejné se automaticky vyberou také) je to rozhodně super feature. 
+\begin{figure}[h]
+	\includegraphics[width=\linewidth]{images/ParseHub.png}
+	\caption{ParseHub}
+	\label{fig:parseHub}
+\end{figure}
+
+\textbf{Výhody:}
 \begin{itemize}
-	\item Nutnost stažení aplikace - vypadá jako upravená Mozilla Firefox (nejspíš Add-on). Podpora Window, Linux, Mac.
-	\item Výběr dat ke scrapování probíhá pomocí klikání. Hezké je, že aplikace není úplně hloupá a probíhá zde určitý autoselect na základě našeho výběru (takže se člověk neukliká). Toto inteligentní hledání vzorců, podle kterých uživatel pravděpodobně chce vybrat data je hodně cool.
-	\item Aplikace obsahuje moc pěkný tutorial, jak s nástrojem zacházet...not bad.
-	\item Možnost získání dat různými formami - přes API, jako CSV/Excel, do GoogleSheets nebo do Tableau.
-	\item Různé módy kliknutí (select, relative select, click). Zooming in/out na HTML elementy.
-	\item Nelze vyhledávat podle klíčových slov nebo hledání (vše se musí naklikat).
+	\item Výběr dat pomocí klikání (inteligentní hledání vzorců/podobností na základě prvních dvou kliknutí)
+	\item Aplikace obsahuje interaktivní tutoriál, který na jednoduchých příkladech ukáže, jak s nástrojem zacházet
+	\item Možnost získání dat různými formami - přes API, jako CSV/Excel, do GoogleSheets nebo do Tableau
+	\item Různé módy kliknutí (výběr, relativní výběr, kliknutí), zooming in/out na HTML elementy -- když se uživatel netrefí (nebo ani trefit nemůže) přesně na požadovaný element, lze na něj lehce přejít pomocí této funkce
 \end{itemize}
 
+\textbf{Nevýhody:}
+\begin{itemize}
+	\item Nutnost stažení aplikace (ale je zde podpora pro Windows, Linux i Mac)
+	\item Aplikace je celkem těžkopádná, nemá moc přívětivé uživatelské rozhraní, ovládání působí nepřehledně a přehlceně -- na uživatele se vyvalí hodně informací a možností najednou
+	\item Nelze vyhledávat podle klíčových slov ani podle HTML nebo CSS, tudíž všechno se musí poctivě naklikat
+\end{itemize}
+
+
+\newpage
 \subsection{Octoparse}
-Celkový dojem - opět velmi těžkopádná aplikace, nepřehledná a složitá. Je zde ale možnost data jak naklikat, tak vybrat na základě nějaké shody (XPath, RegEx). U klikání taktéž chytré hledání patternů. Možnost nakonfigurovat logiku procházení na webu, nastavení stovky a tisíce tasků, jejich spouštění - skvělá příležitost pro automatizaci a možnost, jak prolézt nějakou celou doménu.
+\begin{figure}[h]
+	\includegraphics[width=\linewidth]{images/Octoparse.png}
+	\caption{Octoparse}
+	\label{fig:octoparse}
+\end{figure}
+
+\textbf{Výhody:}
 \begin{itemize}
-	\item Nutnost stažení aplikace. Podpora pouze pro Windows.
-	\item Možnost data jak naklikat, tak vybírat na základě hledání pomocí XPath nebo RegExpů.
-	\item Tutoriál v podstatě nic neříkající. 
-	\item Předpřipravené šablony (může velmi urychlit práci, ale je jich jenom pár a jsou velmi konkrétní).
-	\item Chytré hledání podobných dat (takže se uživatel neukliká)
-	\item Pestrá paleta možností (branch judgment, tvoření smyček apod.) - dá se vytvořit téměř jakákoli logika
-	\item Možnost řídit tasky přes API (a získávat tak data taktéž přes API). Data jdou nahrát rovnou i do lokální databáze.
+	\item Výběr dat jak pomocí klikání (inteligentní hledání vzorců/podobností na základě prvních dvou kliknutí), tak pomocí XPath nebo regulárních výrazů
+	\item Nástroj obsahuje předpřipravené šablony, které mohou velmi urychlit práci
+	\item Pestrá paleta možností (branch judgment, tvoření smyček apod.) -- dá se vytvořit téměř jakákoli logika procházení webu a extrakce dat
+	\item Lehký způsob, jak scrapování automatizovat
+	\item Možnost řídit tasky přes API (a získávat tak data taktéž přes API). Data jdou nahrát rovnou i do lokální databáze\\\\
 \end{itemize}
 
+\textbf{Nevýhody:}
+\begin{itemize}
+	\item Nutnost stažení aplikace (která je navíc pouze pro Windows)
+	\item Těžkopádné a pomalé ovládání, neintuitivní rozhraní
+	\item Tutoriál je v podstatě nic neříkající
+	\item Předpřipravených šablon je jenom pár a jsou velmi konkrétní
+\end{itemize}
+
+
+\newpage
 \subsection{WebScaper}
-Celkový dojem - zatim rozhodně nejlepší aplikace. Jednoduchá instalace (pouze rozšíření do Chromu) a hlavně JEDNODUCHÉ a PŘEHLEDNÉ ovládaní. Nastavování probíhá skrze dev console v Chromu, všechno běží hladce a plynule. Klikání je jednoduché a intuitivní, tutoriály vysvětlí vše potřebné během pár minut. Samozřejmostí je označení všech podobných prvků na základě dvou/tří ručně označených.
+\begin{figure}[h]
+	\includegraphics[width=\linewidth]{images/WebScraper.png}
+	\caption{WebScraper}
+	\label{fig:webScraper}
+\end{figure}
+
+\textbf{Výhody:}
 \begin{itemize}
-	\item Nutnost stažení pouze rozšíření do Chromu (ideální)
-	\item Možnost si hledaná data jak naklikat, tak hledat na základě HTML, CSS
-	\item Tutoriály formou videí - jednoduché, rychlé, naprosto postačující
-	\item Různé módy kliknutí, takže lze lehce prolézt celý web
-	\item Možnost exportovat data do CSV, získat přes API nebo do Dropboxu
-	\item Možnost využít jejich cloud k automatizaci
+	\item Jednoduchá instalace (jedná se pouze o rozšíření do prohlížeče Google Chrome). Nastavování probíhá skrze vývojářskou konzoli
+	\item Výběr dat pomocí klikání (inteligentní hledání vzorců/podobností na základě prvních dvou kliknutí)
+	\item Tutoriály jsou formou videí -- jednoduché, rychlé a naprosto postačující
+	\item Různé typy elementů, které vybíráme (text, odkaz, scroll down), takže lze celkem snadno prolézt celou stránku
+	\item Možnost získání dat různými formami - přes API, jako CSV/Excel nebo do Dropboxu
+	\item Klávesové zkratky při výběru elementů velmi usnad\v{n}ují práci
+	\item Možnost využít jejich cloud k automatizaci celého procesu
+	\item Přehledné rozhraní, rychlé a jednoduché používání
 \end{itemize}
 
+\textbf{Nevýhody:}
+\begin{itemize}
+	\item Nutnost používat Google Chrome, což pro některé uživatele může být překážka
+	\item Nelze vyhledávat podle klíčových slov ani podle HTML nebo CSS, tudíž všechno se musí poctivě naklikat
+\end{itemize}
+
+
+\newpage
 \subsection{Dexi.io}
-Celkový dojem - není potřeba žádná instalace, vše funguje jako webová aplikace, což je v tomto ohledu ta nejlepší varianta. Ovládání velmi podobné jako u WebScraperu, vypadá to v podstatě jako dev console v prohlížeči. Výběr dat ke scrapování probíhá opět přes klikání, je zde ale i možnost vybírat data na základě HTML, CSS, textu. Ovládání není tak moc intuitivní, základní tutorial je hodně povrchní, na druhou stranu mají na stránkách návodů dostatek. Funguje i jako crawler, umož\v{n}uje scrapovací boty napojovoat za sebe, skládat z menších větší a automatizovat celý proces.
+\begin{figure}[h!]
+	\includegraphics[width=\linewidth]{images/Dexiio.png}
+	\caption{Dexi.io}
+	\label{fig:dexi.io}
+\end{figure}
+
+\textbf{Výhody:}
 \begin{itemize}
-	\item Bez nutnosti stahování aplikace - velká výhoda
-	\item Možnost si hledaná data jak naklikat, tak hledat na základě HTML, CSS, textu
-	\item Úvodní tutoriál dost povrchní, ale dostatek návodů na stránkách
-	\item Různé módy kliknutí, takže lze lehce prolézt celý web
-	\item Možnost exportovat data do CSV, získat přes API
-	\item Různé módy aplikace - scraping, crawler, pipes a autobot
+	\item Bez nutnosti stahování aplikace -- vše se ovládá přes webové rozhraní
+	\item Výběr dat jak pomocí klikání (inteligentní hledání vzorců/podobností na základě prvních dvou kliknutí), tak pomocí HTML, CSS nebo textové shody
+	\item Hodně návodů dostupných na stránkách, interaktivní rádce přímo při scrapování
+	\item Všechny možné druhy kliknutí, takže lze lehce prolézt celou stránku
+	\item Možnost exportovat data do CSV, JSON, XLS, získat přes API, poslat do Google Drive, Google Sheets nebo Amazon S3
+	\item Různé módy aplikace -- scraping, crawler, pipes (skládání menších scrape botů) a autobot (extrahování z více stránek najednou se stejným rozložením). Možnost takto automatizovat celý proces.
+	\item Různé addony (např. na obcházení Captchy)
+	\item Rozhraní je přívětivé a používání celkem snadné
 \end{itemize}
 
+\textbf{Nevýhody:}
+\begin{itemize}
+	\item Široká nabídka možností a tak chvílí trvá, než se člověk zorientuje
+	\item Placený nástroj, zadarmo je dostupná pouze týdenní zkušební verze
+	\item Úvodní tutoriál je velmi strohý a žádné velké seznámení s nástrojem se nekoná
+\end{itemize}
+
+% -----------------------------------------------------------------
 
 \chapter{Realizace}
 
+% -----------------------------------------------------------------
 
 \begin{conclusion}
 	%sem napište závěr Vaší práce
@@ -122,6 +210,8 @@ Celkový dojem - není potřeba žádná instalace, vše funguje jako webová ap
 \bibliography{mybibliographyfile}
 
 \appendix
+
+% -----------------------------------------------------------------
 
 \chapter{Seznam použitých zkratek}
 % \printglossaries
