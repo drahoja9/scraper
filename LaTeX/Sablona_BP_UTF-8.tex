@@ -73,11 +73,29 @@ Naopak v rozsahu této práce není tvorba web crawlera ani žádného jiného p
 
 \section{Co je to vlastně ten web scraping?}
 \paragraph{Web sraping}
-(nebo také \emph{web harvesting, web data extraction}) je technika získávání nejrůznějších dat z webových stránek. Nejčastěji se v tomto kontextu jedná o automatizovaný proces strojového zpracování a získávání dat, nicméně může jít i o manuální extrakci zadanou uživatelem skrze nějaký software (jako je tomu právě v našem případě). [citace z Wiki]
+(nebo také \emph{web harvesting, web data extraction}) je technika získávání nejrůznějších dat z webových stránek. Nejčastěji se v tomto kontextu jedná o automatizovaný proces strojového zpracování a získávání dat, nicméně může jít i o manuální extrakci zadanou uživatelem skrze nějaký software (jako je tomu právě v našem případě). [citace z Wiki - web scraping]
 
 Často se také v souvislosti s pojmem web scraping používá spojení \emph{web crawler} (nebo také \emph{bot, spider, spiderbot}). Jedná se o automatizovaný software, který systematicky prochází danou oblast webu a během toho extrahuje kýžená data. Jak již bylo řečeno v úvodu, touto částí web scrapingu se práce nebude zabývat.
 
-\section{Využití web scrapingu}
+\subsection{Krátce k historii}
+Historie web scrapingu šahá k samým počátkům internetu (World Wide Web, 1989). Prvním webovým robotem, který byl vyvinut na MIT k měření velikosti webu, byl World Wide Web Wanderer (napsaný v jazyce Perl) z roku 1993. [citace z Wiki - World Wide Web Wanderer] 
+
+O něco později, v roce 2000, se ve velkém začala používat webová APIs - lidé mohli konzumovat čistá data a scraping se tak stal o hodně jednodušším. 
+
+Dalším milníkem v historii web scrapingu je rok 2004, kdy byla vydána knihovna pro parsování HTML a XML dokumentů Beautiful Soup pro programovací jazyk Python. Ta je do dnes považována za nejsofistikovanější a nejpokročilejší knihovnu pro web scraping.
+
+Za zmínku stojí určitě i rok 2006, kdy je datován příchod vizuálního web scrapingu, tedy techniky, kdy uživatel jenom označí klikáním myší, z kterých oblastí webové stránky chce vytáhnout data. Tímto se otevřely dveře web scrapingu pro všechny. [citace z https://www.octoparse.com/blog/web-scraping-introduction]
+
+\subsection{Techniky}
+Technik web scrapingu existuje mnoho, podívejme se alespo\v{n} na některé z nich:
+\begin{itemize}
+	\item Vyhledávání na základě textové shody -- např. pomocí UNIX nástroje grep nebo regulárních výrazů
+	\item HTML parsování -- základní a stále ještě nejpoužívanější technika extrakce dat. Informace jednoduše získáváme z HTML elementů, popř. pomocí tříd nebo id
+	\item Počítačové vidění, strojové učení, zapojení umělé inteligence -- snaha napodobit způsob, jakým vidí a zpracovává webovou stránku člověk, něco podobného zkouší např. \emph{Diffbot}
+	\item Ruční vyhledávání -- může se ukázat, že někdy je to tou nejsnažší a nejrychlejší alternativou
+\end{itemize}
+
+\subsection{Využití web scrapingu}
 Podob pro uplatnění scrapování dat z webu je nespočet, a to obzvláš\v{t} v dnešní době, kdy jsme přímo zaplaveni daty (pohybujeme se v řádech Zettabajtů -- $1024^{7}$ B [citace z https://www.nodegraph.se/big-data-facts/]). Mezi ty hlavní patří:
 \begin{itemize}
 	\item Získání kontaktních informací (např. e-mail) pro marketingové účely
@@ -88,6 +106,8 @@ Podob pro uplatnění scrapování dat z webu je nespočet, a to obzvláš\v{t} 
 	\item Analýza a zpracování dat k výzkumným účelům
 \end{itemize}
 
+\subsection{Je to vlastně legální?}
+
 
 \newpage
 \section{Analýza konkurence}
@@ -95,7 +115,7 @@ První skupinou, na kterou můžeme při hledání na internetu narazit, jsou sp
 
 Pro nás mnohem relevantnější kategorií je konkurenční nabídku nástrojů poskytujících uživatelům rozhraní k web scrapingu. Budeme se zaměřovat pouze na takové nástroje, které nevyžadují jakoukoli znalost programování -- tedy žádné knihovny, API a nástroje pro budování vlastních scraperů.
 
-Mezi ty největší představitele patří \emph{ParseHub, Octoparse, WebScraper} a \emph{Dexi.io}. Tři z nich jsou volně dostupné nástroje (které mají ale velmi omezenou funkcionalitu a pokročilejší operace se odemknou až s určitým platebním plánem) a jeden poskytuje bezplatně pouze 7 denní zkušební verzi.
+Mezi ty největší představitele patří \emph{ParseHub, Octoparse, WebScraper, Data Scraper} a \emph{Dexi.io}. Čtyři z nich jsou volně dostupné nástroje (které mají ale velmi omezenou funkcionalitu a pokročilejší operace se odemknou až s určitým platebním plánem) a jeden poskytuje bezplatně pouze 7 denní zkušební verzi.
 
 Předtím, než začneme jednotlivé nástroje porovnávat, musíme si určit nějaká kritéria, podle kterých budeme hodnotit kvalitu daného nástroje. Především nám půjde o jednoduchost používání, celkovou přehlednost a rychlost, se kterou se uživatel dostane k požadovaným datům. Také nás bude zajímat způsob výběru dat, možnosti exportu získaných dat, jak aplikace sama dokáže seznámit uživatele s používáním a také, v jaké formě se nástroj vůbec používá a jestli něčím vybočuje (a\v{t} už v pozitivním nebo negativním smyslu). 
 
