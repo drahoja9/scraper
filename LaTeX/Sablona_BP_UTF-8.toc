@@ -16,6 +16,7 @@
 \contentsline {subsection}{\numberline {2.2.3}WebScaper}{11}{subsection.2.2.3}
 \contentsline {subsection}{\numberline {2.2.4}Dexi.io}{13}{subsection.2.2.4}
 \contentsline {subsection}{\numberline {2.2.5}Data Scraper}{15}{subsection.2.2.5}
+\contentsline {section}{\numberline {2.3}Specifikace po\IeC {\v z}adavk\IeC {\r u}}{16}{section.2.3}
 \contentsline {chapter}{\chapternumberline {3}Realizace}{17}{chapter.3}
 \contentsline {chapter}{Z{\' a}v{\v e}r}{19}{chapter*.7}
 \contentsline {chapter}{Literatura}{21}{chapter*.8}
