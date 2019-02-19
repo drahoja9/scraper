@@ -154,7 +154,6 @@ Poj\v{d}me se tedy na některé nástroje podívat blíže:
 \end{itemize}
 
 
-\newpage
 \subsection{Octoparse}
 \begin{figure}[h]
 	\includegraphics[width=\linewidth]{images/Octoparse.png}
@@ -207,7 +206,6 @@ Poj\v{d}me se tedy na některé nástroje podívat blíže:
 \end{itemize}
 
 
-\newpage
 \subsection{Dexi.io}
 \begin{figure}[h!]
 	\includegraphics[width=\linewidth]{images/Dexiio.png}
@@ -221,7 +219,7 @@ Poj\v{d}me se tedy na některé nástroje podívat blíže:
 	\item Výběr dat jak pomocí klikání (inteligentní hledání vzorců/podobností na základě prvních dvou kliknutí), tak pomocí HTML, CSS nebo textové shody
 	\item Hodně návodů dostupných na stránkách, interaktivní rádce přímo při scrapování
 	\item Všechny možné druhy kliknutí, takže lze lehce prolézt celou stránku
-	\item Možnost exportovat data do CSV, JSON, Excel, získat přes API, poslat do \emph{Google Drive, Google Sheets} nebo \emph{Amazon S3}
+	\item Možnost exportovat data do CSV, JSON, XLS, získat přes API, poslat do \emph{Google Drive, Google Sheets} nebo \emph{Amazon S3}
 	\item Různé módy aplikace -- scraping, crawler, pipes (skládání menších scrape botů) a autobot (extrahování z~více stránek najednou se stejným rozložením). Možnost takto automatizovat celý proces.
 	\item Skvělé jsou různé addony (např. na obcházení \emph{Captchy})
 \end{itemize}
@@ -234,7 +232,6 @@ Poj\v{d}me se tedy na některé nástroje podívat blíže:
 \end{itemize}
 
 
-\newpage
 \subsection{Data Scraper}
 \begin{figure}[h]
 	\includegraphics[width=\linewidth]{images/DataScraper.png}
@@ -269,13 +266,39 @@ Pojďme si tedy rozdělit požadavky na funkční a nefunkční tak, jak by to k
 
 \subsection{Funkční požadavky}
 \begin{itemize}
-	\item
+	\item Uživatelské rozhraní se bude skládat z hlavní pracovní plochy, kde se bude nacházet uživatelem zadaná stránka a z postranního panelu, kde se budou nacházet všechny ovládací prvky
+	\item Výběr dat bude probíhat několika způsoby:
+	\begin{itemize}
+		\item kliknutím myší na požadované elementy (na základě předchozích kliknutí se program bude snažit označit všechny podobné prvky, výběr však půjde uživatelem zrušit)
+		\item na základě textové shody (uživatel jednoduše zadá text, který má být obsažen v extrahovaných datech)
+		\item pomocí HTML tagů (např. \emph{image, header, article}), které se budou zadávat do textového pole
+		\item pomocí CSS selektorů (tedy třídy, id, hodnota atributu, různé následnosti), které se taktéž budou zadávat do textového pole
+		\item bude připraveno i několik tlačítek s předdefinovanou akcí, něco jako šablona pro nejpoužívanější operace (např. stažení všech obrázků ze stránky, všech emailových adres)
+	\end{itemize}
+	\item Po kliknutí na určitý prvek se tento barevně označí. Taktéž všechny již vybrané prvky budou barevně odlišeny, aby bylo jasné, co už je připraveno k extrakci a co ještě ne
+	\item K dispozici bude přibližování/oddalování momentálního výběru pomocí ikony $+$ a $-$ (uživatel klikne na nějaký element a pomocí této funkce může traverzovat napříč zanořenými prvky oběma směry)
+	\item Na základě výběru dat uživatelem se bude tvořit určitý filtr (textový řetězec), který bude možné upravit -- půjde tak o alternativu pro zkušenější uživatele, aniž bychom zanesli uživatelské rozhraní přehršlí možností a celé ho tak znepřehlednili
+	\item Získaná data půjdou exportovat do formátů JSON, CSV, XLS, pokud se bude jednat o text. V případě obrázků, videí nebo zvukových souborů se bude exportovat v zabaleném archivu ZIP
 \end{itemize}
 
 \subsection{Nefunkční požadavky}
 \begin{itemize}
+	\item Bude se jednat o webovou aplikaci běžící v internetovém prohlížeči, tedy nebude nutná žádná instalace
+	\item Program se bude skládat ze dvou částí:
+	\begin{itemize}
+		\item \emph{frontend} -- kód, který poběží u klienta v prohlížeči; představuje celé uživatelské rozhraní aplikace
+		\item \emph{backend} -- kód, který poběží na serveru; bude naslouchat požadavkům a zpracovávat je; zde bude probíhat samotná extrakce dat
+	\end{itemize}
 	\item Aplikace bude primárně cílit na celkový zážitek uživatele -- grafické rozhraní bude přehledné a co nejjednodušší, ovládání intuitivní
 	\item Čas, za který se uživatel dostane k požadovaným datům (tedy čas, který stráví vybíráním dat), bude co nejmenší
+\end{itemize}
+
+\subsection{Nice-to-have požadavky}
+V předchozích dvou sekcích jsme si shrnuli, jaké požadavky by naše aplikace v každém případě měla splňovat a bez niž by neměla vůbec být uvedena k dispozici uživatelům. Pak tu máme ale také požadavky, které rozhodně zlepšují celkovou kvalitu a pocit z nástroje samotného, avšak nejsou již pro nás vitální a pokud by se jejich implementace nepovedla, svět se nezboří.
+\begin{itemize}
+	\item Uživatelské rozhraní aplikace nabídne intuitivní klávesové zkratky pro usnadnění práce -- klikání s přidrženou klávesou \textsf{Ctrl} bude automaticky vybírat všechny podobné elementy; \textsf{Ctrl+} a \textsf{Ctrl-} obstará přibližování/oddalování momentálního výběru; ...
+	\item Export dat bude možný i do \emph{Google Sheets, Google Drive, Dropbox}
+	\item Interaktivní tutoriál, který v rychlosti představí práci s nástrojem
 \end{itemize}
 
 
