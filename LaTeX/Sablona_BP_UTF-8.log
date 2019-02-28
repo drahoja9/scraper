@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.2.14)  19 FEB 2019 16:06
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.2.14)  28 FEB 2019 14:44
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1089,9 +1089,9 @@ l.65 \chapter
 ] [3] [4
 
 ]
-Overfull \hbox (55.70769pt too wide) in paragraph at lines 94--95
-\OT1/lmr/m/n/10.95 otev^^Trely dve^^Tre web scra-pingu pro v^^Tsechny. [ci-tace
- z https://www.octoparse.com/blog/web-
+Overfull \hbox (14.91826pt too wide) in paragraph at lines 94--95
+\OT1/lmr/m/n/10.95 dve^^Tre web scra-pingu pro v^^Tsechny. [ci-tace z https://w
+ww.octoparse.com/blog/web-
  []
 
 [5]
@@ -1101,50 +1101,32 @@ o-dobn^^Sych prvk^^Wu na z^^Saklad^^Te prvn^^S^^Pch
  []
 
 [6]
-<images/ParseHub.png, id=174, 837.88031pt x 635.37375pt>
-File: images/ParseHub.png Graphic file (type png)
-<use images/ParseHub.png>
-Package pdftex.def Info: images/ParseHub.png  used on input line 136.
-(pdftex.def)             Requested size: 369.0pt x 279.81738pt.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-Overfull \hbox (4.09186pt too wide) in paragraph at lines 144--145
-[]\OT1/lmr/m/n/10.95 Aplikace ob-sa-huje in-ter-ak-tivn^^S^^P tu-tori^^Sal, kte
+Overfull \hbox (1.35435pt too wide) in paragraph at lines 138--139
+[]\OT1/lmr/m/n/10.95 aplikace ob-sa-huje in-ter-ak-tivn^^S^^P tu-tori^^Sal, kte
 r^^Sy na jed-no-duch^^Sych p^^Tr^^S^^Pkladech
  []
 
 [7]
-<images/Octoparse.png, id=181, 770.88pt x 626.34pt>
+<images/ParseHub.png, id=179, 837.88031pt x 635.37375pt>
+File: images/ParseHub.png Graphic file (type png)
+<use images/ParseHub.png>
+Package pdftex.def Info: images/ParseHub.png  used on input line 149.
+(pdftex.def)             Requested size: 369.0pt x 279.81738pt.
+ [8 <./images/ParseHub.png>]
+<images/Octoparse.png, id=187, 770.88pt x 626.34pt>
 File: images/Octoparse.png Graphic file (type png)
 <use images/Octoparse.png>
-Package pdftex.def Info: images/Octoparse.png  used on input line 159.
+Package pdftex.def Info: images/Octoparse.png  used on input line 172.
 (pdftex.def)             Requested size: 369.0pt x 299.8083pt.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 170--171
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 170--171
-
- []
-
-[8 <./images/ParseHub.png>] [9 <./images/Octoparse.png>]
+ [9 <./images/Octoparse.png>]
 <images/WebScraper.png, id=193, 859.71187pt x 627.84563pt>
 File: images/WebScraper.png Graphic file (type png)
 <use images/WebScraper.png>
-Package pdftex.def Info: images/WebScraper.png  used on input line 185.
+Package pdftex.def Info: images/WebScraper.png  used on input line 181.
 (pdftex.def)             Requested size: 369.0pt x 269.47977pt.
 
-Overfull \hbox (13.2158pt too wide) in paragraph at lines 199--200
-[]\OT1/lmr/m/n/10.95 Oproti kon-ku-renci nab^^S^^Pz^^S^^P p^^Trehledn^^Se roz-h
+Overfull \hbox (10.1739pt too wide) in paragraph at lines 194--195
+[]\OT1/lmr/m/n/10.95 oproti kon-ku-renci nab^^S^^Pz^^S^^P p^^Trehledn^^Se roz-h
 ran^^S^^P, rychl^^Se a jed-no-duch^^Se pou^^Tz^^S^^Pv^^San^^S^^P 
  []
 
@@ -1152,47 +1134,35 @@ ran^^S^^P, rychl^^Se a jed-no-duch^^Se pou^^Tz^^S^^Pv^^San^^S^^P
 <images/Dexiio.png, id=200, 827.34094pt x 597.73312pt>
 File: images/Dexiio.png Graphic file (type png)
 <use images/Dexiio.png>
-Package pdftex.def Info: images/Dexiio.png  used on input line 211.
+Package pdftex.def Info: images/Dexiio.png  used on input line 205.
 (pdftex.def)             Requested size: 369.0pt x 266.59692pt.
  [11 <./images/Dexiio.png>]
-Overfull \hbox (20.30385pt too wide) in paragraph at lines 223--224
+Overfull \hbox (20.30385pt too wide) in paragraph at lines 216--217
 \OT1/lmr/m/n/10.95 bot^^Wu) a au-to-bot (ex-tra-hov^^San^^S^^P z v^^S^^Pce str^
-^Sanek na-jed-nou se stejn^^Sym rozlo^^Tzen^^S^^Pm).
+^Sanek na-jed-nou se stejn^^Sym rozlo^^Tzen^^S^^Pm);
  []
 
 <images/DataScraper.png, id=208, 1017.04968pt x 676.02562pt>
 File: images/DataScraper.png Graphic file (type png)
 <use images/DataScraper.png>
-Package pdftex.def Info: images/DataScraper.png  used on input line 237.
+Package pdftex.def Info: images/DataScraper.png  used on input line 242.
 (pdftex.def)             Requested size: 369.0pt x 245.26704pt.
-[12 <./images/DataScraper.png>] [13]
-Overfull \hbox (33.4721pt too wide) in paragraph at lines 275--276
-[]\OT1/lmr/m/n/10.95 pomoc^^S^^P CSS se-lek-tor^^Wu (tedy t^^Tr^^S^^Pdy, id, ho
-d-nota atri-butu, r^^Wuzn^^Se n^^Saslednosti),
- []
-
-[14]
-Overfull \hbox (7.52931pt too wide) in paragraph at lines 280--281
-\OT1/lmr/m/n/10.95 ^^Tret^^Tezec), kter^^Sy bude mo^^Tzn^^Se upra-vit -- p^^Wuj
-de tak o al-ter-na-tivu pro zku^^Tsen^^Tej^^Ts^^S^^P
- []
-
-
-Overfull \hbox (6.6781pt too wide) in paragraph at lines 290--291
+[12] [13 <./images/DataScraper.png>] [14]
+Overfull \hbox (6.6781pt too wide) in paragraph at lines 283--284
 []\OT1/lmr/m/it/10.95 backend \OT1/lmr/m/n/10.95 -- k^^Sod, kter^^Sy pob^^Te^^T
 z^^S^^P na ser-veru; bude na-slou-chat po^^Tzadavk^^Wum
  []
 
 
-Overfull \hbox (37.02937pt too wide) in paragraph at lines 299--300
+Overfull \hbox (37.02937pt too wide) in paragraph at lines 292--293
 \OT1/lmr/m/n/10.95 vyb^^S^^Prat v^^Tsechny po-dobn^^Se ele-menty; \OT1/lmss/m/n
 /10.95 Ctrl+ \OT1/lmr/m/n/10.95 a \OT1/lmss/m/n/10.95 Ctrl- \OT1/lmr/m/n/10.95 
 ob-star^^Sa p^^Tribli^^Tzov^^San^^S^^P/oddalov^^San^^S^^P
  []
 
-[15] [16] [17
+[15] [16
 
-] [18
+] [17] [18
 
 ] (./Sablona_BP_UTF-8.bbl [19] [20
 
@@ -1206,7 +1176,7 @@ LaTeX Warning: Empty `thebibliography' environment on input line 11.
 ] [23] [24
 
 ]
-LaTeX Font Info:    Try loading font information for OT1+lmtt on input line 462
+LaTeX Font Info:    Try loading font information for OT1+lmtt on input line 455
 .
  (/usr/share/texmf/tex/latex/lm/ot1lmtt.fd
 File: ot1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
@@ -1217,28 +1187,28 @@ File: ot1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 \tf@lof=\write6
 \openout6 = `Sablona_BP_UTF-8.lof'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 465.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 465.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 458.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 458.
 
 (./Sablona_BP_UTF-8.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 465.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 465.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 458.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 458.
 Package rerunfilecheck Info: File `Sablona_BP_UTF-8.out' has not changed.
 (rerunfilecheck)             Checksum: 71BFD761289C6A334A7BA37BABCDA6B0;1451.
 
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 465.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 458.
  ) 
 Here is how much of TeX's memory you used:
- 13425 strings out of 494889
- 184826 string characters out of 6179445
+ 13424 strings out of 494889
+ 184818 string characters out of 6179445
  312172 words of memory out of 5000000
- 16547 multiletter control sequences out of 15000+600000
+ 16546 multiletter control sequences out of 15000+600000
  65476 words of font info for 43 fonts, out of 8000000 for 9000
  24 hyphenation exceptions out of 8191
- 37i,11n,29p,1100b,456s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 37i,12n,29p,1100b,404s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/lm/lm-rmtt.enc}{/usr/share/texmf/fonts/enc/
 dvips/lm/lm-rm.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-rmsc.enc}{/usr/share
 /texmf/fonts/enc/dvips/lm/lm-mathsy.enc}</usr/share/texmf/fonts/type1/public/lm
@@ -1250,7 +1220,7 @@ nts/type1/public/lm/lmr12.pfb></usr/share/texmf/fonts/type1/public/lm/lmr8.pfb>
 1/public/lm/lmss10.pfb></usr/share/texmf/fonts/type1/public/lm/lmssbx10.pfb></u
 sr/share/texmf/fonts/type1/public/lm/lmsy10.pfb></usr/share/texmf/fonts/type1/p
 ublic/lm/lmtt10.pfb>
-Output written on Sablona_BP_UTF-8.pdf (39 pages, 813637 bytes).
+Output written on Sablona_BP_UTF-8.pdf (39 pages, 813459 bytes).
 PDF statistics:
  338 PDF objects out of 1000 (max. 8388607)
  271 compressed objects within 3 object streams
