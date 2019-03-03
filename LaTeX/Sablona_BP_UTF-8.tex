@@ -64,7 +64,7 @@
 
 \chapter{Cíl práce}
 
-Cílem této práce je navržení a tvorba webové aplikace, která bude umožňovat uživatelům vytáhnout požadovaná data z~libovolné stránky v~reálném čase bez jakékoli nutné znalosti programování.
+Cílem této práce je navržení a tvorba webové aplikace, která bude umožňovat uživatelům extrahovat požadovaná data z~libovolné stránky v~reálném čase bez jakékoli nutné znalosti programování.
 
 Hlavním specifikem aplikace bude \emph{přehlednost a jednoduchost uživatelského rozhraní} -- je klíčové, aby bylo ovládání intuitivní, rychlé a jednoduché.
 
@@ -78,33 +78,33 @@ Naopak v~rozsahu této práce není tvorba web crawlera ani žádného jiného p
 
 % ------------------------------------------------------------------------------------------------
 
-\section{Co je to vlastně ten web scraping?}
-\paragraph{Web sraping}
+\section{Web scraping}
+\paragraph{Web scraping}
 (nebo také \emph{web harvesting, web data extraction}) je technika získávání nejrůznějších dat z~webových stránek. Nejčastěji se v~tomto kontextu jedná o~automatizovaný proces strojového zpracování a získávání dat, nicméně může jít i o~manuální extrakci zadanou uživatelem skrze nějaký software (jako je tomu právě v~našem případě). [citace z~Wiki - web scraping]
 
 Často se také v~souvislosti s~pojmem web scraping používá spojení \emph{web crawler} (nebo také \emph{bot, spider, spiderbot}). Jedná se o~automatizovaný software, který systematicky prochází danou oblast webu a během toho extrahuje kýžená data. Jak již bylo řečeno v~úvodu, touto částí web scrapingu se práce nebude zabývat.
 
-\subsection{Krátce k~historii}
+\subsection{Krátce z~historie}
 Historie web scrapingu šahá k~samým počátkům internetu (\emph{World Wide Web}, 1989). Prvním webovým robotem, který byl vyvinut na MIT k~měření velikosti webu, byl \emph{World Wide Web Wanderer} (napsaný v~jazyce \emph{Perl}) z~roku 1993. [citace z~Wiki - World Wide Web Wanderer] 
 
-O~něco později, v~roce 2000, se ve velkém začala používat webová APIs -- lidé mohli konzumovat čistá data a scraping se tak stal o~hodně jednodušším. 
+O~něco později, v~roce 2000, se ve velkém začala používat webová APIs -- lidé mohli získávat čistá data přímo od serveru a scraping se tak stal o~hodně jednodušším. 
 
 Dalším milníkem v~historii web scrapingu je rok 2004, kdy byla vydána knihovna pro parsování HTML a XML dokumentů \emph{Beautiful Soup} pro programovací jazyk \emph{Python}. Ta je do dnes považována za nejsofistikovanější a nejpokročilejší knihovnu pro web scraping.
 
-Za zmínku stojí určitě i rok 2006, kdy je datován příchod vizuálního web scrapingu, tedy techniky, kdy uživatel skrze rozhraní  aplikace označí klikáním myši, z~kterých oblastí webové stránky chce vytáhnout data. Tímto se otevřely dveře web scrapingu pro všechny. [citace z~https://www.octoparse.com/blog/web-scraping-introduction]
+Za zmínku stojí určitě i rok 2006, kdy je datován příchod vizuálního web scrapingu, tedy techniky, kdy uživatel skrze rozhraní  aplikace označí klikáním myši, z~kterých oblastí webové stránky chce extrahovat data. Tímto se otevřely dveře web scrapingu pro všechny. [citace z~https://www.octoparse.com/blog/web-scraping-introduction]
 
 \subsection{Techniky}
-Technik, jak z~webové stránky vytáhnout data existuje mnoho, podívejme se alespoň na některé z~nich:
+Technik, jak z~webové stránky získat data existuje mnoho, podívejme se alespoň na některé z~nich:
 \begin{itemize}
-	\item vyhledávání na základě textové shody -- např. pomocí UNIX nástroje \emph{grep} nebo regulárních výrazů
+	\item vyhledávání na základě textové shody -- např. pomocí \emph{UNIX} nástroje \emph{grep} nebo regulárních výrazů
 	\item HTML parsování -- základní a stále ještě nejpoužívanější technika extrakce dat; informace jednoduše získáváme z~HTML elementů, popř. pomocí tříd nebo id
-	\item počítačové vidění, strojové učení, zapojení umělé inteligence -- snaha napodobit způsob, jakým vidí a zpracovává webovou stránku člověk; něco podobného zkouší např. projekt \emph{Diffbot}
-	\item vizuální web scraping -- jak již bylo zmíněno výše, požadovaná data se musí ručně naklikat skrze rozhraní nějaké aplikace (značně to však usnadňuje např. inteligentní hledání podobných prvků na základě prvních pár kliknutí)
-	\item ruční vyhledávání a stahování dat -- může se ukázat, že někdy je to tou nejsnazší a nejrychlejší alternativou
+	\item počítačové vidění, strojové učení, zapojení umělé inteligence -- snaha napodobit způsob, jakým vidí a zpracovává webovou stránku člověk; podobný přístup zkouší např. projekt \emph{Diffbot}
+	\item vizuální web scraping -- jak již bylo zmíněno výše, požadovaná data se musí ručně naklikat skrze rozhraní nějaké aplikace (značně to však usnadňuje např. hledání podobných prvků na základě prvních pár kliknutí)
+	\item manuální vyhledávání a stahování dat (někdy nazývaná také \emph{copy--paste})
 \end{itemize}
 
 \subsection{Využití web scrapingu}
-Podob pro uplatnění scrapování dat z~webu je nespočet, a to obzvlášť v~dnešní době, kdy jsme přímo zaplaveni daty (pohybujeme se v~řádech Zettabajtů -- $1024^{7}$ B [citace z~https://www.nodegraph.se/big-data-facts/]). Mezi ty hlavní patří:
+Podob pro uplatnění scrapování dat z~webu je nespočet, a to obzvlášť v~dnešní době, kdy se velikost všech dat na celém internetu pohybuje v~řádech Zettabajtů ($1024^{7}$ B).[citace z~https://www.nodegraph.se/big-data-facts/]. Mezi ty hlavní patří:
 \begin{itemize}
 	\item získání kontaktních informací (např. e-mail) pro marketingové účely
 	\item indexování webových stránek (jako příklad můžeme uvést \emph{GoogleBot})
@@ -114,7 +114,7 @@ Podob pro uplatnění scrapování dat z~webu je nespočet, a to obzvlášť v~d
 	\item analýza a zpracování dat k~výzkumným účelům
 \end{itemize}
 
-\subsection{Je to vlastně legální?}
+\subsection{Právní stránka}
 To be done...
 
 % ------------------------------------------------------------------------------------------------
@@ -125,7 +125,7 @@ První skupinou, na kterou můžeme při hledání na internetu narazit, jsou sp
 
 Pro nás mnohem relevantnější kategorií je konkurenční nabídku nástrojů poskytujících uživatelům rozhraní k~web scrapingu. Budeme se zaměřovat pouze na takové nástroje, které nevyžadují jakoukoli znalost programování -- tedy žádné knihovny, API a nástroje pro budování vlastních scraperů.
 
-Mezi ty největší představitele patří \emph{ParseHub, Octoparse, WebScraper, Data Scraper} a \emph{Dexi.io}. Čtyři ze zmíněných nástrojů jsou volně dostupné (které mají však velmi omezenou funkcionalitu a pokročilejší operace se odemknou až s~určitým platebním plánem -- tzv. \emph{freemium model}) a jeden poskytuje bezplatně pouze 7 denní zkušební verzi.
+Mezi ty největší představitele patří \emph{ParseHub, Octoparse, WebScraper, Data Scraper} a \emph{Dexi.io}. Čtyři ze zmíněných nástrojů jsou volně dostupné (které mají však velmi omezenou funkcionalitu a pokročilejší operace se odemknou až s~určitým platebním plánem -- tzv. \emph{freemium model}) a jeden poskytuje bezplatně pouze 7denní zkušební verzi.
 
 Předtím, než začneme jednotlivé nástroje porovnávat, musíme si určit kritéria, podle kterých budeme hodnotit kvalitu daného nástroje. Především nám půjde o~jednoduchost používání, celkovou přehlednost a rychlost, se kterou se uživatel dostane k~požadovaným datům. Také nás bude zajímat způsob výběru dat, možnosti exportu získaných dat, jak aplikace sama dokáže uživatele seznámit s~používáním a také, v~jaké formě se nástroj vůbec používá a čím se od ostatních odlišuje (ať už v~pozitivním či negativním smyslu). 
 
@@ -187,7 +187,7 @@ Poj\v{d}me se tedy na některé nástroje podívat blíže:
 	\item jednoduchá instalace (jedná se pouze o~rozšíření do prohlížeče \emph{Google Chrome}); scrapování probíhá skrze vývojářskou konzoli
 	\item výběr dat pomocí klikání (inteligentní hledání vzorců/podobností na základě prvních dvou kliknutí)
 	\item tutoriály jsou formou videí -- jednoduché, rychlé a naprosto postačující
-	\item různé typy elementů, které vybíráme (text, odkaz, scroll down), takže lze celkem snadno prolézt celou stránku
+	\item různé typy elementů, které vybíráme (text, odkaz, scroll down), takže lze celkem snadno projít celou doménu
 	\item možnost získání dat různými formami -- přes API, jako CSV/XLS nebo do \emph{Dropboxu}
 	\item klávesové zkratky při výběru elementů velmi usnadňují práci
 	\item možnost využít jejich cloud k~automatizaci celého procesu
@@ -196,7 +196,7 @@ Poj\v{d}me se tedy na některé nástroje podívat blíže:
 \textbf{Nevýhody:}
 \begin{itemize}
 	\item nutnost používat \emph{Google Chrome}, což pro některé uživatele může být překážka
-	\item nelze vyhledávat podle klíčových slov ani podle HTML nebo CSS, tudíž všechno se musí poctivě naklikat
+	\item nelze vyhledávat podle klíčových slov ani podle HTML nebo CSS, tudíž všechno se musí manuálně naklikat
 \end{itemize}
 
 
@@ -210,15 +210,15 @@ Poj\v{d}me se tedy na některé nástroje podívat blíže:
 \begin{itemize}
 	\item bez nutnosti stahování aplikace -- vše se ovládá přes webové rozhraní
 	\item výběr dat jak pomocí klikání (inteligentní hledání vzorců/podobností na základě prvních dvou kliknutí), tak pomocí HTML, CSS nebo textové shody
-	\item hodně návodů dostupných na stránkách, interaktivní rádce přímo při scrapování
-	\item všechny možné druhy kliknutí, takže lze lehce prolézt celou stránku
+	\item mnoho návodů dostupných na stránkách, interaktivní rádce přímo při scrapování
+	\item všechny možné druhy kliknutí, takže lze lehce projít celou doménu
 	\item možnost exportovat data do CSV, JSON, XLS, získat přes API, poslat do \emph{Google Drive, Google Sheets} nebo \emph{Amazon S3}
 	\item různé módy aplikace -- scraping, crawler, pipes (skládání menších scrape botů) a autobot (extrahování z~více stránek najednou se stejným rozložením); možnost takto automatizovat celý proces.
-	\item skvělé jsou různé addony (např. na obcházení \emph{Captchy})
+	\item nápomocné jsou různé addony (např. na obcházení \emph{Captchy})
 \end{itemize}
 \textbf{Nevýhody:}
 \begin{itemize}
-	\item široká nabídka možností a tak chvílí trvá, než se člověk zorientuje
+	\item široká nabídka možností, a tak chvílí trvá, než se člověk zorientuje
 	\item placený nástroj, zadarmo je dostupná pouze týdenní zkušební verze
 	\item úvodní tutoriál je velmi strohý a žádné velké seznámení s~nástrojem se nekoná
 \end{itemize}
@@ -230,8 +230,9 @@ Poj\v{d}me se tedy na některé nástroje podívat blíže:
 	\item jednoduchá instalace (jedná se pouze o~rozšíření do prohlížeče \emph{Google Chrome}).
 	\item velmi jednoduché ovládání a přehledné rozhraní
 	\item výběr dat probíhá pomocí klikání
-	\item skvělé je, že klikáním se utváří \emph{JQuery} selektor, který si uživatel může podle svého upravit a doladit tak drobné detaily, jež by jinak nutně zahltily uživatelské rozhraní (tedy je možné vyhledávat i podle HTML tagů, id, CSS selektorů -- zkrátka vše, co umí klasické \emph{JQuery})
-	\item různé druhy kliknutí, možnost spustit na stránce libovolný \emph{JavaScriptový} kód v~rámci scrapování
+	\item klikáním se utváří \emph{JQuery} selektor, který si uživatel může podle svého upravit a doladit tak drobné detaily, jež by jinak nutně zahltily uživatelské rozhraní (tedy je možné vyhledávat i podle HTML tagů, id, CSS selektorů -- zkrátka vše, co umí klasické \emph{JQuery})
+	\item různé druhy kliknutí
+	\item možnost spustit na stránce libovolný \emph{JavaScriptový} kód v~rámci scrapování
 \end{itemize}
 \textbf{Nevýhody:}
 \begin{itemize}
@@ -252,9 +253,9 @@ Jak jsme viděli v~předchozí analýze konkurenčních nástrojů, největším
 
 Na druhou stranu se můžeme u~konkurence i inspirovat. Za vyzdvižení stojí určitě \textbf{různé druhy výběru dat} -- \textbf{klikání} přímo na stránce spolu s~inteligentním hledáním podobných prvků jistě tvoří mocný mechanismus. Avšak je potřeba zajistit i ostatní způsoby výběru (jako je např. \textbf{textová shoda, HTML tagy, CSS selektory}) pro případ, kdy je pouhé klikání zdlouhavé či nevyhovující. Rovněž široký výběr způsobů exportu dat, intuitivní klávesové zkratky a zooming in/out na prvky může uživatelům zpříjemnit práci s~nástrojem.
 
-Neméně důležitou vlastností aplikace je také schopnost sebe sama kvalitně, ale svižně představit, \textbf{seznámit uživatele s~používáním} a poskytnout mu alespoň pro začátek určité vodítko. Pro většinu ovládacích prvků by ale mělo platit to stejné, co platí pro správný kód -- měly by být tzv. \textbf{\emph{self-explanatory}}. Tedy každému by mělo být na první pohled jasné, co který element dělá.
+Neméně důležitou vlastností aplikace je také schopnost sebe sama kvalitně, ale svižně představit, \textbf{seznámit uživatele s~používáním} a poskytnout mu alespoň pro začátek určité vodítko. Pro většinu ovládacích prvků by však mělo platit to stejné, co platí pro správný kód -- měly by být tzv. \textbf{\emph{self-explanatory}}. Tedy každému by mělo být na první pohled jasné, co který element dělá.
 
-Pojďme si nyní rozdělit požadavky na funkční a nefunkční tak, jak by to každý správný softwarový projekt měl udělat:
+Pojďme si nyní všechny požadavky shrnout do několika bodů a rozdělit na funkční a nefunkční:
 
 \subsection{Funkční požadavky}
 \begin{itemize}
@@ -266,7 +267,7 @@ Pojďme si nyní rozdělit požadavky na funkční a nefunkční tak, jak by to 
 		\item na základě textové shody (uživatel jednoduše zadá text, jenž má být obsažen v extrahovaných datech)
 		\item pomocí HTML tagů (např. \emph{image, header, article}), které se budou psát do textového pole
 		\item pomocí CSS selektorů (třídy, id, hodnota atributu, různé násled-nosti); k tomu poslouží formulář umožňující vše přehledně zadat
-		\item na ovládacím panelu nalezneme i několik tlačítek s hotovou akcí, představující šablonu pro nejpoužívanější operace (např. stažení všech obrázků ze stránky, všech emailových adres)
+		\item na ovládacím panelu nalezneme i tlačítka s hotovými akcemi před-stavující šablonu pro nejpoužívanější operace (stažení všech obrázků ze stránky, všech emailových adres atd.)
 	\end{itemize}
 	\item po kliknutí na určitý prvek se tento barevně označí; taktéž všechny již vybrané prvky budou barevně odlišeny, aby bylo jasné, co už je připraveno k extrakci a co ještě ne
 	\item k dispozici bude přibližování/oddalování momentálního výběru pomocí ikony $+$ a $-$ (uživatel klikne na daný element a pomocí této funkce může traverzovat napříč zanořenými prvky oběma směry)
@@ -283,11 +284,11 @@ Pojďme si nyní rozdělit požadavky na funkční a nefunkční tak, jak by to 
 		\item \emph{backend} -- kód, který poběží na serveru; bude naslouchat požadavkům a zpracovávat je; zde bude probíhat samotná extrakce dat
 	\end{itemize}
 	\item aplikace cílí primárně na celkový zážitek uživatele -- grafické rozhraní bude přehledné a co nejjednodušší, ovládání intuitivní
-	\item čas, za který se uživatel dostane k požadovaným datům (tedy čas, který stráví vybíráním dat; nepočítáme čas potřebný ke stažení všech dat), bude co nejmenší
+	\item čas, za který se uživatel dostane k požadovaným datům (tedy čas, který stráví vybíráním dat; nepočítáme čas potřebný ke stažení), bude co nejmenší
 \end{itemize}
 
 \subsection{Nice to have požadavky}
-V předchozích dvou sekcích jsme si shrnuli, jaké požadavky by naše aplikace v každém případě měla splňovat a bez niž by neměla vůbec být uvedena k dispozici uživatelům. Pak tu máme ale také požadavky, které rozhodně zlepšují celkovou kvalitu a pocit z nástroje samotného, avšak nejsou již pro nás vitální a pokud by se jejich implementace nepovedla, aplikace bude stále plně funkční a připravená k použití. Patří sem:
+V předchozích dvou sekcích jsme si shrnuli, jaké požadavky by naše aplikace v každém případě měla splňovat a bez nichž by neměla vůbec být uvedena k dispozici uživatelům. Pak tu máme ale také požadavky, které rozhodně zlepšují celkovou kvalitu a pocit z nástroje samotného, avšak nejsou již pro nás vitální a pokud by se jejich implementace nepovedla, aplikace bude stále plně funkční a připravená k použití. Patří sem:
 \begin{itemize}
 	\item uživatelské rozhraní aplikace nabídne intuitivní klávesové zkratky pro usnadnění práce -- klikání s přidrženou klávesou \textsf{Ctrl} bude automaticky vybírat všechny podobné elementy; \textsf{Ctrl+} a \textsf{Ctrl-} obstará přibližování/oddalování momentálního výběru; ...
 	\item export dat realizovatelný i do \emph{Google Sheets, Google Drive, Dropbox}
