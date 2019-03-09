@@ -1,0 +1,45 @@
+{
+  "name": "Bachelor thesis",
+  "version": "0.1",
+  "description": "To be done...",
+  "permissions": [
+    "activeTab"
+  ],
+  "background": {
+    "scripts": [
+      "background.js"
+    ],
+    "persistent": false
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*/*"
+      ],
+      "css": [
+        "contentScript.css"
+      ],
+      "js": [
+        "js/jquery-3.3.1.min.js",
+        "contentScript.js"
+      ]
+    }
+  ],
+  "browser_action": {
+    "default_title": "To be done...",
+    "default_icon": {
+      "16": "icon512.png",
+      "32": "icon512.png",
+      "48": "icon512.png",
+      "128": "icon512.png"
+    }
+  },
+  "icons": {
+    "16": "icon512.png",
+    "32": "icon512.png",
+    "48": "icon512.png",
+    "128": "icon512.png"
+  },
+  "manifest_version": 2,
+  "content_security_policy": "script-src 'self'; object-src 'self'"
+}
