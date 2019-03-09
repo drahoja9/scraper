@@ -20,6 +20,13 @@ function onClickChoosing(turnOn) {
     });
 }
 
+function injectControlPanel() {
+    const iframe = document.createElement('iframe');
+    iframe.src = chrome.runtime.getURL('test.html');
+    document.querySelector('body').appendChild(iframe);
+    console.log('LOADED');
+}
+
 
 // ========================================================================================================
 
@@ -27,4 +34,10 @@ function onClickChoosing(turnOn) {
 $(function () {
     // onHoverHighlighting(true);
     // onClickChoosing(true);
+    chrome.runtime.onMessage.addListener(
+        function (request, sender, sendResponse) {
+            if (request.msg == 'injectControlPanel')
+                injectControlPanel();
+        }
+    );
 });
