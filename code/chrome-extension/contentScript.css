@@ -1,11 +1,22 @@
-.to-scrape-highlighting {
+.scraping-highlighting {
     z-index: 9999999 !important;
     background-color: rgba(255, 197, 121, 0.445) !important;
     box-shadow: rgba(255, 197, 121, 0.445) 0px 0px 1px 3px !important;
     cursor: crosshair !important;
 }
 
-.to-scrape-chosen {
+.scraping-chosen {
     z-index: 9999999 !important;
-    outline: rgba(255, 197, 121, 0.7) dashed 3px !important;
+    outline: rgba(255, 197, 121, 0.8) dashed 3px !important;
+}
+
+.scraping-iframe-panel {
+    position: fixed !important;
+    top: 0 !important;
+    right: 0 !important;
+    z-index: 9999999 !important;
+    height: 100% !important;
+    width: 20% !important;
+    background-color: white !important;
+    box-shadow: none !important;
 }

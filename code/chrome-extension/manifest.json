@@ -3,10 +3,13 @@
   "version": "0.1",
   "description": "To be done...",
   "permissions": [
-    "activeTab"
+    "activeTab",
+    "storage",
+    "tabs"
   ],
   "background": {
     "scripts": [
+      "constants.js",
       "background.js"
     ],
     "persistent": false
@@ -21,6 +24,7 @@
       ],
       "js": [
         "js/jquery-3.3.1.min.js",
+        "constants.js",
         "contentScript.js"
       ]
     }
@@ -43,6 +47,7 @@
   "manifest_version": 2,
   "content_security_policy": "script-src 'self'; object-src 'self'",
   "web_accessible_resources": [
-    "test.html"
+    "mainPanel.html",
+    "contentScript.js"
   ]
 }
