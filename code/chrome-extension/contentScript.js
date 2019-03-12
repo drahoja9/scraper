@@ -9,11 +9,11 @@ class Highlighter {
         this._isTurnedOn = !this._isTurnedOn;
     }
 
-    _toggleEventListener(eventType, toggleFunc) {
+    _toggleEventListener(eventType, toggleFunc, capture = false) {
         if (!this._isTurnedOn) {
-            document.addEventListener(eventType, toggleFunc);
+            document.addEventListener(eventType, toggleFunc, capture);
         } else {
-            document.removeEventListener(eventType, toggleFunc);
+            document.removeEventListener(eventType, toggleFunc, capture);
         }
     }
 
@@ -33,9 +33,7 @@ class Highlighter {
     }
 
     _toggleOnClickChoosing() {
-        this._toggleEventListener('click', this._choosingFunc);
-        this._toggleEventListener('mouseup', (event) => { event.preventDefault(); event.stopImmediatePropagation(); });
-        this._toggleEventListener('mousedown', (event) => { event.preventDefault(); event.stopImmediatePropagation(); });
+        this._toggleEventListener('click', this._choosingFunc, true);
     }
 }
 
