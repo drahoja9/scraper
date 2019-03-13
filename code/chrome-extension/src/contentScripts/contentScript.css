@@ -1,11 +1,11 @@
-.scraping-highlighting {
+.scraping-highlighted {
     z-index: 9999999 !important;
     background-color: rgba(255, 197, 121, 0.445) !important;
     box-shadow: rgba(255, 197, 121, 0.445) 0px 0px 1px 3px !important;
     cursor: crosshair !important;
 }
 
-.scraping-chosen {
+.scraping-selected {
     z-index: 9999999 !important;
     outline: rgba(255, 197, 121, 0.8) dashed 3px !important;
 }
