@@ -27,6 +27,7 @@
         "src/constants.js",
         "src/contentScripts/highlighter.js",
         "src/contentScripts/controller.js",
+        "src/contentScripts/zooming.js",
         "src/contentScripts/contentScript.js"
       ]
     }

@@ -1,9 +1,10 @@
 class Controller {
-    constructor(highlighter) {
+    constructor(highlighter, zooming) {
         this._isInjected = false;
         this._isVisible = false;
         this._mainPanel = undefined;
         this._highlighter = highlighter;
+        this._zooming = zooming;
 
         this._communicationWithMainPanel = this._communicationWithMainPanel.bind(this);
     }
@@ -58,8 +59,30 @@ class Controller {
         if (event.data.type !== FROM_MAIN_PANEL) {
             return;
         }
-        if (event.data.msg === SELECT_ELEMENTS) {
-            this._highlighter.toggle();
+        switch (event.data.msg) {
+            case SELECT_ELEMENTS:
+                this._highlighter.toggle();
+                break;
+            case ACCEPT_AUTO_SELECT:
+                this._highlighter.acceptAutoSelect();
+                break;
+            case REJECT_AUTO_SELECT:
+                this._highlighter.rejectAutoSelect();
+                break;
+            case ZOOM_IN:
+                this._highlighter.current = this._zooming.firstChild(this._highlighter.current);
+                break;
+            case ZOOM_OUT:
+                this._highlighter.current = this._zooming.parent(this._highlighter.current);
+                break;
+            case ZOOM_PREV:
+                this._highlighter.current = this._zooming.previousSibling(this._highlighter.current);
+                break;
+            case ZOOM_NEXT:
+                this._highlighter.current = this._zooming.nextSibling(this._highlighter.current);
+                break;
+            default:
+                console.error('Unknown message from main panel!');
         }
     }
 
