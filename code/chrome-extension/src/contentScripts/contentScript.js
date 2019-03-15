@@ -1,7 +1,8 @@
 $(function () {
     const highlighter = new Highlighter();
-    const zooming = new Zooming();
-    const controller = new Controller(highlighter, zooming);
+    const textHighlighter = new TextHighlighter();
+    const domNavigator = new DOMNavigator();
+    const controller = new Controller(highlighter, textHighlighter, domNavigator);
 
     // Communication with backrground.js (main page of the extension)
     chrome.runtime.onMessage.addListener(

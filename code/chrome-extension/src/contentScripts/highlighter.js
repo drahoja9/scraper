@@ -3,6 +3,7 @@ class Highlighter {
         this._isTurnedOn = false;
         this._previous = undefined;
         this._autoSelected = undefined;
+        this._listeners = [];
 
         this._selectingFunc = this._selectingFunc.bind(this);
     }
@@ -35,6 +36,16 @@ class Highlighter {
         // User was unhappy with auto-select results, so now he starts from the
         // beginning -- 2 clicks to determine which elements should we select
         this._previous = undefined;
+    }
+
+    addListener(handler) {
+        this._listeners.push(handler);
+    }
+
+    _notifyListeners() {
+        for (const listener of this._listeners) {
+            listener();
+        }
     }
 
     _toggleEventListener(eventType, toggleFunc, capture = false) {
@@ -128,6 +139,7 @@ class Highlighter {
                     node.classList.add('scraping-selected');
                 }
                 this._autoSelected = similiarNodes;
+                this._notifyListeners();
             }
         }
     }
