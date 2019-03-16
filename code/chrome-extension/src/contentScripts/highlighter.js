@@ -13,7 +13,14 @@ class Highlighter {
     }
 
     set current(target) {
-        this._previous.classList.remove('scraping-selected');
+        if (this._previous === target) return;
+
+        if (target.classList.contains('scraping-selected')) {
+            target.classList.add('scraping-selected-already');
+        }
+        if (!this._previous.classList.contains('scraping-selected-already')) {
+            this._previous.classList.remove('scraping-selected');
+        }
         this._previous = target;
         this._previous.classList.add('scraping-selected');
     }
@@ -134,7 +141,9 @@ class Highlighter {
             if (selector) {
                 const excludeSelected = ':not(.scraping-selected)';
                 const excludeCurrent = ':not(.scraping-highlighted)';
-                const similiarNodes = document.querySelectorAll(selector + excludeSelected + excludeCurrent);
+                const similiarNodes = document.querySelectorAll(
+                    selector + excludeSelected + excludeCurrent
+                );
                 for (const node of similiarNodes) {
                     node.classList.add('scraping-selected');
                 }

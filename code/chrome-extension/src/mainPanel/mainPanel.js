@@ -18,11 +18,14 @@ function registerInputHandler(submitBtn, textInput, message, exactCheck = null) 
     });
 }
 
-function toggleAutoselectConfirmation() {
+function toggleAutoselectConfirmation(shouldEnable = null) {
     const acceptAutoSelectBtn = document.querySelector('#accept-auto-select');
     const rejectAutoSelectBtn = document.querySelector('#reject-auto-select');
 
-    if (acceptAutoSelectBtn.disabled) {
+    if (shouldEnable !== null) {
+        acceptAutoSelectBtn.disabled = !shouldEnable;
+        rejectAutoSelectBtn.disabled = !shouldEnable;
+    } else if (acceptAutoSelectBtn.disabled) {
         acceptAutoSelectBtn.disabled = false;
         rejectAutoSelectBtn.disabled = false;
     } else {
@@ -87,7 +90,7 @@ $(function () {
         }
         switch (event.data.msg) {
             case DECIDE_AUTO_SELECT:
-                toggleAutoselectConfirmation();
+                toggleAutoselectConfirmation(true);
                 break;
             default:
                 console.error('Unknown message from controller!');
