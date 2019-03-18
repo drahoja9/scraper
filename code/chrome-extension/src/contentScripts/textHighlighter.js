@@ -46,7 +46,7 @@ class TextHighlighter {
     }
 
     _isValid(node) {
-        // TODO: Somehow filter out the hidden elements (mostly for accessibility)
+        // TODO: Somehow filter out the hidden elements (usually for accessibility)
         const isNotScript = node => node.tagName.toLowerCase() !== 'script';
         const isLink = node => node.tagName.toLowerCase() === 'a';
         const isSpan = node => node.tagName.toLowerCase() === 'span';

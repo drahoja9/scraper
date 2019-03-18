@@ -21,12 +21,10 @@ class Controller {
     toggleMainPanel() {
         if (this._isVisible) {
             this._hideMainPanel();
+        } else if (this._isInjected) {
+            this._showMainPanel();
         } else {
-            if (this._isInjected) {
-                this._showMainPanel();
-            } else {
-                this._injectMainPanel();
-            }
+            this._injectMainPanel();
         }
         this._toggleCommunication();
     }
