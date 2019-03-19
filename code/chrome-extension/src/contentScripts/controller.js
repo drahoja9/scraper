@@ -14,14 +14,27 @@ export class Controller {
         this._highlighter.addListener(this._handleAutoselect.bind(this));
     }
 
-    injectMainPanel() {
-        if (!this._isInjected) {
-            this._injectMainPanel();
-            this._toggleCommunication();
-        }
+    listenToBackground() {
+        // Communication with backrground.js (main page of the extension)
+        chrome.runtime.onMessage.addListener(
+            function (request, sender, sendResponse) {
+                if (request.msg === Messages.BROWSER_ACTION_CLICKED) {
+                    this._toggleMainPanel();
+                }
+
+                if (
+                    request.msg === Messages.TAB_UPDATED &&
+                    request.shouldBeVisible === true &&
+                    !this._isInjected
+                ) {
+                    this._injectMainPanel();
+                    this._toggleCommunication();
+                }
+            }.bind(this)
+        );
     }
 
-    toggleMainPanel() {
+    _toggleMainPanel() {
         if (this._isVisible) {
             this._hideMainPanel();
         } else if (this._isInjected) {

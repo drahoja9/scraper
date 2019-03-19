@@ -15,16 +15,5 @@
     const domNavigator = new domNavigatorModule.DOMNavigator();
     const controller = new controllerModule.Controller(highlighter, textHighlighter, domNavigator);
 
-    // Communication with backrground.js (main page of the extension)
-    chrome.runtime.onMessage.addListener(
-        function (request, sender, sendResponse) {
-            if (request.msg === 'BROWSER_ACTION_CLICKED') {
-                controller.toggleMainPanel();
-            }
-
-            if (request.msg === 'TAB_UPDATED' && request.isVisible === true) {
-                controller.injectMainPanel();
-            }
-        }
-    );
+    controller.listenToBackground();
 })();

@@ -13,7 +13,7 @@ function getFromStorage(storageKey) {
     });
 }
 
-async function isVisibleInTab(tabId) {
+async function shouldBeVisibleInTab(tabId) {
     const tabIdStr = String(tabId);
     let result = undefined;
     try {
@@ -35,13 +35,13 @@ chrome.runtime.onInstalled.addListener(function () {
 
 chrome.browserAction.onClicked.addListener(async function (tab) {
     chrome.tabs.sendMessage(tab.id, { msg: Messages.BROWSER_ACTION_CLICKED });
-    const isVisible = await isVisibleInTab(tab.id);
-    chrome.storage.local.set({ [String(tab.id)]: { isVisible: !isVisible } });
+    const shouldBeVisible = await shouldBeVisibleInTab(tab.id);
+    chrome.storage.local.set({ [String(tab.id)]: { shouldBeVisible: !shouldBeVisible } });
 });
 
 chrome.tabs.onUpdated.addListener(async function (tabId, changeInfo, tab) {
-    const isVisible = await isVisibleInTab(tab.id);
-    chrome.tabs.sendMessage(tab.id, { msg: Messages.TAB_UPDATED, isVisible: isVisible });
+    const shouldBeVisible = await shouldBeVisibleInTab(tab.id);
+    chrome.tabs.sendMessage(tab.id, { msg: Messages.TAB_UPDATED, shouldBeVisible: shouldBeVisible });
 });
 
 chrome.tabs.onRemoved.addListener(function (tabId, removeInfo) {
