@@ -1,24 +1,21 @@
 export class TextHighlighter {
     startsWith({ value }) {
         this._highlight(value, [
-            (node, value) => node.innerText.startsWith(value)
+            (innerText, value) => innerText.startsWith(value)
         ]);
     }
 
     endsWith({ value }) {
         this._highlight(value, [
-            (node, value) => node.innerText.endsWith(value)
+            (innerText, value) => innerText.endsWith(value)
         ]);
     }
 
     contains({ value, exactCheck }) {
-        const exact = (node, value) => exactCheck && node.innerText === value;
-        const nonExact = (node, value) => !exactCheck && node.innerText.includes(value);
+        const exact = (innerText, value) => exactCheck && innerText === value;
+        const nonExact = (innerText, value) => !exactCheck && innerText.includes(value);
 
-        this._highlight(value, [
-            (node, value) => exact(node, value),
-            (node, value) => nonExact(node, value)
-        ]);
+        this._highlight(value, [(a, b) => exact(a, b), (a, b) => nonExact(a, b)]);
     }
 
     _searchDOM(callback) {
@@ -66,7 +63,7 @@ export class TextHighlighter {
         this._searchDOM(node => {
             if (this._isValid(node)) {
                 for (const condition of conditions) {
-                    if (condition(node, value)) {
+                    if (condition(node.innerText.toLowerCase(), value.toLowerCase())) {
                         node.classList.add('scraping-selected');
                     }
                 }
