@@ -1,4 +1,7 @@
-class Controller {
+import { Messages, MAIN_PANEL_PAGE } from '../constants.js';
+
+
+export class Controller {
     constructor(highlighter, textHighlighter, domNavigator) {
         this._isInjected = false;
         this._isVisible = false;
@@ -56,38 +59,38 @@ class Controller {
     }
 
     _communicationWithMainPanel() {
-        if (event.data.type !== FROM_MAIN_PANEL) {
+        if (event.data.type !== Messages.FROM_MAIN_PANEL) {
             return;
         }
         switch (event.data.msg) {
-            case SELECT_ELEMENTS:
+            case Messages.SELECT_ELEMENTS:
                 this._highlighter.toggle();
                 break;
-            case ACCEPT_AUTO_SELECT:
+            case Messages.ACCEPT_AUTO_SELECT:
                 this._highlighter.acceptAutoSelect();
                 break;
-            case REJECT_AUTO_SELECT:
+            case Messages.REJECT_AUTO_SELECT:
                 this._highlighter.rejectAutoSelect();
                 break;
-            case ZOOM_IN:
+            case Messages.ZOOM_IN:
                 this._highlighter.current = this._domNavigator.firstChild(this._highlighter.current);
                 break;
-            case ZOOM_OUT:
+            case Messages.ZOOM_OUT:
                 this._highlighter.current = this._domNavigator.parent(this._highlighter.current);
                 break;
-            case ZOOM_PREV:
+            case Messages.ZOOM_PREV:
                 this._highlighter.current = this._domNavigator.previousSibling(this._highlighter.current);
                 break;
-            case ZOOM_NEXT:
+            case Messages.ZOOM_NEXT:
                 this._highlighter.current = this._domNavigator.nextSibling(this._highlighter.current);
                 break;
-            case TEXT_SEARCH_CONTAINS:
+            case Messages.TEXT_SEARCH_CONTAINS:
                 this._textHighlighter.contains(event.data.payload);
                 break;
-            case TEXT_SEARCH_STARTS:
+            case Messages.TEXT_SEARCH_STARTS:
                 this._textHighlighter.startsWith(event.data.payload);
                 break;
-            case TEXT_SEARCH_ENDS:
+            case Messages.TEXT_SEARCH_ENDS:
                 this._textHighlighter.endsWith(event.data.payload);
                 break;
             default:
@@ -105,7 +108,7 @@ class Controller {
 
     _handleAutoselect() {
         this._mainPanel.contentWindow.postMessage(
-            { type: FROM_CONTROLLER, msg: DECIDE_AUTO_SELECT },
+            { type: Messages.FROM_CONTROLLER, msg: Messages.DECIDE_AUTO_SELECT },
             chrome.runtime.getURL(MAIN_PANEL_PAGE)
         );
     }

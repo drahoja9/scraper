@@ -1,4 +1,4 @@
-class DOMNavigator {
+export class DOMNavigator {
     _nullCheck(target, result) {
         return result !== null ? result : target;
     }

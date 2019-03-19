@@ -1,5 +1,8 @@
+import { Messages } from '../constants.js';
+
+
 function sendMessageToContentScript(message, payload = null) {
-    window.parent.postMessage({ type: FROM_MAIN_PANEL, msg: message, payload: payload }, '*');
+    window.parent.postMessage({ type: Messages.FROM_MAIN_PANEL, msg: message, payload: payload }, '*');
 }
 
 function registerClickHandler(element, message, callback = () => { }) {
@@ -60,36 +63,36 @@ $(function () {
 
     toggleAutoselectConfirmation();
 
-    registerClickHandler(selectElementsBtn, SELECT_ELEMENTS)
-    registerClickHandler(acceptAutoSelectBtn, ACCEPT_AUTO_SELECT, toggleAutoselectConfirmation)
-    registerClickHandler(rejectAutoSelectBtn, REJECT_AUTO_SELECT, toggleAutoselectConfirmation)
-    registerClickHandler(zoomInBtn, ZOOM_IN);
-    registerClickHandler(zoomOutBtn, ZOOM_OUT);
-    registerClickHandler(zoomPrevBtn, ZOOM_PREV);
-    registerClickHandler(zoomNextBtn, ZOOM_NEXT);
+    registerClickHandler(selectElementsBtn, Messages.SELECT_ELEMENTS)
+    registerClickHandler(acceptAutoSelectBtn, Messages.ACCEPT_AUTO_SELECT, toggleAutoselectConfirmation)
+    registerClickHandler(rejectAutoSelectBtn, Messages.REJECT_AUTO_SELECT, toggleAutoselectConfirmation)
+    registerClickHandler(zoomInBtn, Messages.ZOOM_IN);
+    registerClickHandler(zoomOutBtn, Messages.ZOOM_OUT);
+    registerClickHandler(zoomPrevBtn, Messages.ZOOM_PREV);
+    registerClickHandler(zoomNextBtn, Messages.ZOOM_NEXT);
     registerInputHandler(
         submitTextSearchContainsBtn,
         textSearchContainsInput,
-        TEXT_SEARCH_CONTAINS,
+        Messages.TEXT_SEARCH_CONTAINS,
         containsExactCheck
     );
     registerInputHandler(
         submitTextSearchStartsBtn,
         textSearchStartsInput,
-        TEXT_SEARCH_STARTS
+        Messages.TEXT_SEARCH_STARTS
     );
     registerInputHandler(
         submitTextSearchEndsBtn,
         textSearchEndsInput,
-        TEXT_SEARCH_ENDS
+        Messages.TEXT_SEARCH_ENDS
     );
 
     window.addEventListener('message', (event) => {
-        if (event.data.type !== FROM_CONTROLLER) {
+        if (event.data.type !== Messages.FROM_CONTROLLER) {
             return;
         }
         switch (event.data.msg) {
-            case DECIDE_AUTO_SELECT:
+            case Messages.DECIDE_AUTO_SELECT:
                 toggleAutoselectConfirmation(true);
                 break;
             default:

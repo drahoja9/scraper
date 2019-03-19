@@ -1,4 +1,4 @@
-class Highlighter {
+export class Highlighter {
     constructor() {
         this._isTurnedOn = false;
         this._previous = undefined;
@@ -55,18 +55,6 @@ class Highlighter {
         }
     }
 
-    _toggleEventListener(eventType, toggleFunc, capture = false) {
-        if (!this._isTurnedOn) {
-            document.addEventListener(eventType, toggleFunc, capture);
-        } else {
-            document.removeEventListener(eventType, toggleFunc, capture);
-        }
-    }
-
-    _highlightingFunc(event) {
-        event.target.classList.toggle('scraping-highlighted');
-    }
-
     _createTagString(target) {
         const previousTag = this._previous.nodeName;
         const currentTag = target.nodeName;
@@ -90,10 +78,15 @@ class Highlighter {
         // Conditions
         const sameClasses = className => currentClasses.contains(className);
         const isNotHighlighted = className => className !== 'scraping-highlighted';
+        const isNotSelected = className => className !== 'scraping-selected';
 
         let classString = ``;
         previousClasses.forEach((className) => {
-            if (sameClasses(className) && isNotHighlighted(className)) {
+            if (
+                sameClasses(className) &&
+                isNotHighlighted(className) &&
+                isNotSelected(className)
+            ) {
                 classString += `.${className}`;
             }
         });
@@ -103,7 +96,7 @@ class Highlighter {
 
     _createAttributesString(target) {
         const previousAttrs = this._previous.hasAttributes() ? this._previous.attributes : new NamedNodeMap();
-        const currentAttrs = target.hasAttributes() ? event.target.attributes : new NamedNodeMap();
+        const currentAttrs = target.hasAttributes() ? target.attributes : new NamedNodeMap();
         let attributeString = ``;
 
         // Conditions
@@ -129,9 +122,9 @@ class Highlighter {
     _selectSimiliarElements(target) {
         // Conditions
         const isNotFirst = () => this._previous !== undefined;
-        const isNotSelected = element => !element.classList.contains('scraping-selected');
+        const isSelected = element => element.classList.contains('scraping-selected');
 
-        if (isNotFirst() && isNotSelected(target)) {
+        if (isNotFirst() && isSelected(target)) {
             const tagString = this._createTagString(target);
             const classString = this._createClassString(target);
             const attributeString = this._createAttributesString(target);
@@ -140,10 +133,8 @@ class Highlighter {
             console.log(selector);
             if (selector) {
                 const excludeSelected = ':not(.scraping-selected)';
-                const excludeCurrent = ':not(.scraping-highlighted)';
-                const similiarNodes = document.querySelectorAll(
-                    selector + excludeSelected + excludeCurrent
-                );
+                // const excludeCurrent = ':not(.scraping-highlighted)';
+                const similiarNodes = document.querySelectorAll(selector + excludeSelected);
                 for (const node of similiarNodes) {
                     node.classList.add('scraping-selected');
                 }
@@ -157,13 +148,25 @@ class Highlighter {
         event.stopImmediatePropagation();
         event.preventDefault();
 
+        const wasClassAdded = event.target.classList.toggle('scraping-selected');
         this._selectSimiliarElements(event.target);
 
-        const wasClassAdded = event.target.classList.toggle('scraping-selected');
         if (wasClassAdded) {
             this._previous = event.target;
         } else {
             this._previous = undefined;
+        }
+    }
+
+    _highlightingFunc(event) {
+        event.target.classList.toggle('scraping-highlighted');
+    }
+
+    _toggleEventListener(eventType, toggleFunc, capture = false) {
+        if (!this._isTurnedOn) {
+            document.addEventListener(eventType, toggleFunc, capture);
+        } else {
+            document.removeEventListener(eventType, toggleFunc, capture);
         }
     }
 

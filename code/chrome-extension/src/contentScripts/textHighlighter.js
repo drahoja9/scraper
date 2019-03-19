@@ -1,4 +1,4 @@
-class TextHighlighter {
+export class TextHighlighter {
     startsWith({ value }) {
         this._highlight(value, [
             (node, value) => node.innerText.startsWith(value)
