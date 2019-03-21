@@ -2,7 +2,7 @@ import { Messages, MAIN_PANEL_PAGE } from '../constants.js';
 
 
 export class Controller {
-    constructor(highlighter, textHighlighter, domNavigator) {
+    constructor(shouldBeVisible, highlighter, textHighlighter, domNavigator) {
         this._isInjected = false;
         this._isVisible = false;
         this._mainPanel = undefined;
@@ -12,10 +12,14 @@ export class Controller {
 
         this._communicationWithMainPanel = this._communicationWithMainPanel.bind(this);
         this._highlighter.addListener(this._handleAutoselect.bind(this));
+
+        if (shouldBeVisible) {
+            this._toggleMainPanel();
+        }
     }
 
     listenToBackground() {
-        // Communication with backrground.js (main page of the extension)
+        // Communication with backrground.js (something like "backend" of the extension)
         chrome.runtime.onMessage.addListener(
             function (request, sender, sendResponse) {
                 if (request.msg === Messages.BROWSER_ACTION_CLICKED) {
@@ -27,8 +31,7 @@ export class Controller {
                     request.shouldBeVisible === true &&
                     !this._isInjected
                 ) {
-                    this._injectMainPanel();
-                    this._toggleCommunication();
+                    this._toggleMainPanel();
                 }
             }.bind(this)
         );

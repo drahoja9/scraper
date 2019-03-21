@@ -53,8 +53,8 @@ export class Highlighter {
     }
 
     _notifyListeners() {
-        for (const listener of this._listeners) {
-            listener();
+        for (const handler of this._listeners) {
+            handler();
         }
     }
 

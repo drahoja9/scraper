@@ -21,7 +21,7 @@ async function shouldBeVisibleInTab(tabId) {
     } catch (err) {
         console.error(err);
     }
-    return result ? result.isVisible : false;
+    return result ? result.shouldBeVisible : false;
 }
 
 
