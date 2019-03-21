@@ -25,7 +25,10 @@ export class Highlighter {
         this._previous.classList.add('scraping-selected');
     }
 
-    toggle() {
+    toggle(shouldTurnOn = undefined) {
+        if (shouldTurnOn !== undefined) {
+            this._isTurnedOn = !shouldTurnOn;
+        }
         this._toggleOnHoverHighlighting();
         this._toggleOnClickSelecting();
         this._isTurnedOn = !this._isTurnedOn;
@@ -119,6 +122,26 @@ export class Highlighter {
         return attributeString;
     }
 
+    _isValid(node) {
+        const isNotScript = node => node.tagName.toLowerCase() !== 'script';
+        const isLink = node => node.tagName.toLowerCase() === 'a';
+        const isSpan = node => node.tagName.toLowerCase() === 'span';
+        const hasNonZeroDimensions = node => node.clientWidth !== 0 && node.clientHeight !== 0;
+        const isDisplayed = node => node.offsetWidth > 0 && node.offsetHeight > 0;
+        const isNotHidden = node => !node.hidden;
+
+        return (
+            isNotScript(node) &&
+            isDisplayed(node) &&
+            isNotHidden(node) &&
+            (
+                isLink(node) ||
+                isSpan(node) ||
+                hasNonZeroDimensions(node)
+            )
+        );
+    }
+
     _selectSimiliarElements(target) {
         // Conditions
         const isNotFirst = () => this._previous !== undefined;
@@ -133,10 +156,11 @@ export class Highlighter {
             console.log(selector);
             if (selector) {
                 const excludeSelected = ':not(.scraping-selected)';
-                // const excludeCurrent = ':not(.scraping-highlighted)';
                 const similiarNodes = document.querySelectorAll(selector + excludeSelected);
                 for (const node of similiarNodes) {
-                    node.classList.add('scraping-selected');
+                    if (this._isValid(node)) {
+                        node.classList.add('scraping-selected');
+                    }
                 }
                 this._autoSelected = similiarNodes;
                 this._notifyListeners();
