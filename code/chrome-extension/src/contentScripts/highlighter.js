@@ -124,22 +124,13 @@ export class Highlighter {
 
     _isValid(node) {
         const isNotScript = node => node.tagName.toLowerCase() !== 'script';
-        const isLink = node => node.tagName.toLowerCase() === 'a';
-        const isSpan = node => node.tagName.toLowerCase() === 'span';
-        const hasNonZeroDimensions = node => node.clientWidth !== 0 && node.clientHeight !== 0;
-        const isDisplayed = node => node.offsetWidth > 0 && node.offsetHeight > 0;
-        const isNotHidden = node => !node.hidden;
-
-        return (
-            isNotScript(node) &&
-            isDisplayed(node) &&
-            isNotHidden(node) &&
-            (
-                isLink(node) ||
-                isSpan(node) ||
-                hasNonZeroDimensions(node)
-            )
+        const isNotHidden = node => (
+            !node.hidden &&
+            getComputedStyle(node).display !== 'none' &&
+            node.offsetWidth > 0 && node.offsetHeight > 0
         );
+
+        return isNotScript(node) && isNotHidden(node);
     }
 
     _selectSimiliarElements(target) {

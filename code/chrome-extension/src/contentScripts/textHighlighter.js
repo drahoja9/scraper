@@ -18,24 +18,22 @@ export class TextHighlighter {
         this._highlight(value, [(a, b) => exact(a, b), (a, b) => nonExact(a, b)]);
     }
 
-    _searchDOM(callback) {
+    _searchDOM(selectTextNode, selectElementNode) {
         let nodes = [document.body];
 
         // Conditions
-        const hasNoChildren = node => node.children.length === 0;
-        const hasNoText = node => node.innerText ? false : true;
+        const hasChildren = node => node.children.length > 0;
+        const hasText = node => node.innerText ? true : false;
+        const isTextNode = node => node.nodeType === 3;
 
         while (nodes.length !== 0) {
             let current = nodes.pop();
-            for (let child of current.children) {
-                // No reason to search in nodes with no innerText (including all of it's descedants)
-                if (hasNoText(child)) {
-                    continue;
-                }
-
-                if (hasNoChildren(child)) {
-                    callback(child);
-                } else {
+            for (const child of current.childNodes) {
+                if (isTextNode(child)) {
+                    selectTextNode(child);
+                } else if (hasText(child) && !hasChildren(child)) {
+                    selectElementNode(child);
+                } else if (hasText(child) && hasChildren(child)) {
                     nodes.push(child);
                 }
             }
@@ -43,31 +41,34 @@ export class TextHighlighter {
     }
 
     _isValid(node) {
-        // TODO: Somehow filter out the hidden elements (usually for accessibility)
         const isNotScript = node => node.tagName.toLowerCase() !== 'script';
-        const isLink = node => node.tagName.toLowerCase() === 'a';
-        const isSpan = node => node.tagName.toLowerCase() === 'span';
-        const hasNonZeroDimensions = node => node.clientWidth !== 0 && node.clientHeight !== 0;
-
-        return (
-            isNotScript(node) &&
-            (
-                hasNonZeroDimensions(node) ||
-                isLink(node) ||
-                isSpan(node)
-            )
+        const isNotHidden = node => (
+            !node.hidden &&
+            getComputedStyle(node).display !== 'none' &&
+            node.offsetWidth > 0 && node.offsetHeight > 0
         );
+
+        return isNotScript(node) && isNotHidden(node);
     }
 
     _highlight(value, conditions) {
-        this._searchDOM(node => {
-            if (this._isValid(node)) {
-                for (const condition of conditions) {
-                    if (condition(node.innerText.toLowerCase(), value.toLowerCase())) {
-                        node.classList.add('scraping-selected');
-                    }
+        const getText = node => node.innerText || node.wholeText;
+        const getClassList = node => node.classList || node.parentElement.classList;
+        const selectNode = node => {
+            for (const condition of conditions) {
+                const nodeText = getText(node).toLowerCase();
+                const serchedValue = value.toLowerCase();
+                if (condition(nodeText, serchedValue)) {
+                    getClassList(node).add('scraping-selected');
                 }
             }
-        });
+        };
+        const selectElementNode = node => {
+            if (this._isValid(node)) {
+                selectNode(node);
+            }
+        };
+
+        this._searchDOM(selectNode, selectElementNode);
     }
 }
