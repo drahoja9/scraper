@@ -6,10 +6,13 @@
 
 <body>
     <div id="hidden-div-1" class="row" style="display: none;">
-        <p>This text is hidden.</p>
+        <p>This text is hidden via inline CSS (`display` set to `none`).</p>
     </div>
-    <div id="hidden-div-2" class="row" style="width: 0; height: 0;">
-        <p>This text is also hidden.</p>
+    <div id="hidden-div-2" class="row">
+        <p>This text is hidden with `offsetHeight` and `offsetWidth` set to 0 (via JS in tests).</p>
+    </div>
+    <div id="hidden-div-3" class="row" hidden>
+        <p>This text is hidden via HTML attribute.</p>
     </div>
     <div id="container">
         <div class="col" id="first-div">
@@ -22,11 +25,13 @@
                     <div class="col" id="first-content-div">
                         <div class="row post-header" id="first-header">
                             <h3>Article header</h3>
+                            This text should represent text child node of `first-header` div.
                         </div>
                         <div class="row post-text" id="first-text">
-                            <p>
+                            <p id="first-p">
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                                 Suspendisse ornare ipsum vel augue sodales, non dapibus neque sodales.
+                                <a src="link_to_somewhere.com" id="first-link">Some link</a>
                                 Maecenas cursus sed sem dapibus elementum.
                             </p>
                         </div>
@@ -51,7 +56,7 @@
                             <h3>Article header #2</h3>
                         </div>
                         <div class="row post-text" data-attribute="332" id="second-text">
-                            <p>
+                            <p id="second-p">
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                                 Aenean luctus felis in fringilla convallis. Curabitur ut pharetra ipsum.
                             </p>

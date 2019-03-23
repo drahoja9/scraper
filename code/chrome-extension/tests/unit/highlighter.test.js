@@ -23,15 +23,9 @@ const _checkWholeDOM = (selected) => {
 // -------------------------------------------- Setup and teardown ----------------------------------------------
 
 beforeAll(function () {
-    // Mocking the `clientWidth`, `clientHeight`, `offsetWidth` and `offsetHeight`
-    const getterClientWidth = function () { return this._jsdomMockClientWidth || 123 };
-    const getterClientHeight = () => this._jsdomMockClientHeight || 123;
-    const getterOffsetWidth = () => this._jsdomMockOffsetWidth || 123;
-    const getterOffsetHeight = () => this._jsdomMockOffsetHeight || 123;
-    Object.defineProperty(window.HTMLElement.prototype, 'clientWidth', { get: getterClientWidth });
-    Object.defineProperty(window.HTMLElement.prototype, 'clientHeight', { get: getterClientHeight });
-    Object.defineProperty(window.HTMLElement.prototype, 'offsetWidth', { get: getterOffsetWidth });
-    Object.defineProperty(window.HTMLElement.prototype, 'offsetHeight', { get: getterOffsetHeight });
+    // Mocking the `offsetWidth` and `offsetHeight`
+    Object.defineProperty(window.HTMLElement.prototype, 'offsetWidth', { value: 123 });
+    Object.defineProperty(window.HTMLElement.prototype, 'offsetHeight', { value: 123 });
 });
 
 let highlighter;
@@ -50,25 +44,75 @@ afterEach(function () {
 
 // -------------------------------------------------- Tests -----------------------------------------------------
 
-test('tests toggling the highlighter on and off', () => {
+test('turns the highlighter on and off', () => {
+    const firstDiv = document.querySelector('#first-div');
+    const thirdDiv = document.querySelector('#third-div');
+
+    highlighter.toggle();
+    $(firstDiv).click();
+    expect(firstDiv.classList.contains('scraping-selected')).toBe(true);
+
+    highlighter.toggle();
+    $(thirdDiv).click();
+    expect(thirdDiv.classList.contains('scraping-selected')).toBe(false);
+
+    highlighter.toggle();
+    $(thirdDiv).click();
+    expect(thirdDiv.classList.contains('scraping-selected')).toBe(true);
+});
+
+test('selects the element on click, unselects after another', () => {
+    const firstHeader = document.querySelector('#first-header');
+
+    highlighter.toggle();
+    $(firstHeader).click();
+    expect(firstHeader.classList.contains('scraping-selected')).toBe(true);
+    $(firstHeader).click();
+    expect(firstHeader.classList.contains('scraping-selected')).toBe(false);
+    $(firstHeader).click();
+    expect(firstHeader.classList.contains('scraping-selected')).toBe(true);
+});
+
+test('selects only clicked element', () => {
     const container = document.querySelector('#container');
-
-    // Mouseover event is not working for some reason -- can't test the on hover highlighting...
-    highlighter.toggle();
-    $(container).click();
-    expect(container.classList.contains('scraping-selected')).toBe(true);
+    const firstDiv = document.querySelector('#first-div');
+    const secondDiv = document.querySelector('#second-div');
 
     highlighter.toggle();
-    $(container).click();
-    expect(container.classList.contains('scraping-selected')).toBe(true);
-
-    highlighter.toggle();
-    $(container).click();
+    $(firstDiv).click();
+    expect(firstDiv.classList.contains('scraping-selected')).toBe(true);
     expect(container.classList.contains('scraping-selected')).toBe(false);
+    expect(secondDiv.classList.contains('scraping-selected')).toBe(false);
+});
+
+test('highlights the element on mouseover, unhighlights on mouseout', () => {
+    const firstHeader = document.querySelector('#first-header');
+
+    // Mouseover event is not working properly, so this feature remains untested... :(
+    // highlighter.toggle();
+    // $(firstHeader).mouseover();
+    // expect(firstHeader.classList.contains('scraping-highlighted')).toBe(true);
+    // $(firstHeader).mouseout();
+    // expect(firstHeader.classList.contains('scraping-highlighted')).toBe(false);
+    // $(firstHeader).mouseover();
+    // expect(firstHeader.classList.contains('scraping-highlighted')).toBe(true);
+});
+
+test('current setter does not unselect already selected elements', () => {
+    const container = document.querySelector('#container');
+    const firstDiv = document.querySelector('#first-div');
+    const secondDiv = document.querySelector('#second-div');
+
+    highlighter.toggle();
+    $(container).click();
+    expect(highlighter.current).toBe(container);
+
+    $(firstDiv).click();
+    highlighter.current = container;
 });
 
 describe('auto-select test suite', () => {
-    test('tests reject auto-select', () => {
+    test('rejects auto-select', () => {
         const firstDiv = document.querySelector('#first-div');
         const firstImgDiv = document.querySelector('#first-img-div');
         const secondImgDiv = document.querySelector('#second-img-div');
@@ -88,9 +132,18 @@ describe('auto-select test suite', () => {
 
         highlighter.rejectAutoSelect();
         _checkWholeDOM([firstDiv, firstContentDiv]);
+
+        $(firstImgDiv).click();
+        // The auto-select feature should trigger after 2 clicks (even after rejecting)
+        _checkWholeDOM([firstDiv, firstContentDiv, firstImgDiv]);
+        $(secondContentDiv).click();
+        _checkWholeDOM([
+            firstDiv, firstContentDiv, firstImgDiv, secondImgDiv,
+            secondContentDiv, firstSpanDiv, secondSpanDiv
+        ]);
     });
 
-    test('tests accept auto-select', () => {
+    test('accepts auto-select', () => {
         const firstImgDiv = document.querySelector('#first-img-div');
         const firstLike = document.querySelector('#first-like');
         const secondText = document.querySelector('#second-text');
@@ -105,7 +158,7 @@ describe('auto-select test suite', () => {
         _checkWholeDOM([firstImgDiv, secondText, firstLike]);
     });
 
-    test('tests not auto-selecting invalid elements', () => {
+    test('does not auto-select invalid elements', async function () {
         const firstHeader = document.querySelector('#first-header');
         const secondHeader = document.querySelector('#second-header');
         const firstText = document.querySelector('#first-text');
@@ -116,29 +169,20 @@ describe('auto-select test suite', () => {
         const secondSocialButtons = document.querySelector('#second-social-buttons');
         const firstRowSpan = document.querySelector('#first-row-span');
         const secondRowSpan = document.querySelector('#second-row-span');
-        const script = document.querySelector('#script');
-        const firstHidden = document.querySelector('#hidden-div-1');
         const secondHidden = document.querySelector('#hidden-div-2');
 
-        firstHidden.hidden = true;
-        secondHidden._jsdomMockClientWidth = 0;
-        secondHidden._jsdomMockClientHeight = 0;
-        secondHidden._jsdomMockOffsetWidth = 0;
-        secondHidden._jsdomMockOffsetHeight = 0;
-
-        console.log(secondHidden.clientWidth);
-        console.log(secondHidden.clientHeight);
-        console.log(secondHidden.offsetWidth);
-        console.log(secondHidden.offsetHeight);
+        // Mocking up the `offsetWidth` and `offsetHeight` of this particular node
+        Object.defineProperty(secondHidden, 'offsetWidth', { value: 0 });
+        Object.defineProperty(secondHidden, 'offsetHeight', { value: 0 });
 
         highlighter.toggle();
         $(firstHeader).click();
         $(firstText).click();
+        // Auto-select should choose all elements with `row` class, but not the hidden ones
         _checkWholeDOM([
             firstHeader, firstText, secondHeader, secondText,
             secondDiv, thirdDiv, firstSocialButtons,
-            secondSocialButtons, firstRowSpan, secondRowSpan,
-            secondHidden
+            secondSocialButtons, firstRowSpan, secondRowSpan
         ]);
     });
 })

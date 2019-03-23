@@ -16,14 +16,15 @@ test('returns first child of the target node, if it has some, otherwise returns 
     const firstDiv = document.querySelector('#first-div');
     const secondDiv = document.querySelector('#second-div');
     const article = document.querySelector('#post-1');
-    const ps = document.querySelectorAll('p');
+    const p1 = document.querySelector('#first-p');
+    const p2 = document.querySelector('#second-p');
+    const firstLink = document.querySelector('#first-link');
 
     expect(navigator.firstChild(container)).toBe(firstDiv);
     expect(navigator.firstChild(firstDiv)).toBe(secondDiv);
     expect(navigator.firstChild(secondDiv)).toBe(article);
-    for (const p of ps) {
-        expect(navigator.firstChild(p)).toBe(p);
-    }
+    expect(navigator.firstChild(p1)).toBe(firstLink);
+    expect(navigator.firstChild(p2)).toBe(p2);
 });
 
 test('returns parent of the target node, if it has some, otherwise returns the node itself', () => {
@@ -47,9 +48,9 @@ test('returns previous sibling of the target node, if it has some, otherwise ret
     const thirdDiv = document.querySelector('#third-div');
     const firstImgDiv = document.querySelector('#first-img-div');
     const firstContentDiv = document.querySelector('#first-content-div');
-    const secondHiddenDiv = document.querySelector('#hidden-div-2');
+    const thirdHiddenDiv = document.querySelector('#hidden-div-3');
 
-    expect(navigator.previousSibling(container)).toBe(secondHiddenDiv);
+    expect(navigator.previousSibling(container)).toBe(thirdHiddenDiv);
     expect(navigator.previousSibling(firstDiv)).toBe(firstDiv);
     expect(navigator.previousSibling(thirdDiv)).toBe(secondDiv);
     expect(navigator.previousSibling(firstContentDiv)).toBe(firstImgDiv);
