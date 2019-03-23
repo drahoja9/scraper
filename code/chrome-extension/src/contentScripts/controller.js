@@ -11,7 +11,7 @@ export class Controller {
         this._domNavigator = domNavigator;
 
         this._communicationWithMainPanel = this._communicationWithMainPanel.bind(this);
-        this._highlighter.addListener(this._handleAutoselect.bind(this));
+        this._highlighter.addListener(this._notify.bind(this));
 
         if (shouldBeVisible) {
             this._toggleMainPanel();
@@ -122,9 +122,9 @@ export class Controller {
         }
     }
 
-    _handleAutoselect() {
+    _notify(msg) {
         this._mainPanel.contentWindow.postMessage(
-            { type: Messages.FROM_CONTROLLER, msg: Messages.DECIDE_AUTO_SELECT },
+            { type: Messages.FROM_CONTROLLER, msg: msg },
             chrome.runtime.getURL(MAIN_PANEL_PAGE)
         );
     }

@@ -37,6 +37,30 @@ function toggleAutoselectConfirmation(shouldEnable = null) {
     }
 }
 
+function toggleDOMNavigation(shouldEnable = null) {
+    const zoomInBtn = document.querySelector('#zoom-in');
+    const zoomOutBtn = document.querySelector('#zoom-out');
+    const zoomPrevBtn = document.querySelector('#zoom-prev');
+    const zoomNextBtn = document.querySelector('#zoom-next');
+
+    if (shouldEnable !== null) {
+        zoomInBtn.disabled = !shouldEnable;
+        zoomOutBtn.disabled = !shouldEnable;
+        zoomPrevBtn.disabled = !shouldEnable;
+        zoomNextBtn.disabled = !shouldEnable;
+    } else if (zoomInBtn.disabled) {
+        zoomInBtn.disabled = false;
+        zoomOutBtn.disabled = false;
+        zoomPrevBtn.disabled = false;
+        zoomNextBtn.disabled = false;
+    } else {
+        zoomInBtn.disabled = true;
+        zoomOutBtn.disabled = true;
+        zoomPrevBtn.disabled = true;
+        zoomNextBtn.disabled = true;
+    }
+}
+
 
 // ========================================================================================================
 
@@ -62,6 +86,7 @@ $(function () {
 
 
     toggleAutoselectConfirmation();
+    toggleDOMNavigation();
 
     registerClickHandler(selectElementsBtn, Messages.SELECT_ELEMENTS)
     registerClickHandler(acceptAutoSelectBtn, Messages.ACCEPT_AUTO_SELECT, toggleAutoselectConfirmation)
@@ -94,6 +119,12 @@ $(function () {
         switch (event.data.msg) {
             case Messages.DECIDE_AUTO_SELECT:
                 toggleAutoselectConfirmation(true);
+                break;
+            case Messages.SELECTED:
+                toggleDOMNavigation(true);
+                break;
+            case Messages.UNSELECTED:
+                toggleDOMNavigation(false);
                 break;
             default:
                 console.error('Unknown message from controller!');

@@ -1,3 +1,6 @@
+import { Messages } from '../constants.js';
+
+
 export class Highlighter {
     constructor() {
         this._isTurnedOn = false;
@@ -18,7 +21,7 @@ export class Highlighter {
         if (target.classList.contains('scraping-selected')) {
             target.classList.add('scraping-selected-already');
         }
-        if (!this._previous.classList.contains('scraping-selected-already')) {
+        if (this._previous && !this._previous.classList.contains('scraping-selected-already')) {
             this._previous.classList.remove('scraping-selected');
         }
         this._previous = target;
@@ -52,9 +55,9 @@ export class Highlighter {
         this._listeners.push(handler);
     }
 
-    _notifyListeners() {
-        for (const handler of this._listeners) {
-            handler();
+    _notifyListeners(msg) {
+        for (const callback of this._listeners) {
+            callback(msg);
         }
     }
 
@@ -71,7 +74,7 @@ export class Highlighter {
             sameTags(previousTag, currentTag) &&
             isNotDiv(currentTag) &&
             isNotSpan(currentTag)
-        ) ? currentTag : '';
+        ) ? currentTag.toLowerCase() : '';
     }
 
     _createClassString(target) {
@@ -127,6 +130,7 @@ export class Highlighter {
         const isNotHidden = node => (
             !node.hidden &&
             getComputedStyle(node).display !== 'none' &&
+            node.style.display !== 'none' &&
             node.offsetWidth > 0 && node.offsetHeight > 0
         );
 
@@ -144,7 +148,7 @@ export class Highlighter {
             const attributeString = this._createAttributesString(target);
             const selector = tagString + classString + attributeString;
 
-            console.log(selector);
+            // console.log(selector);
             if (selector) {
                 const excludeSelected = ':not(.scraping-selected)';
                 const similiarNodes = document.querySelectorAll(selector + excludeSelected);
@@ -154,7 +158,7 @@ export class Highlighter {
                     }
                 }
                 this._autoSelected = similiarNodes;
-                this._notifyListeners();
+                this._notifyListeners(Messages.DECIDE_AUTO_SELECT);
             }
         }
     }
@@ -168,8 +172,10 @@ export class Highlighter {
 
         if (wasClassAdded) {
             this._previous = event.target;
+            this._notifyListeners(Messages.SELECTED);
         } else {
             this._previous = undefined;
+            this._notifyListeners(Messages.UNSELECTED);
         }
     }
 

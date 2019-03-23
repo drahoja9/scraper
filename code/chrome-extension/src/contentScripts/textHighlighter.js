@@ -45,6 +45,7 @@ export class TextHighlighter {
         const isNotHidden = node => (
             !node.hidden &&
             getComputedStyle(node).display !== 'none' &&
+            node.style.display !== 'none' &&
             node.offsetWidth > 0 && node.offsetHeight > 0
         );
 
