@@ -1,6 +1,5 @@
 import { Highlighter } from '../../src/contentScripts/highlighter.js';
 import { JSDOM } from 'jsdom';
-import $ from 'jquery';
 
 
 // ------------------------------------------------- Helpers ----------------------------------------------------
@@ -19,6 +18,21 @@ const _checkWholeDOM = (selected) => {
         }
     }
 };
+
+const _mouseover = (node) => {
+    node.dispatchEvent(new MouseEvent('mouseover', { bubbles: true }));
+}
+
+const _mouseout = (node) => {
+    node.dispatchEvent(new MouseEvent('mouseout', { bubbles: true }));
+}
+
+const _click = (node) => {
+    node.dispatchEvent(new MouseEvent('click', {
+        bubbles: true,
+        cancelable: true
+    }));
+}
 
 // -------------------------------------------- Setup and teardown ----------------------------------------------
 
@@ -49,28 +63,41 @@ test('turns the highlighter on and off', () => {
     const thirdDiv = document.querySelector('#third-div');
 
     highlighter.toggle();
-    $(firstDiv).click();
+    _click(firstDiv);
     expect(firstDiv.classList.contains('scraping-selected')).toBe(true);
 
     highlighter.toggle();
-    $(thirdDiv).click();
+    _click(thirdDiv);
     expect(thirdDiv.classList.contains('scraping-selected')).toBe(false);
 
     highlighter.toggle();
-    $(thirdDiv).click();
+    _click(thirdDiv);
     expect(thirdDiv.classList.contains('scraping-selected')).toBe(true);
 });
 
 test('selects the element on click, unselects after another', () => {
     const firstHeader = document.querySelector('#first-header');
+    const firstDiv = document.querySelector('#first-div');
 
     highlighter.toggle();
-    $(firstHeader).click();
+
+    _click(firstHeader);
     expect(firstHeader.classList.contains('scraping-selected')).toBe(true);
-    $(firstHeader).click();
+    expect(firstHeader.classList.contains('scraping-selected-current')).toBe(true);
+
+    _click(firstDiv);
+    expect(firstDiv.classList.contains('scraping-selected')).toBe(true);
+    expect(firstDiv.classList.contains('scraping-selected-current')).toBe(true);
+    expect(firstHeader.classList.contains('scraping-selected')).toBe(true);
+    expect(firstHeader.classList.contains('scraping-selected-current')).toBe(false);
+
+    _click(firstHeader);
     expect(firstHeader.classList.contains('scraping-selected')).toBe(false);
-    $(firstHeader).click();
-    expect(firstHeader.classList.contains('scraping-selected')).toBe(true);
+    expect(firstHeader.classList.contains('scraping-selected-current')).toBe(false);
+
+    _click(firstDiv);
+    expect(firstDiv.classList.contains('scraping-selected')).toBe(false);
+    expect(firstDiv.classList.contains('scraping-selected-current')).toBe(false);
 });
 
 test('selects only clicked element', () => {
@@ -79,36 +106,69 @@ test('selects only clicked element', () => {
     const secondDiv = document.querySelector('#second-div');
 
     highlighter.toggle();
-    $(firstDiv).click();
+    _click(firstDiv);
     expect(firstDiv.classList.contains('scraping-selected')).toBe(true);
     expect(container.classList.contains('scraping-selected')).toBe(false);
     expect(secondDiv.classList.contains('scraping-selected')).toBe(false);
+    expect(firstDiv.classList.contains('scraping-selected-current')).toBe(true);
+    expect(container.classList.contains('scraping-selected-current')).toBe(false);
+    expect(secondDiv.classList.contains('scraping-selected-current')).toBe(false);
 });
 
 test('highlights the element on mouseover, unhighlights on mouseout', () => {
     const firstHeader = document.querySelector('#first-header');
 
-    // Mouseover event is not working properly, so this feature remains untested... :(
-    // highlighter.toggle();
-    // $(firstHeader).mouseover();
-    // expect(firstHeader.classList.contains('scraping-highlighted')).toBe(true);
-    // $(firstHeader).mouseout();
-    // expect(firstHeader.classList.contains('scraping-highlighted')).toBe(false);
-    // $(firstHeader).mouseover();
-    // expect(firstHeader.classList.contains('scraping-highlighted')).toBe(true);
+    highlighter.toggle();
+    _mouseover(firstHeader);
+    expect(firstHeader.classList.contains('scraping-highlighted')).toBe(true);
+    _mouseout(firstHeader);
+    expect(firstHeader.classList.contains('scraping-highlighted')).toBe(false);
+    _mouseover(firstHeader);
+    expect(firstHeader.classList.contains('scraping-highlighted')).toBe(true);
 });
 
-test('current setter does not unselect already selected elements', () => {
+test('current setter does not unselect manualy selected elements', () => {
     const container = document.querySelector('#container');
     const firstDiv = document.querySelector('#first-div');
     const secondDiv = document.querySelector('#second-div');
 
     highlighter.toggle();
-    $(container).click();
-    expect(highlighter.current).toBe(container);
+    _click(container);
+    expect(container.classList.contains('scraping-selected')).toBe(true);
+    expect(container.classList.contains('scraping-selected-current')).toBe(true);
 
-    $(firstDiv).click();
+    _click(firstDiv);
     highlighter.current = container;
+    highlighter.current = secondDiv;
+    highlighter.current = firstDiv;
+    expect(container.classList.contains('scraping-selected')).toBe(true);
+    expect(container.classList.contains('scraping-selected-current')).toBe(false);
+    expect(firstDiv.classList.contains('scraping-selected')).toBe(true);
+    expect(firstDiv.classList.contains('scraping-selected-current')).toBe(true);
+    expect(secondDiv.classList.contains('scraping-selected')).toBe(false);
+    expect(secondDiv.classList.contains('scraping-selected-current')).toBe(false);
+});
+
+test('notifies listeners about changes', () => {
+    let messages = [];
+    const messageCatcher = (msg) => { messages.push(msg) }
+
+    const firstDiv = document.querySelector('#first-div');
+    const firstImgDiv = document.querySelector('#first-img-div');
+
+    highlighter.toggle();
+    highlighter.addListener(messageCatcher);
+
+    _click(firstDiv);
+    expect(messages).toEqual(['SELECTED']);
+
+    messages = [];
+    _click(firstImgDiv);
+    expect(messages).toEqual(['DECIDE_AUTO_SELECT', 'SELECTED']);
+
+    messages = [];
+    _click(firstImgDiv);
+    expect(messages).toEqual(['UNSELECTED']);
 });
 
 describe('auto-select test suite', () => {
@@ -122,8 +182,8 @@ describe('auto-select test suite', () => {
         const secondSpanDiv = document.querySelector('#second-span-div');
 
         highlighter.toggle();
-        $(firstDiv).click();
-        $(firstContentDiv).click();
+        _click(firstDiv);
+        _click(firstContentDiv);
         // Auto-select should choose all elements with `col` class
         _checkWholeDOM([
             firstDiv, firstContentDiv, firstImgDiv, secondImgDiv,
@@ -133,10 +193,7 @@ describe('auto-select test suite', () => {
         highlighter.rejectAutoSelect();
         _checkWholeDOM([firstDiv, firstContentDiv]);
 
-        $(firstImgDiv).click();
-        // The auto-select feature should trigger after 2 clicks (even after rejecting)
-        _checkWholeDOM([firstDiv, firstContentDiv, firstImgDiv]);
-        $(secondContentDiv).click();
+        _click(firstImgDiv);
         _checkWholeDOM([
             firstDiv, firstContentDiv, firstImgDiv, secondImgDiv,
             secondContentDiv, firstSpanDiv, secondSpanDiv
@@ -149,8 +206,8 @@ describe('auto-select test suite', () => {
         const secondText = document.querySelector('#second-text');
 
         highlighter.toggle();
-        $(firstImgDiv).click();
-        $(secondText).click();
+        _click(firstImgDiv);
+        _click(secondText);
         // Auto-select should choose all elements with `data-attribute="332"` attribute
         _checkWholeDOM([firstImgDiv, secondText, firstLike]);
 
@@ -176,8 +233,8 @@ describe('auto-select test suite', () => {
         Object.defineProperty(secondHidden, 'offsetHeight', { value: 0 });
 
         highlighter.toggle();
-        $(firstHeader).click();
-        $(firstText).click();
+        _click(firstHeader);
+        _click(firstText);
         // Auto-select should choose all elements with `row` class, but not the hidden ones
         _checkWholeDOM([
             firstHeader, firstText, secondHeader, secondText,
