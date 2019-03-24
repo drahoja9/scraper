@@ -10,6 +10,11 @@
     outline: rgba(255, 197, 121, 0.8) dashed 3px !important;
 }
 
+.scraping-selected-current {
+    z-index: 9999999 !important;
+    outline: rgba(255, 145, 0, 0.8) dashed 3px !important;
+}
+
 .scraping-iframe-panel {
     position: fixed !important;
     top: 0 !important;

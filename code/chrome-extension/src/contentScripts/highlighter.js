@@ -21,11 +21,14 @@ export class Highlighter {
         if (target.classList.contains('scraping-selected')) {
             target.classList.add('scraping-selected-already');
         }
-        if (this._previous && !this._previous.classList.contains('scraping-selected-already')) {
-            this._previous.classList.remove('scraping-selected');
+        if (this._previous) {
+            if (!this._previous.classList.contains('scraping-selected-already')) {
+                this._previous.classList.remove('scraping-selected');
+            }
+            this._previous.classList.remove('scraping-selected-current', 'scraping-selected-already');
         }
         this._previous = target;
-        this._previous.classList.add('scraping-selected');
+        this._previous.classList.add('scraping-selected-current', 'scraping-selected');
     }
 
     toggle(shouldTurnOn = undefined) {
@@ -46,9 +49,6 @@ export class Highlighter {
             node.classList.remove('scraping-selected');
         });
         this._autoSelected = undefined;
-        // User was unhappy with auto-select results, so now he starts from the
-        // beginning -- 2 clicks to determine which elements should we select
-        this._previous = undefined;
     }
 
     addListener(handler) {
@@ -171,9 +171,14 @@ export class Highlighter {
         this._selectSimiliarElements(event.target);
 
         if (wasClassAdded) {
+            if (this._previous) {
+                this._previous.classList.remove('scraping-selected-current');
+            }
             this._previous = event.target;
+            this._previous.classList.add('scraping-selected-current');
             this._notifyListeners(Messages.SELECTED);
-        } else {
+        } else if (event.target === this._previous) {
+            this._previous.classList.remove('scraping-selected-current', 'scraping-selected-already');
             this._previous = undefined;
             this._notifyListeners(Messages.UNSELECTED);
         }
