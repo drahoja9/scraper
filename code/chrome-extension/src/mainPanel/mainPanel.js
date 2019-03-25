@@ -22,18 +22,26 @@ function registerInputHandler(submitBtn, textInput, message, exactCheck = null) 
 }
 
 function toggleAutoselectConfirmation(shouldEnable = null) {
+    const alert = document.querySelector('#auto-select-alert');
     const acceptAutoSelectBtn = document.querySelector('#accept-auto-select');
     const rejectAutoSelectBtn = document.querySelector('#reject-auto-select');
 
     if (shouldEnable !== null) {
         acceptAutoSelectBtn.disabled = !shouldEnable;
         rejectAutoSelectBtn.disabled = !shouldEnable;
+        if (shouldEnable) {
+            alert.classList.add('show');
+        } else {
+            alert.classList.remove('show');
+        }
     } else if (acceptAutoSelectBtn.disabled) {
         acceptAutoSelectBtn.disabled = false;
         rejectAutoSelectBtn.disabled = false;
+        alert.classList.add('show');
     } else {
         acceptAutoSelectBtn.disabled = true;
         rejectAutoSelectBtn.disabled = true;
+        alert.classList.remove('show');
     }
 }
 
@@ -84,9 +92,10 @@ $(function () {
     const textSearchEndsInput = document.querySelector('#text-search-ends');
     const submitTextSearchEndsBtn = document.querySelector('#submit-text-search-ends');
 
-
+    $('.toast').toast({ autohide: false });
+    $('.toast').toast('show')
     toggleAutoselectConfirmation();
-    toggleDOMNavigation();
+    // toggleDOMNavigation();
 
     registerClickHandler(selectElementsBtn, Messages.SELECT_ELEMENTS)
     registerClickHandler(acceptAutoSelectBtn, Messages.ACCEPT_AUTO_SELECT, toggleAutoselectConfirmation)
@@ -123,7 +132,7 @@ $(function () {
             case Messages.SELECTED:
                 toggleDOMNavigation(true);
                 break;
-            case Messages.UNSELECTED:
+            case Messages.UNSELECTED_CURRENT:
                 toggleDOMNavigation(false);
                 break;
             default:

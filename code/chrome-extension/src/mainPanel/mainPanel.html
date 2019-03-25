@@ -2,40 +2,75 @@
 <html>
 
 <head>
+    <link rel="stylesheet" href="/lib/css/bootstrap.min.css" />
     <link rel="stylesheet" href="mainPanel.css" />
 </head>
 
 <body>
-    <div>
-        <button id="select-elements-btn">Select elements</button>
+    <h1 id="name">Scraper</h1>
+    <div class="alert alert-info fade" role="alert" id="auto-select-alert">
+        <div>
+            <button id="accept-auto-select">Accept auto-selection</button>
+            <button id="reject-auto-select">Reject auto-selection</button>
+        </div>
     </div>
-    <div>
-        <button id="accept-auto-select">Accept auto-selection</button>
-        <button id="reject-auto-select">Reject auto-selection</button>
-    </div>
-    <div>
-        <button id="zoom-out">Zoom out</button>
-        <button id="zoom-in">Zoom in</button>
-        <button id="zoom-prev">Previous</button>
-        <button id="zoom-next">Next</button>
-    </div>
-    <div>
-        <h3>Text search</h3>
-        Contains:
-        <input type="text" name="text-search-contains" id="text-search-contains" />
-        <button id="submit-text-search-contains">Submit</button>
-        <input type="checkbox" name="contains-exact" id="contains-exact" />
 
-        <br>Starts with:
-        <input type="text" name="text-search-starts" id="text-search-starts" />
-        <button id="submit-text-search-starts">Submit</button>
+    <div class="accordion" id="main-navs">
+        <div class="card col">
+            <div class="card-header row collapsed" id="select-basics" data-toggle="collapse"
+                data-target="#basics-collapse">
+                <h2>Basics</h2>
+            </div>
+            <div class="collapse" id="basics-collapse" data-parent="#main-navs">
+                <div class="card-body row">
+                    <div class="col">
+                        <button id="select-elements-btn">Select elements</button>
+                    </div>
+                    <div class="col">
+                        <button id="zoom-out" class="dom-navigation">
+                            <span>&minus;</span>
+                        </button>
+                        <button id="zoom-in" class="dom-navigation">
+                            <span>&plus;</span>
+                        </button>
+                        <button id="zoom-prev" class="dom-navigation">
+                            <span>&#129052;</span>
+                        </button>
+                        <button id="zoom-next" class="dom-navigation">
+                            <span>&#129054;</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-        <br>Ends with:
-        <input type="text" name="text-search-ends" id="text-search-ends" />
-        <button id="submit-text-search-ends">Submit</button>
+        <div class="card col">
+            <div class="card-header row collapsed" id="select-text" data-toggle="collapse" data-target="#text-collapse">
+                <h2>Text search</h2>
+            </div>
+            <div class="collapse" id="text-collapse" data-parent="#main-navs">
+                <div class="card-body">
+                    <h3>Text search</h3>
+                    Contains:
+                    <input type="text" name="text-search-contains" id="text-search-contains" />
+                    <button id="submit-text-search-contains">Submit</button>
+                    <input type="checkbox" name="contains-exact" id="contains-exact" />
+
+                    <br>Starts with:
+                    <input type="text" name="text-search-starts" id="text-search-starts" />
+                    <button id="submit-text-search-starts">Submit</button>
+
+                    <br>Ends with:
+                    <input type="text" name="text-search-ends" id="text-search-ends" />
+                    <button id="submit-text-search-ends">Submit</button>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script src="/lib/js/jquery-3.3.1.min.js"></script>
+    <script src="/lib/js/popper.min.js"></script>
+    <script src="/lib/js/bootstrap.min.js"></script>
     <script type="module" src="mainPanel.js"></script>
 </body>
 
