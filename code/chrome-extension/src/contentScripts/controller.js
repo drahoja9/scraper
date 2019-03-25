@@ -12,9 +12,10 @@ export class Controller {
 
         this._communicationWithMainPanel = this._communicationWithMainPanel.bind(this);
         this._highlighter.addListener(this._notify.bind(this));
+        this._highlighter.addListener(this._domNavigator.notify.bind(this._domNavigator));
 
         if (shouldBeVisible) {
-            this._toggleMainPanel();
+            this._toggle();
         }
     }
 
@@ -23,7 +24,7 @@ export class Controller {
         chrome.runtime.onMessage.addListener(
             function (request, sender, sendResponse) {
                 if (request.msg === Messages.BROWSER_ACTION_CLICKED) {
-                    this._toggleMainPanel();
+                    this._toggle();
                 }
 
                 if (
@@ -31,19 +32,20 @@ export class Controller {
                     request.shouldBeVisible === true &&
                     !this._isInjected
                 ) {
-                    this._toggleMainPanel();
+                    this._toggle();
                 }
             }.bind(this)
         );
     }
 
-    _toggleMainPanel() {
+    _toggle() {
         if (this._isVisible) {
             this._hideMainPanel();
         } else if (this._isInjected) {
             this._showMainPanel();
         } else {
             this._injectMainPanel();
+            this._domNavigator.inject();
         }
         this._toggleCommunication();
     }
@@ -88,18 +90,18 @@ export class Controller {
             case Messages.REJECT_AUTO_SELECT:
                 this._highlighter.rejectAutoSelect();
                 break;
-            case Messages.ZOOM_IN:
-                this._highlighter.current = this._domNavigator.firstChild(this._highlighter.current);
-                break;
-            case Messages.ZOOM_OUT:
-                this._highlighter.current = this._domNavigator.parent(this._highlighter.current);
-                break;
-            case Messages.ZOOM_PREV:
-                this._highlighter.current = this._domNavigator.previousSibling(this._highlighter.current);
-                break;
-            case Messages.ZOOM_NEXT:
-                this._highlighter.current = this._domNavigator.nextSibling(this._highlighter.current);
-                break;
+            // case Messages.ZOOM_IN:
+            //     this._highlighter.current = this._domNavigator.firstChild(this._highlighter.current);
+            //     break;
+            // case Messages.ZOOM_OUT:
+            //     this._highlighter.current = this._domNavigator.parent(this._highlighter.current);
+            //     break;
+            // case Messages.ZOOM_PREV:
+            //     this._highlighter.current = this._domNavigator.previousSibling(this._highlighter.current);
+            //     break;
+            // case Messages.ZOOM_NEXT:
+            //     this._highlighter.current = this._domNavigator.nextSibling(this._highlighter.current);
+            //     break;
             case Messages.TEXT_SEARCH_CONTAINS:
                 this._textHighlighter.contains(event.data.payload);
                 break;
@@ -122,7 +124,7 @@ export class Controller {
         }
     }
 
-    _notify(msg) {
+    _notify({ msg }) {
         this._mainPanel.contentWindow.postMessage(
             { type: Messages.FROM_CONTROLLER, msg: msg },
             chrome.runtime.getURL(MAIN_PANEL_PAGE)

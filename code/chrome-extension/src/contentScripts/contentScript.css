@@ -15,6 +15,36 @@
     outline: rgba(255, 145, 0, 0.8) dashed 3px !important;
 }
 
+.scraping-dom-navigation {
+    width: 154px;
+    height: 50px;
+    position: absolute;
+    z-index: 9999999 !important;
+    background-color: inherit;
+    display: none;
+}
+
+.scraping-dom-navigator-button {
+    width: 35px;
+    height: 35px;
+    border-radius: 35px;
+    border: none;
+    background-color: rgb(39, 156, 150);
+    color: white;
+    outline: none !important;
+    font-size: 1.5em;
+    font-weight: 700;
+}
+
+.scraping-dom-navigator-button:hover {
+    background-color: rgb(39, 145, 139);
+}
+
+.scraping-dom-navigator-button:active {
+    box-shadow: 0 0 3pt 0 rgba(40, 141, 136, 0.534);
+    transform: translateY(1px);
+}
+
 .scraping-iframe-panel {
     position: fixed !important;
     top: 0 !important;

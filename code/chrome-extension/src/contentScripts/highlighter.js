@@ -55,9 +55,9 @@ export class Highlighter {
         this._listeners.push(handler);
     }
 
-    _notifyListeners(msg) {
+    _notifyListeners(msg, node = null) {
         for (const callback of this._listeners) {
-            callback(msg);
+            callback({ msg: msg, node: node });
         }
     }
 
@@ -176,11 +176,13 @@ export class Highlighter {
             }
             this._previous = event.target;
             this._previous.classList.add('scraping-selected-current');
-            this._notifyListeners(Messages.SELECTED);
+            this._notifyListeners(Messages.SELECTED, event.target);
         } else if (event.target === this._previous) {
             this._previous.classList.remove('scraping-selected-current', 'scraping-selected-already');
             this._previous = undefined;
-            this._notifyListeners(Messages.UNSELECTED);
+            this._notifyListeners(Messages.UNSELECTED_CURRENT, event.target);
+        } else {
+            this._notifyListeners(Messages.UNSELECTED, event.target);
         }
     }
 
