@@ -2,9 +2,8 @@ import { Messages } from '../constants.js';
 import { isValid } from './utils.js';
 
 
-export class DOMNavigator {
+export class DOMNavigaton {
     constructor() {
-        this._controls = this._createControls();
         this._current = undefined;
 
         this._attachControls = this._attachControls.bind(this);
@@ -13,6 +12,9 @@ export class DOMNavigator {
         this._parent = this._parent.bind(this);
         this._previousSibling = this._previousSibling.bind(this);
         this._nextSibling = this._nextSibling.bind(this);
+
+        // We need to bind all the methods first
+        this._controls = this._createControls();
     }
 
     inject() {
@@ -21,10 +23,6 @@ export class DOMNavigator {
             this._controls.style.display = 'flex';
         });
         this._controls.addEventListener('mouseleave', this._hideControls);
-        this._controls.querySelector('#zoom-in').addEventListener('click', this._firstChild);
-        this._controls.querySelector('#zoom-out').addEventListener('click', this._parent);
-        this._controls.querySelector('#zoom-prev').addEventListener('click', this._previousSibling);
-        this._controls.querySelector('#zoom-next').addEventListener('click', this._nextSibling);
     }
 
     notify({ msg, nodes }) {
@@ -87,6 +85,11 @@ export class DOMNavigator {
             </div>\
         </div>'.trim();
         template.innerHTML = html;
+        const buttons = template.content.firstChild.children;
+        buttons[0].addEventListener('click', this._parent);
+        buttons[1].addEventListener('click', this._firstChild);
+        buttons[2].addEventListener('click', this._previousSibling);
+        buttons[3].addEventListener('click', this._nextSibling);
         controls.appendChild(template.content.firstChild);
         return controls;
     }

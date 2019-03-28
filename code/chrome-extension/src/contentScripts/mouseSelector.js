@@ -2,12 +2,13 @@ import { Messages } from '../constants.js';
 import { isValid } from './utils.js';
 
 
-export class Highlighter {
+export class MouseSelector {
     constructor() {
         this._isTurnedOn = false;
         this._current = undefined;
         this._autoSelected = undefined;
-        this._listeners = [];
+        // Every observer must implement `notify({msg, nodes})` method
+        this._observers = [];
 
         this._selectingFunc = this._selectingFunc.bind(this);
     }
@@ -29,17 +30,17 @@ export class Highlighter {
         this._autoSelected.forEach(node => {
             node.classList.remove('scraping-selected');
         });
-        this._notifyListeners(Messages.UNSELECTED, this._autoSelected);
+        this._notifyObservers(Messages.UNSELECTED, this._autoSelected);
         this._autoSelected = undefined;
     }
 
-    addListener(handler) {
-        this._listeners.push(handler);
+    addObserver(observer) {
+        this._observers.push(observer);
     }
 
-    _notifyListeners(msg, nodes = []) {
-        for (const callback of this._listeners) {
-            callback({ msg: msg, nodes: nodes });
+    _notifyObservers(msg, nodes = []) {
+        for (const observer of this._observers) {
+            observer.notify({ msg, nodes });
         }
     }
 
@@ -122,7 +123,7 @@ export class Highlighter {
                     }
                 }
                 this._autoSelected = similiarNodes;
-                this._notifyListeners(Messages.DECIDE_AUTO_SELECT, this._autoSelected);
+                this._notifyObservers(Messages.DECIDE_AUTO_SELECT, this._autoSelected);
             }
         }
     }
@@ -136,12 +137,12 @@ export class Highlighter {
 
         if (wasClassAdded) {
             this._setCurrent(event.target);
-            this._notifyListeners(Messages.SELECTED, [event.target]);
+            this._notifyObservers(Messages.SELECTED, [event.target]);
         } else if (event.target.classList.contains('scraping-selected-current')) {
             this._setCurrent(undefined, event.target);
-            this._notifyListeners(Messages.UNSELECTED_CURRENT, [event.target]);
+            this._notifyObservers(Messages.UNSELECTED_CURRENT, [event.target]);
         } else {
-            this._notifyListeners(Messages.UNSELECTED, [event.target]);
+            this._notifyObservers(Messages.UNSELECTED, [event.target]);
         }
     }
 

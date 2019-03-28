@@ -1,17 +1,13 @@
 import { isValid } from './utils.js';
 
 
-export class TextHighlighter {
+export class TextSelector {
     startsWith({ value }) {
-        this._highlight(value, [
-            (innerText, value) => innerText.startsWith(value)
-        ]);
+        this._highlight(value, (innerText, value) => innerText.startsWith(value));
     }
 
     endsWith({ value }) {
-        this._highlight(value, [
-            (innerText, value) => innerText.endsWith(value)
-        ]);
+        this._highlight(value, (innerText, value) => innerText.endsWith(value));
     }
 
     contains({ value, exactCheck }) {

@@ -57,7 +57,7 @@
     right: 0 !important;
     z-index: 9999999 !important;
     height: 100% !important;
-    width: 20% !important;
+    width: 400px !important;
     background-color: white !important;
-    box-shadow: none !important;
+    box-shadow: 5px 0 20px 2px lightgray !important;
 }
