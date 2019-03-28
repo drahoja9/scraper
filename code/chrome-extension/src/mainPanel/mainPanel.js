@@ -1,5 +1,8 @@
 import { Messages } from '../constants.js';
 
+const ENTER_KEY = 13;
+
+
 
 function sendMessageToContentScript(message, payload = null) {
     window.parent.postMessage({ type: Messages.FROM_MAIN_PANEL, msg: message, payload: payload }, '*');
@@ -12,12 +15,15 @@ function registerClickHandler(element, message, callback = () => { }) {
     });
 }
 
-function registerInputHandler(submitBtn, textInput, message, exactCheck = null) {
-    submitBtn.addEventListener('click', function (event) {
-        sendMessageToContentScript(message, {
-            value: textInput.value,
-            exactCheck: exactCheck ? exactCheck.checked : null
-        });
+function registerInputHandler(textInput, message, exactCheck = null) {
+    textInput.addEventListener('keydown', function (event) {
+        if (event.keyCode === ENTER_KEY) {
+            event.preventDefault();
+            sendMessageToContentScript(message, {
+                value: textInput.value,
+                exactCheck: exactCheck ? exactCheck.checked : null
+            });
+        }
     });
 }
 
@@ -56,31 +62,25 @@ $(function () {
     const rejectAutoSelectBtn = document.querySelector('#reject-auto-select');
 
     const textSearchContainsInput = document.querySelector('#text-search-contains');
-    const submitTextSearchContainsBtn = document.querySelector('#submit-text-search-contains');
     const containsExactCheck = document.querySelector('#contains-exact');
     const textSearchStartsInput = document.querySelector('#text-search-starts');
-    const submitTextSearchStartsBtn = document.querySelector('#submit-text-search-starts');
     const textSearchEndsInput = document.querySelector('#text-search-ends');
-    const submitTextSearchEndsBtn = document.querySelector('#submit-text-search-ends');
 
     toggleAutoselectConfirmation();
 
-    registerClickHandler(selectElementsBtn, Messages.SELECT_ELEMENTS)
+    registerClickHandler(selectElementsBtn, Messages.SELECT_ELEMENTS, () => { selectElementsBtn.classList.toggle('active-btn'); })
     registerClickHandler(acceptAutoSelectBtn, Messages.ACCEPT_AUTO_SELECT, toggleAutoselectConfirmation)
     registerClickHandler(rejectAutoSelectBtn, Messages.REJECT_AUTO_SELECT, toggleAutoselectConfirmation)
     registerInputHandler(
-        submitTextSearchContainsBtn,
         textSearchContainsInput,
         Messages.TEXT_SEARCH_CONTAINS,
         containsExactCheck
     );
     registerInputHandler(
-        submitTextSearchStartsBtn,
         textSearchStartsInput,
         Messages.TEXT_SEARCH_STARTS
     );
     registerInputHandler(
-        submitTextSearchEndsBtn,
         textSearchEndsInput,
         Messages.TEXT_SEARCH_ENDS
     );

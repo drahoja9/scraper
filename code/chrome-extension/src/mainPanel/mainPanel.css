@@ -33,3 +33,52 @@ body {
 .card-header:hover {
     background-color: rgba(40, 141, 136, 0.534);
 }
+
+.controls-btn {
+    border-radius: 10px;
+    width: 10em;
+    height: 3.5em;
+    border: none;
+    outline: none !important;
+    background-color: rgb(248, 248, 248);
+    color: rgb(110, 110, 110);
+    font-size: 1em;
+    font-weight: 800;
+}
+
+.active-btn {
+    transform: translateY(1px);
+    box-shadow: 0px -2px 2px 1px darkgrey;
+}
+
+.search-form {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding-bottom: 5px;
+}
+
+.search-form-last {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.form-control {
+    display: flex;
+    width: 60%;
+}
+
+.form-control:focus {
+    border-color: rgba(40, 141, 136, 0.534);
+    box-shadow: 0 0 0 0.2rem rgba(40, 141, 136, 0.24);
+}
+
+.text-small {
+    font-size: 0.8em;
+    padding-right: 10px;
+    margin: 0;
+}
+
+#contains-exact {
+    align-self: center;
+}
