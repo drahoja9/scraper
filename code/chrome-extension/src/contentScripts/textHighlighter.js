@@ -1,3 +1,6 @@
+import { isValid } from './utils.js';
+
+
 export class TextHighlighter {
     startsWith({ value }) {
         this._highlight(value, [
@@ -12,16 +15,16 @@ export class TextHighlighter {
     }
 
     contains({ value, exactCheck }) {
-        const exact = (innerText, value) => exactCheck && innerText === value;
-        const nonExact = (innerText, value) => !exactCheck && innerText.includes(value);
-
-        this._highlight(value, [(a, b) => exact(a, b), (a, b) => nonExact(a, b)]);
+        if (exactCheck) {
+            this._highlight(value, (innerText, value) => innerText === value);
+        } else {
+            this._highlight(value, (innerText, value) => innerText.includes(value));
+        }
     }
 
     _searchDOM(selectTextNode, selectElementNode) {
         let nodes = [document.body];
 
-        // Conditions
         const hasChildren = node => node.children.length > 0;
         const hasText = node => node.innerText ? true : false;
         const isTextNode = node => node.nodeType === 3;
@@ -40,32 +43,19 @@ export class TextHighlighter {
         }
     }
 
-    _isValid(node) {
-        const isNotScript = node => node.tagName.toLowerCase() !== 'script';
-        const isNotHidden = node => (
-            !node.hidden &&
-            getComputedStyle(node).display !== 'none' &&
-            node.style.display !== 'none' &&
-            node.offsetWidth > 0 && node.offsetHeight > 0
-        );
-
-        return isNotScript(node) && isNotHidden(node);
-    }
-
-    _highlight(value, conditions) {
+    _highlight(value, condition) {
         const getText = node => node.innerText || node.wholeText;
         const getClassList = node => node.classList || node.parentElement.classList;
+
         const selectNode = node => {
-            for (const condition of conditions) {
-                const nodeText = getText(node).toLowerCase();
-                const serchedValue = value.toLowerCase();
-                if (condition(nodeText, serchedValue)) {
-                    getClassList(node).add('scraping-selected');
-                }
+            const nodeText = getText(node).toLowerCase();
+            const serchedValue = value.toLowerCase();
+            if (condition(nodeText, serchedValue)) {
+                getClassList(node).add('scraping-selected');
             }
         };
         const selectElementNode = node => {
-            if (this._isValid(node)) {
+            if (isValid(node)) {
                 selectNode(node);
             }
         };

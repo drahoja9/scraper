@@ -33,24 +33,3 @@ body {
 .card-header:hover {
     background-color: rgba(40, 141, 136, 0.534);
 }
-
-.dom-navigation {
-    width: 35px;
-    height: 35px;
-    border-radius: 35px;
-    border: none;
-    background-color: rgba(40, 141, 136, 0.534);
-    outline: none !important;
-    font-size: 1.5em;
-    font-weight: 700;
-}
-
-.dom-navigation:hover {
-    /* box-shadow: 0 0 3pt 0 rgba(40, 141, 136, 0.534); */
-    background-color: rgba(40, 141, 136, 0.911);
-}
-
-.dom-navigation:active {
-    box-shadow: 0 0 3pt 0 rgba(40, 141, 136, 0.534);
-    transform: translateY(1px);
-}

@@ -19,28 +19,34 @@
     width: 154px;
     height: 50px;
     position: absolute;
-    z-index: 9999999 !important;
-    background-color: inherit;
+    z-index: 9999999;
+    background-color: transparent;
     display: none;
+    align-items: center;
+    justify-content: center;
 }
 
-.scraping-dom-navigator-button {
+.scraping-dom-navigaton-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 35px;
     height: 35px;
     border-radius: 35px;
     border: none;
     background-color: rgb(39, 156, 150);
     color: white;
-    outline: none !important;
-    font-size: 1.5em;
+    outline: none;
+    font-size: 25px;
     font-weight: 700;
+    cursor: pointer;
 }
 
-.scraping-dom-navigator-button:hover {
+.scraping-dom-navigaton-button:hover {
     background-color: rgb(39, 145, 139);
 }
 
-.scraping-dom-navigator-button:active {
+.scraping-dom-navigaton-button:active {
     box-shadow: 0 0 3pt 0 rgba(40, 141, 136, 0.534);
     transform: translateY(1px);
 }

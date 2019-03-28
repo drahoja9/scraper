@@ -90,18 +90,6 @@ export class Controller {
             case Messages.REJECT_AUTO_SELECT:
                 this._highlighter.rejectAutoSelect();
                 break;
-            // case Messages.ZOOM_IN:
-            //     this._highlighter.current = this._domNavigator.firstChild(this._highlighter.current);
-            //     break;
-            // case Messages.ZOOM_OUT:
-            //     this._highlighter.current = this._domNavigator.parent(this._highlighter.current);
-            //     break;
-            // case Messages.ZOOM_PREV:
-            //     this._highlighter.current = this._domNavigator.previousSibling(this._highlighter.current);
-            //     break;
-            // case Messages.ZOOM_NEXT:
-            //     this._highlighter.current = this._domNavigator.nextSibling(this._highlighter.current);
-            //     break;
             case Messages.TEXT_SEARCH_CONTAINS:
                 this._textHighlighter.contains(event.data.payload);
                 break;

@@ -45,30 +45,6 @@ function toggleAutoselectConfirmation(shouldEnable = null) {
     }
 }
 
-function toggleDOMNavigation(shouldEnable = null) {
-    const zoomInBtn = document.querySelector('#zoom-in');
-    const zoomOutBtn = document.querySelector('#zoom-out');
-    const zoomPrevBtn = document.querySelector('#zoom-prev');
-    const zoomNextBtn = document.querySelector('#zoom-next');
-
-    if (shouldEnable !== null) {
-        zoomInBtn.disabled = !shouldEnable;
-        zoomOutBtn.disabled = !shouldEnable;
-        zoomPrevBtn.disabled = !shouldEnable;
-        zoomNextBtn.disabled = !shouldEnable;
-    } else if (zoomInBtn.disabled) {
-        zoomInBtn.disabled = false;
-        zoomOutBtn.disabled = false;
-        zoomPrevBtn.disabled = false;
-        zoomNextBtn.disabled = false;
-    } else {
-        zoomInBtn.disabled = true;
-        zoomOutBtn.disabled = true;
-        zoomPrevBtn.disabled = true;
-        zoomNextBtn.disabled = true;
-    }
-}
-
 
 // ========================================================================================================
 
@@ -79,11 +55,6 @@ $(function () {
     const acceptAutoSelectBtn = document.querySelector('#accept-auto-select');
     const rejectAutoSelectBtn = document.querySelector('#reject-auto-select');
 
-    const zoomInBtn = document.querySelector('#zoom-in');
-    const zoomOutBtn = document.querySelector('#zoom-out');
-    const zoomPrevBtn = document.querySelector('#zoom-prev');
-    const zoomNextBtn = document.querySelector('#zoom-next');
-
     const textSearchContainsInput = document.querySelector('#text-search-contains');
     const submitTextSearchContainsBtn = document.querySelector('#submit-text-search-contains');
     const containsExactCheck = document.querySelector('#contains-exact');
@@ -92,18 +63,11 @@ $(function () {
     const textSearchEndsInput = document.querySelector('#text-search-ends');
     const submitTextSearchEndsBtn = document.querySelector('#submit-text-search-ends');
 
-    $('.toast').toast({ autohide: false });
-    $('.toast').toast('show')
     toggleAutoselectConfirmation();
-    // toggleDOMNavigation();
 
     registerClickHandler(selectElementsBtn, Messages.SELECT_ELEMENTS)
     registerClickHandler(acceptAutoSelectBtn, Messages.ACCEPT_AUTO_SELECT, toggleAutoselectConfirmation)
     registerClickHandler(rejectAutoSelectBtn, Messages.REJECT_AUTO_SELECT, toggleAutoselectConfirmation)
-    registerClickHandler(zoomInBtn, Messages.ZOOM_IN);
-    registerClickHandler(zoomOutBtn, Messages.ZOOM_OUT);
-    registerClickHandler(zoomPrevBtn, Messages.ZOOM_PREV);
-    registerClickHandler(zoomNextBtn, Messages.ZOOM_NEXT);
     registerInputHandler(
         submitTextSearchContainsBtn,
         textSearchContainsInput,
@@ -129,14 +93,6 @@ $(function () {
             case Messages.DECIDE_AUTO_SELECT:
                 toggleAutoselectConfirmation(true);
                 break;
-            case Messages.SELECTED:
-                toggleDOMNavigation(true);
-                break;
-            case Messages.UNSELECTED_CURRENT:
-                toggleDOMNavigation(false);
-                break;
-            default:
-                console.error('Unknown message from controller!');
         }
     });
 });
