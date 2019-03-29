@@ -1,4 +1,5 @@
 import { Highlighter } from '../../src/contentScripts/highlighter.js';
+import { Messages } from '../../src/constants.js';
 import { JSDOM } from 'jsdom';
 
 
@@ -127,48 +128,43 @@ test('highlights the element on mouseover, unhighlights on mouseout', () => {
     expect(firstHeader.classList.contains('scraping-highlighted')).toBe(true);
 });
 
-test('current setter does not unselect manualy selected elements', () => {
-    const container = document.querySelector('#container');
-    const firstDiv = document.querySelector('#first-div');
-    const secondDiv = document.querySelector('#second-div');
-
-    highlighter.toggle();
-    _click(container);
-    expect(container.classList.contains('scraping-selected')).toBe(true);
-    expect(container.classList.contains('scraping-selected-current')).toBe(true);
-
-    _click(firstDiv);
-    highlighter.current = container;
-    highlighter.current = secondDiv;
-    highlighter.current = firstDiv;
-    expect(container.classList.contains('scraping-selected')).toBe(true);
-    expect(container.classList.contains('scraping-selected-current')).toBe(false);
-    expect(firstDiv.classList.contains('scraping-selected')).toBe(true);
-    expect(firstDiv.classList.contains('scraping-selected-current')).toBe(true);
-    expect(secondDiv.classList.contains('scraping-selected')).toBe(false);
-    expect(secondDiv.classList.contains('scraping-selected-current')).toBe(false);
-});
-
 test('notifies listeners about changes', () => {
     let messages = [];
-    const messageCatcher = (msg) => { messages.push(msg) }
+    let nodes = [];
+    const messageCatcher = (msg) => { messages.push(msg.msg); msg.nodes.forEach(node => nodes.push(node)); }
 
     const firstDiv = document.querySelector('#first-div');
     const firstImgDiv = document.querySelector('#first-img-div');
+    const secondImgDiv = document.querySelector('#second-img-div');
+    const firstContentDiv = document.querySelector('#first-content-div');
+    const secondContentDiv = document.querySelector('#second-content-div');
+    const firstSpanDiv = document.querySelector('#first-span-div');
+    const secondSpanDiv = document.querySelector('#second-span-div');
 
     highlighter.toggle();
     highlighter.addListener(messageCatcher);
 
     _click(firstDiv);
-    expect(messages).toEqual(['SELECTED']);
+    expect(messages).toEqual([Messages.SELECTED]);
+    expect(nodes).toEqual([firstDiv]);
 
-    messages = [];
+    messages = [], nodes = [];
     _click(firstImgDiv);
-    expect(messages).toEqual(['DECIDE_AUTO_SELECT', 'SELECTED']);
+    expect(messages).toEqual([Messages.DECIDE_AUTO_SELECT, Messages.SELECTED]);
+    expect(nodes).toEqual([
+        firstContentDiv, firstSpanDiv, secondImgDiv,
+        secondContentDiv, secondSpanDiv, firstImgDiv
+    ]);
 
-    messages = [];
+    messages = [], nodes = [];
+    _click(firstDiv);
+    expect(messages).toEqual([Messages.UNSELECTED]);
+    expect(nodes).toEqual([firstDiv]);
+
+    messages = [], nodes = [];
     _click(firstImgDiv);
-    expect(messages).toEqual(['UNSELECTED']);
+    expect(messages).toEqual([Messages.UNSELECTED_CURRENT]);
+    expect(nodes).toEqual([firstImgDiv]);
 });
 
 describe('auto-select test suite', () => {
@@ -200,14 +196,14 @@ describe('auto-select test suite', () => {
         ]);
     });
 
-    test('accepts auto-select', () => {
+    test('accepts auto-select #1', () => {
         const firstImgDiv = document.querySelector('#first-img-div');
         const firstLike = document.querySelector('#first-like');
         const secondText = document.querySelector('#second-text');
 
         highlighter.toggle();
         _click(firstImgDiv);
-        _click(secondText);
+        _click(firstLike);
         // Auto-select should choose all elements with `data-attribute="332"` attribute
         _checkWholeDOM([firstImgDiv, secondText, firstLike]);
 
@@ -215,7 +211,21 @@ describe('auto-select test suite', () => {
         _checkWholeDOM([firstImgDiv, secondText, firstLike]);
     });
 
-    test('does not auto-select invalid elements', async function () {
+    test('accepts auto-select #2', () => {
+        const firstImgDiv = document.querySelector('#first-img-div');
+        const secondText = document.querySelector('#second-text');
+
+        highlighter.toggle();
+        _click(firstImgDiv);
+        _click(secondText);
+        // Auto-select should choose all DIVs with `data-attribute="332"` attribute
+        _checkWholeDOM([firstImgDiv, secondText]);
+
+        highlighter.acceptAutoSelect();
+        _checkWholeDOM([firstImgDiv, secondText]);
+    });
+
+    test('does not auto-select invalid elements', () => {
         const firstHeader = document.querySelector('#first-header');
         const secondHeader = document.querySelector('#second-header');
         const firstText = document.querySelector('#first-text');
@@ -234,12 +244,36 @@ describe('auto-select test suite', () => {
 
         highlighter.toggle();
         _click(firstHeader);
-        _click(firstText);
+        _click(firstRowSpan);
         // Auto-select should choose all elements with `row` class, but not the hidden ones
         _checkWholeDOM([
             firstHeader, firstText, secondHeader, secondText,
             secondDiv, thirdDiv, firstSocialButtons,
             secondSocialButtons, firstRowSpan, secondRowSpan
+        ]);
+    });
+
+    test('does not auto-select only divs or spans', () => {
+        const firstDiv = document.querySelector('#first-div');
+        const secondDiv = document.querySelector('#second-div');
+        const firstLike = document.querySelector('#first-like');
+        const firstTweet = document.querySelector('#first-retweet');
+
+        highlighter.toggle();
+        _click(firstDiv);
+        _click(secondDiv);
+        // Auto-select should not be triggered as there is only one common
+        // aspect of previously selected elements -- they are divs and that's
+        // not enough for us
+        _checkWholeDOM([
+            firstDiv, secondDiv
+        ]);
+
+        _click(firstLike);
+        _click(firstTweet);
+        // The some goes for spans
+        _checkWholeDOM([
+            firstDiv, secondDiv, firstLike, firstTweet
         ]);
     });
 })
