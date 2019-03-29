@@ -40,6 +40,9 @@ export class TextSelector {
     }
 
     _highlight(value, condition) {
+        // Whitespace characters on their own are not valid values
+        if (!value || value.match(/^\s*$/)) return;
+
         const getText = node => node.innerText || node.wholeText;
         const getClassList = node => node.classList || node.parentElement.classList;
 
