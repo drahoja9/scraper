@@ -8,10 +8,23 @@
 
 <body>
     <h1 id="name">Scraper</h1>
+
     <div class="alert alert-info fade" role="alert" id="auto-select-alert">
         <div>
             <button id="accept-auto-select">Accept auto-selection</button>
             <button id="reject-auto-select">Reject auto-selection</button>
+        </div>
+    </div>
+    <div class="tab-nav">
+        <button class="primary-btn active" id="rows-btn">Rows</button>
+        <button class="primary-btn" id="cols-btn">Columns</button>
+    </div>
+    <div class="cols-pool-border">
+        <div class="cols-pool">
+            <button class="col-btn">
+                <p class="col-name">Column #1</p><span class="remove-col-btn">&times;</span>
+            </button>
+            <button class="col-btn" id="add-col-btn">&plus;</button>
         </div>
     </div>
 
@@ -24,32 +37,28 @@
             <div class="collapse" id="basics-collapse" data-parent="#main-navs">
                 <div class="card-body row">
                     <div class="col">
-                        <button id="select-elements-btn" class="controls-btn">Select elements</button>
+                        <button id="select-elements-btn" class="secondary-btn">Select elements</button>
                     </div>
                 </div>
             </div>
         </div>
-
         <div class="card col">
-            <div class="card-header row" id="select-text" data-toggle="collapse" data-target="#text-collapse">
+            <div class="card-header row collapsed" id="select-text" data-toggle="collapse" data-target="#text-collapse">
                 <h2>Text search</h2>
             </div>
-            <div class="collapses show" id="text-collapse" data-parent="#main-navs">
+            <div class="collapse" id="text-collapse" data-parent="#main-navs">
                 <div class="card-body">
                     <div class="search-form">
                         <h5>Starts with</h5>
                         <input class="form-control" type="text" placeholder="Type here..." id="text-search-starts">
-                        <!-- <button id="submit-text-search-starts">Submit</button> -->
                     </div>
                     <div class="search-form">
                         <h5>Ends with</h5>
                         <input class="form-control" type="text" placeholder="Type here..." id="text-search-ends">
-                        <!-- <button id="submit-text-search-ends">Submit</button> -->
                     </div>
                     <div class="search-form">
                         <h5>Contains</h5>
                         <input class="form-control" type="text" placeholder="Type here..." id="text-search-contains">
-                        <!-- <button id="submit-text-search-contains">Submit</button> -->
                     </div>
                     <div class="search-form-last">
                         <div style="display: flex;">

@@ -51,11 +51,32 @@ function toggleAutoselectConfirmation(shouldEnable = null) {
     }
 }
 
+function addColumn() {
+    const colsPool = document.querySelector('.cols-pool');
+    const addBtn = colsPool.lastElementChild;
+    const template = document.createElement('template');
+    const html = `\
+        <button class="col-btn">\
+            <p class="col-name">Column #${colsPool.childElementCount}</p>\
+            <span class="remove-col-btn">&times;</span>\
+        </button>\
+        `.trim();
+
+    template.innerHTML = html;
+    colsPool.replaceChild(template.content.firstChild, addBtn);
+    colsPool.appendChild(addBtn);
+}
+
 
 // ========================================================================================================
 
 
 $(function () {
+    const rowsBtn = document.querySelector('#rows-btn');
+    const colsBtn = document.querySelector('#cols-btn');
+
+    const addColBtn = document.querySelector('#add-col-btn');
+
     const selectElementsBtn = document.querySelector('#select-elements-btn');
 
     const acceptAutoSelectBtn = document.querySelector('#accept-auto-select');
@@ -68,7 +89,8 @@ $(function () {
 
     toggleAutoselectConfirmation();
 
-    registerClickHandler(selectElementsBtn, Messages.SELECT_ELEMENTS, () => { selectElementsBtn.classList.toggle('active-btn'); })
+    registerClickHandler(addColBtn, '', addColumn);
+    registerClickHandler(selectElementsBtn, Messages.SELECT_ELEMENTS, () => { selectElementsBtn.classList.toggle('toggled-btn'); })
     registerClickHandler(acceptAutoSelectBtn, Messages.ACCEPT_AUTO_SELECT, toggleAutoselectConfirmation)
     registerClickHandler(rejectAutoSelectBtn, Messages.REJECT_AUTO_SELECT, toggleAutoselectConfirmation)
     registerInputHandler(

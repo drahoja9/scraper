@@ -69,7 +69,7 @@ export class DOMNavigaton {
         const controls = document.createElement('div');
         controls.className = 'scraping-dom-navigation';
         const template = document.createElement('template');
-        let html = '\
+        const html = '\
         <div style="display: flex;">\
             <div id="zoom-out" class="scraping-dom-navigaton-button">\
                 <span>&minus;</span>\
