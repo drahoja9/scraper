@@ -8,19 +8,30 @@
 \contentsline {subsection}{\numberline {1.1.1}Kr\IeC {\'a}tce z~historie}{3}{subsection.1.1.1}
 \contentsline {subsection}{\numberline {1.1.2}Techniky}{4}{subsection.1.1.2}
 \contentsline {subsection}{\numberline {1.1.3}Vyu\IeC {\v z}it\IeC {\'\i } web scrapingu}{4}{subsection.1.1.3}
-\contentsline {subsection}{\numberline {1.1.4}Pr\IeC {\'a}vn\IeC {\'\i } str\IeC {\'a}nka}{4}{subsection.1.1.4}
-\contentsline {section}{\numberline {1.2}Anal\IeC {\'y}za konkurence}{5}{section.1.2}
-\contentsline {subsection}{\numberline {1.2.1}ParseHub}{5}{subsection.1.2.1}
-\contentsline {subsection}{\numberline {1.2.2}Octoparse}{6}{subsection.1.2.2}
-\contentsline {subsection}{\numberline {1.2.3}WebScaper}{8}{subsection.1.2.3}
-\contentsline {subsection}{\numberline {1.2.4}Dexi.io}{9}{subsection.1.2.4}
-\contentsline {subsection}{\numberline {1.2.5}Data Scraper}{10}{subsection.1.2.5}
-\contentsline {section}{\numberline {1.3}Specifikace po\IeC {\v z}adavk\IeC {\r u}}{11}{section.1.3}
-\contentsline {subsection}{\numberline {1.3.1}Funk\IeC {\v c}n\IeC {\'\i } po\IeC {\v z}adavky}{12}{subsection.1.3.1}
-\contentsline {subsection}{\numberline {1.3.2}Nefunk\IeC {\v c}n\IeC {\'\i } po\IeC {\v z}adavky}{13}{subsection.1.3.2}
-\contentsline {subsection}{\numberline {1.3.3}Nice to have po\IeC {\v z}adavky}{13}{subsection.1.3.3}
-\contentsline {chapter}{\chapternumberline {2}Realizace}{15}{chapter.2}
-\contentsline {chapter}{Z{\' a}v{\v e}r}{17}{chapter*.10}
-\contentsline {chapter}{Literatura}{19}{section*.12}
-\contentsline {appendix}{\chapternumberline {A}Seznam pou\IeC {\v z}it\IeC {\'y}ch zkratek}{21}{appendix.A}
-\contentsline {appendix}{\chapternumberline {B}Obsah p\IeC {\v r}ilo\IeC {\v z}en\IeC {\'e}ho CD}{23}{appendix.B}
+\contentsline {subsection}{\numberline {1.1.4}Pr\IeC {\'a}vn\IeC {\'\i } str\IeC {\'a}nka}{5}{subsection.1.1.4}
+\contentsline {subsubsection}{\numberline {1.1.4.1}Obsah na webov\IeC {\'y}ch str\IeC {\'a}nk\IeC {\'a}ch a jeho mo\IeC {\v z}n\IeC {\'e} vyu\IeC {\v z}it\IeC {\'\i }}{5}{subsubsection.1.1.4.1}
+\contentsline {subsubsection}{\numberline {1.1.4.2}Obsah chr\IeC {\'a}n\IeC {\v e}n\IeC {\'y} autorsk\IeC {\'y}m z\IeC {\'a}konem}{6}{subsubsection.1.1.4.2}
+\contentsline {subsubsection}{\numberline {1.1.4.3}Web scraping a zvl\IeC {\'a}\IeC {\v s}tn\IeC {\'\i } pr\IeC {\'a}va po\IeC {\v r}izovatele datab\IeC {\'a}ze}{6}{subsubsection.1.1.4.3}
+\contentsline {subsubsection}{\numberline {1.1.4.4}Terms of Sevrice, browsewrap, clickwrap, vymahatelnost}{7}{subsubsection.1.1.4.4}
+\contentsline {subsubsection}{\numberline {1.1.4.5}D\IeC {\r u}le\IeC {\v z}it\IeC {\'e} soudn\IeC {\'\i } p\IeC {\v r}\IeC {\'\i }pady v Evrop\IeC {\v e}}{7}{subsubsection.1.1.4.5}
+\contentsline {paragraph}{C-444/02}{7}{section*.10}
+\contentsline {paragraph}{C\IeC {\unhbox \voidb@x \hbox {-}}30/14}{8}{section*.11}
+\contentsline {subsubsection}{\numberline {1.1.4.6}D\IeC {\r u}le\IeC {\v z}it\IeC {\'e} soudn\IeC {\'\i } p\IeC {\v r}\IeC {\'\i }pady ve Spojen\IeC {\'y}ch st\IeC {\'a}tech}{8}{subsubsection.1.1.4.6}
+\contentsline {paragraph}{hiQ v. LinkedIn}{8}{section*.12}
+\contentsline {subsubsection}{\numberline {1.1.4.7}Mo\IeC {\v z}n\IeC {\'e} postihy}{8}{subsubsection.1.1.4.7}
+\contentsline {subsubsection}{\numberline {1.1.4.8}Zodpov\IeC {\v e}dnost v p\IeC {\v r}\IeC {\'\i }pad\IeC {\v e} protipr\IeC {\'a}vn\IeC {\'\i }ho jedn\IeC {\'a}n\IeC {\'\i }}{8}{subsubsection.1.1.4.8}
+\contentsline {section}{\numberline {1.2}Anal\IeC {\'y}za konkurence}{9}{section.1.2}
+\contentsline {subsection}{\numberline {1.2.1}ParseHub}{9}{subsection.1.2.1}
+\contentsline {subsection}{\numberline {1.2.2}Octoparse}{10}{subsection.1.2.2}
+\contentsline {subsection}{\numberline {1.2.3}WebScaper}{12}{subsection.1.2.3}
+\contentsline {subsection}{\numberline {1.2.4}Dexi.io}{13}{subsection.1.2.4}
+\contentsline {subsection}{\numberline {1.2.5}Data Scraper}{14}{subsection.1.2.5}
+\contentsline {section}{\numberline {1.3}Specifikace po\IeC {\v z}adavk\IeC {\r u}}{15}{section.1.3}
+\contentsline {subsection}{\numberline {1.3.1}Funk\IeC {\v c}n\IeC {\'\i } po\IeC {\v z}adavky}{16}{subsection.1.3.1}
+\contentsline {subsection}{\numberline {1.3.2}Nefunk\IeC {\v c}n\IeC {\'\i } po\IeC {\v z}adavky}{17}{subsection.1.3.2}
+\contentsline {subsection}{\numberline {1.3.3}Nice to have po\IeC {\v z}adavky}{17}{subsection.1.3.3}
+\contentsline {chapter}{\chapternumberline {2}Realizace}{19}{chapter.2}
+\contentsline {chapter}{Z{\' a}v{\v e}r}{21}{chapter*.13}
+\contentsline {chapter}{Literatura}{23}{section*.15}
+\contentsline {appendix}{\chapternumberline {A}Seznam pou\IeC {\v z}it\IeC {\'y}ch zkratek}{25}{appendix.A}
+\contentsline {appendix}{\chapternumberline {B}Obsah p\IeC {\v r}ilo\IeC {\v z}en\IeC {\'e}ho CD}{27}{appendix.B}

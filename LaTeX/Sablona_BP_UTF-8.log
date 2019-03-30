@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.3.8)  22 MAR 2019 10:42
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.3.8)  30 MAR 2019 23:20
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -905,32 +905,40 @@ Package: dirtree 2012/12/11 v0.32 package wrapper for dirtree
 \DT@baselineskip=\dimen163
 )
 File: dirtree.tex 2012/12/11 v0.32 `dirtree' (jcc)
-) (./Sablona_BP_UTF-8.aux)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/enumitem/enumitem.sty
+Package: enumitem 2011/09/28 v3.5.2 Customized lists
+\labelindent=\skip186
+\enit@outerparindent=\dimen164
+\enit@toks=\toks25
+\enit@inbox=\box29
+\enitdp@description=\count157
+)
+(./Sablona_BP_UTF-8.aux)
 \openout1 = `Sablona_BP_UTF-8.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 51.
-LaTeX Font Info:    ... okay on input line 51.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 51.
-LaTeX Font Info:    ... okay on input line 51.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 51.
-LaTeX Font Info:    ... okay on input line 51.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 51.
-LaTeX Font Info:    ... okay on input line 51.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 51.
-LaTeX Font Info:    ... okay on input line 51.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 51.
-LaTeX Font Info:    ... okay on input line 51.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 51.
-LaTeX Font Info:    ... okay on input line 51.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 51.
-LaTeX Font Info:    ... okay on input line 51.
-LaTeX Font Info:    Try loading font information for OT1+lmr on input line 51.
-
-(/usr/share/texmf/tex/latex/lm/ot1lmr.fd
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 53.
+LaTeX Font Info:    ... okay on input line 53.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 53.
+LaTeX Font Info:    ... okay on input line 53.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 53.
+LaTeX Font Info:    ... okay on input line 53.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 53.
+LaTeX Font Info:    ... okay on input line 53.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 53.
+LaTeX Font Info:    ... okay on input line 53.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 53.
+LaTeX Font Info:    ... okay on input line 53.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 53.
+LaTeX Font Info:    ... okay on input line 53.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 53.
+LaTeX Font Info:    ... okay on input line 53.
+LaTeX Font Info:    Try loading font information for OT1+lmr on input line 53.
+ (/usr/share/texmf/tex/latex/lm/ot1lmr.fd
 File: ot1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-\AtBeginShipoutBox=\box29
-Package hyperref Info: Link coloring OFF on input line 51.
+\AtBeginShipoutBox=\box30
+Package hyperref Info: Link coloring OFF on input line 53.
 
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
@@ -938,14 +946,14 @@ Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
 (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
-\c@section@level=\count157
+\c@section@level=\count158
 )
 Redoing nameref's sectioning
 Redoing nameref's label
-LaTeX Info: Redefining \nameref on input line 51.
-LaTeX Info: Redefining \ref on input line 51.
-LaTeX Info: Redefining \pageref on input line 51.
-LaTeX Info: Redefining \nameref on input line 51.
+LaTeX Info: Redefining \nameref on input line 53.
+LaTeX Info: Redefining \ref on input line 53.
+LaTeX Info: Redefining \pageref on input line 53.
+LaTeX Info: Redefining \nameref on input line 53.
 (./Sablona_BP_UTF-8.out) (./Sablona_BP_UTF-8.out)
 \@outlinefile=\write4
 \openout4 = `Sablona_BP_UTF-8.out'.
@@ -953,17 +961,17 @@ LaTeX Info: Redefining \nameref on input line 51.
 
 (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count158
-\scratchdimen=\dimen164
-\scratchbox=\box30
-\nofMPsegments=\count159
-\nofMParguments=\count160
-\everyMPshowfont=\toks25
-\MPscratchCnt=\count161
-\MPscratchDim=\dimen165
-\MPnumerator=\count162
-\makeMPintoPDFobject=\count163
-\everyMPtoPDFconversion=\toks26
+\scratchcounter=\count159
+\scratchdimen=\dimen165
+\scratchbox=\box31
+\nofMPsegments=\count160
+\nofMParguments=\count161
+\everyMPshowfont=\toks26
+\MPscratchCnt=\count162
+\MPscratchDim=\dimen166
+\MPnumerator=\count163
+\makeMPintoPDFobject=\count164
+\everyMPtoPDFconversion=\toks27
 ) (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
 
@@ -989,7 +997,7 @@ e
 <cvut-logo-bw.pdf, id=54, 554.07pt x 193.29715pt>
 File: cvut-logo-bw.pdf Graphic file (type pdf)
 <use cvut-logo-bw.pdf>
-Package pdftex.def Info: cvut-logo-bw.pdf  used on input line 51.
+Package pdftex.def Info: cvut-logo-bw.pdf  used on input line 53.
 (pdftex.def)             Requested size: 184.5pt x 64.36635pt.
  [1
 
@@ -998,42 +1006,42 @@ Package pdftex.def Info: cvut-logo-bw.pdf  used on input line 51.
 ]
 
 LaTeX Font Warning: Font shape `OT1/lmr/bx/sc' undefined
-(Font)              using `OT1/lmr/bx/n' instead on input line 51.
+(Font)              using `OT1/lmr/bx/n' instead on input line 53.
 
-LaTeX Font Info:    Try loading font information for OT1+lmss on input line 51.
+LaTeX Font Info:    Try loading font information for OT1+lmss on input line 53.
 
 (/usr/share/texmf/tex/latex/lm/ot1lmss.fd
 File: ot1lmss.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 
 LaTeX Font Warning: Font shape `OT1/lmss/bx/sc' undefined
-(Font)              using `OT1/lmss/bx/n' instead on input line 51.
+(Font)              using `OT1/lmss/bx/n' instead on input line 53.
 
 [3
 
 ] [4
 
 ]
-LaTeX Font Info:    Try loading font information for OMS+lmr on input line 51.
+LaTeX Font Info:    Try loading font information for OMS+lmr on input line 53.
  (/usr/share/texmf/tex/latex/lm/omslmr.fd
 File: omslmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 51.
+LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 53.
 
 
 (/usr/share/texmf/tex/latex/lm/omslmsy.fd
 File: omslmsy.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    Font shape `OMS/lmr/m/n' in size <10.95> not available
-(Font)              Font shape `OMS/lmsy/m/n' tried instead on input line 51.
+(Font)              Font shape `OMS/lmsy/m/n' tried instead on input line 53.
  [5]
-Overfull \hbox (2.79207pt too wide) in paragraph at lines 51--51
+Overfull \hbox (2.79207pt too wide) in paragraph at lines 53--53
 \OT1/lmr/m/it/10.95 v Praze, Fa-kult^^Te in-forma^^Tcn^^S^^Pch tech-no-logi^^S^
 ^P. Pr^^Sace je chr^^San^^Tena pr^^Savn^^S^^Pmi p^^Tredpisy
  []
 
 
-Overfull \hbox (2.75731pt too wide) in paragraph at lines 51--51
+Overfull \hbox (2.75731pt too wide) in paragraph at lines 53--53
 \OT1/lmr/m/it/10.95 a me-zin^^Sarodn^^S^^Pmi ^^Sumluvami o pr^^Savu au-torsk^^S
 em a pr^^Savech sou-vi-sej^^S^^Pc^^S^^Pch s pr^^Savem
  []
@@ -1066,19 +1074,19 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 [11] [12
 
 ]
-Overfull \hbox (11.36125pt too wide) in paragraph at lines 58--59
+Overfull \hbox (11.36125pt too wide) in paragraph at lines 60--61
 \OT1/lmr/m/n/10.95 umo^^Tz^^Tnovat u^^Tzivatel^^Wum ex-tra-ho-vat po^^Tzadovan^
 ^Sa data z li-bo-voln^^Se str^^Sanky v re^^Saln^^Sem
  []
 
 
-Overfull \hbox (0.80464pt too wide) in paragraph at lines 60--61
+Overfull \hbox (0.80464pt too wide) in paragraph at lines 62--63
 []\OT1/lmr/m/n/10.95 Nem^^Sen^^Te d^^Wule^^Tzitou sou^^Tc^^Sast pr^^Sace tvo^^T
 r^^S^^P dodr^^Tzen^^S^^P kla-sick^^Seho v^^Syvojov^^Seho cyklu
  []
 
 
-Overfull \hbox (0.98424pt too wide) in paragraph at lines 62--63
+Overfull \hbox (0.98424pt too wide) in paragraph at lines 64--65
 []\OT1/lmr/m/n/10.95 Kl^^S^^P^^Tcov^^Sym aspek-tem apli-kace je t^^Se^^Tz \OT1/
 lmr/m/it/10.95 p^^Trehlednost a jed-no-du-chost u^^Tzivatelsk^^Seho
  []
@@ -1087,7 +1095,7 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.77 \chapter
+l.79 \chapter
              {Analýza a návrh} [1
 
 
@@ -1095,143 +1103,226 @@ l.77 \chapter
  been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.77 \chapter
+l.79 \chapter
              {Analýza a návrh} [2
 
 ]
-Overfull \hbox (14.91826pt too wide) in paragraph at lines 94--95
+Overfull \hbox (14.91826pt too wide) in paragraph at lines 96--97
 \OT1/lmr/m/n/10.95 dve^^Tre web scra-pingu pro v^^Tsechny. [ci-tace z https://w
 ww.octoparse.com/blog/web-
  []
 
 [3] [4]
-Overfull \hbox (1.35435pt too wide) in paragraph at lines 138--139
+Overfull \hbox (18.0881pt too wide) in paragraph at lines 127--128
+[]\OT1/lmr/m/n/10.95 zde lze p^^Tripomenout \OMS/lmsy/m/n/10.95 x \OT1/lmr/m/n/
+10.95 86 ob^^Tcansk^^Seho z^^Sakon^^S^^Pku -- \OT1/lmr/m/it/10.95 Ni-kdo nesm^^
+S^^P zas^^Sahnout
+ []
+
+
+Overfull \hbox (2.593pt too wide) in paragraph at lines 127--128
+\OT1/lmr/m/it/10.95 vyu^^Tz^^S^^Pvat ta-kov^^Se ^^Tci jin^^Se z^^Saznamy po^^Tr
+^^S^^Pzen^^Se o sou-krom^^Sem ^^Tzivot^^Te ^^Tclov^^Teka
+ []
+
+
+Overfull \hbox (0.40276pt too wide) in paragraph at lines 139--139
+\OT1/lmr/m/it/10.95 v^^Syzkumu, je-jich^^Tz ^^Su^^Tcelem nen^^S^^P dosa^^Tzen^^
+S^^P p^^Tr^^S^^Pm^^Seho nebo nep^^Tr^^S^^Pm^^Seho
+ []
+
+[5]
+Overfull \hbox (5.8326pt too wide) in paragraph at lines 159--160
+\OT1/lmr/m/it/10.95 uspo^^Tr^^Sadan^^Sych a in-di-vidu^^Saln^^Te p^^Tr^^S^^Pstu
+pn^^Sych elek-tro-nick^^Symi nebo jin^^Symi prost^^Tredky,
+ []
+
+[6]
+Overfull \hbox (0.62796pt too wide) in paragraph at lines 164--169
+[]\OMS/lmsy/m/n/10.95 x \OT1/lmr/m/n/10.95 92 Bez^^Suplatn^^Se z^^Sakonn^^Se li
+-cence -- \OT1/lmr/m/it/10.95 Do pr^^Sava po^^Trizovatele j^^S^^Pm zp^^Tr^^S^^P
+stupn^^Ten^^Se
+ []
+
+LaTeX Font Info:    Font shape `OMS/lmr/m/it' in size <10.95> not available
+(Font)              Font shape `OMS/lmsy/m/n' tried instead on input line 169.
+
+Overfull \hbox (953.30455pt too wide) in paragraph at lines 179--180
+\OT1/lmr/m/n/10.95 a je-jich n^^Sasledn^^Semu u^^Tzit^^S^^P na webov^^Sych str^
+^Sank^^Sach spole^^Tcnosti OPAP.[http://curia.europa.eu/juris/document/document
+.jsf;jsessionid=B16330F26A5A130852BCB7FE114F5045?text=&docid=48763&pageIndex=0&
+doclang=CS&mode=req&dir=&occ=first&part=1&cid=7166094] 
+ []
+
+
+Overfull \hbox (786.74373pt too wide) in paragraph at lines 181--182
+\OT1/lmr/m/n/10.95 od^^Wuvodnit po-skyt-nut^^S^^P ochrany).[http://curia.europa
+.eu/juris/document/document.jsf;jsessionid=B16330F26A5A130852BCB7FE114F5045?tex
+t=&docid=49635&pageIndex=0&doclang=CS&mode=req&dir=&occ=first&part=1&cid=716609
+4] 
+ []
+
+
+Overfull \hbox (419.3108pt too wide) in paragraph at lines 183--184
+\OT1/lmr/m/n/10.95 port^^Salu.[http://curia.europa.eu/juris/document/document.j
+sf?text=&docid=161388&pageIndex=0&doclang=cs&mode=lst&dir=&occ=first&part=1&cid
+=7180746] 
+ []
+
+[7]
+Overfull \hbox (678.9478pt too wide) in paragraph at lines 185--186
+\OT1/lmr/m/n/10.95 osob, ani^^Tz by p^^Tritom bylo dot^^Tceno pou^^Tziteln^^S^^
+P vni-t-rost^^Satn^^S^^P pr^^Savo.[http://curia.europa.eu/juris/document/docume
+nt.jsf?text=&docid=161388&pageIndex=0&doclang=cs&mode=lst&dir=&occ=first&part=1
+&cid=7180746] 
+ []
+
+
+Overfull \hbox (0.43918pt too wide) in paragraph at lines 188--189
+\OT1/lmr/m/n/10.95 t^^Techto roz-hod-nut^^S^^P pro ^^Su^^Tcely ar-gu-men-tace).
+ T^^Temi nejd^^Wule^^Tzit^^Tej^^Ts^^S^^Pmi roz-hod-nut^^S^^Pmi
+ []
+
+
+Overfull \hbox (85.16629pt too wide) in paragraph at lines 189--190
+\OT1/lmr/m/n/10.95 (\OT1/lmr/m/it/10.95 Com-pu-ter Fraud and Abuse Act\OT1/lmr/
+m/n/10.95 ).[https://assets.documentcloud.org/documents/3932131/2017-
+ []
+
+
+Overfull \hbox (41.10721pt too wide) in paragraph at lines 191--192
+\OT1/lmr/m/n/10.95 a vy-jad^^Trov^^San^^S^^P. [https://www.forbes.com/sites/for
+bestechcouncil/2017/09/20/linkedin-
+ []
+
+[8]
+Overfull \hbox (1.35435pt too wide) in paragraph at lines 216--217
 []\OT1/lmr/m/n/10.95 aplikace ob-sa-huje in-ter-ak-tivn^^S^^P tu-tori^^Sal, kte
 r^^Sy na jed-no-duch^^Sych p^^Tr^^S^^Pkladech
  []
 
-[5]
-<images/ParseHub.png, id=169, 837.88031pt x 635.37375pt>
+[9]
+<images/ParseHub.png, id=202, 837.88031pt x 635.37375pt>
 File: images/ParseHub.png Graphic file (type png)
 <use images/ParseHub.png>
-Package pdftex.def Info: images/ParseHub.png  used on input line 149.
+Package pdftex.def Info: images/ParseHub.png  used on input line 227.
 (pdftex.def)             Requested size: 369.0pt x 279.81738pt.
- [6 <./images/ParseHub.png>]
-<images/Octoparse.png, id=177, 770.88pt x 626.34pt>
+ [10 <./images/ParseHub.png>]
+<images/Octoparse.png, id=210, 770.88pt x 626.34pt>
 File: images/Octoparse.png Graphic file (type png)
 <use images/Octoparse.png>
-Package pdftex.def Info: images/Octoparse.png  used on input line 172.
+Package pdftex.def Info: images/Octoparse.png  used on input line 250.
 (pdftex.def)             Requested size: 369.0pt x 299.8083pt.
- [7 <./images/Octoparse.png>]
-<images/WebScraper.png, id=183, 859.71187pt x 627.84563pt>
+ [11 <./images/Octoparse.png>]
+<images/WebScraper.png, id=217, 859.71187pt x 627.84563pt>
 File: images/WebScraper.png Graphic file (type png)
 <use images/WebScraper.png>
-Package pdftex.def Info: images/WebScraper.png  used on input line 181.
+Package pdftex.def Info: images/WebScraper.png  used on input line 259.
 (pdftex.def)             Requested size: 369.0pt x 269.47977pt.
 
-Overfull \hbox (10.1739pt too wide) in paragraph at lines 194--195
+Overfull \hbox (10.1739pt too wide) in paragraph at lines 272--273
 []\OT1/lmr/m/n/10.95 oproti kon-ku-renci nab^^S^^Pz^^S^^P p^^Trehledn^^Se roz-h
 ran^^S^^P, rychl^^Se a jed-no-duch^^Se pou^^Tz^^S^^Pv^^San^^S^^P 
  []
 
-[8 <./images/WebScraper.png>]
-<images/Dexiio.png, id=190, 827.34094pt x 597.73312pt>
+[12 <./images/WebScraper.png>]
+<images/Dexiio.png, id=224, 827.34094pt x 597.73312pt>
 File: images/Dexiio.png Graphic file (type png)
 <use images/Dexiio.png>
-Package pdftex.def Info: images/Dexiio.png  used on input line 205.
+Package pdftex.def Info: images/Dexiio.png  used on input line 283.
 (pdftex.def)             Requested size: 369.0pt x 266.59692pt.
- [9 <./images/Dexiio.png>]
-Overfull \hbox (20.30385pt too wide) in paragraph at lines 216--217
+ [13 <./images/Dexiio.png>]
+Overfull \hbox (20.30385pt too wide) in paragraph at lines 294--295
 \OT1/lmr/m/n/10.95 bot^^Wu) a au-to-bot (ex-tra-hov^^San^^S^^P z v^^S^^Pce str^
 ^Sanek na-jed-nou se stejn^^Sym rozlo^^Tzen^^S^^Pm);
  []
 
 
-Overfull \hbox (4.63992pt too wide) in paragraph at lines 233--234
+Overfull \hbox (4.63992pt too wide) in paragraph at lines 311--312
 \OT1/lmr/m/n/10.95 upra-vit a do-la-dit tak drobn^^Se de-taily, je^^Tz by ji-na
 k nutn^^Te za-hl-tily u^^Tzivatelsk^^Se
  []
 
-<images/DataScraper.png, id=197, 1017.04968pt x 676.02562pt>
+<images/DataScraper.png, id=231, 1017.04968pt x 676.02562pt>
 File: images/DataScraper.png Graphic file (type png)
 <use images/DataScraper.png>
-Package pdftex.def Info: images/DataScraper.png  used on input line 243.
+Package pdftex.def Info: images/DataScraper.png  used on input line 321.
 (pdftex.def)             Requested size: 369.0pt x 245.26704pt.
-[10]
-Overfull \hbox (17.26096pt too wide) in paragraph at lines 252--253
+[14]
+Overfull \hbox (17.26096pt too wide) in paragraph at lines 330--331
 \OT1/lmr/m/n/10.95 duhy, kter^^Se se prol^^S^^Pnaj^^S^^P nap^^Tr^^S^^P^^Tc val-
 nou v^^Tet^^Tsinou apli-kac^^S^^P, jsou \OT1/lmr/m/it/10.95 t^^Te^^Tzkop^^Sadn^
 ^Se u^^Tzivatelsk^^Se
  []
 
-[11 <./images/DataScraper.png>]
-Overfull \hbox (1.01947pt too wide) in paragraph at lines 270--271
+[15 <./images/DataScraper.png>]
+Overfull \hbox (1.01947pt too wide) in paragraph at lines 348--349
 \OT1/lmr/m/n/10.95 stavuj^^S^^Pc^^S^^P ^^Tsablonu pro nej-pou^^Tz^^S^^Pvan^^Tej
 ^^Ts^^S^^P ope-race (sta^^Tzen^^S^^P v^^Tsech obr^^Sazk^^Wu
  []
 
-[12]
-Overfull \hbox (6.6781pt too wide) in paragraph at lines 284--285
+[16]
+Overfull \hbox (6.6781pt too wide) in paragraph at lines 362--363
 []\OT1/lmr/m/it/10.95 backend \OT1/lmr/m/n/10.95 -- k^^Sod, kter^^Sy pob^^Te^^T
 z^^S^^P na ser-veru; bude na-slou-chat po^^Tzadavk^^Wum
  []
 
 
-Overfull \hbox (37.02937pt too wide) in paragraph at lines 293--294
+Overfull \hbox (37.02937pt too wide) in paragraph at lines 371--372
 \OT1/lmr/m/n/10.95 vyb^^S^^Prat v^^Tsechny po-dobn^^Se ele-menty; \OT1/lmss/m/n
 /10.95 Ctrl+ \OT1/lmr/m/n/10.95 a \OT1/lmss/m/n/10.95 Ctrl- \OT1/lmr/m/n/10.95 
 ob-star^^Sa p^^Tribli^^Tzov^^San^^S^^P/oddalov^^San^^S^^P
  []
 
-[13] [14
+[17] [18
 
-] [15] [16
+] [19] [20
 
-] (./Sablona_BP_UTF-8.bbl [17] [18
+] (./Sablona_BP_UTF-8.bbl [21] [22
 
 ]
 bibitemlist
 
 LaTeX Warning: Empty `thebibliography' environment on input line 11.
 
-) [19] [20
+) [23] [24
 
-] [21] [22
+] [25] [26
 
 ]
-LaTeX Font Info:    Try loading font information for OT1+lmtt on input line 456
+LaTeX Font Info:    Try loading font information for OT1+lmtt on input line 534
 .
  (/usr/share/texmf/tex/latex/lm/ot1lmtt.fd
 File: ot1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
-) [23]
+) [27]
 \tf@toc=\write5
 \openout5 = `Sablona_BP_UTF-8.toc'.
 
 \tf@lof=\write6
 \openout6 = `Sablona_BP_UTF-8.lof'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 459.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 459.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 537.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 537.
 
 (./Sablona_BP_UTF-8.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 459.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 459.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 537.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 537.
 Package rerunfilecheck Info: File `Sablona_BP_UTF-8.out' has not changed.
-(rerunfilecheck)             Checksum: 40E16D9D307542787BDA1E72A4F45A41;1227.
+(rerunfilecheck)             Checksum: A39327D9649C64958C5E85CA09D64ECA;1227.
 
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 459.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 537.
  ) 
 Here is how much of TeX's memory you used:
- 13422 strings out of 494889
- 184800 string characters out of 6179446
- 311081 words of memory out of 5000000
- 16544 multiletter control sequences out of 15000+600000
+ 13746 strings out of 494889
+ 190151 string characters out of 6179446
+ 319217 words of memory out of 5000000
+ 16843 multiletter control sequences out of 15000+600000
  61250 words of font info for 42 fonts, out of 8000000 for 9000
  24 hyphenation exceptions out of 8191
- 37i,11n,29p,1100b,400s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 37i,11n,29p,1100b,446s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/lm/lm-rmtt.enc}{/usr/share/texmf/fonts/enc/
 dvips/lm/lm-rm.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-rmsc.enc}{/usr/share
 /texmf/fonts/enc/dvips/lm/lm-mathsy.enc}</usr/share/texmf/fonts/type1/public/lm
@@ -1243,10 +1334,10 @@ nts/type1/public/lm/lmr12.pfb></usr/share/texmf/fonts/type1/public/lm/lmr8.pfb>
 1/public/lm/lmss10.pfb></usr/share/texmf/fonts/type1/public/lm/lmssbx10.pfb></u
 sr/share/texmf/fonts/type1/public/lm/lmsy10.pfb></usr/share/texmf/fonts/type1/p
 ublic/lm/lmtt10.pfb>
-Output written on Sablona_BP_UTF-8.pdf (37 pages, 808049 bytes).
+Output written on Sablona_BP_UTF-8.pdf (41 pages, 826970 bytes).
 PDF statistics:
- 328 PDF objects out of 1000 (max. 8388607)
- 263 compressed objects within 3 object streams
- 72 named destinations out of 1000 (max. 500000)
+ 366 PDF objects out of 1000 (max. 8388607)
+ 297 compressed objects within 3 object streams
+ 93 named destinations out of 1000 (max. 500000)
  111 words of extra memory for PDF output out of 10000 (max. 10000000)
 

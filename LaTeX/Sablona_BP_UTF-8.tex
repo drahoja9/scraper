@@ -20,6 +20,8 @@
 
 \usepackage{dirtree} %directory tree visualisation
 
+\usepackage[shortlabels]{enumitem}
+
 % % list of acronyms
 % \usepackage[acronym,nonumberlist,toc,numberedsection=autolabel]{glossaries}
 % \iflanguage{czech}{\renewcommand*{\acronymname}{Seznam pou{\v z}it{\' y}ch zkratek}}{}
@@ -100,7 +102,7 @@ Technik, jak z~webové stránky získat data existuje mnoho, podívejme se alesp
 	\item HTML parsování -- základní a stále ještě nejpoužívanější technika extrakce dat; informace jednoduše získáváme z~HTML elementů, popř. pomocí tříd nebo id
 	\item počítačové vidění, strojové učení, zapojení umělé inteligence -- snaha napodobit způsob, jakým vidí a zpracovává webovou stránku člověk; podobný přístup zkouší např. projekt Diffbot
 	\item vizuální web scraping -- jak již bylo zmíněno výše, požadovaná data se musí ručně naklikat skrze rozhraní nějaké aplikace (značně to však usnadňuje např. hledání podobných prvků na základě prvních pár kliknutí)
-	\item manuální vyhledávání a stahování dat (někdy nazývaná také \textit{copy--paste})
+	\item manuální vyhledávání a stahování dat (někdy nazývané také \textit{copy--paste})
 \end{itemize}
 
 \subsection{Využití web scrapingu}
@@ -115,7 +117,83 @@ Podob pro uplatnění scrapování dat z~webu je nespočet, a to obzvlášť v~d
 \end{itemize}
 
 \subsection{Právní stránka}
-To be done...
+Podrobná právní analýza celé problematiky web scrapingu by vydala na samostatnou diplomovou práci, a tak se pokusíme pouze shrnout základní body a poskytnout čtenáři alespoň náhled do této oblasti.
+
+\subsubsection{Obsah na webových stránkách a jeho možné využití}
+Dle ...[citace] může být obsah chráněn zejména jako:
+\begin{itemize}
+	\item projev osobní povahy
+	\begin{itemize}
+		\item zde lze připomenout \S~86 občanského zákoníku -- \textit{Nikdo nesmí zasáhnout do soukromí jiného, nemá-li k tomu zákonný důvod. Zejména nelze bez svolení člověka narušit jeho soukromé prostory, sledovat jeho soukromý život nebo pořizovat o tom zvukový nebo obrazový záznam, využívat takové či jiné záznamy pořízené o soukromém životě člověka třetí osobou, nebo takové záznamy o jeho soukromém životě šířit. Ve stejném rozsahu jsou chráněny i soukromé písemnosti osobní povahy.}
+		\item do této kategorie můžou spadat třeba i komentáře uživatelů na internetovém fóru
+	\end{itemize}
+	\item autorské dílo (včetně databáze, viz níže); z autorského zákona lze zmínit:
+	\begin{itemize}
+		\item volné užití (\S~30 odst.~1 autorského zákona) -- \textit{Za užití díla podle tohoto zákona se nepovažuje užití pro osobní potřebu fyzické osoby, jehož účelem není dosažení přímého nebo nepřímého hospodářského nebo obchodního prospěchu, nestanoví-li tento zákon jinak.}
+		\item citaci (\S~31 odst.~1 autorského zákona) -- \textit{Do práva autorského nezasahuje ten, kdo
+		\begin{enumerate}[a)]
+			\item užije v odůvodněné míře výňatky ze zveřejněných děl jiných autorů ve svém díle,
+			\item užije výňatky z díla nebo drobná celá díla pro účely kritiky nebo recenze vztahující se k takovému dílu, vědecké či odborné tvorby a takové užití bude v souladu s poctivými zvyklostmi a v rozsahu vyžadovaném konkrétním účelem,
+			\item užije dílo při vyučování pro ilustrační účel nebo při vědeckém výzkumu, jejichž účelem není dosažení přímého nebo nepřímého hospodářského nebo obchodního prospěchu, a nepřesáhne rozsah odpovídající sledovanému účelu;
+		\end{enumerate}
+		vždy je však nutno uvést, je-li to možné, jméno autora, nejde-li o dílo anonymní, nebo jméno osoby, pod jejímž jménem se dílo uvádí na veřejnost, a dále název díla a pramen.}
+	\end{itemize}
+	\item osobní údaje (čl.~2 GDPR)
+\end{itemize}
+
+Je tedy možné shrnout, že použití pro osobní účely (resp. domácí činnosti) je v zásadě neomezené. Nutno ale vyzdvihnout větu \uv{\dots jehož účelem není dosažení přímého nebo \textit{nepřímého} hospodářského nebo obchodního prospěchu \dots} -- například když použijeme získaná data na svém osobním blogu, kde ale máme určitou formu výdělku třeba v podobě reklamy, můžeme se již dopouštět protiprávního jednání.
+
+Důležité je dát si velký pozor také při zpracování a využití osobních údajů, které upravuje čl.~2 GDPR -- toto téma by samo vydalo na několik desítek stránek, a tak se jím v této práci nebudeme zabývat a je zde zmíněno jen pro úplnost.
+
+V neposlední řadě poznamenejme, že při vytěžování webu není podstatné, jakým způsobem k získání obsahu došlo (zdali prostřednictvím automatizovaného nebo manuálního postupu). V každém případě lze  doporučit provádět web scraping se souhlasem jejich provozovatele (poskytovatele).[citace]
+
+\subsubsection{Obsah chráněný autorským zákonem}
+Autorské právo chrání na internetu různý obsah, zejména budou chráněny různé články, obrázky, videa atd. Vždy však bude muset naplňovat znaky autorského díla, tj. bude muset být \textit{jedinečným výsledkem tvůrčí činnosti autora a být vyjádřeno v jakékoli objektivně vnímatelné podobě včetně podoby elektronické, trvale nebo dočasně, bez ohledu na jeho rozsah, účel nebo význam} (viz § 2 odst. 1 autorského zákona). 
+
+Taková kritéria však může splňovat i obsah, který by se na první pohled vůbec nemusel zdát chráněný autorským zákonem -- jako příklad může posloužit celkové rozvržení stránky (neboli \textit{layout}), který ponese určitý prvek originality a bude na první pohled asociovatelný s danou webovou stránkou.
+
+Naopak výše zmíněnou definici určitě nesplňují různá počítačem generovaná data, tedy například logy chráněné autorským zákonem určitě nebudou.
+
+
+\subsubsection{Web scraping a zvláštní práva pořizovatele databáze}
+Žádný zvláštní zákon věnující se výslovně vytěžování webových stránek neexistuje. Z naší právní úpravy je tomu však nejblíže úprava zvláštního práva pořizovatele databáze (hlava III autorského zákona), která definuje, co to je databáze (\S~88 autorského zákona) -- \textit{Databází je pro účely tohoto zákona soubor nezávislých děl, údajů nebo jiných prvků, systematicky nebo metodicky uspořádaných a individuálně přístupných elektronickými nebo jinými prostředky, bez ohledu na formu jejich vyjádření.} Za nezávislé se v tomto kontextu považují prvky, \uv{které lze od sebe oddělit, aniž by tím byl dotčen jejich informační, literární, umělecký, hudební nebo jiný obsah} (POLČÁK, Radim. Právo informačních technologií. Praha: Wolters Kluwer, 2018. Právní monografie (Wolters Kluwer ČR). ISBN 978-80-7598-045-8.).[citace]
+
+Dále jsou upraveny některé způsoby užití databáze v souladu s autorským zákonem:
+\begin{itemize}
+	\item \S~91 Omezení zvláštního práva pořizovatele databáze -- \textit{Do práva pořizo-vatele databáze, která byla zpřístupněna jakýmkoli způsobem veřejnosti, nezasahuje oprávněný uživatel, který vytěžuje nebo zužitkovává kvalitativně nebo kvantitativně nepodstatné části obsahu databáze nebo její části, a to k jakémukoli účelu, za podmínky, že tento uživatel databázi užívá běžně a přiměřeně, nikoli systematicky či opakovaně, a bez újmy oprávněných zájmů pořizovatele databáze, a že nezpůsobuje újmu autorovi ani nositeli práv souvisejících s právem autorským k dílům nebo jiným předmětům ochrany obsaženým v databázi.}
+	\item \S~92 Bezúplatné zákonné licence -- \textit{Do práva pořizovatele jím zpřístupněné databáze též nezasahuje oprávněný uživatel, který vytěžuje nebo zužitko-vává podstatnou část obsahu databáze
+		\begin{enumerate}[a)]
+			\item pro svou osobní potřebu; ustanovení \S~30 odst. 3 zůstává nedotčeno,
+			\item pro účely vědecké nebo vyučovací, uvede-li pramen, v rozsahu odů-vodněném sledovaným nevýdělečným účelem, a
+			\item pro účely veřejné bezpečnosti nebo správního či soudního řízení.
+	\end{enumerate}}
+\end{itemize}
+
+Tedy pokud využíváme databázi čistě pro osobní potřebu či pro věděcké nebo vyučovací účely, kdy uvedeme zdroj, je vše v pořádku. Taktéž pokud využíváme pouze nepodstatnou část obsahu databáze, a pokud tak děláme v souladu s běžným, očekávaným a přiměřeným použitím, nikoliv systematicky a opakovaně, je v pořádku využití dokonce k jakémukoliv účelu. Důležité je zde ale spojení \textit{oprávněný uživatel} -- v každém případě musíme mít k datům autorizovaný přístup.
+
+\subsubsection{Terms of Sevrice, browsewrap, clickwrap, vymahatelnost}
+
+\subsubsection{Důležité soudní případy v Evropě}
+Mezi nejvýznamnější rozhodnutí na půdě Soudního dvora Evropské unie patří:
+
+\paragraph{C-444/02} kdy společnost Fixtures Marketing Limited (dále jen "Fixtures") žalovala společnost Organismos Prognostikon Agonon Podosfairou AE (dále jen "OPAP") kvůli opakovanému vytěžování rozpisů ligových soutěží ve fotbale v Anglii (které vytvářela, sestavovala a zveřejňovala společnost Fixtures) a jejich následnému užití na webových stránkách společnosti OPAP.[http://curia.europa.eu/juris/document/document.jsf;jsessionid=B16330F26A5A130852BCB7FE114F5045?text=\&docid=48763\&pageIndex=0\&doclang=CS\&mode=req\&dir=\&occ=first\&part=1\&cid=7166094]
+
+Výsledkem jednání bylo, že i \emph{rozpis fotbalových utkání je databází ve smyslu čl.~1 odst.~2 směrnice 96/9} a jako takový může být předmětem ochrany, kdy pořizovatel databáze má právo zabránit vytěžování nebo zužitkování dat. (ačkoliv u společnosti Fixtures nebyl prokázán podstatný vklad, jenž by mohl odůvodnit poskytnutí ochrany).[http://curia.europa.eu/juris/document/document.jsf;jsessionid=B16330F26A5A130852BCB7FE114F5045?text=\&docid=49635\&pageIndex=0\&doclang=CS\&mode=req\&dir=\&occ=first\&part=1\&cid=7166094]
+
+\paragraph{C‑30/14} kdy společnost Ryanair Ltd. žalovala společnost PR Aviation BV kvůli automatizovanému sběru dat o cenách, letech a letových řádech, jež byly volně přístupné spotřebitelům z webových stránek Ryanair Ltd (k přístupu musel uživatel potvrdit souhlas se všeobecnými podmínkami). Tyto data pak společnost PR Aviation BV používala ke srovnávání cen na svém vlastním portálu.[http://curia.europa.eu/juris/document/document.jsf?text=\&docid=161388\&pageIndex=0\&doclang=cs\&mode=lst\&dir=\&occ=first\&part=1\&cid=7180746]
+
+Soudní dvůr rozhodl ve prospěch PR Aviation BV -- \textit{jestliže se autor databáze rozhodne poskytnout souhlas s jejím využitím, nic mu nebrání ve stanovení smluvních podmínek}, jež by omezily používání databáze ze strany třetích osob, aniž by přitom bylo dotčeno použitelní vnitrostátní právo.[http://curia.europa.eu/juris/document/document.jsf?text=\&docid=161388\&pageIndex=0\&doclang=cs\&mode=lst\&dir=\&occ=first\&part=1\&cid=7180746]
+
+\subsubsection{Důležité soudní případy ve Spojených státech}
+Úprava v USA je postavena na jiné právní úpravě, a závěry tak nejsou automaticky přenositelné do našeho práva (což ovšem nevylučuje možnost použití těchto rozhodnutí pro účely argumentace). Těmi nejdůležitějšími rozhodnutími v právní historii této problematiky jsou:
+\paragraph{hiQ v. LinkedIn} kdy analytická společnost hiQ automatizovaně extrahovala veřejně dostupná (bez nutnosti registrace) data z profilů uživatelů sítě LinkedIn. Ta společnosti hiQ zaslala \emph{cease and desist letter} a požadovala okamžité ukončení činnosti ze strany hiQ pod pohrůžkou porušení CFAA (\emph{Computer Fraud and Abuse Act}).[https://assets.documentcloud.org/documents/3932131/2017-0814-Hiq-Order.pdf]
+
+K dispozici je zatím pouze předběžné opatření ve prospěch hiQ, které říká, že \textit{nelze zabránit přístupu k veřejně dostupným informacím}. hiQ mimo jiné argumentoval i tím, že sociální sítě jsou novodobá veřejná fóra (místa pro veřejné projevy, zejména politického charakteru) a rozhodování o udělení přístupu k nim (ať už ze strany státu či soukromé společnosti) je porušením svobody slova a vyjadřování. [https://www.forbes.com/sites/forbestechcouncil/2017/09/20/linkedin-vs-hiq-ruling-casts-a-long-shadow-over-the-tech-industry/\#73e4bada5e6c]
+
+
+\subsubsection{Možné postihy}
+
+\subsubsection{Zodpovědnost v případě protiprávního jednání}
 
 % ------------------------------------------------------------------------------------------------
 
