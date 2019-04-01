@@ -84,7 +84,7 @@
 \paragraph{Web scraping}
 (nebo také \textit{web harvesting, web data extraction}) je technika získávání nejrůznějších dat z~webových stránek. Nejčastěji se v~tomto kontextu jedná o~automatizovaný proces strojového zpracování a získávání dat, nicméně může jít i o~manuální extrakci zadanou uživatelem skrze nějaký software (jako je tomu právě v~našem případě). [citace z~Wiki - web scraping]
 
-Často se také v~souvislosti s~pojmem web scraping používá spojení \textit{web crawler} (nebo také \textit{bot, spider, spiderbot}). Jedná se o~automatizovaný software, který systematicky prochází danou oblast webu a během toho extrahuje kýžená data. Jak již bylo řečeno v~úvodu, touto částí web scrapingu se práce nebude zabývat.
+Často se také v~souvislosti s~pojmem web scraping používá spojení \textit{web crawler} (nebo také \textit{bot, spider, spiderbot}). Jedná se o~automatizovaný software, který systematicky prochází danou oblast webu a během toho vytěžuje kýžená data. Jak již bylo řečeno v~úvodu, touto částí web scrapingu se práce nebude zabývat.
 
 \subsection{Krátce z~historie}
 Historie web scrapingu šahá k~samým počátkům internetu (World Wide Web, 1989). Prvním webovým robotem, který byl vyvinut na MIT k~měření velikosti webu, byl World Wide Web Wanderer (napsaný v~jazyce Perl) z~roku 1993. [citace z~Wiki - World Wide Web Wanderer] 
@@ -109,27 +109,39 @@ Technik, jak z~webové stránky získat data existuje mnoho, podívejme se alesp
 Podob pro uplatnění scrapování dat z~webu je nespočet, a to obzvlášť v~dnešní době, kdy se velikost všech dat na celém internetu pohybuje v~řádech Zettabajtů ($1024^{7}$ B).[citace z~https://www.nodegraph.se/big-data-facts/]. Mezi ty hlavní patří:
 \begin{itemize}
 	\item získání kontaktních informací (např. e-mail) pro marketingové účely
-	\item indexování webových stránek (jako příklad můžeme uvést GoogleBot)
+	\item indexování webových stránek (jako příklad můžeme uvést známý GoogleBot)
 	\item data mining -- proces hledání vzorců ve velkých datových setech [odkaz na Wiki]
 	\item monitorování různých proměnných (např. sledování cen nebo hodnocení produktů)
 	\item recyklace již někdy použitých dat za účelem vytváření \uv{nového} obsahu
 	\item analýza a zpracování dat k~výzkumným účelům
 \end{itemize}
 
-\subsection{Právní stránka}
+\section{Právní stránka}
 Podrobná právní analýza celé problematiky web scrapingu by vydala na samostatnou diplomovou práci, a tak se pokusíme pouze shrnout základní body a poskytnout čtenáři alespoň náhled do této oblasti.
 
-\subsubsection{Obsah na webových stránkách a jeho možné využití}
+\subsection{Odpovědnost v případě protiprávního jednání}
+Jak je to s odpovědností, kdy uživatel používající software k vytěžování určitých dát nevěděl, že se dopouští protiprávního jednání? Jednoznačně spočívá na uživateli, nikoliv na tvůrci aplikace. Zároveň je třeba upozornit, že autor softwaru odpovídá v situaci, kdy je software primárně určen k protiprávnímu jednání. Určitě lze ale doporučit, aby byl uživatel prokazatelně seznámen s odpovědností za užívání softwaru v souladu s právem.\cite{rozhovor}
+
+\subsection{Základní pojmy}
+\paragraph{Terms of Service} (někdy také \textit{Terms of Use}, \textit{Terms and Conditions}) je soubor pravidel sepsaný provozovatelem služby a říká, jak se uživatel smí chovat při užívání dané služby (v kontextu této práce se jedná o webové stránky) a co naopak dělat nesmí.
+
+\paragraph{Browsewrap} je jeden ze způsobů dohody mezi dvěma stranami kontraktu. Není nutná žádná přímá interakce s uživatelem, ať už jde o souhlas či nesouhlas. Místo toho je na webové stránce (nejčastěji v dolní části) umístěna krátká zpráva informující, že pouhým procházením daného webu souhlasí s podmínkami používání (Terms of Service). Ty jsou umístěny na samostatné stránce, na kterou vede odkaz, jenž je součástí této zprávy. U tohoto způsobu je těžké posoudit, zdali je tu jasný projev vůle, a tak je jeho vymahatelnost sporná a liší se případ od případu.\cite{browse_wrap}
+
+\paragraph{Clickwrap}\label{def:clickwrap} je oproti browse-wrap daleko lépe vymahatelný, neboť je uživatel nucen přímo vyjádřit souhlas či nesouhlas (kliknutím na tlačítko, zaškrtnutím políčka) se všemi uvedenými podmínkami, a to \emph{před} použitím dané služby. Tím je zde jasně určen projev vůle. Podmínky jsou stejně jako v případě browse-wrap často umístěny na samostatné stránce a je k nim uveden pouze odkaz, i když někdy je k dispozici i celé jejich znění. Jedná se o tzv. \emph{ber nebo nech být} smlouvu -- \uv{\emph{Ber nebo nech být smlouva, také nazývána adhezní smlouva, říká, že smluvní podmínky nemůžou být vyjednávány.}}\cite{take_it_or_leave_it}.\cite{click_wrap}
+
+\paragraph{CFAA}
+
+\subsection{Obsah na webových stránkách a jeho možné využití}
 Dle \cite{rozhovor} může být obsah chráněn zejména jako:
 \begin{itemize}
 	\item projev osobní povahy
 	\begin{itemize}
-		\item zde lze připomenout z občanského zákoníku -- \uv{\textit{Nikdo nesmí zasáhnout do soukromí jiného, nemá-li k tomu zákonný důvod. Zejména nelze bez svolení člověka narušit jeho soukromé prostory, sledovat jeho soukromý život nebo pořizovat o tom zvukový nebo obrazový záznam, využívat takové či jiné záznamy pořízené o soukromém životě člověka třetí osobou, nebo takové záznamy o jeho soukromém životě šířit. Ve stejném rozsahu jsou chráněny i soukromé písemnosti osobní povahy.}}\cite[\S~86]{obcansky_zakon}
+		\item zde lze připomenout z občanského zákoníku -- \uv{\textit{Nikdo nesmí zasá-hnout do soukromí jiného, nemá-li k tomu zákonný důvod. Zejména nelze bez svolení člověka narušit jeho soukromé prostory, sledovat jeho soukromý život nebo pořizovat o tom zvukový nebo obrazový záznam, využívat takové či jiné záznamy pořízené o soukromém životě člověka třetí osobou, nebo takové záznamy o jeho soukromém životě šířit. Ve stejném rozsahu jsou chráněny i soukromé písemnosti osobní povahy.}}\cite[\S~86]{obcansky_zakon}
 		\item do této kategorie můžou spadat třeba i komentáře uživatelů na internetovém fóru
 	\end{itemize}
 	\item autorské dílo (včetně databáze, viz níže); z autorského zákona lze zmínit:
 	\begin{itemize}
-		\item volné užití -- \uv{\textit{Za užití díla podle tohoto zákona se nepovažuje užití pro osobní potřebu fyzické osoby, jehož účelem není dosažení přímého nebo nepřímého hospodářského nebo obchodního prospěchu, nestanoví-li tento zákon jinak.}}\cite[\S~30 odst.~1]{autorsky_zakon}
+		\item volné užití -- \uv{\textit{Za užití díla podle tohoto zákona se nepovažuje užití pro osobní potřebu fyzické osoby, jehož účelem není dosažení pří-mého nebo nepřímého hospodářského nebo obchodního prospěchu, nestanoví-li tento zákon jinak.}}\cite[\S~30 odst.~1]{autorsky_zakon}
 		\item citaci -- \uv{\textit{Do práva autorského nezasahuje ten, kdo
 		\begin{enumerate}[a)]
 			\item užije v odůvodněné míře výňatky ze zveřejněných děl jiných autorů ve svém díle,
@@ -145,16 +157,16 @@ Je tedy možné shrnout, že použití pro osobní účely (resp. domácí činn
 
 Důležité je dát si velký pozor také při zpracování a využití osobních údajů, které upravuje čl.~2 GDPR -- toto téma by samo vydalo na několik desítek stránek, a tak se jím v této práci nebudeme zabývat a je zde zmíněno jen pro úplnost.
 
-V neposlední řadě poznamenejme, že při vytěžování webu není podstatné, jakým způsobem k získání obsahu došlo (zdali prostřednictvím automatizovaného nebo manuálního postupu). V každém případě lze  doporučit provádět scraping webových stránek se souhlasem jejich provozovatele (poskytovatele).\cite{rozhovor}
+V neposlední řadě poznamenejme, že při vytěžování webu není podstatné, jakým způsobem k získání obsahu došlo (zdali prostřednictvím automatizovaného nebo manuálního postupu). Důležité je, jestli tak činíme v souladu běžným, očekávaným a přiměřeným použitím. (Otázkou je, jestli by bylo vůbec vymahatelné, pokud by měla stránka přímo ve svých Terms of Service uvedeno, že si nepřeje automatizované procházení, nehledě na to, jestli zároveň probíhá extrakce dat či nikoliv. Taková podmínka by mohla být brána jako neadekvátní a nepřiměřená.) Rozhodně lze ale doporučit provádět scraping webových stránek se souhlasem jejich provozovatele (poskytovatele).\cite{rozhovor}
 
-\subsubsection{Obsah chráněný autorským zákonem}
+\subsection{Obsah chráněný autorským zákonem}
 Autorské právo chrání na internetu různý obsah, zejména budou chráněny různé články, obrázky, videa atd. Vždy však bude muset naplňovat znaky autorského díla, tj. bude muset být \uv{\textit{\dots jedinečným výsledkem tvůrčí činnosti autora a být vyjádřen v jakékoli objektivně vnímatelné podobě včetně podoby elektronické, trvale nebo dočasně, bez ohledu na jeho rozsah, účel nebo význam\dots}}\cite[\S~2 odst.~1]{autorsky_zakon}.
 
 Taková kritéria však může splňovat i obsah, který by se na první pohled vůbec nemusel zdát chráněný autorským zákonem -- jako příklad může posloužit celkové rozvržení stránky (neboli \textit{layout}), které ponese určitý prvek originality a bude na první pohled asociovatelné s danou webovou stránkou.
 
 Naopak výše zmíněnou definici určitě nesplňují různá počítačem generovaná data, tedy například logy chráněné autorským zákonem nebudou.
 
-\subsubsection{Web scraping a zvláštní práva pořizovatele databáze}
+\subsection{Web scraping a zvláštní práva pořizovatele databáze}
 Dle \cite{rozhovor} žádný zvláštní zákon věnující se výslovně vytěžování webových stránek neexistuje. Z naší právní úpravy je tomu nejblíže úprava zvláštního práva pořizovatele databáze (hlava III autorského zákona), která definuje, co to je databáze -- \uv{\textit{Databází je pro účely tohoto zákona soubor nezávislých děl, údajů nebo jiných prvků, systematicky nebo metodicky uspořádaných a individuálně přístupných elektronickými nebo jinými prostředky, bez ohledu na formu jejich vyjádření.}}\cite[\S~88]{autorsky_zakon}. Za nezávislé se v tomto kontextu považují prvky, \uv{\textit{které lze od sebe oddělit, aniž by tím byl dotčen jejich informační, literární, umělecký, hudební nebo jiný obsah}}\cite{polcak}.
 
 Dále jsou upraveny některé způsoby užití databáze v souladu s autorským zákonem:
@@ -170,29 +182,37 @@ Dále jsou upraveny některé způsoby užití databáze v souladu s autorským
 
 Tedy pokud využíváme databázi čistě pro osobní potřebu či pro věděcké nebo vyučovací účely, kdy uvedeme zdroj, je vše v pořádku. Taktéž pokud využíváme pouze nepodstatnou část obsahu databáze, a pokud tak děláme v souladu s běžným, očekávaným a přiměřeným použitím, nikoliv systematicky a opakovaně, je v pořádku využití dokonce k jakémukoliv účelu. Důležité je zde ale spojení \textit{oprávněný uživatel} -- v každém případě musíme mít k datům autorizovaný přístup.
 
-\subsubsection{Terms of Sevrice, browsewrap, clickwrap, vymahatelnost}
-
-\subsubsection{Důležité soudní případy v Evropě}
+\subsection{Důležité soudní případy v Evropě}
 Mezi nejvýznamnější rozhodnutí na půdě Soudního dvora Evropské unie patří:
 
 \paragraph{C-444/02} kdy společnost Fixtures Marketing Limited (dále jen "Fixtures") žalovala společnost Organismos Prognostikon Agonon Podosfairou AE (dále jen "OPAP") kvůli opakovanému vytěžování rozpisů ligových soutěží ve fotbale v Anglii (které vytvářela, sestavovala a zveřejňovala společnost Fixtures) a jejich následnému užití na webových stránkách společnosti OPAP.\cite{C-444/02_1}
 
 Výsledkem jednání bylo, že i \emph{rozpis fotbalových utkání je databází} ve smyslu čl.~1 odst.~2 směrnice 96/9 a jako takový může být předmětem ochrany, kdy pořizovatel databáze má právo zabránit vytěžování nebo zužitkování dat. (ačkoliv u společnosti Fixtures nebyl prokázán podstatný vklad, jenž by mohl odůvodnit poskytnutí ochrany).\cite{C-444/02_2}
 
-\paragraph{C‑30/14} kdy společnost Ryanair Ltd. žalovala společnost PR Aviation BV kvůli automatizovanému sběru dat o cenách, letech a letových řádech, jež byly volně přístupné spotřebitelům z webových stránek Ryanair Ltd (k přístupu musel uživatel potvrdit souhlas se všeobecnými podmínkami). Tyto data pak společnost PR Aviation BV používala ke srovnávání cen na svém vlastním portálu.\cite{C-30/14}
+\paragraph{C‑30/14} kdy společnost Ryanair Ltd. žalovala společnost PR Aviation BV kvůli automatizovanému sběru dat o cenách, letech a letových řádech, jež byly volně přístupné spotřebitelům z webových stránek Ryanair Ltd. K přístupu musel uživatel potvrdit souhlas (viz \hyperref[def:clickwrap]{clickwrap}) se všeobecnými podmínkami, ve kterých byl mimo jiné výslovně zakázán způsob, jakým data využívala PR Aviation BV. Tyto data pak společnost PR Aviation BV používala ke srovnávání cen na svém vlastním portálu.\cite{C-30/14}
 
-Soudní dvůr rozhodl ve prospěch PR Aviation BV -- \emph{jestliže se autor databáze rozhodne poskytnout souhlas s jejím využitím, nic mu nebrání ve stanovení smluvních podmínek}, jež by omezily používání databáze ze strany třetích osob, aniž by přitom bylo dotčeno použitelné vnitrostátní právo.\cite{C-30/14}
+Soudní dvůr rozhodl ve prospěch Ryanair -- \emph{jestliže se autor databáze, která není chráněna autorským zákonem nebo právem pořizovatele, rozhodne poskytnout souhlas s jejím využitím, nic mu nebrání ve stanovení smluvních podmínek}, jež by omezily používání databáze ze strany třetích osob, aniž by přitom bylo dotčeno použitelné vnitrostátní právo.\cite{C-30/14}
 
-\subsubsection{Důležité soudní případy ve Spojených státech}
+\subsection{Důležité soudní případy ve Spojených státech}
 Úprava v USA je postavena na jiné právní úpravě, a závěry tak nejsou automaticky přenositelné do našeho práva (což ovšem nevylučuje možnost použití těchto rozhodnutí pro účely argumentace). Těmi nejdůležitějšími rozhodnutími v právní historii této problematiky jsou:
-\paragraph{hiQ v. LinkedIn} kdy analytická společnost hiQ automatizovaně extrahovala veřejně dostupná (bez nutnosti registrace) data z profilů uživatelů sítě LinkedIn. Ta společnosti hiQ zaslala tzv. \textit{cease and desist letter} a požadovala okamžité ukončení činnosti ze strany hiQ pod pohrůžkou porušení CFAA (Computer Fraud and Abuse Act).\cite{hiq_linkedin_1}
 
-K dispozici je zatím pouze předběžné opatření ve prospěch hiQ, které říká, že \textit{nelze zabránit přístupu k veřejně dostupným informacím}. hiQ mimo jiné argumentoval i tím, že sociální sítě jsou novodobá veřejná fóra (místa pro veřejné projevy, zejména politického charakteru\cite{public_forum}) a rozhodování o udělení přístupu k nim (ať už ze strany státu či soukromé společnosti) je porušením svobody slova a vyjadřování, a tím i samotné ústavy státu Kalifornie (porušení ústavy je tím nejhrubším proviněním, kterého se subjekt může dopustit).\cite{hiq_linkedin_2}
+\paragraph{hiQ v. LinkedIn} kdy analytická společnost hiQ automatizovaně extrahovala veřejně dostupná (bez nutnosti registrace účtu) data z profilů uživatelů sítě LinkedIn. Ta společnosti hiQ zaslala tzv. \textit{cease and desist letter} a požado-vala okamžité ukončení činnosti ze strany hiQ pod pohrůžkou porušení CFAA.\cite{hiq_linkedin_1}
 
+K dispozici je zatím pouze předběžné opatření ve prospěch hiQ, které říká, že \textit{nelze zabránit přístupu k veřejně dostupným informacím} -- k porušení CFAA (jako neoprávněný přístup) by došlo pouze v případě obejití systému autentizace. Ze strany společnosti LinkedIn padl argument, že automatizovaný přístup k veřejným datům není to samé jako normální \uv{osobní} užití, stejně jako je odlišné dlouhodobé sledování osoby přes GPS zařízení od letmého potkávání \cite{linkedin_arg}. hiQ mimo jiné argumentoval i tím, že sociální sítě jsou novodobá veřejná fóra (místa pro veřejné projevy, zejména politického charak-teru\cite{public_forum}) a rozhodování o udělení přístupu k nim (ať už ze strany státu či soukromé společnosti) je porušením svobody slova a vyjadřování, a tím i samotné ústavy státu Kalifornie.\cite{hiq_linkedin_2}
 
-\subsubsection{Možné postihy}
+\paragraph{Facebook v. Power Venture (Vachani)} kdy společnost Power Venture (CEO Steven Suraj Vachani), jež umožňovala agregovat různé sociální sítě a používat všechny jejich klíčové funkce z jednoho místa, byla žalována sociální sítí Facebook kvůli neoprávněnému vytěžování profilů a zasílání e-mailů uživa-telům, které úmyslně vypadaly jako odeslané společností Facebook (údajné porušení CFAA, CAN-SPAM a California Penal Code, sekce 502). Facebook zaslal Power Venture \textit{cease and desist letter} a snažil se zamezit přístupu k datům pomocí blokování IP adres. Power Venture přesto pokračoval ve své činnosti.\cite{facebook_venture_1}
 
-\subsubsection{Zodpovědnost v případě protiprávního jednání}
+Soud rozhodl ve prospěch společnosti Facebook -- jednání Power Venture bylo v rozporu se zákonem. Jako hlavní argument posloužil fakt, že Power Venture pokračoval ve svém jednání i po explicitním odejmutí oprávnění přístupu k datům společnosti Facebook. Zde je ale vhodné uvést, že Power Venture \emph{přistupoval k profilům uživatelů pouze s jejich vlastním souhlasem}, ač bez souhlasu Facebooku.\cite{facebook_venture_2}
+
+\subsection{Shrnutí}
+
+V předchozích sekcích jsme si představili hlavní právní pojmy týkající se problematiky web scrapingu a nyní je na čase shrnout naše poznatky. Při získávání dat z internetových stránek může nastat hned několik komplikací z právního hlediska, na které by se autor takového softwaru měl připravit.
+
+Obsah může být chráněn autorským zákonem, pokud nabývá určitých rysů -- zejména se musí jednat o výsledek tvůrčí činnosti autora. Zároveň pod tuto oblast mohou spadat věci jako je obyčejná databáze, způsob, jakým jsou určitá data rozvrstvena a uspořádána na stránce nebo třeba rozpis fotbalových utkání. Další kategorie, do kterých data mohou spadat, jsou osobní údaje a projevy osobní povahy. Při jejich zpracování je nutné postupovat přesně podle stanovených pravidel v příslušných zákonech a právních úpravách. A i když data nejsou chráněna žádným zvláštním zákonem, stále je nutné řídit se smluvními podmínkami, které se můžou vztahovat na jakýkoliv obsah.
+
+Tím nejkritičtějším místem každého web scrapingu je ale způsob využití samotných dat. Ve směs je možné říci, že pokud používáme data čistě pro svoji osobní/domácí potřebu, pro věděcké nebo pedagogické účely (kde má ale každé užití své podstatné náležitosti) a bez účelu dosažení hospodářského prospěchu, s největší pravděpodobností se nedopustíme žádného protiprávního jednání. Vždy je ale tím nejbezpečnějším řešením kontaktovat provozovatele dané stránky a na detailech se dohodnout.
+
+Nutno také podotknout, že celá tato oblast je relativně nová a zatím neexistuje žádný právní precedent, podle kterého by se soudy mohli při posuzování jednotlivých případů řídit. Proto také člověk může nabýt pocitu, že i když se jedná o často velmi podobné případy, výsledky soudních sporů jsou diametrálně odlišné. To se ale může změnit s případem \emph{hiQ v. LinkedIn}, který je pravděpodobně tím největším milníkem v právní historii web scrapingu -- pokud se výsledek ještě zvrátí ve prospěch společnosti LinkedIn, mohlo by to znamenat velké omezení otevřenému přístupu k informacím pro všechny.
 
 % ------------------------------------------------------------------------------------------------
 
@@ -393,6 +413,15 @@ V předchozích dvou sekcích jsme si shrnuli, jaké požadavky by naše aplikac
 	\bibitem{rozhovor}
 	VAŠÍČEK, Libor. [osobní sdělení]. Sídlo advokátní kanceláře Legal Partners, s.r.o., Záhořanského 1944/4, Praha 2. 29. března 2019.
 	
+	\bibitem{browse_wrap}
+	KUNKEL, R. G. Recent developments in shrinkwrap, clickwrap and browsewrap licenses in the United States. \textit{MurUEJL} [online]. 2002, roč. 9, č. 3 [cit. 1. 4. 2019]. Dostupné z \url{http://www5.austlii.edu.au/au/journals/MurUEJL/2002/34.html}.
+	
+	\bibitem{take_it_or_leave_it}
+	What Is a Take It or Leave It Contract?. In: \textit{UpCounsel} [online]. © 2019 UpCounsel, Inc [cit. 1. 4. 2019]. Dostupné z: \url{https://www.upcounsel.com/take-it-or-leave-it-contract}.
+	
+	\bibitem{click_wrap}
+	OBAR, J. A.; OELDORF-HIRSCH, A. The Clickwrap: A Political Economic Mechanism for Manufacturing Consent on Social Media. \textit{Social Media + Society} [online]. 2018, roč. 4, č. 3 [cit. 1. 4. 2019]. DOI: 10.1177/2056305118784770. ISSN 2056-3051. Dostupné z \url{https://journals.sagepub.com/doi/10.1177/2056305118784770}
+	
 	\bibitem{obcansky_zakon}
 	ČESKO. Zákon č. 89/2012 Sb, občanský zákoník. In: \textit{Zákony pro lidi.cz} [online]. © AION CS 2010-2019 [cit. 30. 3. 2019]. Dostupné z: \url{https://www.zakonyprolidi.cz/cs/2012-89}.
 	
@@ -412,13 +441,22 @@ V předchozích dvou sekcích jsme si shrnuli, jaké požadavky by naše aplikac
 	Věc C-30/14, rozsudek Soudního dvora (druhého senátu) ze dne 15. ledna 2015 ve věci Ryanair Ltd v. PR Aviation BV. In: \textit{EUR-Lex} [online]. © European Union, 1998-2019 [cit. 30. 3. 2019] .Dostupné z: \url{https://eur-lex.europa.eu/legal-content/CS/TXT/?uri=CELEX:62014CJ0030}.
 	
 	\bibitem{hiq_linkedin_1}
-	Case 17-cv-03301-EMC, order granting plaintiff's motion for preliminary injunction, filed 08/14/17. In: \textit{The United States District Court for the Northern District of California} [online]. United States District Court. [cit. 30. 3. 2019]. Dostupné z: \url{https://www.cand.uscourts.gov/filelibrary/3170/C-17-3301-hiQ-v.-LinkedIn-Order-Docket-No.-63.pdf}.
+	Case 17-cv-03301-EMC, order granting plaintiff's motion for preliminary injunction, filed 08/14/17. In: \textit{The United States District Court for the Northern District of California} [online]. United States District Court [cit. 30. 3. 2019]. Dostupné z: \url{https://www.cand.uscourts.gov/filelibrary/3170/C-17-3301-hiQ-v.-LinkedIn-Order-Docket-No.-63.pdf}.
+	
+	\bibitem{linkedin_arg}
+	WILLIAMS, Jamie. ‘Scraping’ Is Just Automated Access, and Everyone Does It. In: \textit{Electronic Frontier Foundation} [online]. Electronic Frontier Foundation [cit. 1. 4. 2019]. Dostupné z: \url{https://www.eff.org/deeplinks/2018/04/scraping-just-automated-access-and-everyone-does-it}
 	
 	\bibitem{public_forum}
-	Forums, In: \textit{Legal Information Institute} [online]. Cornell Law School. [cit. 30. 3. 2019]. Dostupné z: \url{https://www.law.cornell.edu/wex/forums}.
+	Forums, In: \textit{Legal Information Institute} [online]. Cornell Law School [cit. 30. 3. 2019]. Dostupné z: \url{https://www.law.cornell.edu/wex/forums}.
 	
 	\bibitem{hiq_linkedin_2}
-	NARULA, Prayag. LinkedIn Vs. hiQ Ruling Casts A Long Shadow Over The Tech Industry. In: \textit{Forbes} [online]. © 2019 Forbes Media LLC. [cit. 30. 3. 2019]. Dostupné z: \url{https://www.forbes.com/sites/forbestechcouncil/2017/09/20/linkedin-vs-hiq-ruling-casts-a-long-shadow-over-the-tech-industry/#73e4bada5e6c}.
+	NARULA, Prayag. LinkedIn Vs. hiQ Ruling Casts A Long Shadow Over The Tech Industry. In: \textit{Forbes} [online]. © 2019 Forbes Media LLC [cit. 30. 3. 2019]. Dostupné z: \url{https://www.forbes.com/sites/forbestechcouncil/2017/09/20/linkedin-vs-hiq-ruling-casts-a-long-shadow-over-the-tech-industry/#73e4bada5e6c}.
+	
+	\bibitem{facebook_venture_1}
+	Case 13-17154, Facebook v. Vachani. In: \textit{United States Court of Appeals for the Ninth Circuit} [online]. [cit. 31. 3. 2019]. Dostupné z: \url{https://cdn.ca9.uscourts.gov/datastore/opinions/2016/07/12/13-17102.pdf}.
+	
+	\bibitem{facebook_venture_2}
+	KERR, Orin. 9th Circuit: It’s a federal crime to visit a website after being told not to visit it. In: \textit{The Washington Post} [online]. © 1996-2019 The Washington Post [cit. 31. 3. 2019]. Dostupné z: \url{https://www.washingtonpost.com/news/volokh-conspiracy/wp/2016/07/12/9th-circuit-its-a-federal-crime-to-visit-a-website-after-being-told-not-to-visit-it/?noredirect=on\&utm_term=.ee6e01250364}.
 \end{thebibliography}
 
 \appendix
@@ -439,6 +477,8 @@ V předchozích dvou sekcích jsme si shrnuli, jaké požadavky by naše aplikac
 	\item[IP] Internet Protocol
 	\item[JSON] JavaScript Object Notation
 	\item[XLS] formát souboru používaný aplikací Microsoft Excel
+	\item[CFAA] Computer Fraud and Abuse Act
+	\item[CAN-SPAM] Controlling the Assault of Non-Solicited Pornography and Marketing Act
 \end{description}
 
 
