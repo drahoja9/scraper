@@ -2,8 +2,9 @@ import { Messages, MAIN_PANEL_PAGE } from '../constants.js';
 
 
 export class Communication {
-    constructor(controller) {
+    constructor(controller, selectEngine) {
         this._controller = controller;
+        this._selectEngine = selectEngine;
 
         this._communicationWithMainPanel = this._communicationWithMainPanel.bind(this);
     }
@@ -47,23 +48,35 @@ export class Communication {
             return;
         }
         switch (event.data.msg) {
-            case Messages.SELECT_ELEMENTS:
-                this._controller.mouseSelector.toggle();
+            case Messages.SELECTING_ROWS:
+                this._selectEngine.selectingRows();
+                break;
+            case Messages.SELECTING_COLS:
+                this._selectEngine.selectingCols();
+                break;
+            case Messages.CHOSEN_COL:
+                this._selectEngine.changeCol(event.data.payload);
+                break;
+            case Messages.SELECTING_ELEMENTS:
+                this._selectEngine.toggleMouseSelector();
                 break;
             case Messages.ACCEPT_AUTO_SELECT:
-                this._controller.mouseSelector.acceptAutoSelect();
+                this._selectEngine.acceptAutoSelect();
                 break;
             case Messages.REJECT_AUTO_SELECT:
-                this._controller.mouseSelector.rejectAutoSelect();
+                this._selectEngine.rejectAutoSelect();
                 break;
             case Messages.TEXT_SEARCH_CONTAINS:
-                this._controller.textSelector.contains(event.data.payload);
+                this._selectEngine.contains(event.data.payload);
                 break;
             case Messages.TEXT_SEARCH_STARTS:
-                this._controller.textSelector.startsWith(event.data.payload);
+                this._selectEngine.startsWith(event.data.payload);
                 break;
             case Messages.TEXT_SEARCH_ENDS:
-                this._controller.textSelector.endsWith(event.data.payload);
+                this._selectEngine.endsWith(event.data.payload);
+                break;
+            case Messages.DOWNLOAD:
+                this._controller.downloadData(event.data.payload);
                 break;
             default:
                 console.error('Unknown message from main panel!');

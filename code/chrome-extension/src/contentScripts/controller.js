@@ -1,8 +1,6 @@
 import { Messages, MAIN_PANEL_PAGE } from '../constants.js';
 import { Communication } from './communication.js';
-import { MouseSelector } from './mouseSelector.js';
-import { TextSelector } from './textSelector.js';
-import { DOMNavigaton } from './domNavigation.js';
+import { SelectEngine } from './selectEngine.js';
 
 
 export class Controller {
@@ -11,14 +9,10 @@ export class Controller {
         this.isVisible = false;
         this.mainPanel = undefined;
 
-        this._communication = new Communication(this);
-        this.mouseSelector = new MouseSelector();
-        this.textSelector = new TextSelector();
-        this.domNavigaton = new DOMNavigaton();
+        this._selectEngine = new SelectEngine(this);
+        this._communication = new Communication(this, this._selectEngine);
 
         this._communication.listenToBackground();
-        this.mouseSelector.addObserver(this);
-        this.mouseSelector.addObserver(this.domNavigaton);
         if (shouldBeVisible) {
             this.toggleMainPannel();
         }
@@ -31,9 +25,19 @@ export class Controller {
             this._showMainPanel();
         } else {
             this._injectMainPanel();
-            this.domNavigaton.inject();
+            this._selectEngine.injectDomNavigation();
         }
         this._communication.toggle();
+    }
+
+    downloadData({ colIds }) {
+        const rows = document.querySelectorAll('.scraping-selected-row');
+        for (const row of rows) {
+            const cols = row.querySelectorAll('.scraping-selected-col');
+            for (const col of cols) {
+                console.log(col.innerText);
+            }
+        }
     }
 
     _showMainPanel() {

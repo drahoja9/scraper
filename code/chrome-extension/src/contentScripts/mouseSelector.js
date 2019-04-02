@@ -3,10 +3,11 @@ import { isValid } from './utils.js';
 
 
 export class MouseSelector {
-    constructor() {
+    constructor(selectEngine) {
         this._isTurnedOn = false;
         this._current = undefined;
         this._autoSelected = undefined;
+        this._selectEngine = selectEngine;
         // Every observer must implement `notify({msg, nodes})` method
         this._observers = [];
 
@@ -22,13 +23,18 @@ export class MouseSelector {
         this._isTurnedOn = !this._isTurnedOn;
     }
 
+    reset() {
+        this._current = undefined;
+        this._autoSelected = undefined;
+    }
+
     acceptAutoSelect() {
         this._autoSelected = undefined;
     }
 
     rejectAutoSelect() {
         this._autoSelected.forEach(node => {
-            node.classList.remove('scraping-selected');
+            this._selectEngine.unselect(node);
         });
         this._notifyObservers(Messages.UNSELECTED, this._autoSelected);
         this._autoSelected = undefined;
@@ -44,16 +50,6 @@ export class MouseSelector {
         }
     }
 
-    _setCurrent(newCurrent, current = this._current) {
-        if (current) {
-            current.classList.remove('scraping-selected-current');
-        }
-        this._current = newCurrent;
-        if (newCurrent) {
-            newCurrent.classList.add('scraping-selected-current');
-        }
-    }
-
     _createTagString(target) {
         const currentTag = this._current.nodeName;
         const newTag = target.nodeName;
@@ -65,7 +61,7 @@ export class MouseSelector {
         const newClasses = target.classList;
 
         const sameClasses = className => newClasses.contains(className);
-        const isNotSelected = className => className !== 'scraping-selected';
+        const isNotSelected = className => !this._selectEngine.classes.includes(className);
 
         let classString = ``;
         currentClasses.forEach(className => {
@@ -103,7 +99,7 @@ export class MouseSelector {
 
     _selectSimiliarElements(target) {
         const isNotFirst = () => this._current !== undefined;
-        const isSelected = element => element.classList.contains('scraping-selected');
+        const isSelected = element => this._selectEngine.isSelected(element);
 
         if (isNotFirst() && isSelected(target)) {
             const tagString = this._createTagString(target);
@@ -115,15 +111,16 @@ export class MouseSelector {
             const isNotOnlySpan = select => select !== 'span';
 
             if (selector && isNotOnlyDiv(selector) && isNotOnlySpan(selector)) {
-                const excludeSelected = ':not(.scraping-selected)';
+                let excludeSelected = '';
+                this._selectEngine.classes.map(cls => excludeSelected += `:not(.${cls})`);
                 const similiarNodes = document.querySelectorAll(selector + excludeSelected);
                 for (const node of similiarNodes) {
                     if (isValid(node)) {
-                        node.classList.add('scraping-selected');
+                        this._selectEngine.select(node);
                     }
                 }
                 this._autoSelected = similiarNodes;
-                this._notifyObservers(Messages.DECIDE_AUTO_SELECT, this._autoSelected);
+                this._notifyObservers(Messages.DECIDING_AUTO_SELECT, this._autoSelected);
             }
         }
     }
@@ -132,14 +129,14 @@ export class MouseSelector {
         event.stopImmediatePropagation();
         event.preventDefault();
 
-        const wasClassAdded = event.target.classList.toggle('scraping-selected');
+        const wasClassAdded = this._selectEngine.toggle(event.target);
         this._selectSimiliarElements(event.target);
 
         if (wasClassAdded) {
-            this._setCurrent(event.target);
+            this._current = event.target;
             this._notifyObservers(Messages.SELECTED, [event.target]);
-        } else if (event.target.classList.contains('scraping-selected-current')) {
-            this._setCurrent(undefined, event.target);
+        } else if (event.target === this._current) {
+            this._current = undefined;
             this._notifyObservers(Messages.UNSELECTED_CURRENT, [event.target]);
         } else {
             this._notifyObservers(Messages.UNSELECTED, [event.target]);

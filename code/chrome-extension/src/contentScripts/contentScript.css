@@ -1,3 +1,10 @@
+:root {
+    --turqoise: rgb(38, 161, 155);
+    --turqoise-darker: rgb(39, 145, 139);
+    --bordeau: rgb(105, 54, 117);
+    --bordeau-darker: rgb(92, 36, 89);
+}
+
 .scraping-highlighted {
     z-index: 9999999 !important;
     background-color: rgba(255, 197, 121, 0.445) !important;
@@ -5,14 +12,14 @@
     cursor: crosshair !important;
 }
 
-.scraping-selected {
+.scraping-selected-row {
     z-index: 9999999 !important;
-    outline: rgba(255, 197, 121, 0.8) dashed 3px !important;
+    outline: var(--turqoise) dashed 3px !important;
 }
 
-.scraping-selected-current {
+.scraping-selected-col {
     z-index: 9999999 !important;
-    outline: rgba(255, 145, 0, 0.8) dashed 3px !important;
+    outline: var(--bordeau) dashed 3px !important;
 }
 
 .scraping-dom-navigation {
@@ -27,7 +34,7 @@
     line-height: 1.5;
 }
 
-.scraping-dom-navigaton-button {
+.scraping-dom-navigation-button {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -35,7 +42,6 @@
     height: 35px;
     border-radius: 35px;
     border: none;
-    background-color: rgb(39, 156, 150);
     color: white;
     outline: none;
     font-size: 25px;
@@ -43,13 +49,32 @@
     cursor: pointer;
 }
 
-.scraping-dom-navigaton-button:hover {
-    background-color: rgb(39, 145, 139);
+.scraping-dom-navigation-row-button {
+    background-color: var(--turqoise);
 }
 
-.scraping-dom-navigaton-button:active {
-    box-shadow: 0 0 3pt 0 rgba(40, 141, 136, 0.534);
+.scraping-dom-navigation-col-button {
+    background-color: var(--bordeau);
+}
+
+.scraping-dom-navigation-row-button:hover {
+    background-color: var(--turqoise-darker);
+}
+
+.scraping-dom-navigation-col-button:hover {
+    background-color: var(--bordeau-darker);
+}
+
+.scraping-dom-navigation-button:active {
     transform: translateY(1px);
+}
+
+.scraping-dom-navigation-row-button:active {
+    box-shadow: 0 0 3pt 0 rgba(40, 141, 136, 0.534);
+}
+
+.scraping-dom-navigation-col-button:active {
+    box-shadow: 0 0 3pt 0 rgba(103, 34, 98, 0.534);
 }
 
 .scraping-iframe-panel {
@@ -60,5 +85,5 @@
     height: 100% !important;
     width: 400px !important;
     background-color: white !important;
-    box-shadow: 5px 0 20px 2px lightgray !important;
+    box-shadow: 5px 0 20px 2px black !important;
 }

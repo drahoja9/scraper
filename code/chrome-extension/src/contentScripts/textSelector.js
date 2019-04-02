@@ -2,6 +2,10 @@ import { isValid } from './utils.js';
 
 
 export class TextSelector {
+    constructor(selectEngine) {
+        this._selectEngine = selectEngine;
+    }
+
     startsWith({ value }) {
         this._highlight(value, (innerText, value) => innerText.startsWith(value));
     }
@@ -44,13 +48,14 @@ export class TextSelector {
         if (!value || value.match(/^\s*$/)) return;
 
         const getText = node => node.innerText || node.wholeText;
-        const getClassList = node => node.classList || node.parentElement.classList;
+        const getNode = node => node.classList ? node : node.parentElement;
 
         const selectNode = node => {
             const nodeText = getText(node).toLowerCase();
             const serchedValue = value.toLowerCase();
             if (condition(nodeText, serchedValue)) {
-                getClassList(node).add('scraping-selected');
+                // getClassList(node).add('scraping-selected');
+                this._selectEngine.select(getNode(node));
             }
         };
         const selectElementNode = node => {

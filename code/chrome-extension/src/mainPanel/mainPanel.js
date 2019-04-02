@@ -1,14 +1,14 @@
 import { Messages } from '../constants.js';
 import { ColumnPool } from './columnPool.js';
-import { registerHandler, registerInputHandler } from './utils.js';
+import { registerHandler, registerClickHandler, registerInputHandler } from './utils.js';
 
 
-function toggleAutoselectConfirmation(shouldEnable = null) {
+function toggleAutoselectConfirmation({ shouldEnable }) {
     const alert = document.querySelector('#auto-select-alert');
     const acceptAutoSelectBtn = document.querySelector('#accept-auto-select');
     const rejectAutoSelectBtn = document.querySelector('#reject-auto-select');
 
-    if (shouldEnable !== null) {
+    if (shouldEnable !== undefined) {
         acceptAutoSelectBtn.disabled = !shouldEnable;
         rejectAutoSelectBtn.disabled = !shouldEnable;
         if (shouldEnable) {
@@ -35,8 +35,8 @@ class RowsColsSwitcher {
         this._colsPool = colsPool;
         this._active = rowsBtn;
 
-        registerHandler(rowsBtn, 'click', '', this._switch.bind(this));
-        registerHandler(colsBtn, 'click', '', this._switch.bind(this));
+        registerClickHandler(rowsBtn, Messages.SELECTING_ROWS, this._switch.bind(this));
+        registerClickHandler(colsBtn, Messages.SELECTING_COLS, this._switch.bind(this));
     }
 
     _switch(event) {
@@ -65,14 +65,16 @@ $(function () {
     const textSearchStartsInput = document.querySelector('#text-search-starts');
     const textSearchEndsInput = document.querySelector('#text-search-ends');
 
+    const downloadBtn = document.querySelector('#download-btn');
+
     const colsPool = new ColumnPool();
     const switcher = new RowsColsSwitcher(colsPool);
 
-    toggleAutoselectConfirmation();
+    toggleAutoselectConfirmation({});
 
-    registerHandler(selectElementsBtn, 'click', Messages.SELECT_ELEMENTS, () => { selectElementsBtn.classList.toggle('toggled-btn'); })
-    registerHandler(acceptAutoSelectBtn, 'click', Messages.ACCEPT_AUTO_SELECT, toggleAutoselectConfirmation)
-    registerHandler(rejectAutoSelectBtn, 'click', Messages.REJECT_AUTO_SELECT, toggleAutoselectConfirmation)
+    registerClickHandler(selectElementsBtn, Messages.SELECTING_ELEMENTS, () => { selectElementsBtn.classList.toggle('toggled-btn'); })
+    registerClickHandler(acceptAutoSelectBtn, Messages.ACCEPT_AUTO_SELECT, toggleAutoselectConfirmation)
+    registerClickHandler(rejectAutoSelectBtn, Messages.REJECT_AUTO_SELECT, toggleAutoselectConfirmation)
     registerInputHandler(
         textSearchContainsInput,
         Messages.TEXT_SEARCH_CONTAINS,
@@ -86,14 +88,15 @@ $(function () {
         textSearchEndsInput,
         Messages.TEXT_SEARCH_ENDS
     );
+    registerClickHandler(downloadBtn, Messages.DOWNLOAD, () => { }, { colIds: colsPool.getColIds() });
 
     window.addEventListener('message', (event) => {
         if (event.data.type !== Messages.FROM_CONTROLLER) {
             return;
         }
         switch (event.data.msg) {
-            case Messages.DECIDE_AUTO_SELECT:
-                toggleAutoselectConfirmation(true);
+            case Messages.DECIDING_AUTO_SELECT:
+                toggleAutoselectConfirmation({ shouldEnable: true });
                 break;
         }
     });

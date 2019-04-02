@@ -1,17 +1,19 @@
 import { Messages, ENTER_KEY } from '../constants.js';
-import { registerHandler } from './utils.js';
+import { registerHandler, registerClickHandler } from './utils.js';
 
 
 export class ColumnPool {
     constructor() {
+        this._currentColId = 0;
+        this._isVisible = false;
+
         this._wrapper = document.querySelector('.cols-pool-border');
         this._pool = document.querySelector('.cols-pool');
         this._addBtn = this._pool.lastElementChild;
         this._active = this._addColumn();
         this._active.classList.add('active');
-        this._isVisible = false;
 
-        registerHandler(this._addBtn, 'click', '', this._addColumn.bind(this));
+        registerClickHandler(this._addBtn, '', this._addColumn.bind(this));
     }
 
     toggle() {
@@ -19,12 +21,25 @@ export class ColumnPool {
         this._wrapper.style.display = this._isVisible ? 'block' : 'none';
     }
 
+    getColIds() {
+        const colBtns = this._pool.children;
+        let ids = [];
+
+        for (const colBtn of colBtns) {
+            if (colBtn.id === 'add-col-btn') continue;
+            ids.push(colBtn.id);
+        }
+
+        return ids;
+    }
+
     _addColumn() {
         const newColBtn = new ColumnButton(
+            this._currentColId++,
             this._pool.childElementCount,
             this._clickHandler.bind(this),
             this._removeColumn.bind(this)
-        ).node;
+        );
         this._pool.replaceChild(newColBtn, this._addBtn);
         this._pool.appendChild(this._addBtn);
         return newColBtn;
@@ -44,27 +59,26 @@ export class ColumnPool {
 
 
 class ColumnButton {
-    constructor(number, clickHandler, removeColumnHandler) {
+    constructor(id, number, clickHandler, removeColumnHandler) {
         this._node = document.createElement('button');
         this._node.classList.add('col-btn');
+        this._node.id = id;
 
-        this._name = new ColumnName(number).name;
+        this._name = new ColumnName(number);
         this._nameForm = new ColumnNameForm(
             this._name.innerText,
             this._rename.bind(this),
             this._displayNameForm.bind(this)
-        ).form;
-        const removeBtn = new ColumnRemoveBtn(removeColumnHandler).btn;
+        );
+        const removeBtn = new ColumnRemoveBtn(removeColumnHandler);
 
-        registerHandler(this.node, 'click', '', clickHandler);
-        registerHandler(this.node, 'dblclick', '', this._displayNameForm.bind(this));
+        registerClickHandler(this._node, Messages.CHOSEN_COL, clickHandler, { colId: this._node.id });
+        registerHandler(this._node, 'dblclick', '', this._displayNameForm.bind(this));
 
         this._node.appendChild(this._name);
         this._node.appendChild(this._nameForm);
         this._node.appendChild(removeBtn);
-    }
 
-    get node() {
         return this._node;
     }
 
@@ -90,9 +104,7 @@ class ColumnName {
         this._name = document.createElement('p');
         this._name.classList.add('col-name');
         this._name.innerText = `Column #${number}`;
-    }
 
-    get name() {
         return this._name;
     }
 }
@@ -117,9 +129,7 @@ class ColumnNameForm {
             renameFunc(event.currentTarget.value);
             displayNameForm();
         });
-    }
 
-    get form() {
         return this._form;
     }
 }
@@ -131,10 +141,8 @@ class ColumnRemoveBtn {
         this._btn.classList.add('col-remove');
         this._btn.innerHTML = '&times;';
 
-        registerHandler(this._btn, 'click', '', removeColumnHandler);
-    }
+        registerClickHandler(this._btn, '', removeColumnHandler);
 
-    get btn() {
         return this._btn;
     }
 }
