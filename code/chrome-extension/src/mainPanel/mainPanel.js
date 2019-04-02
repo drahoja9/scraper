@@ -1,31 +1,7 @@
 import { Messages } from '../constants.js';
+import { ColumnPool } from './columnPool.js';
+import { registerHandler, registerInputHandler } from './utils.js';
 
-const ENTER_KEY = 13;
-
-
-
-function sendMessageToContentScript(message, payload = null) {
-    window.parent.postMessage({ type: Messages.FROM_MAIN_PANEL, msg: message, payload: payload }, '*');
-}
-
-function registerClickHandler(element, message, callback = () => { }) {
-    element.addEventListener('click', function (event) {
-        sendMessageToContentScript(message);
-        callback();
-    });
-}
-
-function registerInputHandler(textInput, message, exactCheck = null) {
-    textInput.addEventListener('keydown', function (event) {
-        if (event.keyCode === ENTER_KEY) {
-            event.preventDefault();
-            sendMessageToContentScript(message, {
-                value: textInput.value,
-                exactCheck: exactCheck ? exactCheck.checked : null
-            });
-        }
-    });
-}
 
 function toggleAutoselectConfirmation(shouldEnable = null) {
     const alert = document.querySelector('#auto-select-alert');
@@ -51,20 +27,27 @@ function toggleAutoselectConfirmation(shouldEnable = null) {
     }
 }
 
-function addColumn() {
-    const colsPool = document.querySelector('.cols-pool');
-    const addBtn = colsPool.lastElementChild;
-    const template = document.createElement('template');
-    const html = `\
-        <button class="col-btn">\
-            <p class="col-name">Column #${colsPool.childElementCount}</p>\
-            <span class="remove-col-btn">&times;</span>\
-        </button>\
-        `.trim();
 
-    template.innerHTML = html;
-    colsPool.replaceChild(template.content.firstChild, addBtn);
-    colsPool.appendChild(addBtn);
+class RowsColsSwitcher {
+    constructor(colsPool) {
+        const rowsBtn = document.querySelector('#rows-btn');
+        const colsBtn = document.querySelector('#cols-btn');
+        this._colsPool = colsPool;
+        this._active = rowsBtn;
+
+        registerHandler(rowsBtn, 'click', '', this._switch.bind(this));
+        registerHandler(colsBtn, 'click', '', this._switch.bind(this));
+    }
+
+    _switch(event) {
+        if (event.currentTarget === this._active) return;
+
+        this._active.classList.remove('active');
+        this._active = event.currentTarget;
+        this._active.classList.add('active');
+
+        this._colsPool.toggle();
+    }
 }
 
 
@@ -72,11 +55,6 @@ function addColumn() {
 
 
 $(function () {
-    const rowsBtn = document.querySelector('#rows-btn');
-    const colsBtn = document.querySelector('#cols-btn');
-
-    const addColBtn = document.querySelector('#add-col-btn');
-
     const selectElementsBtn = document.querySelector('#select-elements-btn');
 
     const acceptAutoSelectBtn = document.querySelector('#accept-auto-select');
@@ -87,12 +65,14 @@ $(function () {
     const textSearchStartsInput = document.querySelector('#text-search-starts');
     const textSearchEndsInput = document.querySelector('#text-search-ends');
 
+    const colsPool = new ColumnPool();
+    const switcher = new RowsColsSwitcher(colsPool);
+
     toggleAutoselectConfirmation();
 
-    registerClickHandler(addColBtn, '', addColumn);
-    registerClickHandler(selectElementsBtn, Messages.SELECT_ELEMENTS, () => { selectElementsBtn.classList.toggle('toggled-btn'); })
-    registerClickHandler(acceptAutoSelectBtn, Messages.ACCEPT_AUTO_SELECT, toggleAutoselectConfirmation)
-    registerClickHandler(rejectAutoSelectBtn, Messages.REJECT_AUTO_SELECT, toggleAutoselectConfirmation)
+    registerHandler(selectElementsBtn, 'click', Messages.SELECT_ELEMENTS, () => { selectElementsBtn.classList.toggle('toggled-btn'); })
+    registerHandler(acceptAutoSelectBtn, 'click', Messages.ACCEPT_AUTO_SELECT, toggleAutoselectConfirmation)
+    registerHandler(rejectAutoSelectBtn, 'click', Messages.REJECT_AUTO_SELECT, toggleAutoselectConfirmation)
     registerInputHandler(
         textSearchContainsInput,
         Messages.TEXT_SEARCH_CONTAINS,

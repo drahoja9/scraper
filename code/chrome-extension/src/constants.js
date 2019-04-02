@@ -22,3 +22,7 @@ export const Messages = Object.freeze({
     BROWSER_ACTION_CLICKED: 'BROWSER_ACTION_CLICKED',
     TAB_UPDATED: 'TAB_UPDATED'
 });
+
+// Others
+export const ENTER_KEY = 13;
+
