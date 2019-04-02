@@ -20,7 +20,7 @@
 \contentsline {subsection}{\numberline {1.2.5}Web scraping a zvl\IeC {\'a}\IeC {\v s}tn\IeC {\'\i } pr\IeC {\'a}va po\IeC {\v r}izovatele datab\IeC {\'a}ze}{7}{subsection.1.2.5}
 \contentsline {subsection}{\numberline {1.2.6}D\IeC {\r u}le\IeC {\v z}it\IeC {\'e} soudn\IeC {\'\i } p\IeC {\v r}\IeC {\'\i }pady v Evrop\IeC {\v e}}{8}{subsection.1.2.6}
 \contentsline {paragraph}{C-444/02}{8}{section*.14}
-\contentsline {paragraph}{C\IeC {\unhbox \voidb@x \hbox {-}}30/14}{8}{section*.15}
+\contentsline {paragraph}{C\IeC {\unhbox \voidb@x \hbox {-}}30/14}{9}{section*.15}
 \contentsline {subsection}{\numberline {1.2.7}D\IeC {\r u}le\IeC {\v z}it\IeC {\'e} soudn\IeC {\'\i } p\IeC {\v r}\IeC {\'\i }pady ve Spojen\IeC {\'y}ch st\IeC {\'a}tech}{9}{subsection.1.2.7}
 \contentsline {paragraph}{hiQ v. LinkedIn}{9}{section*.16}
 \contentsline {paragraph}{Facebook v. Power Venture (Vachani)}{9}{section*.17}
