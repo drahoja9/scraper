@@ -21,16 +21,16 @@ export class ColumnPool {
         this._wrapper.style.display = this._isVisible ? 'block' : 'none';
     }
 
-    getColIds() {
+    getCols() {
         const colBtns = this._pool.children;
-        let ids = [];
+        let cols = [];
 
         for (const colBtn of colBtns) {
             if (colBtn.id === 'add-col-btn') continue;
-            ids.push(colBtn.id);
+            cols.push({ name: colBtn.firstChild.innerText, id: colBtn.id });
         }
 
-        return ids;
+        return cols;
     }
 
     _addColumn() {

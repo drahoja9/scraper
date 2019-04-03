@@ -38,7 +38,7 @@ export class Communication {
 
     sendMessageToMainPanel(msg) {
         this._controller.mainPanel.contentWindow.postMessage(
-            msg,
+            { ...msg, type: Messages.FROM_CONTROLLER },
             chrome.runtime.getURL(MAIN_PANEL_PAGE)
         );
     }
@@ -75,8 +75,9 @@ export class Communication {
             case Messages.TEXT_SEARCH_ENDS:
                 this._selectEngine.endsWith(event.data.payload);
                 break;
-            case Messages.DOWNLOAD:
-                this._controller.downloadData(event.data.payload);
+            case Messages.ASSEMBLE_PREVIEW:
+                const payload = this._controller.downloadData(event.data.payload);
+                this.sendMessageToMainPanel({ msg: Messages.DISPLAY_PREVIEW, payload });
                 break;
             default:
                 console.error('Unknown message from main panel!');

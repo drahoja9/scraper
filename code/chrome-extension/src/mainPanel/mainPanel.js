@@ -1,6 +1,6 @@
 import { Messages } from '../constants.js';
 import { ColumnPool } from './columnPool.js';
-import { registerHandler, registerClickHandler, registerInputHandler } from './utils.js';
+import { registerClickHandler, registerInputHandler, sendMessageToContentScript } from './utils.js';
 
 
 function toggleAutoselectConfirmation({ shouldEnable }) {
@@ -51,6 +51,30 @@ class RowsColsSwitcher {
 }
 
 
+class DataPreview {
+    constructor({ columnNames, data }) {
+        const tableHeader = document.querySelector('#table-header');
+        const tableBody = document.querySelector('#table-body');
+
+        for (const colName of columnNames) {
+            let col = document.createElement('th');
+            col.innerText = colName;
+            tableHeader.appendChild(col);
+        }
+
+        for (const rowData of data) {
+            let row = document.createElement('tr');
+            for (const colName of columnNames) {
+                let cell = document.createElement('td');
+                cell.innerText = rowData[colName];
+                row.appendChild(cell);
+            }
+            tableBody.appendChild(row);
+        }
+    }
+}
+
+
 // ========================================================================================================
 
 
@@ -69,6 +93,26 @@ $(function () {
 
     const colsPool = new ColumnPool();
     const switcher = new RowsColsSwitcher(colsPool);
+    // const dataPreview = new DataPreview(
+    //     ['Name', 'Desc', 'Price'],
+    //     [
+    //         {
+    //             'Name': 'Apple Watch',
+    //             'Desc': 'Chytré hodinky - OLED Retina displej s technologií Force Touch s Ion-X sklem, dvoujádrový procesor s čipem W2, hliníkové pouzdro s kompozitní zadní stranou, Digital Crown, snímač tepové frekvence, WiFi, GPS, Bluetooth 4.2, voděodolné dle 50M, výdrž baterie až 18 hodin, watchOS 4',
+    //             'Price': 11299
+    //         },
+    //         {
+    //             'Name': 'Niceboy X-fit GPS',
+    //             'Desc': 'Fitness náramek - měření tepové frekvence ze zápěstí, monitoring spánku, krokoměr, měření vzdálenosti, kompatibilita s telefony (Android, iOS), odolné vůči prachu a zvýšené vlhkosti (déšť), GPS',
+    //             'Price': 1655
+    //         },
+    //         {
+    //             'Name': 'Xiaomi Amazfit Verge Grey',
+    //             'Desc': 'Chytré hodinky s integrovanou GPS, 1.2GHz dvoujádrový procesor, RAM 512MB, ROM 4GB, Wifi, Amoled Display 1.3” s rozlišením 360x360 pixelů, vodotěsnost, 12 sportovních režimů, mikrofon + reproduktor, kompatibilní s IOS 9.0 a vyšší/ Android 4.4 a vyšší.',
+    //             'Price': 3476
+    //         }
+    //     ]
+    // );
 
     toggleAutoselectConfirmation({});
 
@@ -88,7 +132,9 @@ $(function () {
         textSearchEndsInput,
         Messages.TEXT_SEARCH_ENDS
     );
-    registerClickHandler(downloadBtn, Messages.DOWNLOAD, () => { }, { colIds: colsPool.getColIds() });
+    registerClickHandler(downloadBtn, '', () => {
+        sendMessageToContentScript(Messages.ASSEMBLE_PREVIEW, { cols: colsPool.getCols() });
+    });
 
     window.addEventListener('message', (event) => {
         if (event.data.type !== Messages.FROM_CONTROLLER) {
@@ -97,6 +143,9 @@ $(function () {
         switch (event.data.msg) {
             case Messages.DECIDING_AUTO_SELECT:
                 toggleAutoselectConfirmation({ shouldEnable: true });
+                break;
+            case Messages.DISPLAY_PREVIEW:
+                const dataPreview = new DataPreview(event.data.payload)
                 break;
         }
     });

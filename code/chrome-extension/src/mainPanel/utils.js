@@ -11,8 +11,8 @@ export function registerClickHandler(element, message, callback = () => { }, pay
 
 export function registerHandler(element, eventType, message, callback = () => { }, payload) {
     element.addEventListener(eventType, function (event) {
-        sendMessageToContentScript(message, payload);
         callback(event);
+        sendMessageToContentScript(message, payload);
     });
 }
 

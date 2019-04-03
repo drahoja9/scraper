@@ -61,13 +61,16 @@ export class SelectEngine {
     }
 
     selectingCols() {
-        this.classes = ['scraping-selected-col', `scraping-col-${this._currentCol}`];
+        this.classes = [
+            'scraping-selected-col',
+            `scraping-col-${this._currentCol}`
+        ];
         this.isSelectingRows = false;
     }
 
     changeCol({ colId }) {
         this._currentCol = colId;
-        this.classes = ['scraping-selected-col', `scraping-col-${this._currentCol}`];
+        this.selectingCols();
     }
 
     injectDomNavigation() {

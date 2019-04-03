@@ -30,14 +30,20 @@ export class Controller {
         this._communication.toggle();
     }
 
-    downloadData({ colIds }) {
+    downloadData({ cols }) {
+        let columnNames = cols.map(col => col.name);
+        let data = [];
+
         const rows = document.querySelectorAll('.scraping-selected-row');
         for (const row of rows) {
-            const cols = row.querySelectorAll('.scraping-selected-col');
             for (const col of cols) {
-                console.log(col.innerText);
+                const colData = row.querySelectorAll(`.scraping-col-${col.id}`);
+                const dataList = Array.from(colData, node => node.innerText);
+                data.push({ [col.name]: dataList.join('\n') });
             }
         }
+
+        return { columnNames, data };
     }
 
     _showMainPanel() {
@@ -68,7 +74,7 @@ export class Controller {
 
     notify({ msg }) {
         this._communication.sendMessageToMainPanel(
-            { type: Messages.FROM_CONTROLLER, msg: msg },
+            { msg: msg },
         );
     }
 }
