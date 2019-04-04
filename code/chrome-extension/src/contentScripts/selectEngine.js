@@ -67,12 +67,19 @@ export class SelectEngine {
     selectingCols() {
         this.classes = [
             'scraping-selected-col',
-            `scraping-col-${this._currentCol}`
+            `scraping-col-${this._currentCol}`,
+            'scraping-active'
         ];
         this.isSelectingRows = false;
     }
 
     changeCol({ colId }) {
+        document
+            .querySelectorAll('.scraping-active')
+            .forEach(node => node.classList.remove('scraping-active'));
+        document
+            .querySelectorAll(`.scraping-col-${colId}`)
+            .forEach(node => node.classList.add('scraping-active'));
         this._currentCol = colId;
         this.selectingCols();
     }
