@@ -22,9 +22,9 @@ export class PreviewTable {
     }
 
     display() {
-        const { columnNames, data } = this._dataProvider.data;
+        const { columnNames, rowsData } = this._dataProvider.data;
         this._fillHeader(columnNames);
-        this._fillBody(columnNames, data);
+        this._fillBody(columnNames, rowsData);
         this._placeholder.querySelector('.scraping-modal').style.display = 'flex';
         window.addEventListener('click', this._hideFromClickAway);
     }
@@ -60,9 +60,9 @@ export class PreviewTable {
         }
     }
 
-    _fillBody(columnNames, data) {
+    _fillBody(columnNames, rowsData) {
         const tableBody = this._placeholder.querySelector('.scraping-table-body');
-        for (const [idx, row] of data.entries()) {
+        for (const [idx, row] of rowsData.entries()) {
             const removeRow = (tableRow) => {
                 this._dataProvider.removeRowFrom(idx);
                 tableBody.removeChild(tableRow);
