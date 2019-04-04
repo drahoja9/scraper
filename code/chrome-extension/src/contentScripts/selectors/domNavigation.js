@@ -1,5 +1,5 @@
-import { Messages } from '../constants.js';
-import { isValid } from './utils.js';
+import { Messages } from '../../constants.js';
+import { isValid } from '../utils.js';
 
 
 export class DOMNavigaton {

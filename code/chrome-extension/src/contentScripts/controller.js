@@ -1,7 +1,7 @@
 import { MAIN_PANEL_PAGE } from '../constants.js';
 import { Communication } from './communication.js';
-import { SelectEngine } from './selectEngine.js';
-import { DataProvider } from './data.js';
+import { SelectEngine } from './selectors/selectEngine.js';
+import { DataProvider } from './data/data.js';
 
 
 export class Controller {

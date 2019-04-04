@@ -1,6 +1,6 @@
 // Files
 export const MAIN_PANEL_PAGE = '/src/mainPanel/mainPanel.html';
-export const DATA_PREVIEW = '/src/contentScripts/dataPreview.html';
+export const DATA_PREVIEW = '/src/contentScripts/data/dataPreview.html';
 
 // Messaging
 export const Messages = Object.freeze({

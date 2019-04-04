@@ -3,7 +3,9 @@ export function isValid(node) {
     const isNotHidden = node => (
         !node.hidden &&
         getComputedStyle(node).display !== 'none' &&
+        getComputedStyle(node).opacity !== 0 &&
         node.style.display !== 'none' &&
+        node.style.opacity !== 0 &&
         node.offsetWidth > 0 && node.offsetHeight > 0
     );
 

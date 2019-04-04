@@ -1,4 +1,4 @@
-import { DATA_PREVIEW } from '../constants.js';
+import { DATA_PREVIEW } from '../../constants.js';
 
 
 export class PreviewTable {

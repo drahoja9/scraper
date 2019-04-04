@@ -1,4 +1,4 @@
-import { isValid } from './utils.js';
+import { isValid } from '../utils.js';
 
 
 export class TextSelector {
