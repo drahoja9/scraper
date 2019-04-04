@@ -20,7 +20,7 @@ export class Communication {
     listenToBackground() {
         // Communication with backrground.js (something like "backend" of the extension)
         chrome.runtime.onMessage.addListener(
-            function (request, sender, sendResponse) {
+            (request, sender, sendResponse) => {
                 if (request.msg === Messages.BROWSER_ACTION_CLICKED) {
                     this._controller.toggleMainPannel();
                 }
@@ -32,7 +32,7 @@ export class Communication {
                 ) {
                     this._controller.toggleMainPannel();
                 }
-            }.bind(this)
+            }
         );
     }
 
@@ -75,9 +75,8 @@ export class Communication {
             case Messages.TEXT_SEARCH_ENDS:
                 this._selectEngine.endsWith(event.data.payload);
                 break;
-            case Messages.ASSEMBLE_PREVIEW:
-                const payload = this._controller.downloadData(event.data.payload);
-                this.sendMessageToMainPanel({ msg: Messages.DISPLAY_PREVIEW, payload });
+            case Messages.DISPLAY_PREVIEW:
+                this._controller.previewData(event.data.payload);
                 break;
             default:
                 console.error('Unknown message from main panel!');

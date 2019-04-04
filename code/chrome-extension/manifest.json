@@ -44,6 +44,7 @@
   "content_security_policy": "script-src 'self'; object-src 'self'",
   "web_accessible_resources": [
     "src/*.js",
-    "src/mainPanel/mainPanel.html"
+    "src/mainPanel/mainPanel.html",
+    "src/contentScripts/dataPreview.html"
   ]
 }

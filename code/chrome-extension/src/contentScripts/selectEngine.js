@@ -30,6 +30,10 @@ export class SelectEngine {
         });
     }
 
+    unselectRow(rowData) {
+        // TODO
+    }
+
     toggle(element) {
         let wasAdded = true;
         this._scrapingClasses.forEach(cls => {

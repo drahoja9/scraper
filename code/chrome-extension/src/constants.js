@@ -1,5 +1,6 @@
 // Files
 export const MAIN_PANEL_PAGE = '/src/mainPanel/mainPanel.html';
+export const DATA_PREVIEW = '/src/contentScripts/dataPreview.html';
 
 // Messaging
 export const Messages = Object.freeze({
@@ -19,7 +20,6 @@ export const Messages = Object.freeze({
     TEXT_SEARCH_STARTS: 'TEXT_SEARCH_STARTS',
     TEXT_SEARCH_ENDS: 'TEXT_SEARCH_ENDS',
     DOWNLOAD: 'DOWNLOAD',
-    ASSEMBLE_PREVIEW: 'ASSEMBLE_PREVIEW',
     DISPLAY_PREVIEW: 'DISPLAY_PREVIEW',
     BROWSER_ACTION_CLICKED: 'BROWSER_ACTION_CLICKED',
     TAB_UPDATED: 'TAB_UPDATED'

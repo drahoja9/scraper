@@ -1,6 +1,7 @@
-import { Messages, MAIN_PANEL_PAGE } from '../constants.js';
+import { MAIN_PANEL_PAGE } from '../constants.js';
 import { Communication } from './communication.js';
 import { SelectEngine } from './selectEngine.js';
+import { DataProvider } from './data.js';
 
 
 export class Controller {
@@ -9,6 +10,7 @@ export class Controller {
         this.isVisible = false;
         this.mainPanel = undefined;
 
+        this._dataProvider = new DataProvider(this);
         this._selectEngine = new SelectEngine(this);
         this._communication = new Communication(this, this._selectEngine);
 
@@ -24,26 +26,21 @@ export class Controller {
         } else if (this.isInjected) {
             this._showMainPanel();
         } else {
+            // This happens only once, after the extension browser button 
+            // is pressed on given page
             this._injectMainPanel();
             this._selectEngine.injectDomNavigation();
+            this._dataProvider.injectPreviewTable();
         }
         this._communication.toggle();
     }
 
-    downloadData({ cols }) {
-        let columnNames = cols.map(col => col.name);
-        let data = [];
+    previewData({ cols }) {
+        this._dataProvider.preview(cols);
+    }
 
-        const rows = document.querySelectorAll('.scraping-selected-row');
-        for (const row of rows) {
-            for (const col of cols) {
-                const colData = row.querySelectorAll(`.scraping-col-${col.id}`);
-                const dataList = Array.from(colData, node => node.innerText);
-                data.push({ [col.name]: dataList.join('\n') });
-            }
-        }
-
-        return { columnNames, data };
+    unselectRow(row) {
+        this._selectEngine.unselectRow(row);
     }
 
     _showMainPanel() {
