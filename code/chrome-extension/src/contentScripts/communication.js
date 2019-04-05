@@ -54,6 +54,11 @@ export class Communication {
             case Messages.SELECTING_COLS:
                 this._selectEngine.selectingCols();
                 break;
+            case Messages.ADDED_COL:
+            case Messages.RENAMED_COL:
+            case Messages.REMOVED_COL:
+                this._controller.invalidateData();
+                break;
             case Messages.CHOSEN_COL:
                 this._selectEngine.changeCol(event.data.payload);
                 break;

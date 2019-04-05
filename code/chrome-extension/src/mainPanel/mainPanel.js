@@ -65,7 +65,9 @@ $(function () {
     const textSearchStartsInput = document.querySelector('#text-search-starts');
     const textSearchEndsInput = document.querySelector('#text-search-ends');
 
+    const previewBtn = document.querySelector('#preview-btn');
     const downloadBtn = document.querySelector('#download-btn');
+    const exportSelect = document.querySelector('#export-select');
 
     const colsPool = new ColumnPool();
     const switcher = new RowsColsSwitcher(colsPool);
@@ -88,8 +90,11 @@ $(function () {
         textSearchEndsInput,
         Messages.TEXT_SEARCH_ENDS
     );
-    registerClickHandler(downloadBtn, '', () => {
+    registerClickHandler(previewBtn, '', () => {
         sendMessageToContentScript(Messages.DISPLAY_PREVIEW, { cols: colsPool.getCols() });
+    });
+    registerClickHandler(downloadBtn, '', () => {
+        sendMessageToContentScript(Messages.DOWNLOAD, { format: exportSelect.value, cols: colsPool.getCols() });
     });
 
     window.addEventListener('message', (event) => {

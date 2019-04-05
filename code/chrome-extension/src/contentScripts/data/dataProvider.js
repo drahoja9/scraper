@@ -4,7 +4,7 @@ import { PreviewTable } from "./previewTable.js";
 export class DataProvider {
     constructor(controller) {
         this.data = { columnNames: [], rowsData: [] };
-        this._isDataValid = false;
+        this.isDataValid = false;
         this._previewTable = new PreviewTable(this);
         this._controller = controller;
     }
@@ -23,12 +23,12 @@ export class DataProvider {
     }
 
     removeRowFrom(idx) {
-        this._controller.unselectRow(this.data.data[idx]);
+        this._controller.unselectRow(this.data.rowsData[idx]);
         this.data.rowsData.splice(idx, 1);
     }
 
     _checkData(columns) {
-        if (this._isDataValid) return;
+        if (this.isDataValid) return;
 
         let columnNames = columns.map(col => col.name);
         let rowsData = [];
@@ -45,6 +45,6 @@ export class DataProvider {
         }
 
         this.data = { columnNames, rowsData };
-        this._isDataValid = true;
+        this.isDataValid = true;
     }
 }

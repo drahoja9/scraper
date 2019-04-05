@@ -43,12 +43,18 @@ export class PreviewTable {
 
     _clear() {
         const tableHeader = this._placeholder.querySelector('.scraping-table-header');
-        for (const headerCell of Array.from(tableHeader.children).slice(1)) {
+        // First cell is reserved for the row remove button, we do not want to delete that
+        const headerCells = Array.from(tableHeader.children).slice(1);
+        for (const headerCell of headerCells) {
             tableHeader.removeChild(headerCell);
         }
 
         const tableBody = this._placeholder.querySelector('.scraping-table-body');
-        for (const row of tableBody.children) {
+        // Need to convert the children to plain JS array in order to be able to delete
+        // them while also iterating over the whole collection (this way we make copies
+        // of the original live nodes)
+        const allRows = Array.from(tableBody.children);
+        for (const row of allRows) {
             tableBody.removeChild(row);
         }
     }

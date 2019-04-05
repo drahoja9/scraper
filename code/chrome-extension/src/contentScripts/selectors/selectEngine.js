@@ -22,12 +22,14 @@ export class SelectEngine {
         this._scrapingClasses.forEach(cls => {
             element.classList.add(cls);
         });
+        this._controller.invalidateData();
     }
 
     unselect(element) {
         this._scrapingClasses.forEach(cls => {
             element.classList.remove(cls);
         });
+        this._controller.invalidateData();
     }
 
     unselectRow(rowData) {
@@ -35,11 +37,13 @@ export class SelectEngine {
     }
 
     toggle(element) {
-        let wasAdded = true;
-        this._scrapingClasses.forEach(cls => {
-            wasAdded = element.classList.toggle(cls);
-        });
-        return wasAdded;
+        const isSelected = this.isSelected(element);
+        if (isSelected) {
+            this.unselect(element);
+        } else {
+            this.select(element);
+        }
+        return !isSelected;
     }
 
     isSelected(element) {

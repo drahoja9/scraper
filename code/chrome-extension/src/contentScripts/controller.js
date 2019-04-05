@@ -1,7 +1,7 @@
 import { MAIN_PANEL_PAGE } from '../constants.js';
 import { Communication } from './communication.js';
 import { SelectEngine } from './selectors/selectEngine.js';
-import { DataProvider } from './data/data.js';
+import { DataProvider } from './data/dataProvider.js';
 
 
 export class Controller {
@@ -41,6 +41,10 @@ export class Controller {
 
     unselectRow(row) {
         this._selectEngine.unselectRow(row);
+    }
+
+    invalidateData() {
+        this._dataProvider.isDataValid = false;
     }
 
     _showMainPanel() {

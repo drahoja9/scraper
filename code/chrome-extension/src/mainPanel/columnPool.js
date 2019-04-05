@@ -13,7 +13,7 @@ export class ColumnPool {
         this._active = this._addColumn();
         this._active.classList.add('active');
 
-        registerClickHandler(this._addBtn, '', this._addColumn.bind(this));
+        registerClickHandler(this._addBtn, Messages.ADDED_COL, this._addColumn.bind(this));
     }
 
     toggle() {
@@ -73,7 +73,7 @@ class ColumnButton {
         const removeBtn = new ColumnRemoveBtn(removeColumnHandler);
 
         registerClickHandler(this._node, Messages.CHOSEN_COL, clickHandler, { colId: this._node.id });
-        registerHandler(this._node, 'dblclick', '', this._displayNameForm.bind(this));
+        registerHandler(this._node, 'dblclick', Messages.RENAMED_COL, this._displayNameForm.bind(this));
 
         this._node.appendChild(this._name);
         this._node.appendChild(this._nameForm);
@@ -141,7 +141,7 @@ class ColumnRemoveBtn {
         this._btn.classList.add('col-remove');
         this._btn.innerHTML = '&times;';
 
-        registerClickHandler(this._btn, '', removeColumnHandler);
+        registerClickHandler(this._btn, Messages.REMOVED_COL, removeColumnHandler);
 
         return this._btn;
     }
