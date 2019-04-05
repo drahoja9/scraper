@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.3.8)  3 APR 2019 22:14
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.3.8)  5 APR 2019 13:37
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1272,6 +1272,12 @@ Underfull \hbox (badness 1436) in paragraph at lines 420--421
 []$\OT1/lmtt/m/n/10.95 https : / /
  []
 
+
+Underfull \hbox (badness 1466) in paragraph at lines 429--430
+\OT1/lmr/m/n/10.95 vi-sej^^S^^Pc^^S^^Pch s pr^^Savem au-torsk^^Sym a o zm^^Ten^
+^Te n^^Tekter^^Sych z^^Sakon^^Wu (au-
+ []
+
 [27]
 Underfull \hbox (badness 2035) in paragraph at lines 444--445
 []\OT1/lmr/m/n/10.95 Case 17-cv-03301-EMC, or-der gran-ting pla-in-tiff's mo-ti
@@ -1347,9 +1353,9 @@ t a web-site
  []
 
 
-Underfull \hbox (badness 1953) in paragraph at lines 459--460
-[] \OT1/lmr/m/n/10.95 1996-2019 The Wa-shing-ton Post [cit. 31. 3. 2019]. Do-st
-upn^^Se
+Underfull \hbox (badness 1721) in paragraph at lines 459--460
+[] \OT1/lmr/m/n/10.95 1996--2019 The Wa-shing-ton Post [cit. 31. 3. 2019]. Do-s
+tupn^^Se
  []
 
 
@@ -1422,10 +1428,10 @@ hare/texmf/fonts/type1/public/lm/lmr9.pfb></usr/share/texmf/fonts/type1/public/
 lm/lmri10.pfb></usr/share/texmf/fonts/type1/public/lm/lmss10.pfb></usr/share/te
 xmf/fonts/type1/public/lm/lmssbx10.pfb></usr/share/texmf/fonts/type1/public/lm/
 lmsy10.pfb></usr/share/texmf/fonts/type1/public/lm/lmtt10.pfb>
-Output written on Sablona_BP_UTF-8.pdf (47 pages, 897300 bytes).
+Output written on Sablona_BP_UTF-8.pdf (47 pages, 897063 bytes).
 PDF statistics:
- 501 PDF objects out of 1000 (max. 8388607)
- 421 compressed objects within 5 object streams
+ 500 PDF objects out of 1000 (max. 8388607)
+ 420 compressed objects within 5 object streams
  122 named destinations out of 1000 (max. 500000)
  127 words of extra memory for PDF output out of 10000 (max. 10000000)
 
