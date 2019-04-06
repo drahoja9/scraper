@@ -5,7 +5,8 @@
   "permissions": [
     "activeTab",
     "storage",
-    "tabs"
+    "tabs",
+    "downloads"
   ],
   "background": {
     "page": "src/background/background.html",

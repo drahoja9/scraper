@@ -1,4 +1,4 @@
-import { MAIN_PANEL_PAGE } from '../constants.js';
+import { MAIN_PANEL_PAGE, Messages } from '../constants.js';
 import { Communication } from './communication.js';
 import { SelectEngine } from './selectors/selectEngine.js';
 import { DataProvider } from './data/dataProvider.js';
@@ -37,6 +37,15 @@ export class Controller {
 
     previewData({ cols }) {
         this._dataProvider.preview(cols);
+    }
+
+    downloadData({ format, cols }) {
+        const { url, filename } = this._dataProvider.export(cols, format);
+        this._communication.sendMessageToBackground({
+            msg: Messages.DOWNLOAD,
+            url: url,
+            filename: filename
+        });
     }
 
     unselectRow(row) {

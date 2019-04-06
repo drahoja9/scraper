@@ -47,3 +47,13 @@ chrome.tabs.onUpdated.addListener(async function (tabId, changeInfo, tab) {
 chrome.tabs.onRemoved.addListener(function (tabId, removeInfo) {
     chrome.storage.local.remove(String(tabId));
 });
+
+chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
+    if (request.msg === Messages.DOWNLOAD) {
+        chrome.downloads.download({
+            url: request.url,
+            filename: request.filename,
+            saveAs: true
+        });
+    }
+});

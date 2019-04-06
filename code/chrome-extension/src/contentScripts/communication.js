@@ -36,6 +36,10 @@ export class Communication {
         );
     }
 
+    sendMessageToBackground(msg) {
+        chrome.runtime.sendMessage(msg);
+    }
+
     sendMessageToMainPanel(msg) {
         this._controller.mainPanel.contentWindow.postMessage(
             { ...msg, type: Messages.FROM_CONTROLLER },
@@ -83,8 +87,11 @@ export class Communication {
             case Messages.DISPLAY_PREVIEW:
                 this._controller.previewData(event.data.payload);
                 break;
+            case Messages.DOWNLOAD:
+                this._controller.downloadData(event.data.payload);
+                break;
             default:
-                console.error('Unknown message from main panel!');
+            // console.error('Unknown message from main panel!');
         }
     }
 }

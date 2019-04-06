@@ -7,6 +7,7 @@ export class DataProvider {
         this.isDataValid = false;
         this._previewTable = new PreviewTable(this);
         this._controller = controller;
+        this._exporter = undefined;
     }
 
     injectPreviewTable() {
@@ -18,8 +19,23 @@ export class DataProvider {
         this._previewTable.display();
     }
 
-    export() {
-        throw Error('Not implemented!');
+    export(columns, format) {
+        this._checkData(columns);
+
+        switch (format) {
+            case 'json':
+                this._exporter = JSONExporter;
+                break;
+            case 'csv':
+                this._exporter = CSVExporter;
+                break;
+            default:
+                throw Error('Unknown export format!');
+        }
+
+        const url = this._exporter.getFileUrl(this.data);
+        const filename = 'data' + this._exporter.extension;
+        return { url, filename };
     }
 
     removeRowFrom(idx) {
@@ -46,5 +62,61 @@ export class DataProvider {
 
         this.data = { columnNames, rowsData };
         this.isDataValid = true;
+    }
+}
+
+
+class Exporter {
+    static get extension() {
+        throw Error('Not implemented!');
+    }
+
+    static _getFileUrl(blob) {
+        return URL.createObjectURL(blob);
+    }
+}
+
+
+class JSONExporter extends Exporter {
+    static getFileUrl({ rowsData }) {
+        const json = JSON.stringify(rowsData, null, 3);
+        const blob = new Blob(
+            [json],
+            { type: 'application/json', endings: 'native' }
+        );
+        return super._getFileUrl(blob);
+    }
+
+    static get extension() {
+        return '.json';
+    }
+}
+
+
+class CSVExporter extends Exporter {
+    static getFileUrl({ columnNames, rowsData }) {
+        const header = columnNames
+            .map(colName => CSVExporter._escape(colName))
+            .join(',') +
+            '\n';
+        const csv = rowsData.map(row => {
+            const rowData = columnNames.map(
+                colName => CSVExporter._escape(row[colName])
+            );
+            return rowData.join(',');
+        });
+        const blob = new Blob(
+            [header + csv.join('\n')],
+            { type: 'text/csv', endings: 'native' }
+        );
+        return super._getFileUrl(blob);
+    }
+
+    static get extension() {
+        return '.csv';
+    }
+
+    static _escape(text) {
+        return `"${text.replace(/"/g, '""')}"`
     }
 }
