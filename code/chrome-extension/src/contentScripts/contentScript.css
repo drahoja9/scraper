@@ -8,17 +8,18 @@
 .scraping-highlighted {
     z-index: 2147483646 !important;
     background-color: rgba(255, 197, 121, 0.445) !important;
+    background: rgba(255, 197, 121, 0.445) !important;
     box-shadow: rgba(255, 197, 121, 0.445) 0px 0px 1px 3px !important;
     cursor: crosshair !important;
 }
 
 .scraping-selected-row {
-    z-index: 2147483646 !important;
+    z-index: 2147483645 !important;
     outline: var(--turqoise) dashed 3px !important;
 }
 
 .scraping-selected-col.scraping-active {
-    z-index: 2147483646 !important;
+    z-index: 2147483645 !important;
     outline: var(--bordeau) dashed 3px !important;
 }
 
