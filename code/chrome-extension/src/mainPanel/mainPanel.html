@@ -66,13 +66,25 @@
                 </div>
             </div>
         </div>
+        <div class="card col">
+            <div class="card-header row collapsed" id="select-css" data-toggle="collapse" data-target="#css-collapse">
+                <h2>CSS selector</h2>
+            </div>
+            <div class="collapse" id="css-collapse" data-parent="#main-navs">
+                <div class="card-body row">
+                    <div class="search-form">
+                        <h5>CSS selector</h5>
+                        <input class="form-control" type="text" placeholder="Type here..." id="css-input">
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <div
-        style="display: flex; align-self: center; position: relative; top: 600px; width: 100%; justify-content: center;">
+    <div class="btn-group">
         <button id="preview-btn" class="primary-btn">Preview</button>
         <button id="download-btn" class="primary-btn active">Download</button>
-        <select id="export-select" class="custom-select" style="width: 100px;">
+        <select id="format-select" class="custom-select" style="width: 100px;">
             <option value="csv">CSV</option>
             <option value="json">JSON</option>
         </select>

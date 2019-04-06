@@ -1,6 +1,7 @@
 import { MouseSelector } from './mouseSelector.js';
 import { TextSelector } from './textSelector.js';
 import { DOMNavigaton } from './domNavigation.js';
+import { CSSSelector } from './cssSelector.js';
 
 
 export class SelectEngine {
@@ -13,6 +14,7 @@ export class SelectEngine {
         this._mouseSelector = new MouseSelector(this);
         this._textSelector = new TextSelector(this);
         this._domNavigaton = new DOMNavigaton(this);
+        this._cssSelector = new CSSSelector(this);
 
         this._mouseSelector.addObserver(this);
         this._mouseSelector.addObserver(this._domNavigaton);
@@ -77,13 +79,17 @@ export class SelectEngine {
         this.isSelectingRows = false;
     }
 
-    changeCol({ colId }) {
+    _switchActiveCols(colId) {
         document
             .querySelectorAll('.scraping-active')
             .forEach(node => node.classList.remove('scraping-active'));
         document
             .querySelectorAll(`.scraping-col-${colId}`)
             .forEach(node => node.classList.add('scraping-active'));
+    }
+
+    changeCol({ colId }) {
+        this._switchActiveCols(colId);
         this._currentCol = colId;
         this.selectingCols();
     }
@@ -114,6 +120,10 @@ export class SelectEngine {
 
     endsWith(payload) {
         this._textSelector.endsWith(payload);
+    }
+
+    cssSelect(payload) {
+        this._cssSelector.select(payload);
     }
 
     notify({ msg }) {

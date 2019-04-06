@@ -72,8 +72,17 @@ class ColumnButton {
         );
         const removeBtn = new ColumnRemoveBtn(removeColumnHandler);
 
-        registerClickHandler(this._node, Messages.CHOSEN_COL, clickHandler, { colId: this._node.id });
-        registerHandler(this._node, 'dblclick', Messages.RENAMED_COL, this._displayNameForm.bind(this));
+        registerClickHandler(
+            this._node,
+            Messages.CHOSEN_COL,
+            clickHandler,
+            () => ({ colId: this._node.id })
+        );
+        registerHandler(
+            this._node, 'dblclick',
+            Messages.RENAMED_COL,
+            this._displayNameForm.bind(this)
+        );
 
         this._node.appendChild(this._name);
         this._node.appendChild(this._nameForm);
@@ -116,15 +125,15 @@ class ColumnNameForm {
         this._form.classList.add('col-rename');
         this._form.value = value;
 
-        registerHandler(this._form, 'focusout', '', (event) => {
+        this._form.addEventListener('focusout', (event) => {
             renameFunc(event.currentTarget.value)
         });
-        registerHandler(this._form, 'keydown', '', (event) => {
+        this._form.addEventListener('keydown', (event) => {
             if (event.keyCode === ENTER_KEY) {
                 renameFunc(event.currentTarget.value);
             }
         });
-        registerHandler(this._form, 'input', '', (event) => {
+        this._form.addEventListener('input', (event) => {
             // Toggling the name and the name form on and off to set the correct width for the form
             renameFunc(event.currentTarget.value);
             displayNameForm();

@@ -84,6 +84,9 @@ export class Communication {
             case Messages.TEXT_SEARCH_ENDS:
                 this._selectEngine.endsWith(event.data.payload);
                 break;
+            case Messages.CSS_SELECT:
+                this._selectEngine.cssSelect(event.data.payload);
+                break;
             case Messages.DISPLAY_PREVIEW:
                 this._controller.previewData(event.data.payload);
                 break;

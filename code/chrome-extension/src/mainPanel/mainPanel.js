@@ -1,31 +1,7 @@
 import { Messages } from '../constants.js';
 import { ColumnPool } from './columnPool.js';
-import { registerClickHandler, registerInputHandler, sendMessageToContentScript } from './utils.js';
-
-
-function toggleAutoselectConfirmation({ shouldEnable }) {
-    const alert = document.querySelector('#auto-select-alert');
-    const acceptAutoSelectBtn = document.querySelector('#accept-auto-select');
-    const rejectAutoSelectBtn = document.querySelector('#reject-auto-select');
-
-    if (shouldEnable !== undefined) {
-        acceptAutoSelectBtn.disabled = !shouldEnable;
-        rejectAutoSelectBtn.disabled = !shouldEnable;
-        if (shouldEnable) {
-            alert.classList.add('show');
-        } else {
-            alert.classList.remove('show');
-        }
-    } else if (acceptAutoSelectBtn.disabled) {
-        acceptAutoSelectBtn.disabled = false;
-        rejectAutoSelectBtn.disabled = false;
-        alert.classList.add('show');
-    } else {
-        acceptAutoSelectBtn.disabled = true;
-        rejectAutoSelectBtn.disabled = true;
-        alert.classList.remove('show');
-    }
-}
+import { registerClickHandler } from './utils.js';
+import { toggleAutoselectConfirmation, Selectors } from './selectors.js';
 
 
 class RowsColsSwitcher {
@@ -51,51 +27,44 @@ class RowsColsSwitcher {
 }
 
 
+class ActionButtons {
+    constructor(colsPool) {
+        this._previewBtn = document.querySelector('#preview-btn');
+        this._downloadBtn = document.querySelector('#download-btn');
+        this._formatSelect = document.querySelector('#format-select');
+
+        registerClickHandler(
+            this._previewBtn,
+            Messages.DISPLAY_PREVIEW,
+            () => { },
+            () => ({ cols: colsPool.getCols() })
+        );
+        registerClickHandler(
+            this._downloadBtn,
+            Messages.DOWNLOAD,
+            () => { },
+            () => ({ format: this._formatSelect.value, cols: colsPool.getCols() })
+        );
+    }
+}
+
+
+class MainPanel {
+    constructor() {
+        this._colsPool = new ColumnPool();
+        this._switcher = new RowsColsSwitcher(this._colsPool);
+        this._selectors = new Selectors();
+        this._actionBtns = new ActionButtons(this._colsPool);
+    }
+}
+
+
 // ========================================================================================================
 
 
 $(function () {
-    const selectElementsBtn = document.querySelector('#select-elements-btn');
-
-    const acceptAutoSelectBtn = document.querySelector('#accept-auto-select');
-    const rejectAutoSelectBtn = document.querySelector('#reject-auto-select');
-
-    const textSearchContainsInput = document.querySelector('#text-search-contains');
-    const containsExactCheck = document.querySelector('#contains-exact');
-    const textSearchStartsInput = document.querySelector('#text-search-starts');
-    const textSearchEndsInput = document.querySelector('#text-search-ends');
-
-    const previewBtn = document.querySelector('#preview-btn');
-    const downloadBtn = document.querySelector('#download-btn');
-    const exportSelect = document.querySelector('#export-select');
-
-    const colsPool = new ColumnPool();
-    const switcher = new RowsColsSwitcher(colsPool);
-
+    const mainPanel = new MainPanel();
     toggleAutoselectConfirmation({});
-
-    registerClickHandler(selectElementsBtn, Messages.SELECTING_ELEMENTS, () => { selectElementsBtn.classList.toggle('toggled-btn'); })
-    registerClickHandler(acceptAutoSelectBtn, Messages.ACCEPT_AUTO_SELECT, toggleAutoselectConfirmation)
-    registerClickHandler(rejectAutoSelectBtn, Messages.REJECT_AUTO_SELECT, toggleAutoselectConfirmation)
-    registerInputHandler(
-        textSearchContainsInput,
-        Messages.TEXT_SEARCH_CONTAINS,
-        containsExactCheck
-    );
-    registerInputHandler(
-        textSearchStartsInput,
-        Messages.TEXT_SEARCH_STARTS
-    );
-    registerInputHandler(
-        textSearchEndsInput,
-        Messages.TEXT_SEARCH_ENDS
-    );
-    registerClickHandler(previewBtn, '', () => {
-        sendMessageToContentScript(Messages.DISPLAY_PREVIEW, { cols: colsPool.getCols() });
-    });
-    registerClickHandler(downloadBtn, '', () => {
-        sendMessageToContentScript(Messages.DOWNLOAD, { format: exportSelect.value, cols: colsPool.getCols() });
-    });
 
     window.addEventListener('message', (event) => {
         if (event.data.type !== Messages.FROM_CONTROLLER) {

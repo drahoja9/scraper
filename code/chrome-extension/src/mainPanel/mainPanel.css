@@ -212,3 +212,12 @@ button {
 #contains-exact {
     align-self: center;
 }
+
+.btn-group {
+    display: flex;
+    align-self: center;
+    position: relative;
+    top: 600px;
+    width: 100%;
+    justify-content: center;
+}
