@@ -43,6 +43,14 @@ export class DataProvider {
         this.data.rowsData.splice(idx, 1);
     }
 
+    _htmlExtractor(node) {
+        if (node.nodeName === 'IMG') {
+            return node.src;
+        } else {
+            return node.innerText;
+        }
+    }
+
     _checkData(columns) {
         if (this.isDataValid) return;
 
@@ -54,7 +62,7 @@ export class DataProvider {
             let dataRow = {};
             for (const col of columns) {
                 const colData = row.querySelectorAll(`.scraping-col-${col.id}`);
-                const dataList = Array.from(colData, node => node.innerText);
+                const dataList = Array.from(colData, this._htmlExtractor);
                 dataRow = { ...dataRow, [col.name]: dataList.join('\n') }
             }
             rowsData.push(dataRow);
