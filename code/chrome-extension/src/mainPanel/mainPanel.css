@@ -184,8 +184,12 @@ button {
 .search-form {
     display: flex;
     justify-content: space-between;
-    align-items: flex-end;
+    align-items: center;
     padding-bottom: 5px;
+}
+
+h5 {
+    margin: 0;
 }
 
 .search-form-last {
@@ -203,6 +207,15 @@ button {
     box-shadow: 0 0 0 0.2rem rgba(40, 141, 136, 0.24);
 }
 
+.form-control.invalid:focus {
+    border-color: rgba(255, 0, 0, 0.534);
+    box-shadow: 0 0 0 0.2rem rgba(255, 0, 0, 0.24);
+}
+
+#css-input {
+    max-height: 200px;
+}
+
 .text-small {
     font-size: 0.8em;
     padding-right: 10px;
@@ -211,6 +224,23 @@ button {
 
 #contains-exact {
     align-self: center;
+}
+
+#css-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#css-form-error {
+    font-size: 0.8em;
+    color: red;
+    transition: opacity 0.2s;
+    opacity: 0;
+}
+
+.form-control.invalid ~ #css-form-error {
+    opacity: 1;
 }
 
 .btn-group {

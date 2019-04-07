@@ -126,6 +126,10 @@ export class SelectEngine {
         this._cssSelector.select(payload);
     }
 
+    cssUnselect() {
+        this._cssSelector.unselectPrevious();
+    }
+
     notify({ msg }) {
         this._controller.notify({ msg });
     }

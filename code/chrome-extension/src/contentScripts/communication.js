@@ -87,6 +87,9 @@ export class Communication {
             case Messages.CSS_SELECT:
                 this._selectEngine.cssSelect(event.data.payload);
                 break;
+            case Messages.CSS_UNSELECT:
+                this._selectEngine.cssUnselect();
+                break;
             case Messages.DISPLAY_PREVIEW:
                 this._controller.previewData(event.data.payload);
                 break;

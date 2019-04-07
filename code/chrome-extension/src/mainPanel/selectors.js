@@ -88,17 +88,26 @@ class TextSelector {
 class CSSSelector {
     constructor() {
         this._cssSelectorInput = document.querySelector('#css-input');
+        this._error = document.querySelector('#css-form-error');
         this._cssSelectorInput.addEventListener('keydown', this._inputHandler.bind(this));
     }
 
     _inputHandler(event) {
         if (event.keyCode === ENTER_KEY) {
-            const selector = this._cssSelectorInput.value;
             event.preventDefault();
-            if (!this._validate(selector)) return;
-            sendMessageToContentScript(Messages.CSS_SELECT, {
-                selector: selector,
-            });
+            const selector = this._cssSelectorInput.value;
+
+            if (selector === '') {
+                this._cssSelectorInput.classList.remove('invalid');
+                sendMessageToContentScript(Messages.CSS_UNSELECT);
+            } else if (!this._validate(selector)) {
+                this._cssSelectorInput.classList.add('invalid');
+            } else {
+                this._cssSelectorInput.classList.remove('invalid');
+                sendMessageToContentScript(Messages.CSS_SELECT, {
+                    selector: selector,
+                });
+            }
         }
     }
 

@@ -5,13 +5,13 @@ export class CSSSelector {
     }
 
     select({ selector }) {
-        this._unselectPrevious();
+        this.unselectPrevious();
         const toSelect = document.querySelectorAll(selector);
         toSelect.forEach(node => this._selectEngine.select(node));
         this._current = selector;
     }
 
-    _unselectPrevious() {
+    unselectPrevious() {
         if (this._current) {
             const toUnselect = document.querySelectorAll(this._current);
             toUnselect.forEach(node => this._selectEngine.unselect(node));

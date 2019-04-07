@@ -16,7 +16,7 @@ export class TextSelector {
 
     contains({ value, exactCheck }) {
         if (exactCheck) {
-            this._highlight(value, (innerText, value) => innerText === value);
+            this._highlight(value, (innerText, value) => { if (innerText === value) console.log(innerText, value); return innerText === value });
         } else {
             this._highlight(value, (innerText, value) => innerText.includes(value));
         }
@@ -54,7 +54,6 @@ export class TextSelector {
             const nodeText = getText(node).toLowerCase();
             const serchedValue = value.toLowerCase();
             if (condition(nodeText, serchedValue)) {
-                // getClassList(node).add('scraping-selected');
                 this._selectEngine.select(getNode(node));
             }
         };
