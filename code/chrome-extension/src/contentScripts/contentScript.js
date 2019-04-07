@@ -1,9 +1,13 @@
 // Dynamic import to enable ES6 import/export feature and still be able to access the chrome.* APIs
 (async () => {
     let shouldBeVisible = false;
+    let minimized = false;
+    let onLeft = false;
     function beforeLoadListener(request, sender, sendResponse) {
-        if (request.msg === 'TAB_UPDATED' && request.shouldBeVisible === true) {
-            shouldBeVisible = true;
+        if (request.msg === 'TAB_UPDATED') {
+            shouldBeVisible = request.shouldBeVisible;
+            minimized = request.minimized;
+            onLeft = request.onLeft;
         }
     };
     // Adding a listener in case there is a message (notyfing that the control panel should be visible from 
@@ -12,7 +16,7 @@
 
     const controllerSrc = chrome.extension.getURL("src/contentScripts/controller.js");
     const controllerModule = await import(controllerSrc);
-    const controller = new controllerModule.Controller(shouldBeVisible);
+    const controller = new controllerModule.Controller(shouldBeVisible, minimized, onLeft);
 
     chrome.runtime.onMessage.removeListener(beforeLoadListener);
 })();

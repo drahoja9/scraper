@@ -13,7 +13,7 @@ function getFromStorage(storageKey) {
     });
 }
 
-async function shouldBeVisibleInTab(tabId) {
+async function getTabInfo(tabId) {
     const tabIdStr = String(tabId);
     let result = undefined;
     try {
@@ -21,7 +21,19 @@ async function shouldBeVisibleInTab(tabId) {
     } catch (err) {
         console.error(err);
     }
-    return result ? result.shouldBeVisible : false;
+    if (result) {
+        return {
+            shouldBeVisible: result.shouldBeVisible || false,
+            minimized: result.minimized || false,
+            onLeft: result.onLeft || false
+        };
+    } else {
+        return {
+            shouldBeVisible: false,
+            minimized: false,
+            onLeft: false
+        };
+    }
 }
 
 
@@ -35,25 +47,46 @@ chrome.runtime.onInstalled.addListener(function () {
 
 chrome.browserAction.onClicked.addListener(async function (tab) {
     chrome.tabs.sendMessage(tab.id, { msg: Messages.BROWSER_ACTION_CLICKED });
-    const shouldBeVisible = await shouldBeVisibleInTab(tab.id);
-    chrome.storage.local.set({ [String(tab.id)]: { shouldBeVisible: !shouldBeVisible } });
+    const tabInfo = await getTabInfo(tab.id);
+    chrome.storage.local.set({
+        [String(tab.id)]: { ...tabInfo, shouldBeVisible: !tabInfo.shouldBeVisible }
+    });
 });
 
 chrome.tabs.onUpdated.addListener(async function (tabId, changeInfo, tab) {
-    const shouldBeVisible = await shouldBeVisibleInTab(tab.id);
-    chrome.tabs.sendMessage(tab.id, { msg: Messages.TAB_UPDATED, shouldBeVisible: shouldBeVisible });
+    const tabInfo = await getTabInfo(tab.id);
+    chrome.tabs.sendMessage(tab.id, {
+        msg: Messages.TAB_UPDATED,
+        ...tabInfo
+    });
 });
 
 chrome.tabs.onRemoved.addListener(function (tabId, removeInfo) {
     chrome.storage.local.remove(String(tabId));
 });
 
-chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
+chrome.runtime.onMessage.addListener(async function (request, sender, sendResponse) {
     if (request.msg === Messages.DOWNLOAD) {
         chrome.downloads.download({
             url: request.url,
             filename: request.filename,
             saveAs: true
+        });
+    } else if (request.msg === Messages.SWITCH_SIDES) {
+        const tabInfo = await getTabInfo(sender.tab.id);
+        chrome.storage.local.set({
+            [String(sender.tab.id)]: {
+                ...tabInfo,
+                onLeft: !tabInfo.onLeft
+            }
+        });
+    } else if (request.msg === Messages.MINIMIZE_MAXIMIZE) {
+        const tabInfo = await getTabInfo(sender.tab.id);
+        chrome.storage.local.set({
+            [String(sender.tab.id)]: {
+                ...tabInfo,
+                minimized: !tabInfo.minimized
+            }
         });
     }
 });

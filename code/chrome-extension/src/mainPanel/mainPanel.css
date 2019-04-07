@@ -11,7 +11,102 @@ body {
     background-color: var(--white);
     color: var(--dark-gray);
     display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.header {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    padding-right: 0.5em;
+    padding-top: 0.3em;
+    padding-left: 0.5em;
+}
+
+#move-btn-group {
+    display: flex;
+    order: 0;
+}
+
+#move-btn-group.left {
+    order: 1;
+}
+
+#min-max-btn {
+    font-size: 1.5em;
+    text-align: center;
+    margin-left: 10px;
+    width: 35px;
+    height: 35px;
+    border-radius: 35px;
+    color: var(--light-gray);
+    cursor: pointer;
+    transition: transform 0.5s;
+    order: 0;
+}
+
+#min-max-btn.left {
+    order: 1;
+}
+
+#min-max-btn.rotated {
+    transform: rotateY(180deg);
+}
+
+#min-max-btn:hover {
+    color: var(--turquoise);
+}
+
+#min-max-btn:active {
+    box-shadow: 0 0 3pt 0 rgba(40, 141, 136, 0.4);
+}
+
+#switch-sides-btn {
+    font-size: 1.5em;
+    text-align: center;
+    margin-left: 10px;
+    width: 35px;
+    height: 35px;
+    border-radius: 35px;
+    color: var(--light-gray);
+    cursor: pointer;
+    font-weight: 800;
+    order: 1;
+}
+
+#switch-sides-btn.left {
+    order: 0;
+}
+
+#switch-sides-btn.rotated {
+    transform: rotateY(180deg);
+}
+
+#switch-sides-btn:hover {
+    color: var(--turquoise);
+}
+
+#switch-sides-btn:active {
+    box-shadow: 0 0 3pt 0 rgba(40, 141, 136, 0.4);
+}
+
+#name {
+    font-size: 3em;
+    order: 1;
+}
+
+#name.left {
+    order: 0;
+}
+
+.content {
+    display: flex;
     flex-direction: column;
+    align-items: center;
+    width: 100%;
 }
 
 .tab-nav {
@@ -45,13 +140,6 @@ body {
 
 .cols-pool::-webkit-scrollbar {
     display: none;
-}
-
-#name {
-    text-align: end;
-    padding-right: 0.5em;
-    padding-top: 0.3em;
-    font-size: 3em;
 }
 
 .card {
@@ -245,9 +333,5 @@ h5 {
 
 .btn-group {
     display: flex;
-    align-self: center;
-    position: relative;
-    top: 600px;
     width: 100%;
-    justify-content: center;
 }

@@ -7,90 +7,105 @@
 </head>
 
 <body>
-    <h1 id="name">Scraper</h1>
+    <div class="content">
+        <div class="header">
+            <div id="move-btn-group">
+                <span id="min-max-btn">&#129054;</span>
+                <span id="switch-sides-btn">&#11120;</span>
+            </div>
+            <h1 id="name">Scraper</h1>
+        </div>
 
-    <div class="alert alert-info fade" role="alert" id="auto-select-alert">
         <div>
-            <button id="accept-auto-select">Accept auto-selection</button>
-            <button id="reject-auto-select">Reject auto-selection</button>
-        </div>
-    </div>
-    <div class="tab-nav">
-        <button class="primary-btn active" id="rows-btn">Rows</button>
-        <button class="primary-btn" id="cols-btn">Columns</button>
-    </div>
-    <div class="cols-pool-border">
-        <div class="cols-pool">
-            <button class="col-btn" id="add-col-btn">&plus;</button>
-        </div>
-    </div>
-
-    <div class="accordion" id="main-navs">
-        <div class="card col">
-            <div class="card-header row collapsed" id="select-basics" data-toggle="collapse"
-                data-target="#basics-collapse">
-                <h2>Basics</h2>
-            </div>
-            <div class="collapse" id="basics-collapse" data-parent="#main-navs">
-                <div class="card-body row">
-                    <div class="col">
-                        <button id="select-elements-btn" class="secondary-btn">Select elements</button>
-                    </div>
+            <div class="alert alert-info fade" role="alert" id="auto-select-alert">
+                <div>
+                    <button id="accept-auto-select">Accept auto-selection</button>
+                    <button id="reject-auto-select">Reject auto-selection</button>
                 </div>
             </div>
-        </div>
-        <div class="card col">
-            <div class="card-header row collapsed" id="select-text" data-toggle="collapse" data-target="#text-collapse">
-                <h2>Text search</h2>
+            <div class="tab-nav">
+                <button class="primary-btn active" id="rows-btn">Rows</button>
+                <button class="primary-btn" id="cols-btn">Columns</button>
             </div>
-            <div class="collapse" id="text-collapse" data-parent="#main-navs">
-                <div class="card-body">
-                    <div class="search-form">
-                        <h5>Starts with</h5>
-                        <input class="form-control" type="text" placeholder="Type here..." id="text-search-starts">
+            <div class="cols-pool-border">
+                <div class="cols-pool">
+                    <button class="col-btn" id="add-col-btn">&plus;</button>
+                </div>
+            </div>
+
+            <div class="accordion" id="main-navs">
+                <div class="card col">
+                    <div class="card-header row collapsed" id="select-basics" data-toggle="collapse"
+                        data-target="#basics-collapse">
+                        <h2>Basics</h2>
                     </div>
-                    <div class="search-form">
-                        <h5>Ends with</h5>
-                        <input class="form-control" type="text" placeholder="Type here..." id="text-search-ends">
+                    <div class="collapse" id="basics-collapse" data-parent="#main-navs">
+                        <div class="card-body row">
+                            <div class="col">
+                                <button id="select-elements-btn" class="secondary-btn">Select elements</button>
+                            </div>
+                        </div>
                     </div>
-                    <div class="search-form">
-                        <h5>Contains</h5>
-                        <input class="form-control" type="text" placeholder="Type here..." id="text-search-contains">
+                </div>
+                <div class="card col">
+                    <div class="card-header row collapsed" id="select-text" data-toggle="collapse"
+                        data-target="#text-collapse">
+                        <h2>Text search</h2>
                     </div>
-                    <div class="search-form-last">
-                        <div style="display: flex;">
-                            <p class="text-small">Only exact match</p>
-                            <input type="checkbox" name="contains-exact" id="contains-exact" />
+                    <div class="collapse" id="text-collapse" data-parent="#main-navs">
+                        <div class="card-body">
+                            <div class="search-form">
+                                <h5>Starts with</h5>
+                                <input class="form-control" type="text" placeholder="Type here..."
+                                    id="text-search-starts">
+                            </div>
+                            <div class="search-form">
+                                <h5>Ends with</h5>
+                                <input class="form-control" type="text" placeholder="Type here..."
+                                    id="text-search-ends">
+                            </div>
+                            <div class="search-form">
+                                <h5>Contains</h5>
+                                <input class="form-control" type="text" placeholder="Type here..."
+                                    id="text-search-contains">
+                            </div>
+                            <div class="search-form-last">
+                                <div style="display: flex;">
+                                    <p class="text-small">Only exact match</p>
+                                    <input type="checkbox" name="contains-exact" id="contains-exact" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card col">
+                    <div class="card-header row collapsed" id="select-css" data-toggle="collapse"
+                        data-target="#css-collapse">
+                        <h2>CSS selector</h2>
+                    </div>
+                    <div class="collapse" id="css-collapse" data-parent="#main-navs">
+                        <div class="card-body row">
+                            <div class="search-form">
+                                <h5 style="margin-bottom: 20px;">CSS selector</h5>
+                                <div id="css-form">
+                                    <textarea class="form-control" placeholder="Type here..." id="css-input"></textarea>
+                                    <span id="css-form-error">Invalid selector</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="card col">
-            <div class="card-header row collapsed" id="select-css" data-toggle="collapse" data-target="#css-collapse">
-                <h2>CSS selector</h2>
-            </div>
-            <div class="collapse" id="css-collapse" data-parent="#main-navs">
-                <div class="card-body row">
-                    <div class="search-form">
-                        <h5 style="margin-bottom: 20px;">CSS selector</h5>
-                        <div id="css-form">
-                            <textarea class="form-control" placeholder="Type here..." id="css-input"></textarea>
-                            <span id="css-form-error">Invalid selector</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
-    <div class="btn-group">
-        <button id="preview-btn" class="primary-btn">Preview</button>
-        <button id="download-btn" class="primary-btn active">Download</button>
-        <select id="format-select" class="custom-select" style="width: 100px;">
-            <option value="csv">CSV</option>
-            <option value="json">JSON</option>
-        </select>
+        <div class="btn-group">
+            <button id="preview-btn" class="primary-btn">Preview</button>
+            <button id="download-btn" class="primary-btn active">Download</button>
+            <select id="format-select" class="custom-select" style="width: 100px;">
+                <option value="csv">CSV</option>
+                <option value="json">JSON</option>
+            </select>
+        </div>
     </div>
 
     <script src="/lib/js/jquery-3.3.1.min.js"></script>

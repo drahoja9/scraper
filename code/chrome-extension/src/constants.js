@@ -6,6 +6,8 @@ export const DATA_PREVIEW = '/src/contentScripts/data/dataPreview.html';
 export const Messages = Object.freeze({
     FROM_MAIN_PANEL: 'FROM_IFRAME',
     FROM_CONTROLLER: 'FROM_CONTROLLER',
+    MINIMIZE_MAXIMIZE: 'MINIMIZE_MAXIMIZE',
+    SWITCH_SIDES: 'SWITCH_SIDES',
     SELECTING_ROWS: 'SELECTING_ROWS',
     SELECTING_COLS: 'SELECTING_COLS',
     ADDED_COL: 'ADDED_COL',

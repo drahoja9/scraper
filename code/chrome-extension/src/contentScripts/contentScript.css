@@ -81,10 +81,27 @@
 .scraping-iframe-panel {
     position: fixed !important;
     top: 0 !important;
-    right: 0 !important;
     z-index: 2147483646 !important;
-    height: 100% !important;
     width: 400px !important;
+    height: 100% !important;
     background-color: white !important;
-    box-shadow: 5px 0 20px 2px black !important;
+    transition: right 0.3s, left 0.3s;
+}
+
+.scraping-iframe-panel.scraping-right {
+    right: 0 !important;
+    box-shadow: 5px 4px 20px 2px black !important;
+}
+
+.scraping-iframe-panel.scraping-left {
+    left: 0 !important;
+    box-shadow: -5px 4px 20px 2px black !important;
+}
+
+.scraping-iframe-panel.scraping-right.scraping-minimized {
+    right: -300px !important;
+}
+
+.scraping-iframe-panel.scraping-left.scraping-minimized {
+    left: -300px !important;
 }

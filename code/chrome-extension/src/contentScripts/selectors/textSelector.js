@@ -16,7 +16,7 @@ export class TextSelector {
 
     contains({ value, exactCheck }) {
         if (exactCheck) {
-            this._highlight(value, (innerText, value) => { if (innerText === value) console.log(innerText, value); return innerText === value });
+            this._highlight(value, (innerText, value) => innerText === value);
         } else {
             this._highlight(value, (innerText, value) => innerText.includes(value));
         }

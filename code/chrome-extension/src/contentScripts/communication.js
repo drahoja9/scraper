@@ -30,7 +30,11 @@ export class Communication {
                     request.shouldBeVisible === true &&
                     !this._controller.isInjected
                 ) {
-                    this._controller.toggleMainPannel();
+                    this._controller.handleInitialLoad(
+                        request.shouldBeVisible,
+                        request.minimized,
+                        request.onLeft
+                    );
                 }
             }
         );
@@ -48,10 +52,18 @@ export class Communication {
     }
 
     _communicationWithMainPanel(event) {
-        if (event.data.type !== Messages.FROM_MAIN_PANEL) {
+        if (!event.data || event.data.type !== Messages.FROM_MAIN_PANEL) {
             return;
         }
         switch (event.data.msg) {
+            case Messages.MINIMIZE_MAXIMIZE:
+                this._controller.toggleMinMax();
+                this.sendMessageToBackground({ msg: event.data.msg });
+                break;
+            case Messages.SWITCH_SIDES:
+                this._controller.switchSides();
+                this.sendMessageToBackground({ msg: event.data.msg });
+                break;
             case Messages.SELECTING_ROWS:
                 this._selectEngine.selectingRows();
                 break;

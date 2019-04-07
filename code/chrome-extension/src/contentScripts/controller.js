@@ -5,7 +5,7 @@ import { DataProvider } from './data/dataProvider.js';
 
 
 export class Controller {
-    constructor(shouldBeVisible) {
+    constructor(shouldBeVisible, minimized, onLeft) {
         this.isInjected = false;
         this.isVisible = false;
         this.mainPanel = undefined;
@@ -16,7 +16,24 @@ export class Controller {
 
         this._communication.listenToBackground();
         if (shouldBeVisible) {
+            this._minimized = minimized;
+            this._onLeft = onLeft;
             this.toggleMainPannel();
+        }
+    }
+
+    handleInitialLoad() {
+        if (this._minimized) {
+            this.toggleMinMax();
+            this._communication.sendMessageToMainPanel({
+                msg: Messages.MINIMIZE_MAXIMIZE
+            });
+        }
+        if (this._onLeft) {
+            this.switchSides();
+            this._communication.sendMessageToMainPanel({
+                msg: Messages.SWITCH_SIDES
+            });
         }
     }
 
@@ -33,6 +50,15 @@ export class Controller {
             this._dataProvider.injectPreviewTable();
         }
         this._communication.toggle();
+    }
+
+    toggleMinMax() {
+        this.mainPanel.classList.toggle('scraping-minimized');
+    }
+
+    switchSides() {
+        this.mainPanel.classList.toggle('scraping-left');
+        this.mainPanel.classList.toggle('scraping-right');
     }
 
     previewData({ cols }) {
@@ -73,18 +99,20 @@ export class Controller {
     _injectMainPanel() {
         const iframe = document.createElement('iframe');
         iframe.src = chrome.runtime.getURL(MAIN_PANEL_PAGE);
-        iframe.className = 'scraping-iframe-panel';
+        iframe.className = 'scraping-iframe-panel scraping-right';
         iframe.frameBorder = 0;
         document.querySelector('body').appendChild(iframe);
 
         this.isInjected = true;
         this.isVisible = true;
         this.mainPanel = iframe;
+
+        this.mainPanel.onload = this.handleInitialLoad.bind(this);
     }
 
     notify({ msg }) {
-        this._communication.sendMessageToMainPanel(
-            { msg: msg },
-        );
+        this._communication.sendMessageToMainPanel({
+            msg: msg
+        });
     }
 }
