@@ -97,11 +97,11 @@ export class MouseSelector {
         return attributeString;
     }
 
-    _selectSimiliarElements({ target, shiftKey }) {
+    _selectSimiliarElements({ target, ctrlKey }) {
         const isNotFirst = () => this._current !== undefined;
         const isSelected = element => this._selectEngine.isSelected(element);
 
-        if (isNotFirst() && isSelected(target) && shiftKey) {
+        if (isNotFirst() && isSelected(target) && ctrlKey) {
             const tagString = this._createTagString(target);
             const classString = this._createClassString(target);
             const attributeString = this._createAttributesString(target);

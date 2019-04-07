@@ -69,7 +69,7 @@ class MainPanel {
         this._active.classList.add('active');
 
         this._colsPool.toggle();
-        this._selectors.switch();
+        // this._selectors.switch(); TODO
     }
 
     minimizeMaximize() {
