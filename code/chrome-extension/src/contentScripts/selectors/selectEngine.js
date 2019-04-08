@@ -1,97 +1,85 @@
 import { MouseSelector } from './mouseSelector.js';
 import { TextSelector } from './textSelector.js';
-import { DOMNavigaton } from './domNavigation.js';
+import { DOMNavigaton } from './domNavigation/domNavigation.js';
 import { CSSSelector } from './cssSelector.js';
+import { RowSelection, ColumnSelection } from './selection.js';
 
 
 export class SelectEngine {
     constructor(controller) {
-        this.isSelectingRows = true;
-        this._currentCol = 0;
-        this._scrapingClasses = ['scraping-selected-row'];
-
         this._controller = controller;
         this._mouseSelector = new MouseSelector(this);
         this._textSelector = new TextSelector(this);
         this._domNavigaton = new DOMNavigaton(this);
         this._cssSelector = new CSSSelector(this);
 
-        this._mouseSelector.addObserver(this);
-        this._mouseSelector.addObserver(this._domNavigaton);
+        this._currentCol = 0;
+        this._rows = new RowSelection(controller, this._domNavigaton);
+        this._columns = {
+            [this._currentCol]: new ColumnSelection(
+                controller,
+                this._domNavigaton,
+                this._currentCol
+            )
+        };
+        this._selection = this._rows;
     }
 
-    select(element) {
-        this._scrapingClasses.forEach(cls => {
-            element.classList.add(cls);
-        });
-        this._controller.invalidateData();
+    select(elements) {
+        this._selection.select(elements);
     }
 
-    unselect(element) {
-        this._scrapingClasses.forEach(cls => {
-            element.classList.remove(cls);
-        });
-        this._controller.invalidateData();
+    unselect(elements) {
+        this._selection.unselect(elements);
+    }
+
+    unselectCurrent() {
+        this._selection.unselectCurrent();
     }
 
     unselectRow(rowData) {
         // TODO
     }
 
-    toggle(element) {
-        const isSelected = this.isSelected(element);
-        if (isSelected) {
-            this.unselect(element);
-        } else {
-            this.select(element);
-        }
-        return !isSelected;
+    toggle(elements) {
+        return this._selection.toggle(elements);
     }
 
-    isSelected(element) {
-        let selected = true;
-        this._scrapingClasses.forEach(cls => {
-            selected = element.classList.contains(cls);
-        });
-        return selected;
+    areSelected(elements) {
+        return this._selection.areSelected(elements);
+    }
+
+    get isSelectingRows() {
+        return this._selection.isSelectingRows;
     }
 
     get classes() {
-        return this._scrapingClasses;
+        return this._selection.classes;
     }
 
     set classes(classList) {
-        this._scrapingClasses = classList;
-        this._mouseSelector.reset();
+        this._selection.classes = classList;
     }
 
     selectingRows() {
-        this.classes = ['scraping-selected-row'];
-        this.isSelectingRows = true;
+        this._selection = this._rows;
     }
 
     selectingCols() {
-        this.classes = [
-            'scraping-selected-col',
-            `scraping-col-${this._currentCol}`,
-            'scraping-active'
-        ];
-        this.isSelectingRows = false;
-    }
-
-    _switchActiveCols(colId) {
-        document
-            .querySelectorAll('.scraping-active')
-            .forEach(node => node.classList.remove('scraping-active'));
-        document
-            .querySelectorAll(`.scraping-col-${colId}`)
-            .forEach(node => node.classList.add('scraping-active'));
+        if (!this._columns[this._currentCol]) {
+            this._columns[this._currentCol] = new ColumnSelection(
+                this._controller,
+                this._domNavigaton,
+                this._currentCol
+            );
+        }
+        this._selection = this._columns[this._currentCol];
     }
 
     changeCol({ colId }) {
-        this._switchActiveCols(colId);
         this._currentCol = colId;
         this.selectingCols();
+        this._selection.activateColumn();
     }
 
     injectDomNavigation() {
@@ -100,14 +88,6 @@ export class SelectEngine {
 
     toggleMouseSelector() {
         this._mouseSelector.toggle();
-    }
-
-    acceptAutoSelect() {
-        this._mouseSelector.acceptAutoSelect();
-    }
-
-    rejectAutoSelect() {
-        this._mouseSelector.rejectAutoSelect();
     }
 
     contains(payload) {
@@ -127,10 +107,10 @@ export class SelectEngine {
     }
 
     cssUnselect() {
-        this._cssSelector.unselectPrevious();
+        this._cssSelector.unselectCurrent();
     }
 
-    notify({ msg }) {
-        this._controller.notify({ msg });
+    resetMouseSelector() {
+        this._mouseSelector.reset();
     }
 }

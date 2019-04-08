@@ -6,18 +6,13 @@ export class MouseSelector {
     constructor(selectEngine) {
         this._isTurnedOn = false;
         this._current = undefined;
-        this._autoSelected = undefined;
+        this._autoSelected = [];
         this._selectEngine = selectEngine;
-        // Every observer must implement `notify({msg, nodes})` method
-        this._observers = [];
 
         this._selectingFunc = this._selectingFunc.bind(this);
     }
 
-    toggle(shouldTurnOn = undefined) {
-        if (shouldTurnOn !== undefined) {
-            this._isTurnedOn = !shouldTurnOn;
-        }
+    toggle() {
         this._toggleOnHoverHighlighting();
         this._toggleOnClickSelecting();
         this._isTurnedOn = !this._isTurnedOn;
@@ -25,29 +20,7 @@ export class MouseSelector {
 
     reset() {
         this._current = undefined;
-        this._autoSelected = undefined;
-    }
-
-    acceptAutoSelect() {
-        this._autoSelected = undefined;
-    }
-
-    rejectAutoSelect() {
-        this._autoSelected.forEach(node => {
-            this._selectEngine.unselect(node);
-        });
-        this._notifyObservers(Messages.UNSELECTED, this._autoSelected);
-        this._autoSelected = undefined;
-    }
-
-    addObserver(observer) {
-        this._observers.push(observer);
-    }
-
-    _notifyObservers(msg, nodes = []) {
-        for (const observer of this._observers) {
-            observer.notify({ msg, nodes });
-        }
+        this._autoSelected = [];
     }
 
     _createTagString(target) {
@@ -99,7 +72,7 @@ export class MouseSelector {
 
     _selectSimiliarElements({ target, ctrlKey }) {
         const isNotFirst = () => this._current !== undefined;
-        const isSelected = element => this._selectEngine.isSelected(element);
+        const isSelected = element => this._selectEngine.areSelected([element]);
 
         if (isNotFirst() && isSelected(target) && ctrlKey) {
             const tagString = this._createTagString(target);
@@ -112,15 +85,13 @@ export class MouseSelector {
 
             if (selector && isNotOnlyDiv(selector) && isNotOnlySpan(selector)) {
                 let excludeSelected = '';
-                this._selectEngine.classes.map(cls => excludeSelected += `:not(.${cls})`);
+                this._selectEngine.classes.forEach(cls => excludeSelected += `:not(.${cls})`);
                 const similiarNodes = document.querySelectorAll(selector + excludeSelected);
-                for (const node of similiarNodes) {
-                    if (isValid(node)) {
-                        this._selectEngine.select(node);
-                    }
-                }
-                this._autoSelected = similiarNodes;
-                this._notifyObservers(Messages.DECIDING_AUTO_SELECT, this._autoSelected);
+                this._autoSelected = [];
+                similiarNodes.forEach(node => {
+                    if (isValid(node)) this._autoSelected.push(node)
+                });
+                this._selectEngine.select(this._autoSelected);
             }
         }
     }
@@ -129,17 +100,13 @@ export class MouseSelector {
         event.stopImmediatePropagation();
         event.preventDefault();
 
-        const wasClassAdded = this._selectEngine.toggle(event.target);
+        const wasClassAdded = this._selectEngine.toggle([event.target]);
         this._selectSimiliarElements(event);
 
         if (wasClassAdded) {
             this._current = event.target;
-            this._notifyObservers(Messages.SELECTED, [event.target]);
         } else if (event.target === this._current) {
             this._current = undefined;
-            this._notifyObservers(Messages.UNSELECTED_CURRENT, [event.target]);
-        } else {
-            this._notifyObservers(Messages.UNSELECTED, [event.target]);
         }
     }
 

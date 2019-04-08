@@ -52,9 +52,10 @@ export class Communication {
     }
 
     _communicationWithMainPanel(event) {
-        if (!event.data || event.data.type !== Messages.FROM_MAIN_PANEL) {
+        if (chrome.runtime.getURL(MAIN_PANEL_PAGE).indexOf(event.origin) === -1) {
             return;
         }
+
         switch (event.data.msg) {
             case Messages.MINIMIZE_MAXIMIZE:
                 this._controller.toggleMinMax();
@@ -81,11 +82,8 @@ export class Communication {
             case Messages.SELECTING_ELEMENTS:
                 this._selectEngine.toggleMouseSelector();
                 break;
-            case Messages.ACCEPT_AUTO_SELECT:
-                this._selectEngine.acceptAutoSelect();
-                break;
-            case Messages.REJECT_AUTO_SELECT:
-                this._selectEngine.rejectAutoSelect();
+            case Messages.UNDO:
+                this._controller.undo();
                 break;
             case Messages.TEXT_SEARCH_CONTAINS:
                 this._selectEngine.contains(event.data.payload);
@@ -109,7 +107,7 @@ export class Communication {
                 this._controller.downloadData(event.data.payload);
                 break;
             default:
-            // console.error('Unknown message from main panel!');
+                console.error('Unknown message from main panel!');
         }
     }
 }

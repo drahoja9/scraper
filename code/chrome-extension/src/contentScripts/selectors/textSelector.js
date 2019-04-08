@@ -50,11 +50,12 @@ export class TextSelector {
         const getText = node => node.innerText || node.wholeText;
         const getNode = node => node.classList ? node : node.parentElement;
 
+        let toSelect = [];
         const selectNode = node => {
             const nodeText = getText(node).toLowerCase();
             const serchedValue = value.toLowerCase();
             if (condition(nodeText, serchedValue)) {
-                this._selectEngine.select(getNode(node));
+                toSelect.push(getNode(node));
             }
         };
         const selectElementNode = node => {
@@ -64,5 +65,6 @@ export class TextSelector {
         };
 
         this._searchDOM(selectNode, selectElementNode);
+        this._selectEngine.select(toSelect);
     }
 }

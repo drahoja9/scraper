@@ -2,31 +2,6 @@ import { Messages, ENTER_KEY } from '../constants.js';
 import { registerClickHandler, registerInputHandler, sendMessageToContentScript } from './utils.js';
 
 
-export function toggleAutoselectConfirmation({ shouldEnable }) {
-    const alert = document.querySelector('#auto-select-alert');
-    const acceptAutoSelectBtn = document.querySelector('#accept-auto-select');
-    const rejectAutoSelectBtn = document.querySelector('#reject-auto-select');
-
-    if (shouldEnable !== undefined) {
-        acceptAutoSelectBtn.disabled = !shouldEnable;
-        rejectAutoSelectBtn.disabled = !shouldEnable;
-        if (shouldEnable) {
-            alert.classList.add('show');
-        } else {
-            alert.classList.remove('show');
-        }
-    } else if (acceptAutoSelectBtn.disabled) {
-        acceptAutoSelectBtn.disabled = false;
-        rejectAutoSelectBtn.disabled = false;
-        alert.classList.add('show');
-    } else {
-        acceptAutoSelectBtn.disabled = true;
-        rejectAutoSelectBtn.disabled = true;
-        alert.classList.remove('show');
-    }
-}
-
-
 export class Selectors {
     constructor() {
         this._mouseSelector = new MouseSelector();
@@ -39,23 +14,11 @@ export class Selectors {
 class MouseSelector {
     constructor() {
         this._selectElementsBtn = document.querySelector('#select-elements-btn');
-        this._acceptAutoSelectBtn = document.querySelector('#accept-auto-select');
-        this._rejectAutoSelectBtn = document.querySelector('#reject-auto-select');
 
         registerClickHandler(
             this._selectElementsBtn,
             Messages.SELECTING_ELEMENTS,
             () => { this._selectElementsBtn.classList.toggle('toggled-btn'); }
-        );
-        registerClickHandler(
-            this._acceptAutoSelectBtn,
-            Messages.ACCEPT_AUTO_SELECT,
-            toggleAutoselectConfirmation
-        );
-        registerClickHandler(
-            this._rejectAutoSelectBtn,
-            Messages.REJECT_AUTO_SELECT,
-            toggleAutoselectConfirmation
         );
     }
 }

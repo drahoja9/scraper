@@ -1,20 +1,19 @@
 export class CSSSelector {
     constructor(selectEngine) {
-        this._current = undefined;
         this._selectEngine = selectEngine;
+        this._current = undefined;
     }
 
     select({ selector }) {
-        this.unselectPrevious();
+        this.unselectCurrent();
         const toSelect = document.querySelectorAll(selector);
-        toSelect.forEach(node => this._selectEngine.select(node));
-        this._current = selector;
+        this._selectEngine.select(toSelect);
+        this._current = toSelect;
     }
 
-    unselectPrevious() {
+    unselectCurrent() {
         if (this._current) {
-            const toUnselect = document.querySelectorAll(this._current);
-            toUnselect.forEach(node => this._selectEngine.unselect(node));
+            this._selectEngine.unselect(this._current);
         }
     }
 }

@@ -4,7 +4,7 @@ import { registerHandler, registerClickHandler } from './utils.js';
 
 export class ColumnPool {
     constructor() {
-        this._currentColId = 0;
+        this.currentColId = 0;
         this._isVisible = false;
 
         this._wrapper = document.querySelector('.cols-pool-border');
@@ -19,6 +19,7 @@ export class ColumnPool {
     toggle() {
         this._isVisible = !this._isVisible;
         this._wrapper.style.display = this._isVisible ? 'block' : 'none';
+        return this._isVisible;
     }
 
     getCols() {
@@ -35,7 +36,7 @@ export class ColumnPool {
 
     _addColumn() {
         const newColBtn = new ColumnButton(
-            this._currentColId++,
+            this.currentColId++,
             this._pool.childElementCount,
             this._clickHandler.bind(this),
             this._removeColumn.bind(this)

@@ -1,5 +1,6 @@
-import { Messages } from '../../constants.js';
-import { isValid } from '../utils.js';
+import { Messages } from '/src/constants.js';
+import { isValid } from '/src/contentScripts/utils.js';
+import { NavigationControls } from './navigationControls.js';
 
 
 export class DOMNavigaton {
@@ -21,12 +22,12 @@ export class DOMNavigaton {
     }
 
     notify({ msg, nodes }) {
-        if (msg === Messages.SELECTED || msg === Messages.DECIDING_AUTO_SELECT) {
+        if (msg === Messages.SELECTED) {
             nodes.forEach(node => {
                 node.addEventListener('mouseenter', this.attachControls);
                 node.addEventListener('mouseleave', this.hideControls);
             });
-        } else if (msg === Messages.UNSELECTED || msg === Messages.UNSELECTED_CURRENT) {
+        } else if (msg === Messages.UNSELECTED) {
             nodes.forEach(node => {
                 node.removeEventListener('mouseenter', this.attachControls);
                 node.removeEventListener('mouseleave', this.hideControls);
@@ -58,7 +59,7 @@ export class DOMNavigaton {
     }
 
     attachControls({ target }) {
-        if (!this._selectEngine.isSelected(target)) return;
+        if (!this._selectEngine.areSelected([target])) return;
         // Make the controls visible first in order to get it's width and height
         this._controls.show();
         const coords = this._computeCoordinates(target);
@@ -91,92 +92,13 @@ export class DOMNavigaton {
         let newCurrent = this._getFirstValid(key);
         if (!newCurrent) return;
 
-        this._selectEngine.select(newCurrent);
-        this._selectEngine.unselect(this._current);
+        this._selectEngine.select([newCurrent]);
+        this._selectEngine.unselect([this._current]);
 
         this.notify({ msg: Messages.UNSELECTED, nodes: [this._current] });
         this.notify({ msg: Messages.SELECTED, nodes: [newCurrent] });
         this._current = newCurrent;
 
         callback({ target: this._current });
-    }
-}
-
-
-class NavigationControls {
-    constructor(domNavigation) {
-        const zoomOut = new NavigationButton('zoom-out', '&minus;', () => {
-            domNavigation.changeCurrent('parentElement', domNavigation.attachControls);
-        });
-        const zoomIn = new NavigationButton('zoom-in', '&plus;', () => {
-            domNavigation.changeCurrent('firstElementChild', domNavigation.hideControls);
-        });
-        const zoomPrev = new NavigationButton('zoom-prev', '&#129052;', () => {
-            domNavigation.changeCurrent('previousElementSibling', domNavigation.hideControls);
-        });
-        const zoomNext = new NavigationButton('zoom-next', '&#129054;', () => {
-            domNavigation.changeCurrent('nextElementSibling', domNavigation.hideControls);
-        });
-
-        const buttons = document.createElement('div');
-        buttons.style.display = 'flex';
-        buttons.appendChild(zoomOut);
-        buttons.appendChild(zoomIn);
-        buttons.appendChild(zoomPrev);
-        buttons.appendChild(zoomNext);
-        this._buttons = buttons.children;
-
-        this._controls = document.createElement('div');
-        this._controls.className = 'scraping-dom-navigation';
-        this._controls.appendChild(buttons);
-
-        this.show = this.show.bind(this);
-        this.hide = this.hide.bind(this);
-        this.placeAt = this.placeAt.bind(this);
-    }
-
-    get node() {
-        return this._controls;
-    }
-
-    show() {
-        this._controls.style.display = 'flex';
-    }
-
-    hide() {
-        this._controls.style.display = `none`;
-    }
-
-    placeAt({ top, left }, isSelectingRows) {
-        this._controls.style.top = `${top}px`;
-        this._controls.style.left = `${left}px`;
-
-        if (isSelectingRows) {
-            this._changeButtonColor('row');
-        } else {
-            this._changeButtonColor('col');
-        }
-    }
-
-    _changeButtonColor(btnType) {
-        for (const btn of this._buttons) {
-            btn.className = `scraping-dom-navigation-button scraping-dom-navigation-${btnType}-button`;
-        }
-    }
-}
-
-
-class NavigationButton {
-    constructor(id, iconCode, clickHandler) {
-        const icon = document.createElement('span');
-        icon.innerHTML = iconCode;
-
-        this._btn = document.createElement('div');
-        this._btn.className = 'scraping-dom-navigation-button';
-        this._btn.id = id;
-        this._btn.appendChild(icon);
-        this._btn.addEventListener('click', clickHandler);
-
-        return this._btn;
     }
 }

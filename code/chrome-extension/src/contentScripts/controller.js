@@ -82,6 +82,10 @@ export class Controller {
         this._dataProvider.isDataValid = false;
     }
 
+    undo() {
+        this._selectEngine.unselectCurrent();
+    }
+
     _showMainPanel() {
         if (this.mainPanel !== undefined) {
             this.mainPanel.style = 'display: block;';
