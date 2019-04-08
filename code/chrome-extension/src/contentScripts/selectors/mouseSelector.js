@@ -87,10 +87,10 @@ export class MouseSelector {
                 let excludeSelected = '';
                 this._selectEngine.classes.forEach(cls => excludeSelected += `:not(.${cls})`);
                 const similiarNodes = document.querySelectorAll(selector + excludeSelected);
-                this._autoSelected = [];
-                similiarNodes.forEach(node => {
-                    if (isValid(node)) this._autoSelected.push(node)
-                });
+                this._autoSelected = similiarNodes;
+                // similiarNodes.forEach(node => {
+                //     if (isValid(node)) this._autoSelected.push(node)
+                // });
                 this._selectEngine.select(this._autoSelected);
             }
         }

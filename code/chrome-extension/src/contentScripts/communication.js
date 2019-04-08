@@ -4,13 +4,19 @@ import { Messages, MAIN_PANEL_PAGE } from '../constants.js';
 export class Communication {
     constructor(controller, selectEngine) {
         this._controller = controller;
+        this._mainPanel = undefined;
         this._selectEngine = selectEngine;
 
         this._communicationWithMainPanel = this._communicationWithMainPanel.bind(this);
     }
 
+    init(mainPanel) {
+        this._mainPanel = mainPanel;
+        this.listenToBackground();
+    }
+
     toggle() {
-        if (this._controller.isVisible) {
+        if (this._mainPanel.isVisible) {
             window.addEventListener('message', this._communicationWithMainPanel);
         } else {
             window.removeEventListener('message', this._communicationWithMainPanel);
@@ -22,15 +28,15 @@ export class Communication {
         chrome.runtime.onMessage.addListener(
             (request, sender, sendResponse) => {
                 if (request.msg === Messages.BROWSER_ACTION_CLICKED) {
-                    this._controller.toggleMainPannel();
+                    this._mainPanel.toggleMainPannel();
                 }
 
                 if (
                     request.msg === Messages.TAB_UPDATED &&
                     request.shouldBeVisible === true &&
-                    !this._controller.isInjected
+                    !this._mainPanel.isInjected
                 ) {
-                    this._controller.handleInitialLoad(
+                    this._mainPanel.handleInitialLoad(
                         request.shouldBeVisible,
                         request.minimized,
                         request.onLeft
@@ -45,7 +51,7 @@ export class Communication {
     }
 
     sendMessageToMainPanel(msg) {
-        this._controller.mainPanel.contentWindow.postMessage(
+        this._mainPanel.iframe.contentWindow.postMessage(
             { ...msg, type: Messages.FROM_CONTROLLER },
             chrome.runtime.getURL(MAIN_PANEL_PAGE)
         );
@@ -58,11 +64,11 @@ export class Communication {
 
         switch (event.data.msg) {
             case Messages.MINIMIZE_MAXIMIZE:
-                this._controller.toggleMinMax();
+                this._mainPanel.toggleMinMax();
                 this.sendMessageToBackground({ msg: event.data.msg });
                 break;
             case Messages.SWITCH_SIDES:
-                this._controller.switchSides();
+                this._mainPanel.switchSides();
                 this.sendMessageToBackground({ msg: event.data.msg });
                 break;
             case Messages.SELECTING_ROWS:

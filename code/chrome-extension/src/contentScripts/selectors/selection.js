@@ -1,4 +1,5 @@
-import { Messages } from '../../constants.js';
+import { Messages } from '/src/constants.js';
+import { isValid } from '../utils.js';
 
 
 class Selection {
@@ -10,15 +11,17 @@ class Selection {
     }
 
     select(elements) {
+        this._current = [];
         elements.forEach(element => {
+            if (!isValid(element) || this.areSelected([element])) return;
             this._scrapingClasses.forEach(cls => {
                 element.classList.add(cls);
             });
+            this._current.push(element);
         });
         this._controller.invalidateData();
         this._domNavigaton.notify({ msg: Messages.SELECTED, nodes: elements });
         this._controller.notify({ msg: Messages.SELECTED, nodes: elements });
-        this._current = elements;
     }
 
     unselect(elements) {
@@ -66,7 +69,6 @@ class Selection {
 
     set classes(classList) {
         this._scrapingClasses = classList;
-        this._controller.resetMouseSelector();
     }
 }
 

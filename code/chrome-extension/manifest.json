@@ -19,7 +19,7 @@
       ],
       "css": [
         "src/contentScripts/contentScript.css",
-        "src/contentScripts/data/dataPreview.css"
+        "src/contentScripts/data/previewTable/previewTable.css"
       ],
       "js": [
         "lib/js/jquery-3.3.1.min.js",
@@ -47,6 +47,6 @@
   "web_accessible_resources": [
     "src/*.js",
     "src/mainPanel/mainPanel.html",
-    "src/contentScripts/data/dataPreview.html"
+    "src/contentScripts/data/previewTable/previewTable.html"
   ]
 }

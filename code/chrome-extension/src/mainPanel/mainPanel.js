@@ -1,5 +1,5 @@
 import { Messages } from '../constants.js';
-import { ColumnPool } from './columnPool.js';
+import { ColumnPool } from './columnPool/columnPool.js';
 import { registerClickHandler } from './utils.js';
 import { Selectors } from './selectors.js';
 

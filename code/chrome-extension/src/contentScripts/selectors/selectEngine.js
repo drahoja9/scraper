@@ -63,6 +63,7 @@ export class SelectEngine {
 
     selectingRows() {
         this._selection = this._rows;
+        this.resetMouseSelector();
     }
 
     selectingCols() {
@@ -74,6 +75,7 @@ export class SelectEngine {
             );
         }
         this._selection = this._columns[this._currentCol];
+        this.resetMouseSelector();
     }
 
     changeCol({ colId }) {

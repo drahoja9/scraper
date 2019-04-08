@@ -1,4 +1,6 @@
-import { DATA_PREVIEW } from '../../constants.js';
+import { DATA_PREVIEW } from '/src/constants.js';
+import { PreviewTableCell } from './previewTableCell.js';
+import { PreviewTableRow } from './previewTableRow.js';
 
 
 export class PreviewTable {
@@ -75,43 +77,5 @@ export class PreviewTable {
             };
             tableBody.appendChild(new PreviewTableRow(columnNames, row, removeRow));
         }
-    }
-}
-
-
-class PreviewTableRow {
-    constructor(columnNames, rowData, removeRow) {
-        const tableRow = document.createElement('tr');
-        tableRow.appendChild(new RemoveRowBtn(tableRow, removeRow));
-        for (const colName of columnNames) {
-            tableRow.appendChild(new PreviewTableCell(rowData[colName]));
-        }
-
-        return tableRow;
-    }
-}
-
-
-class PreviewTableCell {
-    constructor(cellText) {
-        const tableCell = document.createElement('td');
-        tableCell.innerText = cellText;
-
-        return tableCell;
-    }
-}
-
-
-class RemoveRowBtn {
-    constructor(tableRow, removeRow) {
-        const removeCell = document.createElement('td');
-        const removeRowBtn = document.createElement('span');
-        removeRowBtn.innerHTML = '&times;';
-        removeRowBtn.className = 'scraping-remove-row';
-        removeCell.appendChild(removeRowBtn);
-
-        removeRowBtn.addEventListener('click', () => { removeRow(tableRow) });
-
-        return removeCell;
     }
 }
