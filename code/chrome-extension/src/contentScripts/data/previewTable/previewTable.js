@@ -7,6 +7,7 @@ export class PreviewTable {
     constructor(dataProvider) {
         this._placeholder = document.createElement('div');
         this._placeholder.id = 'scraping-data-preview';
+        this._placeholder.className = 'scraping-protected';
         this._dataProvider = dataProvider;
 
         this._hide = this._hide.bind(this);

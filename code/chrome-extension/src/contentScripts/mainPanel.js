@@ -42,7 +42,7 @@ export class MainPanel {
             this._injectMainPanel();
             this._controller.injectParts();
         }
-        this._controller.communication.toggle();
+        this._controller.communication.toggle(this);
     }
 
     toggleMinMax() {

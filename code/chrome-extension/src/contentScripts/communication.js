@@ -15,7 +15,11 @@ export class Communication {
         this.listenToBackground();
     }
 
-    toggle() {
+    toggle(mainPanel) {
+        if (this._mainPanel === undefined && mainPanel) {
+            this._mainPanel = mainPanel;
+        }
+
         if (this._mainPanel.isVisible) {
             window.addEventListener('message', this._communicationWithMainPanel);
         } else {

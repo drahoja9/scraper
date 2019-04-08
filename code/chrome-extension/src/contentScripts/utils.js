@@ -8,6 +8,7 @@ export function isValid(node) {
         node.style.opacity !== 0 &&
         (node.offsetWidth > 0 || node.offsetHeight > 0)
     );
+    const isNotProtected = node => !node.classList.contains('scraping-protected');
 
-    return isNotScript(node) && isNotHidden(node);
+    return isNotScript(node) && isNotHidden(node) && isNotProtected(node);
 }

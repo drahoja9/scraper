@@ -18,6 +18,7 @@ export class NavigationControls {
 
         const buttons = document.createElement('div');
         buttons.style.display = 'flex';
+        buttons.className = 'scraping-protected';
         buttons.appendChild(zoomOut);
         buttons.appendChild(zoomIn);
         buttons.appendChild(zoomPrev);
@@ -25,7 +26,7 @@ export class NavigationControls {
         this._buttons = buttons.children;
 
         this._controls = document.createElement('div');
-        this._controls.className = 'scraping-dom-navigation';
+        this._controls.className = 'scraping-dom-navigation scraping-protected';
         this._controls.appendChild(buttons);
 
         this.show = this.show.bind(this);
@@ -48,17 +49,18 @@ export class NavigationControls {
     placeAt({ top, left }, isSelectingRows) {
         this._controls.style.top = `${top}px`;
         this._controls.style.left = `${left}px`;
-
-        if (isSelectingRows) {
-            this._changeButtonColor('row');
-        } else {
-            this._changeButtonColor('col');
-        }
+        this._changeButtonColor(isSelectingRows);
     }
 
-    _changeButtonColor(btnType) {
+    _changeButtonColor(isSelectingRows) {
         for (const btn of this._buttons) {
-            btn.className = `scraping-dom-navigation-button scraping-dom-navigation-${btnType}-button`;
+            if (isSelectingRows) {
+                btn.classList.remove('scraping-dom-navigation-col-button');
+                btn.classList.add('scraping-dom-navigation-row-button');
+            } else {
+                btn.classList.add('scraping-dom-navigation-col-button');
+                btn.classList.remove('scraping-dom-navigation-row-button');
+            }
         }
     }
 }

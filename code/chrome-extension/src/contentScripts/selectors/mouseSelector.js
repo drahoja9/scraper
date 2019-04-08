@@ -1,12 +1,7 @@
-import { Messages } from '../../constants.js';
-import { isValid } from '../utils.js';
-
-
 export class MouseSelector {
     constructor(selectEngine) {
         this._isTurnedOn = false;
         this._current = undefined;
-        this._autoSelected = [];
         this._selectEngine = selectEngine;
 
         this._selectingFunc = this._selectingFunc.bind(this);
@@ -20,7 +15,6 @@ export class MouseSelector {
 
     reset() {
         this._current = undefined;
-        this._autoSelected = [];
     }
 
     _createTagString(target) {
@@ -87,16 +81,14 @@ export class MouseSelector {
                 let excludeSelected = '';
                 this._selectEngine.classes.forEach(cls => excludeSelected += `:not(.${cls})`);
                 const similiarNodes = document.querySelectorAll(selector + excludeSelected);
-                this._autoSelected = similiarNodes;
-                // similiarNodes.forEach(node => {
-                //     if (isValid(node)) this._autoSelected.push(node)
-                // });
-                this._selectEngine.select(this._autoSelected);
+                this._selectEngine.select(similiarNodes);
             }
         }
     }
 
     _selectingFunc(event) {
+        if (event.target.classList.contains('scraping-protected')) return;
+
         event.stopImmediatePropagation();
         event.preventDefault();
 
@@ -111,6 +103,7 @@ export class MouseSelector {
     }
 
     _highlightingFunc(event) {
+        if (event.target.classList.contains('scraping-protected')) return;
         event.target.classList.toggle('scraping-highlighted');
     }
 
