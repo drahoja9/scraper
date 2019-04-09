@@ -30,14 +30,20 @@
 
             <div class="accordion" id="main-navs">
                 <div class="card col">
-                    <div class="card-header row collapsed" id="select-basics" data-toggle="collapse"
+                    <div class="card-header row" id="select-basics" data-toggle="collapse"
                         data-target="#basics-collapse">
                         <h2>Basics</h2>
                     </div>
-                    <div class="collapse" id="basics-collapse" data-parent="#main-navs">
+                    <div class="collapse show" id="basics-collapse" data-parent="#main-navs">
                         <div class="card-body row">
-                            <div class="col">
-                                <button id="select-elements-btn" class="secondary-btn">Select elements</button>
+                            <div class="row" style="align-items: center;">
+                                <label class="switch-container">
+                                    <input id="select-elements-checkbox" type="checkbox">
+                                    <span class="switch-outter">
+                                        <span class="switch-inner"></span>
+                                    </span>
+                                </label>
+                                <h5>Selecting elements</h5>
                             </div>
                         </div>
                     </div>
@@ -94,9 +100,9 @@
         </div>
     </div>
     <div class="btn-group">
-        <button id="preview-btn" class="primary-btn">Preview</button>
+        <button id="preview-btn" class="primary-btn" style="margin-right: 10px;">Preview</button>
         <button id="download-btn" class="primary-btn active">Download</button>
-        <select id="format-select" class="custom-select" style="width: 100px;">
+        <select id="format-select" class="custom-select">
             <option value="csv">CSV</option>
             <option value="json">JSON</option>
         </select>

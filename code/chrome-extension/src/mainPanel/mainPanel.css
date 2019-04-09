@@ -342,4 +342,94 @@ h5 {
     width: 100%;
     height: 10%;
     align-items: center;
+    padding: 15px;
+}
+
+#download-btn {
+    width: 7em;
+    z-index: 2;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+#download-btn:hover + #format-select {
+    left: 0;
+}
+
+#format-select {
+    position: relative;
+    left: -64px;
+    transition: left 0.3s;
+    transition-delay: 0.1s;
+    width: 6em;
+    height: 3.5em;
+    background-color: transparent;
+    border: 1px solid var(--turquoise);
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+#format-select:hover {
+    left: 0;
+}
+
+#format-select:focus {
+    box-shadow: none;
+}
+
+.switch-container {
+    display: flex;
+    width: 60px;
+    margin: 0;
+    margin-right: 15px;
+}
+
+.switch-container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.switch-outter {
+    width: 60px;
+    height: 30px;
+    border-radius: 15px;
+    border: 1px solid var(--light-gray);
+    background-color: var(--white);
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out, opacity 0.2s ease-in-out;
+}
+
+.switch-outter:active {
+    background-color: var(--turquoise);
+    opacity: 0.6;
+}
+
+.switch-container input:checked ~ .switch-outter {
+    background-color: var(--turquoise);
+    box-shadow: 0 0 0 0.1rem rgba(40, 141, 136, 0.24);
+}
+
+.switch-container input:checked ~ .switch-outter > .switch-inner {
+    left: 30px;
+    background-color: var(--white);
+}
+
+.switch-inner {
+    display: block;
+    width: 25px;
+    height: 24px;
+    border-radius: 20px;
+    border: 1px solid var(--light-gray);
+    background-color: var(--light-gray);
+    position: relative;
+    top: 2px;
+    left: 3px;
+    transition: left 0.2s, background-color 0.2s ease-in-out;
 }

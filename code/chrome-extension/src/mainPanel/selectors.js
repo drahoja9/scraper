@@ -1,5 +1,5 @@
 import { Messages, ENTER_KEY } from '../constants.js';
-import { registerClickHandler, registerInputHandler, sendMessageToContentScript } from './utils.js';
+import { registerClickHandler, registerInputHandler, sendMessageToContentScript, registerHandler } from './utils.js';
 
 
 export class Selectors {
@@ -13,12 +13,11 @@ export class Selectors {
 
 class MouseSelector {
     constructor() {
-        this._selectElementsBtn = document.querySelector('#select-elements-btn');
+        this._selectElementsCheckbox = document.querySelector('#select-elements-checkbox');
 
         registerClickHandler(
-            this._selectElementsBtn,
-            Messages.SELECTING_ELEMENTS,
-            () => { this._selectElementsBtn.classList.toggle('toggled-btn'); }
+            this._selectElementsCheckbox,
+            Messages.SELECTING_ELEMENTS
         );
     }
 }
