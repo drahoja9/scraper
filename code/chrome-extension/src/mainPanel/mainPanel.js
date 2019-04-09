@@ -40,6 +40,9 @@ class MainPanel {
         const colsBtn = document.querySelector('#cols-btn');
         this._active = rowsBtn;
 
+        this._rowsTooltip = document.querySelector('#rows-tooltip');
+        this._colsTooltip = document.querySelector('#cols-tooltip');
+
         registerClickHandler(
             this._minMaxBtn,
             Messages.MINIMIZE_MAXIMIZE,
@@ -68,6 +71,11 @@ class MainPanel {
         );
     }
 
+    _switchTooltips() {
+        this._rowsTooltip.classList.toggle('active');
+        this._colsTooltip.classList.toggle('active');
+    }
+
     _switchRowsCols(event) {
         if (event.currentTarget === this._active) return;
 
@@ -77,6 +85,7 @@ class MainPanel {
 
         this._colsPool.toggle();
         this._selectors.switchMouseSelectorColor();
+        this._switchTooltips();
     }
 
     minimizeMaximize() {
@@ -125,4 +134,6 @@ $(function () {
                 break;
         }
     });
+
+    $('[data-toggle="tooltip"]').tooltip();
 });

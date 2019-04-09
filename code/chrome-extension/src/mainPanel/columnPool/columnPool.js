@@ -19,7 +19,7 @@ export class ColumnPool {
 
     toggle() {
         this._isVisible = !this._isVisible;
-        this._wrapper.style.display = this._isVisible ? 'block' : 'none';
+        this._wrapper.classList.toggle('hidden');
         return this._isVisible;
     }
 

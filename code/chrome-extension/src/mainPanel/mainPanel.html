@@ -22,7 +22,16 @@
                 <button class="primary-btn active" id="rows-btn">Rows</button>
                 <button class="primary-btn" id="cols-btn">Columns</button>
             </div>
-            <div class="cols-pool-border">
+            <div class="tooltip-holder">
+                <div class="tooltip-border">
+                    <span class="tooltip-help active" id="rows-tooltip" data-toggle="tooltip" data-placement="auto"
+                        title="First select elements on the page that will represent all rows of the resulting table.">&#63;</span>
+                    <span class="tooltip-help" id="cols-tooltip" data-toggle="tooltip" data-placement="auto"
+                        title="Now select elements that will represent columns of the resulting table. 
+                            Each element selected as a column needs to be inside an element selected as a row.">&#63;</span>
+                </div>
+            </div>
+            <div class="cols-pool-border hidden">
                 <div class="cols-pool">
                     <button class="col-btn" id="add-col-btn">&plus;</button>
                 </div>
@@ -100,7 +109,7 @@
         </div>
     </div>
     <div class="btn-group">
-        <button id="preview-btn" class="primary-btn" style="margin-right: 10px;">Preview</button>
+        <button id="preview-btn" class="secondary-btn" style="margin-right: 10px;">Preview</button>
         <button id="download-btn" class="primary-btn active">Download</button>
         <select id="format-select" class="custom-select">
             <option value="csv">CSV</option>

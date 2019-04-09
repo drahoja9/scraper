@@ -34,15 +34,20 @@ body {
     width: 100%;
     align-items: center;
     justify-content: space-between;
-    padding-right: 0.5em;
-    padding-top: 0.3em;
-    padding-left: 0.5em;
+    padding: 15px;
 }
 
 .middle {
     display: flex;
     flex-direction: column;
     width: 100%;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.middle > :not(.cols-pool-border) {
+    padding-top: 15px;
+    padding-bottom: 15px;
 }
 
 #tools-btn-group {
@@ -115,22 +120,40 @@ body {
     order: 0;
 }
 
-#cols-btn:not(.active):hover {
-    border: 2px solid var(--bordeau);
-}
-
-#cols-btn.active {
-    background-color: var(--bordeau);
-}
-
 .tab-nav {
     display: flex;
     justify-content: space-evenly;
     padding-bottom: 20px;
 }
 
-.cols-pool-border {
+.tooltip-holder {
+    display: flex;
+    justify-content: center;
+}
+
+.tooltip-border {
+    align-self: center;
+    width: 25px;
+    height: 25px;
+    border: 1px solid var(--light-gray);
+    border-radius: 25px;
+}
+
+.tooltip-help {
     display: none;
+    color: var(--light-gray);
+    position: relative;
+    left: 7px;
+}
+
+.tooltip-help.active {
+    display: flex;
+}
+
+.cols-pool-border {
+    opacity: 1;
+    position: relative;
+    top: 0;
     border: var(--darker-white) solid 2px;
     border-radius: 10px;
     width: 90%;
@@ -139,6 +162,14 @@ body {
     max-height: 10em;
     align-self: center;
     margin-bottom: 20px;
+    pointer-events: all;
+    transition: opacity 0.5s, top 0.5s;
+}
+
+.cols-pool-border.hidden {
+    opacity: 0;
+    top: 180px;
+    pointer-events: none;
 }
 
 .cols-pool {
@@ -156,6 +187,17 @@ body {
     display: none;
 }
 
+#main-navs {
+    position: relative;
+    top: 0;
+    transition: top 0.5s;
+    z-index: 1;
+}
+
+.cols-pool-border.hidden + #main-navs {
+    top: -180px;
+}
+
 .card {
     background-color: var(--darker-white);
     border: 0;
@@ -167,7 +209,7 @@ body {
     background-color: inherit;
     border: 0;
     cursor: pointer;
-    padding: 0;
+    padding: 15px;
     height: 5em;
 }
 
@@ -192,9 +234,10 @@ button {
 
 .primary-btn {
     background-color: var(--white);
-    color: var(--dark-gray);
+    color: var(--turquoise);
     height: 3.5em;
     width: 10em;
+    transition: background-color 0.4s, color 0.4s;
 }
 
 .primary-btn:not(.active):hover {
@@ -209,7 +252,12 @@ button {
 .secondary-btn {
     background-color: var(--white);
     width: 9em;
-    height: 2.5em;
+    height: 3.5em;
+    transition: background-color 0.2s;
+}
+
+.secondary-btn:not(.active):hover {
+    background-color: var(--darker-white);
 }
 
 .col-btn {
@@ -415,8 +463,13 @@ h5 {
     transition: background-color 0.2s ease-in-out, opacity 0.2s ease-in-out;
 }
 
-.switch-outter:active {
+.switch-outter.switch-row:active {
     background-color: var(--turquoise);
+    opacity: 0.6;
+}
+
+.switch-outter.switch-col:active {
+    background-color: var(--bordeau);
     opacity: 0.6;
 }
 
