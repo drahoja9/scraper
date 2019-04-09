@@ -82,6 +82,7 @@ export class RowSelection extends Selection {
             'scraping-selected-row',
             `scraping-row-${this._rowId}`
         ];
+        this.highlightingClass = 'scraping-highlighted-row';
     }
 
     unselect(elements, all = false) {
@@ -135,6 +136,7 @@ export class ColumnSelection extends Selection {
             `scraping-col-${this._colId}`,
             'scraping-active'
         ];
+        this.highlightingClass = 'scraping-highlighted-col';
     }
 
     unselect(elements, all = false) {

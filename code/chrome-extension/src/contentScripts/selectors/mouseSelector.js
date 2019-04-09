@@ -2,12 +2,15 @@ export class MouseSelector {
     constructor(selectEngine) {
         this._isTurnedOn = false;
         this._current = undefined;
+        this._highlightingClass = undefined;
         this._selectEngine = selectEngine;
 
         this._selectingFunc = this._selectingFunc.bind(this);
+        this._highlightingFunc = this._highlightingFunc.bind(this);
     }
 
-    toggle() {
+    toggle(highlightingClass) {
+        this._highlightingClass = highlightingClass;
         this._toggleOnHoverHighlighting();
         this._toggleOnClickSelecting();
         this._isTurnedOn = !this._isTurnedOn;
@@ -104,7 +107,7 @@ export class MouseSelector {
 
     _highlightingFunc(event) {
         if (event.target.classList.contains('scraping-protected')) return;
-        event.target.classList.toggle('scraping-highlighted');
+        event.target.classList.toggle(this._highlightingClass);
     }
 
     _toggleEventListener(eventType, toggleFunc, capture = false) {

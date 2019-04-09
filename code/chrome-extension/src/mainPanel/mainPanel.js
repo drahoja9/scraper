@@ -76,6 +76,7 @@ class MainPanel {
         this._active.classList.add('active');
 
         this._colsPool.toggle();
+        this._selectors.switchMouseSelectorColor();
     }
 
     minimizeMaximize() {

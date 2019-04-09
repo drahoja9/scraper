@@ -100,7 +100,7 @@ export class SelectEngine {
     }
 
     toggleMouseSelector() {
-        this._mouseSelector.toggle();
+        this._mouseSelector.toggle(this._selection.highlightingClass);
     }
 
     contains(payload) {
@@ -125,5 +125,7 @@ export class SelectEngine {
 
     resetMouseSelector() {
         this._mouseSelector.reset();
+        this.toggleMouseSelector();
+        this.toggleMouseSelector();
     }
 }

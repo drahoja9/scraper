@@ -8,17 +8,27 @@ export class Selectors {
         this._textSelector = new TextSelector();
         this._cssSelector = new CSSSelector();
     }
+
+    switchMouseSelectorColor() {
+        this._mouseSelector.switchColor();
+    }
 }
 
 
 class MouseSelector {
     constructor() {
         this._selectElementsCheckbox = document.querySelector('#select-elements-checkbox');
+        this._selectElementsSwitch = document.querySelector('#select-elements-switch');
 
         registerClickHandler(
             this._selectElementsCheckbox,
             Messages.SELECTING_ELEMENTS
         );
+    }
+
+    switchColor() {
+        this._selectElementsSwitch.classList.toggle('switch-row');
+        this._selectElementsSwitch.classList.toggle('switch-col');
     }
 }
 

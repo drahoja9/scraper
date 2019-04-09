@@ -115,6 +115,14 @@ body {
     order: 0;
 }
 
+#cols-btn:not(.active):hover {
+    border: 2px solid var(--bordeau);
+}
+
+#cols-btn.active {
+    background-color: var(--bordeau);
+}
+
 .tab-nav {
     display: flex;
     justify-content: space-evenly;
@@ -385,6 +393,7 @@ h5 {
     display: flex;
     width: 60px;
     margin: 0;
+    margin-left: 15px;
     margin-right: 15px;
 }
 
@@ -411,9 +420,14 @@ h5 {
     opacity: 0.6;
 }
 
-.switch-container input:checked ~ .switch-outter {
+.switch-container input:checked ~ .switch-outter.switch-row {
     background-color: var(--turquoise);
     box-shadow: 0 0 0 0.1rem rgba(40, 141, 136, 0.24);
+}
+
+.switch-container input:checked ~ .switch-outter.switch-col {
+    background-color: var(--bordeau);
+    box-shadow: 0 0 0 0.1rem rgba(90, 54, 99, 0.24);
 }
 
 .switch-container input:checked ~ .switch-outter > .switch-inner {
