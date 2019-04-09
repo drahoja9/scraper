@@ -1,7 +1,7 @@
-import { MouseSelector } from './mouseSelector.js';
-import { TextSelector } from './textSelector.js';
-import { DOMNavigaton } from './domNavigation/domNavigation.js';
-import { CSSSelector } from './cssSelector.js';
+import { MouseSelector } from './selectors/mouseSelector.js';
+import { TextSelector } from './selectors/textSelector.js';
+import { DOMNavigaton } from './selectors/domNavigation/domNavigation.js';
+import { CSSSelector } from './selectors/cssSelector.js';
 import { RowSelection, ColumnSelection } from './selection.js';
 
 
@@ -29,8 +29,8 @@ export class SelectEngine {
         this._selection.select(elements);
     }
 
-    unselect(elements) {
-        this._selection.unselect(elements);
+    unselect(elements, all) {
+        this._selection.unselect(elements, all);
     }
 
     unselectCurrent() {
@@ -38,7 +38,18 @@ export class SelectEngine {
     }
 
     unselectRow(rowData) {
-        // TODO
+        const targetRow = document.querySelector(`.scraping-row-${rowData.rowId}`);
+        const targetCols = targetRow.querySelectorAll('.scraping-selected-col');
+        const isSelectingRows = this.isSelectingRows;
+
+        this.selectingCols();
+        this.unselect(targetCols, true);
+
+        this.selectingRows();
+        this.unselect([targetRow], true);
+
+        // Return back to initial state
+        isSelectingRows ? this.selectingRows() : this.selectingCols();
     }
 
     toggle(elements) {

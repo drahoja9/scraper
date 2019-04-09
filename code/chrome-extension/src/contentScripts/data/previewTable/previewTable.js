@@ -71,9 +71,9 @@ export class PreviewTable {
 
     _fillBody(columnNames, rowsData) {
         const tableBody = this._placeholder.querySelector('.scraping-table-body');
-        for (const [idx, row] of rowsData.entries()) {
+        for (const row of rowsData) {
             const removeRow = (tableRow) => {
-                this._dataProvider.removeRowFrom(idx);
+                this._dataProvider.removeRow(row);
                 tableBody.removeChild(tableRow);
             };
             tableBody.appendChild(new PreviewTableRow(columnNames, row, removeRow));

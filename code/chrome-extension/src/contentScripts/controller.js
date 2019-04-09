@@ -1,6 +1,6 @@
 import { Messages } from '../constants.js';
 import { Communication } from './communication.js';
-import { SelectEngine } from './selectors/selectEngine.js';
+import { SelectEngine } from './selectEngine.js';
 import { DataProvider } from './data/dataProvider.js';
 import { MainPanel } from './mainPanel.js';
 
@@ -33,8 +33,8 @@ export class Controller {
         });
     }
 
-    unselectRow(row) {
-        this._selectEngine.unselectRow(row);
+    unselectRow(rowData) {
+        this._selectEngine.unselectRow(rowData);
     }
 
     invalidateData() {

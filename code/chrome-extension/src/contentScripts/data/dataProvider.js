@@ -39,9 +39,10 @@ export class DataProvider {
         return { url, filename };
     }
 
-    removeRowFrom(idx) {
-        this._controller.unselectRow(this.data.rowsData[idx]);
-        this.data.rowsData.splice(idx, 1);
+    removeRow(row) {
+        this._controller.unselectRow(row);
+        const rowIdx = this.data.rowsData.indexOf(row);
+        this.data.rowsData.splice(rowIdx, 1);
     }
 
     _htmlExtractor(node) {
@@ -60,11 +61,12 @@ export class DataProvider {
 
         const rows = document.querySelectorAll('.scraping-selected-row');
         for (const row of rows) {
-            let dataRow = {};
+            const rowId = row.className.match(/scraping-row-(\d*)/)[1];
+            let dataRow = { rowId };
             for (const col of columns) {
                 const colData = row.querySelectorAll(`.scraping-col-${col.id}`);
                 const dataList = Array.from(colData, this._htmlExtractor);
-                dataRow = { ...dataRow, [col.name]: dataList.join('\n') }
+                dataRow = { ...dataRow, [col.name]: dataList.join('; ') }
             }
             rowsData.push(dataRow);
         }
