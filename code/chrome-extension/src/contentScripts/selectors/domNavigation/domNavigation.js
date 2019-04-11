@@ -6,6 +6,7 @@ import { NavigationControls } from './navigationControls.js';
 export class DOMNavigaton {
     constructor(selectEngine) {
         this._current = undefined;
+        this._shouldUnselect = true;
         this._selectEngine = selectEngine;
 
         this.attachControls = this.attachControls.bind(this);
@@ -92,12 +93,16 @@ export class DOMNavigaton {
         let newCurrent = this._getFirstValid(key);
         if (!newCurrent) return;
 
-        this._selectEngine.select([newCurrent]);
-        this._selectEngine.unselect([this._current]);
+        if (this._shouldUnselect) {
+            this._selectEngine.unselect([this._current]);
+            this.notify({ msg: Messages.UNSELECTED, nodes: [this._current] });
+        }
 
-        this.notify({ msg: Messages.UNSELECTED, nodes: [this._current] });
-        this.notify({ msg: Messages.SELECTED, nodes: [newCurrent] });
         this._current = newCurrent;
+        this._shouldUnselect = !this._selectEngine.areSelected([newCurrent]);
+
+        this._selectEngine.select([newCurrent]);
+        this.notify({ msg: Messages.SELECTED, nodes: [newCurrent] });
 
         callback({ target: this._current });
     }

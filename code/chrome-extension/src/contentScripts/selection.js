@@ -61,7 +61,7 @@ class Selection {
     }
 
     _getId(element, scrapingClass) {
-        const re = new RegExp(`${scrapingClass}-(\d*)`);
+        const re = new RegExp(`${scrapingClass}-(\\d*)`);
         let match;
         if (element.className.match) {
             match = element.className.match(re);
