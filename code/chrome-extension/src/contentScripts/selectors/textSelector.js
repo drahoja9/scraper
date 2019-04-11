@@ -22,7 +22,7 @@ export class TextSelector {
         }
     }
 
-    _searchDOM(selectTextNode, selectElementNode) {
+    _searchDOM(selectNode) {
         let nodes = [document.body];
 
         const hasChildren = node => node.children.length > 0;
@@ -32,10 +32,8 @@ export class TextSelector {
         while (nodes.length !== 0) {
             let current = nodes.pop();
             for (const child of current.childNodes) {
-                if (isTextNode(child)) {
-                    selectTextNode(child);
-                } else if (hasText(child) && !hasChildren(child)) {
-                    selectElementNode(child);
+                if (isTextNode(child) || (hasText(child) && !hasChildren(child))) {
+                    selectNode(child);
                 } else if (hasText(child) && hasChildren(child)) {
                     nodes.push(child);
                 }
@@ -58,13 +56,8 @@ export class TextSelector {
                 toSelect.push(getNode(node));
             }
         };
-        const selectElementNode = node => {
-            if (isValid(node)) {
-                selectNode(node);
-            }
-        }
 
-        this._searchDOM(selectNode, selectElementNode);
+        this._searchDOM(selectNode);
         this._selectEngine.select(toSelect);
     }
 }
