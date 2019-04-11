@@ -3,40 +3,37 @@ import { isValid } from './utils.js';
 
 
 class Selection {
-    constructor(controller, domNavigation) {
-        this._current = undefined;
+    constructor(controller, domNavigation, selectEngine) {
         this._scrapingClasses = undefined;
         this._controller = controller;
+        this._selectEngine = selectEngine;
         this._domNavigaton = domNavigation;
+        this._undos = [];
+        this._redos = [];
     }
 
     select(elements) {
-        this._current = [];
+        if (!elements) return;
+
+        let filtered = [];
         elements.forEach(element => {
             if (!isValid(element) || this.areSelected([element])) return;
             element.classList.add(...this._scrapingClasses);
             if (this._rowId !== undefined) {
                 this._updateClasses(++this._rowId);
             }
-            this._current.push(element);
+            filtered.push(element);
         });
         this._controller.invalidateData();
-        this._domNavigaton.notify({ msg: Messages.SELECTED, nodes: elements });
-        this._controller.notify({ msg: Messages.SELECTED, nodes: elements });
+        this._domNavigaton.notify({ msg: Messages.SELECTED, nodes: filtered });
+        this._controller.notify({ msg: Messages.SELECTED, nodes: filtered });
+        this._pushUndo(filtered);
     }
 
     unselect(elements) {
         this._controller.invalidateData();
         this._domNavigaton.notify({ msg: Messages.UNSELECTED, nodes: elements });
-        if (this._current === elements) {
-            this._current = undefined;
-        }
-    }
-
-    unselectCurrent() {
-        if (this._current) {
-            this.unselect(this._current);
-        }
+        this._pushUndo(elements);
     }
 
     toggle(elements) {
@@ -58,6 +55,47 @@ class Selection {
             }
         }
         return true;
+    }
+
+    undo() {
+        const selector = this._undos.pop();
+        const elements = document.querySelectorAll(selector);
+        const tmpRedos = this._redos;
+
+        this.toggle(elements);
+        this._undos.pop();
+        this._redos = tmpRedos;
+        this._redos.push(selector);
+
+        if (this._undos.length === 0) {
+            this._controller.notify({ msg: Messages.DISABLE_UNDO });
+        }
+    }
+
+    redo() {
+        const selector = this._redos.pop();
+        const elements = document.querySelectorAll(selector);
+        const tmpRedos = this._redos;
+
+        this.toggle(elements);
+        this._undos.pop();
+        this._redos = tmpRedos;
+        this._undos.push(selector);
+
+        if (this._redos.length === 0) {
+            this._controller.notify({ msg: Messages.DISABLE_REDO });
+        }
+    }
+
+    _pushUndo(elements) {
+        let selectors = [];
+        for (const element of elements) {
+            const id = element.id || this._selectEngine.generateId();
+            element.id = id;
+            selectors.push(`#${id}`);
+        }
+        this._undos.push(selectors.join(','));
+        this._redos = [];
     }
 
     _getId(element, scrapingClass) {
@@ -87,8 +125,8 @@ class Selection {
 
 
 export class RowSelection extends Selection {
-    constructor(controller, domNavigation) {
-        super(controller, domNavigation);
+    constructor(controller, domNavigation, selectEngine) {
+        super(controller, domNavigation, selectEngine);
         this._rowId = 0;
         this._scrapingClasses = [
             'scraping-selected-row',
@@ -139,8 +177,8 @@ export class RowSelection extends Selection {
 
 
 export class ColumnSelection extends Selection {
-    constructor(controller, domNavigation, colId) {
-        super(controller, domNavigation);
+    constructor(controller, domNavigation, colId, selectEngine) {
+        super(controller, domNavigation, selectEngine);
         this._colId = colId;
         this._scrapingClasses = [
             'scraping-selected-col',

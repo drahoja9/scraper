@@ -35,6 +35,7 @@ class MainPanel {
         this._minMaxBtn = document.querySelector('#min-max-btn');
         this._switchSidesBtn = document.querySelector('#switch-sides-btn');
         this._undoBtn = document.querySelector('#undo-btn');
+        this._redoBtn = document.querySelector('#redo-btn');
 
         const rowsBtn = document.querySelector('#rows-btn');
         const colsBtn = document.querySelector('#cols-btn');
@@ -56,7 +57,11 @@ class MainPanel {
         registerClickHandler(
             this._undoBtn,
             Messages.UNDO,
-            this.hideUndoBtn.bind(this)
+            this.enableRedo.bind(this)
+        );
+        registerClickHandler(
+            this._redoBtn,
+            Messages.REDO
         );
 
         registerClickHandler(
@@ -92,8 +97,20 @@ class MainPanel {
         this._minMaxBtn.classList.toggle('rotated');
     }
 
-    showUndoBtn() {
-        this._undoBtn.style.display = 'block';
+    enableUndo() {
+        this._undoBtn.classList.remove('disabled');
+    }
+
+    enableRedo() {
+        this._redoBtn.classList.remove('disabled');
+    }
+
+    disableUndo() {
+        this._undoBtn.classList.add('disabled');
+    }
+
+    disableRedo() {
+        this._redoBtn.classList.add('disabled');
     }
 
     hideUndoBtn() {
@@ -108,6 +125,7 @@ class MainPanel {
         this._minMaxBtn.classList.toggle('left');
         this._minMaxBtn.classList.toggle('rotated');
         this._undoBtn.classList.toggle('left');
+        this._redoBtn.classList.toggle('left');
     }
 }
 
@@ -130,7 +148,13 @@ $(function () {
                 mainPanel.minimizeMaximize();
                 break;
             case Messages.SELECTED:
-                mainPanel.showUndoBtn();
+                mainPanel.enableUndo();
+                break;
+            case Messages.DISABLE_UNDO:
+                mainPanel.disableUndo();
+                break;
+            case Messages.DISABLE_REDO:
+                mainPanel.disableRedo();
                 break;
         }
     });

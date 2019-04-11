@@ -93,7 +93,10 @@ export class Communication {
                 this._selectEngine.toggleMouseSelector();
                 break;
             case Messages.UNDO:
-                this._controller.undo();
+                this._selectEngine.undo();
+                break;
+            case Messages.REDO:
+                this._selectEngine.redo();
                 break;
             case Messages.TEXT_SEARCH_CONTAINS:
                 this._selectEngine.contains(event.data.payload);

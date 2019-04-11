@@ -84,7 +84,7 @@ body {
 }
 
 #min-max-btn.left {
-    order: 2;
+    order: 3;
 }
 
 #min-max-btn.rotated {
@@ -96,19 +96,34 @@ body {
     order: 1;
 }
 
+#switch-sides-btn.left {
+    order: 2;
+}
+
 #switch-sides-btn.rotated {
     transform: rotateY(180deg);
 }
 
 #undo-btn {
-    font-size: 1.4em !important;
-    width: 70px !important;
     order: 2;
-    display: none;
+}
+
+#redo-btn {
+    order: 3;
 }
 
 #undo-btn.left {
     order: 0;
+}
+
+#redo-btn.left {
+    order: 1;
+}
+
+.disabled {
+    color: var(--darker-white) !important;
+    cursor: default !important;
+    pointer-events: none !important;
 }
 
 #name {

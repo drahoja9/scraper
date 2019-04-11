@@ -41,10 +41,6 @@ export class Controller {
         this._dataProvider.isDataValid = false;
     }
 
-    undo() {
-        this._selectEngine.unselectCurrent();
-    }
-
     notify({ msg }) {
         this.communication.sendMessageToMainPanel({
             msg: msg

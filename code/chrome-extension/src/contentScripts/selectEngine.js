@@ -14,15 +14,18 @@ export class SelectEngine {
         this._cssSelector = new CSSSelector(this);
 
         this._currentCol = 0;
-        this._rows = new RowSelection(controller, this._domNavigaton);
+        this._rows = new RowSelection(controller, this._domNavigaton, this);
         this._columns = {
             [this._currentCol]: new ColumnSelection(
                 controller,
                 this._domNavigaton,
-                this._currentCol
+                this._currentCol,
+                this
             )
         };
         this._selection = this._rows;
+
+        this._scrapingId = 'scraping-0';
     }
 
     select(elements) {
@@ -31,10 +34,6 @@ export class SelectEngine {
 
     unselect(elements, all) {
         this._selection.unselect(elements, all);
-    }
-
-    unselectCurrent() {
-        this._selection.unselectCurrent();
     }
 
     unselectRow(rowData) {
@@ -82,7 +81,8 @@ export class SelectEngine {
             this._columns[this._currentCol] = new ColumnSelection(
                 this._controller,
                 this._domNavigaton,
-                this._currentCol
+                this._currentCol,
+                this
             );
         }
         this._selection = this._columns[this._currentCol];
@@ -127,5 +127,19 @@ export class SelectEngine {
         this._mouseSelector.reset();
         this.toggleMouseSelector();
         this.toggleMouseSelector();
+    }
+
+    undo() {
+        this._selection.undo();
+    }
+
+    redo() {
+        this._selection.redo();
+    }
+
+    generateId() {
+        const currentId = this._scrapingId.match(/scraping-(\d*)/)[1];
+        this._scrapingId = `scraping-${Number(currentId) + 1}`;
+        return this._scrapingId;
     }
 }
