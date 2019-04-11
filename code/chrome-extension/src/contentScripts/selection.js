@@ -60,6 +60,18 @@ class Selection {
         return true;
     }
 
+    _getId(element, scrapingClass) {
+        const re = new RegExp(`${scrapingClass}-(\d*)`);
+        let match;
+        if (element.className.match) {
+            match = element.className.match(re);
+        } else {
+            const classes = Array.from(element.classList);
+            match = classes.join(' ').match(re);
+        }
+        return match ? match[1] : null;
+    }
+
     get classes() {
         return this._scrapingClasses;
     }
@@ -114,8 +126,7 @@ export class RowSelection extends Selection {
     }
 
     _getRowId(element) {
-        const match = element.className.match(/scraping-row-(\d*)/);
-        return match ? match[1] : null;
+        return super._getId(element, 'scraping-row');
     }
 
     _updateClasses(rowId) {
@@ -165,8 +176,7 @@ export class ColumnSelection extends Selection {
     }
 
     _getColId(element) {
-        const match = element.className.match(/scraping-col-(\d*)/);
-        return match ? match[1] : null;
+        return super._getId(element, 'scraping-col');
     }
 
     _updateClasses(colId) {
