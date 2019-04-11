@@ -1,3 +1,6 @@
+import { isValid } from "../utils.js";
+
+
 export class TextSelector {
     constructor(selectEngine) {
         this._selectEngine = selectEngine;
@@ -19,7 +22,7 @@ export class TextSelector {
         }
     }
 
-    _searchDOM(selectNode) {
+    _searchDOM(selectTextNode, selectElementNode) {
         let nodes = [document.body];
 
         const hasChildren = node => node.children.length > 0;
@@ -29,8 +32,10 @@ export class TextSelector {
         while (nodes.length !== 0) {
             let current = nodes.pop();
             for (const child of current.childNodes) {
-                if (isTextNode(child) || (hasText(child) && !hasChildren(child))) {
-                    selectNode(child);
+                if (isTextNode(child)) {
+                    selectTextNode(child);
+                } else if (hasText(child) && !hasChildren(child)) {
+                    selectElementNode(child);
                 } else if (hasText(child) && hasChildren(child)) {
                     nodes.push(child);
                 }
@@ -53,8 +58,13 @@ export class TextSelector {
                 toSelect.push(getNode(node));
             }
         };
+        const selectElementNode = node => {
+            if (isValid(node)) {
+                selectNode(node);
+            }
+        }
 
-        this._searchDOM(selectNode);
+        this._searchDOM(selectNode, selectElementNode);
         this._selectEngine.select(toSelect);
     }
 }
