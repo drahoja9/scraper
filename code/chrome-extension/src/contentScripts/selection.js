@@ -1,5 +1,6 @@
 import { Messages } from '/src/constants.js';
 import { isValid } from './utils.js';
+import { UndoRedoStore } from './undoRedoStore.js';
 
 
 class Selection {
@@ -8,11 +9,10 @@ class Selection {
         this._controller = controller;
         this._selectEngine = selectEngine;
         this._domNavigaton = domNavigation;
-        this._undos = [];
-        this._redos = [];
+        this._undoRedoStore = new UndoRedoStore(controller, this);
     }
 
-    select(elements) {
+    select(elements, shouldPushUndo = true) {
         if (!elements) return;
 
         let filtered = [];
@@ -27,21 +27,27 @@ class Selection {
         this._controller.invalidateData();
         this._domNavigaton.notify({ msg: Messages.SELECTED, nodes: filtered });
         this._controller.notify({ msg: Messages.SELECTED, nodes: filtered });
-        this._pushUndo(filtered);
+
+        if (shouldPushUndo) {
+            this._undoRedoStore.pushUndo(this._getSelector(filtered));
+        }
     }
 
-    unselect(elements) {
+    unselect(elements, shouldPushUndo = true) {
         this._controller.invalidateData();
         this._domNavigaton.notify({ msg: Messages.UNSELECTED, nodes: elements });
-        this._pushUndo(elements);
+
+        if (shouldPushUndo) {
+            this._undoRedoStore.pushUndo(this._getSelector(elements));
+        }
     }
 
-    toggle(elements) {
+    toggle(elements, shouldPushUndo = true) {
         const areSelected = this.areSelected(elements);
         if (areSelected) {
-            this.unselect(elements);
+            this.unselect(elements, shouldPushUndo);
         } else {
-            this.select(elements);
+            this.select(elements, shouldPushUndo);
         }
         return !areSelected;
     }
@@ -58,44 +64,26 @@ class Selection {
     }
 
     undo() {
-        const selector = this._undos.pop();
-        const elements = document.querySelectorAll(selector);
-        const tmpRedos = this._redos;
-
-        this.toggle(elements);
-        this._undos.pop();
-        this._redos = tmpRedos;
-        this._redos.push(selector);
-
-        if (this._undos.length === 0) {
-            this._controller.notify({ msg: Messages.DISABLE_UNDO });
-        }
+        this._undoRedoStore.undo();
     }
 
     redo() {
-        const selector = this._redos.pop();
-        const elements = document.querySelectorAll(selector);
-        const tmpRedos = this._redos;
-
-        this.toggle(elements);
-        this._undos.pop();
-        this._redos = tmpRedos;
-        this._undos.push(selector);
-
-        if (this._redos.length === 0) {
-            this._controller.notify({ msg: Messages.DISABLE_REDO });
-        }
+        this._undoRedoStore.redo();
     }
 
-    _pushUndo(elements) {
+    checkUndoRedo() {
+        this._undoRedoStore.checkUndo();
+        this._undoRedoStore.checkRedo();
+    }
+
+    _getSelector(elements) {
         let selectors = [];
         for (const element of elements) {
             const id = element.id || this._selectEngine.generateId();
             element.id = id;
             selectors.push(`#${id}`);
         }
-        this._undos.push(selectors.join(','));
-        this._redos = [];
+        return selectors.join(',');
     }
 
     _getId(element, scrapingClass) {
@@ -135,14 +123,14 @@ export class RowSelection extends Selection {
         this.highlightingClass = 'scraping-highlighted-row';
     }
 
-    unselect(elements, all = false) {
+    unselect(elements, shouldPushUndo = true) {
         elements.forEach(element => {
             const rowId = this._getRowId(element);
             this._updateClasses(rowId);
             element.classList.remove(...this._scrapingClasses);
         });
         this._updateClasses(this._rowId);
-        super.unselect(elements);
+        super.unselect(elements, shouldPushUndo);
     }
 
     areSelected(elements) {
@@ -188,16 +176,11 @@ export class ColumnSelection extends Selection {
         this.highlightingClass = 'scraping-highlighted-col';
     }
 
-    unselect(elements, all = false) {
+    unselect(elements, shouldPushUndo = true) {
         elements.forEach(element => {
-            if (all) {
-                const colId = this._getColId(element);
-                this._updateClasses(colId);
-            }
             element.classList.remove(...this._scrapingClasses);
         });
-        this._updateClasses(this._colId);
-        super.unselect(elements);
+        super.unselect(elements, shouldPushUndo);
     }
 
     activateColumn() {
@@ -213,7 +196,7 @@ export class ColumnSelection extends Selection {
         return false;
     }
 
-    _getColId(element) {
+    getColId(element) {
         return super._getId(element, 'scraping-col');
     }
 

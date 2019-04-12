@@ -147,8 +147,11 @@ $(function () {
             case Messages.MINIMIZE_MAXIMIZE:
                 mainPanel.minimizeMaximize();
                 break;
-            case Messages.SELECTED:
+            case Messages.ENABLE_UNDO:
                 mainPanel.enableUndo();
+                break;
+            case Messages.ENABLE_REDO:
+                mainPanel.enableRedo();
                 break;
             case Messages.DISABLE_UNDO:
                 mainPanel.disableUndo();

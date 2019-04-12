@@ -32,22 +32,27 @@ export class SelectEngine {
         this._selection.select(elements);
     }
 
-    unselect(elements, all) {
-        this._selection.unselect(elements, all);
+    unselect(elements) {
+        this._selection.unselect(elements);
     }
 
     unselectRow(rowData) {
         const targetRow = document.querySelector(`.scraping-row-${rowData.rowId}`);
         const targetCols = targetRow.querySelectorAll('.scraping-selected-col');
         const isSelectingRows = this.isSelectingRows;
+        const currentCol = this._currentCol;
 
         this.selectingCols();
-        this.unselect(targetCols, true);
+        for (const col of targetCols) {
+            this.changeCol({ colId: this._selection.getColId(col) });
+            this.unselect([col]);
+        }
 
         this.selectingRows();
-        this.unselect([targetRow], true);
+        this.unselect([targetRow]);
 
         // Return back to initial state
+        this.changeCol({ coldId: currentCol });
         isSelectingRows ? this.selectingRows() : this.selectingCols();
     }
 
@@ -73,6 +78,7 @@ export class SelectEngine {
 
     selectingRows() {
         this._selection = this._rows;
+        this._selection.checkUndoRedo();
         this.resetMouseSelector();
     }
 
@@ -86,6 +92,7 @@ export class SelectEngine {
             );
         }
         this._selection = this._columns[this._currentCol];
+        this._selection.checkUndoRedo();
         this.resetMouseSelector();
     }
 
