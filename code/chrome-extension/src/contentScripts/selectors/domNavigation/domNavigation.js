@@ -32,7 +32,7 @@ export class DOMNavigaton {
             nodes.forEach(node => {
                 node.removeEventListener('mouseenter', this.attachControls);
                 node.removeEventListener('mouseleave', this.hideControls);
-                this.hideControls();
+                this.hideControls({ target: node }, true);
             });
         }
     }
@@ -68,7 +68,10 @@ export class DOMNavigaton {
         this._current = target;
     }
 
-    hideControls() {
+    hideControls({ target }, force = false) {
+        if (!force) {
+            if (!this._selectEngine.areSelected([target])) return;
+        }
         this._controls.hide();
     }
 
