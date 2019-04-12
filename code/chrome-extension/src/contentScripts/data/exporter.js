@@ -11,7 +11,11 @@ class Exporter {
 
 export class JSONExporter extends Exporter {
     static getFileUrl({ rowsData }) {
-        const json = JSON.stringify(rowsData, null, 3);
+        const withoutIds = rowsData.map(row => {
+            delete row.rowId;
+            return row;
+        });
+        const json = JSON.stringify(withoutIds, null, 3);
         const blob = new Blob(
             [json],
             { type: 'application/json', endings: 'native' }
