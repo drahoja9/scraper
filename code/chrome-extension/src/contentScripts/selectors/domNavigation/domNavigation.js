@@ -39,7 +39,7 @@ export class DOMNavigaton {
 
     _computeCoordinates(target) {
         const elementRect = target.getBoundingClientRect();
-        const bodyRect = document.body.getBoundingClientRect();
+        const htmlRect = document.body.parentElement.getBoundingClientRect();
 
         let top;
         // Placing the controls either above or under the element 
@@ -49,12 +49,12 @@ export class DOMNavigaton {
         } else {
             top = elementRect.top + elementRect.height;
         }
-        top -= bodyRect.top;
+        top -= htmlRect.top;
 
         const elementHorizontalHalf = elementRect.width / 2
         const controlsHorizontalHalf = this._controls.node.offsetWidth / 2
         let left = elementRect.left + elementHorizontalHalf - controlsHorizontalHalf;
-        left -= bodyRect.left;
+        left -= htmlRect.left;
 
         return { top, left };
     }
