@@ -46,8 +46,8 @@
 \abstractEN{Sem doplňte ekvivalent abstraktu Vaší práce v~angličtině.}
 \placeForDeclarationOfAuthenticity{V~Praze}
 \declarationOfAuthenticityOption{4} %volba Prohlášení (číslo 1-6)
-\keywordsCS{web scraping, extrakce dat, aplikace, }
-\keywordsEN{web scraping, data extraction, application, non-programmers, }
+\keywordsCS{web scraping, extrakce dat, aplikace, JavaScript, rozšíření do Chromu}
+\keywordsEN{web scraping, data extraction, application, JavaScript, Chrome extension}
 % \website{http://site.example/thesis} %volitelná URL práce, objeví se v tiráži - úplně odstraňte, nemáte-li URL práce
 
 \begin{document}
@@ -222,7 +222,7 @@ Soud rozhodl ve prospěch společnosti Facebook -- jednání Power Venture bylo 
 \section{Analýza konkurenčních nástrojů}
 První skupinou, na kterou můžeme při hledání na internetu narazit, jsou společnosti, které nabízejí zákazníkům kompletní péči v~rámci extrakce dat. Cílí především na velké korporace, jimž postaví scrapovací nástroj přesně na míru, který poté také hostují a spravují. Zákazník tedy dostane data a o~nic víc se již nemusí starat. Jako příklad lze jmenovat třeba ContentGrabber, Mozenda a další.
 
-Pro tuto práci mnohem relevantnější kategorií je konkurenční nabídka nástrojů poskytujících uživatelům rozhraní k~web scrapingu. Budu se zaměřovat pouze na takové nástroje, které nevyžadují jakoukoli znalost programování -- tedy žádné knihovny, API a nástroje pro budování vlastních scraperů.
+Pro tuto práci mnohem relevantnější kategorií je konkurenční nabídka nástrojů poskytujících uživatelům rozhraní k~web scrapingu. Zaměříme se pouze na takové nástroje, které nevyžadují jakoukoli znalost programování -- tedy žádné knihovny, API a nástroje pro budování vlastních scraperů.
 
 Mezi ty největší představitele patří ParseHub, Octoparse, WebScraper, Data Scraper a Dexi.io. Čtyři ze zmíněných nástrojů jsou volně dostupné (které mají však velmi omezenou funkcionalitu a pokročilejší operace se odemknou až s~určitým platebním plánem -- tzv. freemium model) a jeden poskytuje bezplatně pouze 7denní zkušební verzi.
 
@@ -246,7 +246,7 @@ Poj\v{d}me se tedy na některé nástroje podívat blíže:
 \end{itemize}
 \begin{figure}[h]
 	\includegraphics[width=\linewidth]{images/ParseHub.png}
-	\caption{ParseHub}
+	\caption{ParseHub\cite[snímek pořídil autor]{parsehub}}
 	\label{fig:parseHub}
 \end{figure}
 
@@ -269,7 +269,7 @@ Poj\v{d}me se tedy na některé nástroje podívat blíže:
 \end{itemize}
 \begin{figure}[h]
 	\includegraphics[width=\linewidth]{images/Octoparse.png}
-	\caption{Octoparse}
+	\caption{Octoparse\cite[snímek pořídil autor]{octoparse}}
 	\label{fig:octoparse}
 \end{figure}
 
@@ -278,7 +278,7 @@ Poj\v{d}me se tedy na některé nástroje podívat blíže:
 \subsection{WebScaper}
 \begin{figure}
 	\includegraphics[width=\linewidth]{images/WebScraper.png}
-	\caption{WebScraper}
+	\caption{WebScraper\cite[snímek pořídil autor]{webscraper}}
 	\label{fig:webScraper}
 \end{figure}
 \textbf{Výhody:}
@@ -302,7 +302,7 @@ Poj\v{d}me se tedy na některé nástroje podívat blíže:
 \subsection{Dexi.io}
 \begin{figure}[h]
 	\includegraphics[width=\linewidth]{images/Dexiio.png}
-	\caption{Dexi.io}
+	\caption{Dexi.io\cite[snímek pořídil autor]{dexio}}
 	\label{fig:dexi.io}
 \end{figure}
 \textbf{Výhody:}
@@ -340,7 +340,7 @@ Poj\v{d}me se tedy na některé nástroje podívat blíže:
 \end{itemize}
 \begin{figure}
 	\includegraphics[width=\linewidth]{images/DataScraper.png}
-	\caption{Data Scraper}
+	\caption{Data Scraper\cite[snímek pořídil autor]{data_scraper}}
 	\label{fig:dataScraper}
 \end{figure}
 
@@ -348,9 +348,8 @@ Poj\v{d}me se tedy na některé nástroje podívat blíže:
 
 \chapter{Návrh}
 
-\newpage
 \section{Specifikace požadavků}
-Jak jsme viděli v~předchozí analýze konkurenčních nástrojů, největšími neduhy, které se prolínají napříč valnou většinou aplikací, jsou \emph{těžkopádné uživatelské rozhraní}, \emph{neintuitivní ovládání} a \emph{rychlost} (nebo spíš pomalost), se kterou se uživatel dostane k~požadovaným datům. Pro aplikaci, jíž se tato práce zabývá, bude klíčové se výše zmíněným nedostatkům vyhnout a nabídnout jejich přesný opak. Také jsme se přesvědčili, že nejpříjemnější cestou je celou aplikaci ovládat přes webové rozhraní  \emph{bez nutnosti stahování a instalace}.
+Jak jsme viděli v~předchozí analýze stávajících řešení, největšími neduhy, které se prolínají napříč valnou většinou aplikací, jsou \emph{těžkopádné uživatelské rozhraní}, \emph{neintuitivní ovládání} a \emph{rychlost} (nebo spíš pomalost), se kterou se uživatel dostane k~požadovaným datům. Pro aplikaci, jíž se tato práce zabývá, bude klíčové se výše zmíněným nedostatkům vyhnout a nabídnout jejich přesný opak. Také jsme se přesvědčili, že nejpříjemnější cestou je celou aplikaci ovládat přes webové rozhraní  \emph{bez nutnosti stahování a instalace}.
 
 Na druhou stranu se lze u~konkurence i inspirovat. Za vyzdvižení stojí určitě \emph{různé druhy výběru dat} -- \emph{klikání} přímo na stránce spolu s~inteligentním hledáním podobných prvků jistě tvoří mocný mechanismus. Avšak je potřeba zajistit i ostatní způsoby výběru (jako je např. \emph{textová shoda, HTML tagy, CSS selektory}) pro případ, kdy je pouhé klikání zdlouhavé či nevyhovující. Rovněž široký výběr způsobů exportu dat, intuitivní klávesové zkratky a zooming in/out na prvky může uživatelům zpříjemnit práci s~nástrojem.
 
@@ -362,46 +361,69 @@ Pojďme si nyní všechny požadavky shrnout do několika bodů a rozdělit na f
 \begin{itemize}
 	\item uživatelské rozhraní se skládá z hlavní pracovní plochy, kde se bude nacházet uživatelem zadaná stránka a z postranního panelu, obsahující všechny ovládací prvky
 	\item postranní panel skryje tlačítka, formuláře a ostatní elementy k ovládání aplikace do několika záložek -- tímto se na uživatele nevyvalí velké kvantum informací a možností najednou; podle potřeby si každý rozbalí tu možnost, kterou potřebuje
-	\item výběr dat bude probíhat těmito způsoby:
+	\item hlavní činností uživatele bude výběr elementů na jím zadané webové stránce, ze kterých bude na konci procesu vyextrahován text; tento výběr bude probíhat následujícími způsoby:
 	\begin{itemize}
-		\item kliknutím myší na požadované elementy (na základě předchozích kliknutí se program pokusí označit všechny podobné prvky, výběr však půjde uživatelem zrušit)
-		\item na základě textové shody (uživatel jednoduše zadá text, jenž má být obsažen v extrahovaných datech)
-		\item pomocí HTML tagů (např. image, header, article), které se budou psát do textového pole
-		\item pomocí CSS selektorů (třídy, id, hodnota atributu, různé násled-nosti); k tomu poslouží formulář umožňující vše přehledně zadat
+		\item kliknutím myší na požadované elementy
+		\item na základě textové shody; zde bude mít uživatel 4 možnosti na výběr:
+		\begin{enumerate}
+			\item Prvek bude vybrán, pokud jeho text začíná hledaným výrazem
+			\item Prvek bude vybrán, pokud jeho text končí hledaným výrazem
+			\item Prvek bude vybrán, pokud jeho text obsahuje hledaný výraz
+			\item Prvek bude vybrán, pokud se jeho text přesně shoduje s hledaným výrazem
+		\end{enumerate}
+		\item pomocí CSS selektorů (tedy HTML tagy, třídy, id, hodnoty atributu, různé následnosti a vše ostatní, co CSS selektory umožňují, viz \href{https://www.w3schools.com/cssref/css_selectors.asp}{zde})
 		\item na ovládacím panelu nalezneme i tlačítka s hotovými akcemi před-stavující šablonu pro nejpoužívanější operace (stažení všech obrázků ze stránky, všech emailových adres atd.)
 	\end{itemize}
-	\item po kliknutí na určitý prvek se tento barevně označí; taktéž všechny již vybrané prvky budou barevně odlišeny, aby bylo jasné, co už je připraveno k extrakci a co ještě ne
-	\item k dispozici bude přibližování/oddalování momentálního výběru pomocí ikony $+$ a $-$ (uživatel klikne na daný element a pomocí této funkce může traverzovat napříč zanořenými prvky oběma směry)
-	\item na základě výběru dat uživatelem se vytvoří určitý filtr (textový řetězec), který může být ručně upraven -- půjde tak o alternativu pro zkušenější uživatele, aniž bychom zanesli uživatelské rozhraní přehršlí možností a celé ho tak znepřehlednili
-	\item získaná data půjdou exportovat do formátů JSON, CSV, XLS, pokud se bude jednat o text; v případě obrázků, videí nebo zvukových souborů poskytne aplikace výstup v zabaleném archivu ZIP
+	\item pokud vybraným prvkem bude $\left<img\right>$ HTML tag, bude místo jeho textu extrahován atribut \textsf{src} (tedy zdroj obrázku)
+	\item po kliknutí na určitý prvek s přidrženou klávesou \textsf{Ctrl/control} se program pokusí vybrat všechny podobné prvky na základě předchozí selekce (tzv. \emph{auto-selection})
+	\item mezi ovládacími prvky nalezneme tlačítka \textsf{undo} a \textsf{redo}, která umožní vracet zpět provedený výběr (například v situaci, kdy nesouhlasíme s výběrem auto-selectu)
+	\item všechny vybrané prvky budou barevně odlišeny, aby bylo jasné, co už je připraveno k extrakci a co ještě ne
+	\item k dispozici bude přibližování (otec) a oddalování (první potomek) momentálního výběru pomocí ikony $+$ a $-$, případně přesunutí výběru na předchozího/následujícího sourozence v DOMu (uživatel klikne na daný element a pomocí této funkce může traverzovat napříč zanořenými prvky oběma směry)
+	\item data z vybraných elementů si bude možné kdykoli prohlédnout v tzv. \textit{preview} módu -- půjde o obyčejnou tabulku, ze které bude možné vymazat nevyhovující řádky (vymazáním řádku se odebere výběr všech relevantních prvků na stránce)
+	\item získaná data půjdou exportovat do formátů JSON, CSV, XLS
 \end{itemize}
 
 \subsection{Nefunkční požadavky}
 \begin{itemize}
 	\item půjde o webovou aplikaci běžící v internetovém prohlížeči, tedy nebude nutná žádná instalace
-	\item program se bude skládat ze dvou částí:
-	\begin{itemize}
-		\item \emph{frontend} -- kód, který poběží u klienta v prohlížeči; představuje celé uživatelské rozhraní aplikace
-		\item \emph{backend} -- kód, který poběží na serveru; bude naslouchat požadavkům a zpracovávat je; zde bude probíhat samotná extrakce dat
-	\end{itemize}
-	\item aplikace cílí primárně na celkový zážitek uživatele -- grafické rozhraní bude přehledné a co nejjednodušší, ovládání intuitivní
+	\item celý proces bude realizován na straně klienta -- tedy bude se jednat pouze o frontend, žádný backend server nebude k dispozici
+	\item aplikace cílí primárně na celkový zážitek uživatele -- grafické rozhraní bude přehledné a co nejjednodušší, ovládání přímočaré a intuitivní
 	\item čas, za který se uživatel dostane k požadovaným datům (tedy čas, který stráví vybíráním dat; nepočítáme čas potřebný ke stažení), bude co nejmenší
+	\item čas nutný k samotné extrakci (od okamžiku, kdy uživatel klikne na tlačítko \textsf{Download}) nepřesáhne 5 vteřin
 \end{itemize}
 
 \subsection{Nice to have požadavky}
 V předchozích dvou sekcích jsme si shrnuli, jaké požadavky by naše aplikace v každém případě měla splňovat a bez nichž by neměla vůbec být uvedena k dispozici uživatelům. Pak tu máme ale také požadavky, které rozhodně zlepšují celkovou kvalitu a pocit z nástroje samotného, avšak nejsou již pro nás vitální a pokud by se jejich implementace nepovedla, aplikace bude stále plně funkční a připravená k použití. Patří sem:
 \begin{itemize}
-	\item uživatelské rozhraní aplikace nabídne intuitivní klávesové zkratky pro usnadnění práce -- klikání s přidrženou klávesou \textsf{Ctrl} bude automaticky vybírat všechny podobné elementy; \textsf{Ctrl+} a \textsf{Ctrl-} obstará přibližování/oddalování momentálního výběru; ...
+	\item uživatelské rozhraní aplikace nabídne intuitivní klávesové zkratky pro usnadnění práce -- \textsf{Ctrl +} a \textsf{Ctrl -} obstará přibližování/oddalování momentálního výběru, \textsf{Ctrl n} a \textsf{Ctrl p} vybere předchozího/následujícího sourozence vybraného prvku
+	\item postranní panel s ovládacími prvky půjde minimalizovat (zmenšit k přilehlé hraně tak, aby zabíral co nejméně místa a nepřekážel v manipulaci s webovou stránkou) nebo přesunout na protější stranu (např. v případě, že by zakrýval nějaké prvky na stránce)
 	\item export dat realizovatelný i do Google Sheets, Google Drive, Dropbox
 	\item interaktivní tutoriál, který v rychlosti představí práci s nástrojem
+	\item na základě výběru dat uživatelem se vytvoří určitý filtr (textový řetězec), který může být ručně upraven -- půjde tak o alternativu pro zkušenější uživatele, aniž by se zaneslo uživatelské rozhraní přehršlí možností a celé se tak znepřehlednilo
 \end{itemize}
 
+% ------------------------------------------------------------------------------------------------
+
+\section{Architektura systému}
+
+% ------------------------------------------------------------------------------------------------
+
+\section{Návrh uživatelského rozhraní}
 
 % ================================================================================================
 
 
 \chapter{Realizace}
 
+\section{Použité technologie}
+
+% ------------------------------------------------------------------------------------------------
+
+\section{Možná řešení}
+
+% ------------------------------------------------------------------------------------------------
+
+\section{Zvolené řešení}
 
 % ================================================================================================
 
@@ -485,6 +507,22 @@ V předchozích dvou sekcích jsme si shrnuli, jaké požadavky by naše aplikac
 	
 	\bibitem{facebook_venture_2}
 	KERR, Orin. 9th Circuit: It’s a federal crime to visit a website after being told not to visit it. In: \textit{The Washington Post} [online]. © 1996--2019 The Washington Post [cit. 31. 3. 2019]. Dostupné z: \url{https://www.washingtonpost.com/news/volokh-conspiracy/wp/2016/07/12/9th-circuit-its-a-federal-crime-to-visit-a-website-after-being-told-not-to-visit-it/?noredirect=on\&utm_term=.ee6e01250364}.
+	
+	\bibitem{parsehub}
+	PARSEHUB. \textit{ParseHub. Version 54.0.1} [software]. 2015 [cit. 13. 4. 2019]. Dostupné z: \url{https://www.parsehub.com/quickstart}.
+	
+	\bibitem{octoparse}
+	OCTOPUS DATA INC. \textit{Octoparse. Version 7.1.2} [software]. 2018 [cit. 13. 4. 2019]. Dostupné z: \url{https://www.octoparse.com/download}.
+	
+	\bibitem{webscraper}
+	WEBSCRAPER. \textit{WebScraper. Version 0.3.8.9} [software]. 2016 [cit. 13. 4. 2019]. Dostupné z: \url{https://chrome.google.com/webstore/detail/web-scraper/jnhgnonknehpejjnehehllkliplmbmhn}.
+	
+	\bibitem{dexio}
+	DEXI APS. \textit{Dexi.io} [software] [cit. 13. 4. 2019]. Dostupné z: \url{https://app.dexi.io/}.
+	
+	\bibitem{data_scraper}
+	 SOFTWARE INNOVATION LAB LLC. \textit{Data scraper. Version 3.299.84} [software]. 2015 [cit. 13. 4. 2019]. Dostupné z: \url{https://chrome.google.com/webstore/detail/data-scraper-easy-web-scr/nndknepjnldbdbepjfgmncbggmopgden}.
+	
 \end{thebibliography}
 
 \appendix
@@ -497,6 +535,7 @@ V předchozích dvou sekcích jsme si shrnuli, jaké požadavky by naše aplikac
 % \printglossaries
 \begin{description}
 	\item[HTML] HyperText Markup Language
+	\item[DOM] 
 	\item[XML] eXtensible Markup Language
 	\item[API] Application Programming Interface
 	\item[MIT] Massachusetts Institute of Technology

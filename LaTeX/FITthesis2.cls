@@ -406,7 +406,6 @@ sp\^ osobom, ktor\'y nezni\v zuje hodnotu Diela (vr\'atane komer\v cn\'eho vyu\v
 
 \DeclareRobustCommand{\acknowledgementspage}{
 	\if@acknowledgementsdefined
-		\cleardoublepage
 		\thispagestyle{empty}
 		
 		~
@@ -418,7 +417,6 @@ sp\^ osobom, ktor\'y nezni\v zuje hodnotu Diela (vr\'atane komer\v cn\'eho vyu\v
 }
 
 \DeclareRobustCommand{\declarationofauthenticitypage}{
-	\cleardoublepage
 	\thispagestyle{empty}
 
 	~
@@ -474,25 +472,10 @@ sp\^ osobom, ktor\'y nezni\v zuje hodnotu Diela (vr\'atane komer\v cn\'eho vyu\v
 }
 
 \DeclareRobustCommand{\abstractpage}{
-	\chapter*{Abstrakt}
-	\if@abstractcsdefined
-		\theabstractcs
-	\else
-		\ClassError{FITthesis}{Abstract in Czech unspecified}{Specify abstract in Czech language using the \abstractCS command.}
-	\fi
-
 	\if@keywordscsdefined
 		\paragraph*{Kl{\' i}{\v c}ov{\' a} slova} \thekeywordscs{}
 	\else
 		\ClassError{FITthesis}{Czech keywords unspecified}{Specify the keywords in Czech of your thesis using \keywordsCS command.}
-	\fi
-
-	\vfil
-
-	\if@abstractendefined
-		\chapterstyletitle{Abstract}\theabstracten
-	\else
-		\ClassError{FITthesis}{Abstract in English unspecified}{Specify abstract in English using the \abstractEN command.}
 	\fi
 
 	\if@keywordsendefined
@@ -503,31 +486,10 @@ sp\^ osobom, ktor\'y nezni\v zuje hodnotu Diela (vr\'atane komer\v cn\'eho vyu\v
 }
 
 \AfterEndPreamble{
-	\thispagestyle{empty}
-
 	\frontmatter
 	\pagestyle{plain}
-	\cleardoublepage
-% 	\setcounter{page}{3}
 	\titlepage
 	
-	\setcounter{page}{3}
-	\acknowledgementspage
-
-	\declarationofauthenticitypage
-	\imprintpage
-
-	\abstractpage
-
-	\cleardoublepage
-	\tableofcontents*
-
-	\cleardoublepage
-	\listoffigures*
-
-	\cleardoublepage
-	\listoftablescond
-
 	\pagestyle{ruled}
 	\mainmatter
 }
