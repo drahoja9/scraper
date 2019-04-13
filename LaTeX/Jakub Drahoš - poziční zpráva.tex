@@ -34,7 +34,7 @@
 % ODTUD DAL VSE ZMENTE
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
 
-\department{Katedra softwarového inženýrství}
+\department{Obor Webové a softwarové inženýrství (BI-WSI), zaměření Softwarové inženýrství\\Katedra softwarového inženýrství}
 \title{Webová aplikace pro online web scraping}
 \authorGN{Jakub} %(křestní) jméno (jména) autora
 \authorFN{Drahoš} %příjmení autora
@@ -46,8 +46,8 @@
 \abstractEN{Sem doplňte ekvivalent abstraktu Vaší práce v~angličtině.}
 \placeForDeclarationOfAuthenticity{V~Praze}
 \declarationOfAuthenticityOption{4} %volba Prohlášení (číslo 1-6)
-\keywordsCS{web scraping, extrakce dat, aplikace, }
-\keywordsEN{web scraping, data extraction, application, non-programmers, }
+\keywordsCS{web scraping, extrakce dat, aplikace, rozšíření do Chromu, JavaScript}
+\keywordsEN{web scraping, data extraction, application, Chrome extension, JavaScript}
 % \website{http://site.example/thesis} %volitelná URL práce, objeví se v tiráži - úplně odstraňte, nemáte-li URL práce
 
 \begin{document}
@@ -57,7 +57,7 @@
 
 \begin{introduction}
 	\section*{Cíle práce}
-	Hlavním cílem této práce je návrh a tvorba webové aplikace, která bude umožňovat uživatelům extrahovat požadovaná data z~libovolné stránky v~reálném čase bez jakékoli nutné znalosti programování. Při specifikaci požadavků tohoto softwaru se přihlídne k analýze stávajících řešení, jež je vedlejším cílem této práce. Druhým vedlejším cílem je poskytnout čtenáři úvod do právní problematiky web scrapingu a shrnout na jednom místě fakta, která máme k dispozici.
+	Hlavním cílem této práce je návrh a tvorba webové aplikace, která bude umožňovat uživatelům extrahovat požadovaná data z~libovolné stránky v~reálném čase bez jakékoli nutné znalosti programování. Při specifikaci požadavků tohoto softwaru se přihlídne k analýze stávajících řešení, jež je vedlejším cílem této práce.
 	
 	Neméně důležitou součást práce tvoří dodržení klasického vývojového cyklu softwarového projektu -- analýza, design, implementace a testování.
 	
@@ -66,6 +66,8 @@
 	Naopak v rozsahu této práce není tvorba web crawlera ani žádného jiného podobného mechanismu, jenž by systematicky a především \emph{automatizovaně} procházel danou oblast webu.
 	
 	\section*{Motivace}
+	Přínos? Proč je téma důležité/aktuální? Komu tím jako prospějete? Proč tohle téma?
+	
 	Téma web scrapingu je v dnešní době velice aktuální a čím více dat produkujeme, tím více bude stoupat potřeba tyto informace určitým způsobem získávat a zpracovávat. Téměř kdokoli, kdo pracuje s daty dostupnými z internetu, bude nucen využít nějaký nástroj k vytěžování, aby byl vůbec schopný udržet krok s konkurencí.
 	
 	Tedy důvod k vytvoření softwaru umožňující extrahovat data z webových stránek je jasný. Ač podobných nástrojů existuje několik, jejich obsluha je poměrně složitá a je nutné strávit určitý čas, než se člověk seznámí s jejich fungováním a může je naplno využít. Právě tento aspekt se snaží aplikace vyvíjená v rámci této bakalářské práce eliminovat -- motivací je tak poskytnout uživatelům možnost jednoduše a rychle vytěžit požadovaná data bez zbytečného zdržování a dlouhého času stráveného seznamováním se s nástrojem.
@@ -73,61 +75,55 @@
 	Jak již bylo řečeno, přínos aplikace spočívá především v její jednoduchosti. Z toho mohou těžit uživatelé, kteří se nezabývají programováním nebo tvorbou webových stránek. Využije ji tak kdokoli, kdo potřebuje jednorázově získat data z libovolné internetové stránky, která obsahuje velké množství dat pohromadě na jedno místě. Z důvodu prozatím chybějícího crawlingu (automatizovaného procházení) je naopak nevhodná k pravidelnému získávání dat (jako je například dlouhodobé sledování cen produktů) či ke zpracování stránek, kdy se jednotlivá data nacházejí rozptýlená po celé doméně.
 	
 	\section*{Členění práce}
-	Kapitola 1 je věnována analýze tématiky web scrapingu. První sekce shrnuje obecné informace, následuje pohled z právní strany věci a nakonec analýza stávajících řešení problému. Kapitola 2 se zaměřuje na návrh aplikace -- specifikace požadavků, architektura systému, návrh uživatelského rozhraní. Ve 3. kapitole je popsána realizace daného návrhu, výběr použitých technologií a odůvodnění rozhodnutí, která byla učiněna. Poslední kapitola je věnovaná testování celé aplikace.
+	V kapitole 1 této práce se budu věnovat 
 \end{introduction}
 
 
 % ================================================================================================
 
 
-\chapter{Analýza}
+\chapter{Analýza a návrh}
 
 % ------------------------------------------------------------------------------------------------
 
 \section{Web scraping}
-\uv{\textit{Web scraping (nebo také web harvesting, web data extraction) je softwarová technika zaměřená na extrakci informací z webových stránek}}\cite[překlad autora]{web_scraping_def}. Nejčastěji se v~tomto kontextu jedná o~automatizovaný proces strojového zpracování a získávání dat, nicméně může jít i o~manuální extrakci zadanou uživatelem skrze nějaký software (jako je tomu právě v~našem případě).
+\paragraph{Web scraping}
+(nebo také \textit{web harvesting, web data extraction}) je technika získávání nejrůznějších dat z~webových stránek. Nejčastěji se v~tomto kontextu jedná o~automatizovaný proces strojového zpracování a získávání dat, nicméně může jít i o~manuální extrakci zadanou uživatelem skrze nějaký software (jako je tomu právě v~našem případě). [citace z~Wiki - web scraping - nebo radši ne...]
 
-Často se také v~souvislosti s~pojmem web scraping používá spojení \emph{web crawler} (nebo také \emph{bot, spider, spiderbot}). Jedná se o~automatizovaný software, který systematicky prochází danou oblast webu a během toho vytěžuje kýžená data.\cite{web_crawler_def}
+Často se také v~souvislosti s~pojmem web scraping používá spojení \textit{web crawler} (nebo také \textit{bot, spider, spiderbot}). Jedná se o~automatizovaný software, který systematicky prochází danou oblast webu a během toho vytěžuje kýžená data. Jak již bylo řečeno v~úvodu, touto částí web scrapingu se práce nebude zabývat.
 
 \subsection{Krátce z~historie}
-Historie web scrapingu sahá k~samým počátkům internetu (World Wide Web, 1989). Prvním webovým robotem, který byl vyvinut na MIT k~měření velikosti webu, byl World Wide Web Wanderer (napsaný v~jazyce Perl) z~roku 1993.\cite{web_wanderer}
+Historie web scrapingu sahá k~samým počátkům internetu (World Wide Web, 1989). Prvním webovým robotem, který byl vyvinut na MIT k~měření velikosti webu, byl World Wide Web Wanderer (napsaný v~jazyce Perl) z~roku 1993. [citace z~Wiki - World Wide Web Wanderer] 
 
-O~něco později, v~roce 2000, se ve velkém začala používat webová APIs -- lidé mohli získávat čistá data přímo od serveru a scraping se tak stal o~hodně jednodušším. Dalším milníkem v~historii web scrapingu je rok 2004, kdy byla vydána knihovna pro parsování HTML a XML dokumentů Beautiful Soup pro programovací jazyk Python. Ta je do dnes považována za nejsofistikovanější a nejpokročilejší knihovnu pro web scraping. Za zmínku stojí určitě i rok 2006, kdy je datován příchod vizuálního web scrapingu, tedy techniky, kdy uživatel skrze rozhraní aplikace označí klikáním myši, z~kterých oblastí webové stránky chce extrahovat data. Tímto se otevřely dveře web scrapingu pro všechny.\cite{web_scraping_history}
+O~něco později, v~roce 2000, se ve velkém začala používat webová APIs -- lidé mohli získávat čistá data přímo od serveru a scraping se tak stal o~hodně jednodušším. 
+
+Dalším milníkem v~historii web scrapingu je rok 2004, kdy byla vydána knihovna pro parsování HTML a XML dokumentů Beautiful Soup pro programovací jazyk Python. Ta je do dnes považována za nejsofistikovanější a nejpokročilejší knihovnu pro web scraping.
+
+Za zmínku stojí určitě i rok 2006, kdy je datován příchod vizuálního web scrapingu, tedy techniky, kdy uživatel skrze rozhraní  aplikace označí klikáním myši, z~kterých oblastí webové stránky chce extrahovat data. Tímto se otevřely dveře web scrapingu pro všechny. [citace z~https://www.octoparse.com/blog/web-scraping-introduction]
 
 \subsection{Techniky}
 Technik, jak z~webové stránky získat data existuje mnoho, podívejme se alespoň na některé z~nich:
 \begin{itemize}
 	\item vyhledávání na základě textové shody -- např. pomocí UNIX nástroje grep nebo regulárních výrazů
 	\item HTML parsování -- základní a stále ještě nejpoužívanější technika extrakce dat; informace jednoduše získáváme z~HTML elementů, popř. pomocí tříd nebo id
-	\item počítačové vidění, strojové učení, zapojení umělé inteligence -- snaha napodobit způsob, jakým vidí a zpracovává webovou stránku člověk; podobný přístup zkouší např. projekt Diffbot \cite{computer_vision}
+	\item počítačové vidění, strojové učení, zapojení umělé inteligence -- snaha napodobit způsob, jakým vidí a zpracovává webovou stránku člověk; podobný přístup zkouší např. projekt Diffbot
 	\item vizuální web scraping -- jak již bylo zmíněno výše, požadovaná data se musí ručně naklikat skrze rozhraní nějaké aplikace (značně to však usnadňuje např. hledání podobných prvků na základě prvních pár kliknutí)
-	\item manuální vyhledávání a stahování dat (někdy nazývané také \emph{copy--paste})
+	\item manuální vyhledávání a stahování dat (někdy nazývané také \textit{copy--paste})
 \end{itemize}
 
 \subsection{Využití web scrapingu}
-Podob pro uplatnění scrapování dat z~webu je nespočet, a to obzvlášť v~dnešní době, kdy se dle \cite{data_size} velikost všech dat na celém internetu pohybuje v~řádech Zettabajtů ($1024^{7}$ B). Mezi ty hlavní patří:
+Podob pro uplatnění scrapování dat z~webu je nespočet, a to obzvlášť v~dnešní době, kdy se velikost všech dat na celém internetu pohybuje v~řádech Zettabajtů ($1024^{7}$ B).[citace z~https://www.nodegraph.se/big-data-facts/]. Mezi ty hlavní patří:
 \begin{itemize}
 	\item získání kontaktních informací (např. e-mail) pro marketingové účely
 	\item indexování webových stránek (jako příklad můžeme uvést známý GoogleBot)
-	\item data mining -- proces hledání vzorců ve velkých datových setech \cite{data_mining}
+	\item data mining -- proces hledání vzorců ve velkých datových setech [odkaz na Wiki]
 	\item monitorování různých proměnných (např. sledování cen nebo hodnocení produktů)
 	\item recyklace již někdy použitých dat za účelem vytváření \uv{nového} obsahu
 	\item analýza a zpracování dat k~výzkumným účelům
 \end{itemize}
 
-% ------------------------------------------------------------------------------------------------
-
 \section{Právní aspekt}
-\label{sec:pravni_aspekt}
-Podrobná právní analýza celé problematiky web scrapingu by vydala na samostatnou diplomovou práci, a tak se pokusím pouze shrnout základní body, představit hlavní právní pojmy a poskytnout čtenáři alespoň náhled do této oblasti. 
-
-Při získávání dat z internetových stránek může nastat hned několik komplikací z právního hlediska, na které by se autor takového softwaru měl připravit. Následuje stručný souhrn informací, kterým se podrobně věnují jednotlivé části celé sekce \ref{sec:pravni_aspekt}.
-
-Obsah může být chráněn autorským zákonem, pokud nabývá určitých rysů -- zejména se musí jednat o výsledek tvůrčí činnosti autora. Zároveň pod tuto oblast mohou spadat věci jako je obyčejná databáze, způsob, jakým jsou určitá data rozvrstvena a uspořádána na stránce nebo třeba rozpis fotbalových utkání. Další kategorie, do kterých data mohou spadat, jsou osobní údaje a projevy osobní povahy. Při jejich zpracování je nutné postupovat přesně podle stanovených pravidel v příslušných zákonech a právních úpravách. A i když data nejsou chráněna žádným zvláštním zákonem, stále je nutné řídit se smluvními podmínkami, které se mohou vztahovat na jakýkoliv obsah.
-
-Tím nejkritičtějším místem každého web scrapingu je ale způsob využití samotných dat. Ve směs je možné říci, že pokud používám data čistě pro svoji osobní/domácí potřebu, pro věděcké nebo pedagogické účely (kde má ale každé užití své podstatné náležitosti) a bez účelu dosažení hospodářského prospěchu, s největší pravděpodobností se nedopustím žádného protiprávního jednání. Vždy je ale tím nejbezpečnějším řešením kontaktovat provozovatele dané stránky a na detailech se dohodnout.
-
-Nutno také podotknout, že celá tato oblast je relativně nová a zatím neexistuje jednotný právní precedent\footnote{Kontinentální právo (na rozdíl od anglosaského) nezná precedenty (tj. všeobecně závazná soudní rozhodnutí), resp. nepovažuje je právě za závazné. Na druhou stranu by soudy měly ve stejných případech postupovat stejně. Proto si zde dovolím tento výraz použít.}, podle kterého by se soudy mohli při posuzování jednotlivých případů řídit. Proto také člověk může nabýt pocitu, že i když se jedná o často velmi podobné případy, výsledky soudních sporů jsou diametrálně odlišné. To se ale může změnit s případem \emph{hiQ v. LinkedIn}, který je pravděpodobně tím největším milníkem v právní historii web scrapingu -- pokud se výsledek ještě zvrátí ve prospěch společnosti LinkedIn, mohlo by to znamenat velké omezení otevřeného přístupu k informacím pro všechny.
+Podrobná právní analýza celé problematiky web scrapingu by vydala na samostatnou diplomovou práci, a tak se pokusím pouze shrnout základní body a poskytnout čtenáři alespoň náhled do této oblasti.
 
 \subsection{Odpovědnost v případě protiprávního jednání}
 Ve chvíli, kdy se uživatel dopustí protiprávního jednání při využívání určitého nástroje, odpovědnost jednoznačně spočívá na něm, nikoliv na tvůrci aplikace. Zároveň je třeba upozornit, že autor softwaru odpovídá v situaci, kdy je software primárně určen k protiprávnímu jednání. Lze tedy jen doporučit, aby byl uživatel prokazatelně seznámen s odpovědností za užívání softwaru v souladu s právem.\cite{rozhovor}
@@ -177,8 +173,6 @@ Naopak výše zmíněnou definici určitě nesplňují různá počítačem gene
 \subsection{Web scraping a zvláštní práva pořizovatele databáze}
 Dle \cite{rozhovor} žádný zvláštní zákon věnující se výslovně vytěžování webových stránek neexistuje. Z naší právní úpravy je tomu nejblíže úprava zvláštního práva pořizovatele databáze (hlava III autorského zákona), která definuje, co to je databáze -- \uv{\textit{Databází je pro účely tohoto zákona soubor nezávislých děl, údajů nebo jiných prvků, systematicky nebo metodicky uspořádaných a individuálně přístupných elektronickými nebo jinými prostředky, bez ohledu na formu jejich vyjádření.}}\cite[\S~88]{autorsky_zakon}. Za nezávislé se v tomto kontextu považují prvky, \uv{\textit{které lze od sebe oddělit, aniž by tím byl dotčen jejich informační, literární, umělecký, hudební nebo jiný obsah}}\cite{polcak}.
 
-\uv{\textit{Tato právní úprava byla do autorského zákona převzata ze Směrnice Evropského parlamentu a Rady EU 96/9/ES, o právní ochraně databází}}\cite{ikaros}, a tak můžeme informace čerpané z této sekce vztahovat nejen na Českou Republiku, ale na jakoukoli zemi Evropské Unie.
-
 Dále jsou upraveny některé způsoby užití databáze v souladu s autorským zákonem:
 \begin{itemize}
 	\item Omezení zvláštního práva pořizovatele databáze -- \uv{\textit{Do práva pořizo-vatele databáze, která byla zpřístupněna jakýmkoli způsobem veřejnosti, nezasahuje oprávněný uživatel, který vytěžuje nebo zužitkovává kvalitativně nebo kvantitativně nepodstatné části obsahu databáze nebo její části, a to k jakémukoli účelu, za podmínky, že tento uživatel databázi užívá běžně a přiměřeně, nikoli systematicky či opakovaně, a bez újmy oprávněných zájmů pořizovatele databáze, a že nezpůsobuje újmu autorovi ani nositeli práv souvisejících s právem autorským k dílům nebo jiným předmětům ochrany obsaženým v databázi.}}\cite[\S~91]{autorsky_zakon}
@@ -216,10 +210,20 @@ K dispozici je zatím pouze předběžné opatření ve prospěch hiQ, které ř
 
 Soud rozhodl ve prospěch společnosti Facebook -- jednání Power Venture bylo v rozporu se zákonem. Jako hlavní argument posloužil fakt, že Power Venture pokračoval ve svém jednání i po explicitním odejmutí oprávnění přístupu k datům společnosti Facebook. Zde je ale vhodné uvést, že Power Venture \emph{přistupoval k profilům uživatelů pouze s jejich vlastním souhlasem}, ač bez souhlasu Facebooku.\cite{facebook_venture_2}
 
+\subsection{Shrnutí}
+
+V předchozích sekcích jsme si představili hlavní právní pojmy týkající se problematiky web scrapingu a nyní je na čase shrnout naše poznatky. Při získávání dat z internetových stránek může nastat hned několik komplikací z právního hlediska, na které by se autor takového softwaru měl připravit.
+
+Obsah může být chráněn autorským zákonem, pokud nabývá určitých rysů -- zejména se musí jednat o výsledek tvůrčí činnosti autora. Zároveň pod tuto oblast mohou spadat věci jako je obyčejná databáze, způsob, jakým jsou určitá data rozvrstvena a uspořádána na stránce nebo třeba rozpis fotbalových utkání. Další kategorie, do kterých data mohou spadat, jsou osobní údaje a projevy osobní povahy. Při jejich zpracování je nutné postupovat přesně podle stanovených pravidel v příslušných zákonech a právních úpravách. A i když data nejsou chráněna žádným zvláštním zákonem, stále je nutné řídit se smluvními podmínkami, které se mohou vztahovat na jakýkoliv obsah.
+
+Tím nejkritičtějším místem každého web scrapingu je ale způsob využití samotných dat. Ve směs je možné říci, že pokud používám data čistě pro svoji osobní/domácí potřebu, pro věděcké nebo pedagogické účely (kde má ale každé užití své podstatné náležitosti) a bez účelu dosažení hospodářského prospěchu, s největší pravděpodobností se nedopustím žádného protiprávního jednání. Vždy je ale tím nejbezpečnějším řešením kontaktovat provozovatele dané stránky a na detailech se dohodnout.
+
+Nutno také podotknout, že celá tato oblast je relativně nová a zatím neexistuje jednotný právní precedent\footnote{Kontinentální právo (na rozdíl od anglosaského) nezná precedenty (tj. všeobecně závazná soudní rozhodnutí), resp. nepovažuje je právě za závazné. Na druhou stranu by soudy měly ve stejných případech postupovat stejně. Proto si zde dovolím tento výraz použít.}, podle kterého by se soudy mohli při posuzování jednotlivých případů řídit. Proto také člověk může nabýt pocitu, že i když se jedná o často velmi podobné případy, výsledky soudních sporů jsou diametrálně odlišné. To se ale může změnit s případem \emph{hiQ v. LinkedIn}, který je pravděpodobně tím největším milníkem v právní historii web scrapingu -- pokud se výsledek ještě zvrátí ve prospěch společnosti LinkedIn, mohlo by to znamenat velké omezení otevřeného přístupu k informacím pro všechny.
+
 % ------------------------------------------------------------------------------------------------
 
 \newpage
-\section{Analýza konkurenčních nástrojů}
+\section{Analýza konkurence}
 První skupinou, na kterou můžeme při hledání na internetu narazit, jsou společnosti, které nabízejí zákazníkům kompletní péči v~rámci extrakce dat. Cílí především na velké korporace, jimž postaví scrapovací nástroj přesně na míru, který poté také hostují a spravují. Zákazník tedy dostane data a o~nic víc se již nemusí starat. Jako příklad lze jmenovat třeba ContentGrabber, Mozenda a další.
 
 Pro tuto práci mnohem relevantnější kategorií je konkurenční nabídka nástrojů poskytujících uživatelům rozhraní k~web scrapingu. Budu se zaměřovat pouze na takové nástroje, které nevyžadují jakoukoli znalost programování -- tedy žádné knihovny, API a nástroje pro budování vlastních scraperů.
@@ -344,9 +348,7 @@ Poj\v{d}me se tedy na některé nástroje podívat blíže:
 	\label{fig:dataScraper}
 \end{figure}
 
-% ================================================================================================
-
-\chapter{Návrh}
+% ------------------------------------------------------------------------------------------------
 
 \newpage
 \section{Specifikace požadavků}
@@ -414,38 +416,17 @@ V předchozích dvou sekcích jsme si shrnuli, jaké požadavky by naše aplikac
 \bibliography{mybibliographyfile}
 
 \begin{thebibliography}{99}
-	\bibitem{web_scraping_def}
-	VARGIU, Eloisa; URRU, Mirko. Exploiting web scraping in a collaborative filtering- based approach to web advertising. \textit{Artificial Intelligence Research} [online]. 2013, roč. 2, č. 1 [cit. 13. 4. 2019]. DOI: 10.5430/air.v2n1p44. ISSN 1927-6974. Dostupné z: \url{http://www.sciedu.ca/journal/index.php/air/article/view/1390/1115}.
-	
-	\bibitem{web_crawler_def}
-	KOBAYASHI, Mei; TAKEDA, Koichi.Information Retrieval on the Web. \textit{ACM Computing Surveys} [online]. 2000, roč. 32, č. 2 [cit. 13. 4. 2019]. DOI: 10.1145/358923.358934. ISSN 0360-0300. Dostupné z: \url{https://dl.acm.org/citation.cfm?doid=358923.358934}.
-	
-	\bibitem{web_wanderer}
-	World Wide Web Wanderer. In: \textit{History-Computer} [online] [cit 13. 4. 2019]. Dostupné z: \url{https://history-computer.com/Internet/Conquering/Wanderer.html}.
-	
-	\bibitem{web_scraping_history}
-	Web Scraping: How It All Started And Will Be. In: \textit{Octoparse's blog} [online]. © 2019 Octopus Data Inc. [cit. 13. 4. 2019]. Dostupné z: \url{https://www.octoparse.com/blog/web-scraping-introduction}.
-	
-	\bibitem{computer_vision}
-	ROUSH, Wade. Diffbot Is Using Computer Vision to Reinvent the Semantic Web. In: \textit{Xconomy} [online]. © 2007--2019, Xconomy [cit. 13. 4. 2019]. Dostupné z: \url{https://xconomy.com/san-francisco/2012/07/25/diffbot-is-using-computer-vision-to-reinvent-the-semantic-web/}.
-	
-	\bibitem{data_size}
-	WASSÉN, Olivia. Big Data facts – How much data is out there?. In: \textit{NodeGraph} [online]. © 2019 NodeGraph [cit. 13. 4. 2019]. Dostupné z: \url{https://www.nodegraph.se/big-data-facts/}.
-	
-	\bibitem{data_mining}
-	CLIFTON, Christopher. Data mining. In: \textit{Encyclopædia Britannica} [online]. ©2019 Encyclopædia Britannica, Inc. [cit. 13. 4. 2019]. Dostupné z: \url{https://www.britannica.com/technology/data-mining}.
-	
 	\bibitem{rozhovor}
 	VAŠÍČEK, Libor. [osobní sdělení]. Advokát specializující se na ICT právo a autorské právo. Sídlo advokátní kanceláře Legal Partners, s.~r.~o., Záhořanského 1944/4, Praha 2. 29. března 2019.
 	
 	\bibitem{browse_wrap}
-	KUNKEL, R. G. Recent developments in shrinkwrap, clickwrap and browsewrap licenses in the United States. \textit{MurUEJL} [online]. 2002, roč. 9, č. 3 [cit. 1. 4. 2019]. Dostupné z: \url{http://www5.austlii.edu.au/au/journals/MurUEJL/2002/34.html}.
+	KUNKEL, R. G. Recent developments in shrinkwrap, clickwrap and browsewrap licenses in the United States. \textit{MurUEJL} [online]. 2002, roč. 9, č. 3 [cit. 1. 4. 2019]. Dostupné z \url{http://www5.austlii.edu.au/au/journals/MurUEJL/2002/34.html}.
 	
 	\bibitem{take_it_or_leave_it}
 	What Is a Take It or Leave It Contract?. In: \textit{UpCounsel} [online]. © 2019 UpCounsel, Inc [cit. 1. 4. 2019]. Dostupné z: \url{https://www.upcounsel.com/take-it-or-leave-it-contract}.
 	
 	\bibitem{click_wrap}
-	OBAR, Jonathan A.; OELDORF-HIRSCH, Anne. The Clickwrap: A Political Economic Mechanism for Manufacturing Consent on Social Media. \textit{Social Media + Society} [online]. 2018, roč. 4, č. 3 [cit. 1. 4. 2019]. DOI: 10.1177/2056305118784770. ISSN 2056-3051. Dostupné z: \url{https://journals.sagepub.com/doi/10.1177/2056305118784770}.
+	OBAR, Jonathan A. a Anne OELDORF-HIRSCH. The Clickwrap: A Political Economic Mechanism for Manufacturing Consent on Social Media. \textit{Social Media + Society} [online]. 2018, roč. 4, č. 3 [cit. 1. 4. 2019]. DOI: 10.1177/2056305118784770. ISSN 2056-3051. Dostupné z \url{https://journals.sagepub.com/doi/10.1177/2056305118784770}
 	
 	\bibitem{obcansky_zakon}
 	ČESKO. Zákon č. 89/2012 Sb, občanský zákoník. In: \textit{Zákony pro lidi.cz} [online]. © AION CS 2010--2019 [cit. 30. 3. 2019]. Dostupné z: \url{https://www.zakonyprolidi.cz/cs/2012-89}.
@@ -455,9 +436,6 @@ V předchozích dvou sekcích jsme si shrnuli, jaké požadavky by naše aplikac
 	
 	\bibitem{polcak}
 	POLČÁK, Radim. \textit{Právo informačních technologií}. Praha: Wolters Kluwer, 2018. Právní monografie (Wolters Kluwer ČR). 656 stran. ISBN 978-80-7598-045-8.
-	
-	\bibitem{ikaros}
-	SMEJKAL, Ladislav. Právní ochrana databází v novém autorském zákoně. \textit{Ikaros} [online]. 2001, roč. 5, č. 3 [cit. 13. 4. 2019]. urn:nbn:cz:ik-10688. ISSN 1212-5075. Dostupné z: \url{http://ikaros.cz/node/10688}.
 	
 	\bibitem{C-444/02_1}
 	Věc C-444/02, stanovisko generální advokátky ze dne 8. června 2004 ve věci Fixtures Marketing Ltd v. Organismos prognostikon agonon podosfairou AE (OPAP). In: \textit{EUR-Lex} [online]. © European Union, 1998--2019 [cit. 30. 3. 2019]. Dostupné z: \url{https://eur-lex.europa.eu/legal-content/CS/TXT/?uri=CELEX:62002CC0444}.
