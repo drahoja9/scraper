@@ -234,11 +234,81 @@
 	Chrome-extensions se skládají z několika různých komponent:
 	\paragraph{Background script} je základní komponenta (můžeme si ji představit jako takový backend celého rozšíření), která se vykoná při každém spuštění prohlížeče. Zde je možné registrovat obsluhy různých událostí (např. když se otevře nová záložka v prohlížeči nebo když je dané rozšíření poprvé nainstalováno). 
 	\paragraph{Browser action} představuje tlačítko rozšíření umístěné v hlavním panelu nástrojů prohlížeče Google Chrome (vedle pole pro zadávání adresy). Po kliknutí na něj je vypuštěna událost mířící do background scriptu, kde se odehrává následné zpracování.
-	\paragraph{Content script} je tou nejdůležitější částí, jenž nás bude zajímat. Jedná se o kód, který se vloží do požadované stránky a spustí se v rámci jejího kontextu. To znamená, že každý takto vložený skript má kompletní přístup k DOMu dané stránky i všem ostatním skriptům. Stane se validní součástí stránky, může vytvářet, mazat nebo měnit prvky, a sice do doby, než je stránka obnovena a znovu načtena.
+	\paragraph{Content script} je tou nejdůležitější částí, jenž nás bude zajímat. Jedná se o kód, který se vloží do požadované stránky a spustí se v rámci jejího kontextu. To znamená, že každý takto vložený skript má \emph{kompletní přístup k DOMu} dané stránky i všem ostatním skriptům. Stane se validní součástí stránky, může \emph{vytvářet, mazat nebo měnit prvky}, a sice do doby, než je stránka obnovena a znovu načtena.
 	
-	\section{Zvolené řešení}
-	Jak již bylo řečeno v úvodu této kapitoly, použité řešení spočívá 
+	\section{Představení nástroje}
+	Před používáním nástroje je nutné si uvědomit jednu velmi podstatnou věc, a sice, co je výsledek, který očekáváme na konci. Jak mají vypadat data, která plánujeme extrahovat, jakou mají mít podobu? V rámci našeho nástroje se bude ve výsledku jednat vždy o \emph{tabulku}. Toto je nezbytné pro pochopení celého procesu.
 	
+	Nyní se můžeme podívat na spuštění aplikace (předpokládejme, že rozšíření je již nainstalované v prohlížeči):
+	\begin{enumerate}
+		\item Uživatel navštíví stránku, ze které si přeje extrahovat dat.
+		\item Klikne na ikonu rozšíření nacházející se v pravém horním rohu prohlížeče, v hlavním panelu nástrojů.
+		\item Zobrazí se hlavní ovládací panel a aplikace je připravena k výběru dat, viz Obrázek \ref{fig:scraper_control_panel}.
+	\end{enumerate}
+	\begin{figure}[h]
+		\includegraphics[width=\linewidth]{images/Scraper_control_panel.png}
+		\caption{Ovládací panel aplikace}
+		\label{fig:scraper_control_panel}
+	\end{figure}
+
+	Jak jsme si řekli v úvodu, výsledná data budou ve formě tabulky, tedy musíme vybrat, které elementy na stránce budou reprezentovat řádky výsledné tabulky a které budou reprezentovat sloupce, viz Obrázek \ref{fig:scraper_rows_cols}. K tomu slouží dvě velká tlačítka \textsf{Rows} a \textsf{Columns}, kterými se přepíná výběr právě mezi řádky a sloupci. Doporučený postup je nejdřív vybrat řádky\footnote{To budou nejčastěji různé \uv{kontejnery}, které sdružují data jedné entity dohromady -- jako příklad lze uvést kartu produktu v přehledu produktů e-shopu.} a poté uvnitř těchto větších elementů vybírat sloupce\footnote{To může být například cena nebo jméno daného produktu.}.
+	\begin{figure}
+		\includegraphics[width=\linewidth]{images/Scraper_rows_cols.png}
+		\caption{Výběr řádků (tyrkysově) a sloupců (vínově)}
+		\label{fig:scraper_rows_cols}
+	\end{figure}
+	
+	Dle zadání v kapitole Návrh, sekce Specifikace požadavků, probíhá selekce třemi způsoby -- ruční označování prvků, hledání na základě textové shody a výběr pomocí CSS selektorů. Tyto tři druhy výběru jsou stejné jak pro výběr řádků, tak pro výběr sloupců. Jakýkoli výběr lze vzít zpět nebo následně provést znovu pomocí tlačítek \textsf{Undo} a \textsf{Redo} v horní části nástroje. Následuje popis každého ze způsobů výběru:
+	\begin{description}
+		\item[Ruční označování] se nachází na kartě \textsf{Basics} a probíhá jednoduše klikáním myši na požadované elementy. Pokud uživatel při vybírání podrží klávesu \textsf{Ctrl/control}, aplikace se pokusí vybrat všechny podobné prvky na základě předchozího kliknutí. Kliknutím na již označený element se výběr zruší.
+		
+		Největší část výběrů bude představovat právě tento způsob.
+		\item [Textová shoda] se nalézá na kartě \textsf{Text search}, která se skládá ze tří samostatných formulářů. Uživatel má možnost vybrat všechny elementy na stránce, jejichž text buď:
+		\begin{enumerate}[a)]
+			\item začíná daným výrazem,
+			\item končí daným výrazem,
+			\item obsahuje daný výraz nebo se mu přímo rovná.
+		\end{enumerate}
+		Tento způsob se osvědčí například v případě, kdy chceme vybrat všechny e-mailové adresy na stránce -- stačí hledat prvky, které obsahují zavináč.
+		\item [CSS selektory] najdeme na kartě s názvem \textsf{CSS selectors} a jedná se o jednoduché textové pole, které přijímá libovolný CSS selektor. Můžeme tedy pomocí něj vybírat na základě HTML tagů (\textsf{jmenoTagu}), tříd (\textsf{.jmenoTridy}), atributů (\textsf{[atribut=hodnota]}), různé následnosti (\textsf{otec $>$ syn $+$ naslednik}) a zkrátka vše, co CSS selektory umí, viz \href{https://www.w3schools.com/cssref/css_selectors.asp}{přehled selektorů}.
+		
+		Toto je jistě nejsilnější z uvedených způsobů, jelikož s ním jde vybrat libovolná skupina prvků, avšak předpokládá alespoň základní znalost HTML, CSS a především struktury stránky. Je tedy spíš pro pokročilejší uživatele.
+	\end{description}
+	\begin{figure}[h]
+		\includegraphics[width=\linewidth]{images/Scraper_text_search.png}
+		\caption{Výběr na základě textové shody}
+		\label{fig:scraper_text_search}
+	\end{figure}
+
+	Může se stát, že požadovaný element nejde označit ručně. Pro tyto případy je každý vybraný prvek opatřen čtveřicí tlačítek, která se objeví, pokud uživatel najede kurzorem na daný element, viz Obrázek \ref{fig:scraper_dom_navigation}. Tlačítko \textsf{$+$} posune označení na rodiče prvku, \textsf{$-$} na prvního syna, \textsf{$\leftarrow$} na předchozího sourozence a tlačítko \textsf{$\rightarrow$} na následujícího sourozence. Tímto způsobem může uživatel traverzovat napříč celým DOMem a vybrat tak libovolný prvek.
+	\begin{figure}[h]
+		\includegraphics[width=\linewidth]{images/Scraper_dom_navigation.png}
+		\caption{Navigace výběru napříč dokumentem}
+		\label{fig:scraper_dom_navigation}
+	\end{figure}
+
+	Poté, co jsme s výběrem hotovi, je možné data prohlídnout v tzv. \textit{Preview módu}. Zobrazí se tabulka obsahující námi zadané řádky a sloupce\footnote{Nutno podotknout, že prvky označené jako sloupce, které se nenacházejí uvnitř prvku označeného jako řádek, nebudou zahrnuty do výsledku.}. V tuto chvíli je možné zkontrolovat veškerá extrahovaná data a případně vyřadit ta, která nevyhovují našemu výběru pomocí křížku na levé straně každého řádku (ten se objeví až po najetí kurzorem na daný řádek), viz Obrázek \ref{fig:scraper_preview_mode}. Vyřazení záznamu způsobí zrušení výběru elementů, které obsahují příslušná data.
+	\begin{figure}[h]
+		\includegraphics[width=\linewidth]{images/Scraper_preview_mode.png}
+		\caption{Tabulka obsahující náhled extrahovaných dat}
+		\label{fig:scraper_preview_mode}
+	\end{figure}
+
+	Na závěr stačí pomocí rozbalovacího výběru zvolit formát, do kterého chceme data exportovat (zatím je na výběr CSV a JSON) a kliknout na tlačítko \textsf{Download}.
+	
+	\section{Implementace zvoleného řešení}
+	\subsection{Inicializace a spuštění}
+	Jak již bylo řečeno v úvodu této kapitoly, použité řešení spočívá ve vložení ovládacího panelu do libovolné stránky. To umožňuje právě komponenta content script, jež byla zmíněna výše. Základní běh aplikace vypadá následovně:
+	\begin{enumerate}
+		\item Po instalaci rozšíření do prohlížeče Google Chrome (a každém jeho spuštění) je vykonán kód, který je obsažen v background scriptu. Zde se nachází pouze obsluha vyzývající content script k zobrazení nebo schování ovládacího panelu.
+		\item Když je rozšíření aktivní, do \emph{každé} načtené stránky je vložen content script, jenž poslouchá zprávy od background scriptu.
+		\item Kliknutím na ikonu rozšíření v hlavním panelu nástrojů prohlížeče je vyvolána událost, na kterou reaguje background script -- aktivnímu oknu/záložce zašle zprávu, aby byl otevřen ovládací panel. 
+		\item Tu odchytí content script, který na dané stránce poslouchá a vloží do těla stránky nový iframe, do něhož načte HTML dokument, který představuje samotný ovládací panel. Při další žádostech je panel pouze skryt/zobrazen.
+	\end{enumerate}
+	Obrázek \ref{fig:scraper_control_panel} ilustruje, jak ovládací panel vypadá po vložení do stránky.
+	
+
+	\subsection{Výběr dat}
 	
 	% ================================================================================================
 	
