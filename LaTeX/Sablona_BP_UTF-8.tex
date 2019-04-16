@@ -137,7 +137,7 @@ Nutno také podotknout, že celá tato oblast je relativně nová a zatím neexi
 
 \paragraph{Browsewrap} je jeden ze způsobů dohody mezi dvěma stranami kontraktu. Není nutná žádná přímá interakce s uživatelem, ať už jde o souhlas či nesouhlas. Místo toho je na webové stránce (nejčastěji v dolní části) umístěna krátká zpráva informující, že pouhým procházením daného webu souhlasí s podmínkami používání (Terms of Service). Ty jsou umístěny na samostatné stránce, na kterou vede odkaz, jenž je součástí této zprávy. U tohoto způsobu je těžké posoudit, zdali je tu jasný projev vůle, a tak je jeho vymahatelnost sporná a liší se případ od případu.\cite{browse_wrap}
 
-\paragraph{Clickwrap}\label{def:clickwrap} je oproti browse-wrap daleko lépe vymahatelný, neboť je uživatel nucen přímo vyjádřit souhlas či nesouhlas (kliknutím na tlačítko, zaškrtnutím políčka) se všemi uvedenými podmínkami, a to \emph{před} použitím dané služby. Tím je zde jasně určen projev vůle. Podmínky jsou stejně jako v případě browse-wrap často umístěny na samostatné stránce a je k nim uveden pouze odkaz, i když někdy je k dispozici i celé jejich znění. Jedná se o tzv. \emph{ber nebo nech být} smlouvu -- \uv{\emph{Ber nebo nech být smlouva, také nazývána adhezní smlouva, říká, že smluvní podmínky nemůžou být vyjednávány.}}\cite[překlad autora]{take_it_or_leave_it}.\cite{click_wrap}
+\paragraph{Clickwrap}\label{def:clickwrap} je oproti browse-wrap daleko lépe vymahatelný, neboť je uživa-tel nucen přímo vyjádřit souhlas či nesouhlas (kliknutím na tlačítko nebo zaškrtnutím políčka) se všemi uvedenými podmínkami, a to \emph{před} použitím dané služby. Tím je zde jasně určen projev vůle. Podmínky jsou stejně jako v případě browsewrap často umístěny na samostatné stránce a je k nim uveden pouze odkaz, i když někdy je k dispozici i celé jejich znění. Jedná se o tzv. \emph{ber nebo nech být} smlouvu -- \uv{\emph{Ber nebo nech být smlouva, také nazývána adhezní smlouva, říká, že smluvní podmínky nemůžou být vyjednávány.}}\cite[překlad autora]{take_it_or_leave_it}.\cite{click_wrap}
 
 \subsection{Odpovědnost v případě protiprávního jednání}
 Ve chvíli, kdy se uživatel dopustí protiprávního jednání při využívání určitého nástroje, odpovědnost jednoznačně spočívá na něm, nikoliv na tvůrci aplikace. Zároveň je třeba upozornit, že autor softwaru odpovídá v situaci, kdy je software primárně určen k protiprávnímu jednání. Lze tedy jen doporučit, aby byl uživatel prokazatelně seznámen s odpovědností za užívání softwaru v souladu s právem.\cite{rozhovor}
@@ -290,7 +290,7 @@ Poj\v{d}me se tedy na některé nástroje podívat blíže:
 	\item možnost získání dat různými formami -- přes API, jako CSV/XLS nebo do Dropboxu
 	\item klávesové zkratky při výběru elementů velmi usnadňují práci
 	\item možnost využít jejich cloud k~automatizaci celého procesu
-	\item oproti konkurenci nabízí přehledné rozhraní, rychlé a jednoduché používání
+	\item oproti konkurenci nabízí přehledné rozhraní a ne tak složité používání
 \end{itemize}
 \newpage
 \textbf{Nevýhody:}
@@ -312,7 +312,7 @@ Poj\v{d}me se tedy na některé nástroje podívat blíže:
 	\item mnoho návodů dostupných na stránkách, interaktivní rádce přímo při scrapování
 	\item všechny možné druhy kliknutí, takže lze lehce projít celou doménu
 	\item možnost exportovat data do CSV, JSON, XLS, získat přes API, poslat do Google Drive, Google Sheets nebo Amazon S3
-	\item různé módy aplikace -- scraping, crawler, pipes (skládání menších scrape botů) a autobot (extrahování z~více stránek najednou se stejným rozložením); možnost takto automatizovat celý proces.
+	\item různé módy aplikace -- scraping, crawler, pipes (skládání menších scrape botů) a autobot (extrahování z~více stránek najednou se stejným rozlo-žením); možnost takto automatizovat celý proces.
 	\item nápomocné jsou různé addony (např. na obcházení Captchy)
 \end{itemize}
 \textbf{Nevýhody:}
@@ -328,7 +328,7 @@ Poj\v{d}me se tedy na některé nástroje podívat blíže:
 	\item jednoduchá instalace (jedná se pouze o~rozšíření do prohlížeče Google Chrome).
 	\item velmi jednoduché ovládání a přehledné rozhraní
 	\item výběr dat probíhá pomocí klikání
-	\item klikáním se utváří JQuery selektor, který si uživatel může podle svého upravit a doladit tak drobné detaily, jež by jinak nutně zahltily uživatelské rozhraní (tedy je možné vyhledávat i podle HTML tagů, id, CSS selektorů -- zkrátka vše, co umí klasické JQuery)
+	\item klikáním se utváří JQuery selektor, který si uživatel může podle svého upravit a doladit tak drobné detaily, jež by jinak nutně zahltily uživatel-ské rozhraní (tedy je možné vyhledávat i podle HTML tagů, id, CSS selektorů -- zkrátka vše, co umí klasické JQuery)
 	\item různé druhy kliknutí
 	\item možnost spustit na stránce libovolný JavaScriptový kód v~rámci scrapování
 \end{itemize}
@@ -346,7 +346,7 @@ Poj\v{d}me se tedy na některé nástroje podívat blíže:
 % ================================================================================================
 
 \chapter{Návrh}
-Tato kapitola definuje funkční i nefunkční požadavky kladené na vyvíjený software, jež částečně vyplývají z předchozí analýzy stávajících řešení -- problémy konkurenčních nástrojů se snaží napravit, zároveň agregují dobré vlastnosti zmíněných aplikací. Poté je věnován prostor návrhu celé architektury systému a v závěru kapitoly i návrhu uživatelského rozhraní.
+Tato kapitola definuje funkční i nefunkční požadavky kladené na vyvíjený software, jež částečně vyplývají z předchozí analýzy stávajících řešení -- problémy konkurenčních nástrojů se snaží napravit, zároveň agregují dobré vlastnosti zmíněných aplikací. Součástí kapitole je také diskuze případů užití výsledné aplikace. Poté je věnován prostor návrhu celé architektury systému a v závěru kapitoly i návrhu uživatelského rozhraní.
 
 % ------------------------------------------------------------------------------------------------
 
@@ -374,7 +374,7 @@ Pojďme si nyní všechny požadavky shrnout do několika bodů a rozdělit na f
 			\item Prvek bude vybrán, pokud se jeho text přesně shoduje s hledaným výrazem
 		\end{enumerate}
 		\item pomocí CSS selektorů (tedy HTML tagy, třídy, id, hodnoty atributu, různé následnosti a vše ostatní, co CSS selektory umožňují, viz \href{https://www.w3schools.com/cssref/css_selectors.asp}{přehled CSS selektorů})
-		\item na ovládacím panelu nalezneme i tlačítka s hotovými akcemi před-stavující šablonu pro nejpoužívanější operace (stažení všech obrázků ze stránky, všech emailových adres atd.)
+		\item na ovládacím panelu nalezneme i tlačítka s hotovými akcemi před-stavující šablonu pro nejpoužívanější operace (stažení všech e-mail-ových adres ze stránky, všech obrázků atd.)
 	\end{itemize}
 	\item pokud vybraným prvkem bude $\left<img\right>$ HTML tag, bude místo jeho textu extrahován atribut \textsf{src} (tedy zdroj obrázku)
 	\item po kliknutí na určitý prvek s přidrženou klávesou \textsf{Ctrl/control} se program pokusí vybrat všechny podobné prvky na základě předchozí selekce (tzv. \emph{auto-selection})
@@ -406,17 +406,17 @@ V předchozích dvou sekcích je shrnuto, jaké požadavky by aplikace v každé
 
 % ------------------------------------------------------------------------------------------------
 
+\section{Případy užití}
+\dots
+
+% ------------------------------------------------------------------------------------------------
+
 \section{Architektura systému}
 \dots
 
 % ------------------------------------------------------------------------------------------------
 
 \section{Návrh uživatelského rozhraní}
-\dots
-
-% ------------------------------------------------------------------------------------------------
-
-\section{Případy užití}
 \dots
 
 % ================================================================================================
@@ -439,18 +439,18 @@ Možnou alternativou by bylo stáhnout veškerý obsah ze zadané domény (HTML,
 Na problém se však lze dívat i opačně a základní myšlenku invertovat, což nás dovede k použitému řešení. Pokud není možné vložit stránku do webové aplikace, je nutné vložit aplikaci do požadované stránky. To lze elegantně vyřešit pomocí rozšíření do internetového prohlížeče Google Chrome -- tzv. \emph{Chrome-extension}.
 
 \section{Použité technologie}	
-Celé řešení zadaného problému je implementováno jako rozšíření do internetového prohlížeče Google Chrome (jehož popisu se věnuji níže). Z tohoto důvodu je zvoleným programovacím jazykem čistý JavaScript, resp. ECMAScript 2018 verze 9. Dále je použit značkovací jazyk HTML k definici struktury celého ovládacího panelu a zbylých kontrolních prvků spolu s CSS jazykem určujícím styl zobrazení jednotlivých elementů. K testování aplikace byl použit JavaScriptový testovací framework Jest.
+Celé řešení zadaného problému je implementováno jako rozšíření do internetového prohlížeče Google Chrome (jehož popisu se věnuji níže). Z tohoto důvodu je zvoleným programovacím jazykem čistý JavaScript, resp. ECMA-Script 2018 verze 9. Dále je použit značkovací jazyk HTML k definici struktury celého ovládacího panelu a zbylých kontrolních prvků spolu s CSS jazykem určujícím styl zobrazení jednotlivých elementů. K testování aplikace byl použit JavaScriptový testovací framework Jest.
 
 \subsection{Rozšíření do prohlížeče Google Chrome}
 Chrome-extensions se skládají z několika různých komponent:
-\paragraph{Background script} je základní komponenta (můžeme si ji představit jako takový backend celého rozšíření), která se vykoná při každém spuštění prohlížeče. Zde je možné registrovat obsluhy různých událostí (např. když se otevře nová záložka v prohlížeči nebo když je dané rozšíření poprvé nainstalováno). 
+\paragraph{Background script} je základní komponenta (můžeme si ji představit jako takový backend celého rozšíření), která se vykoná při každém spuštění prohlí-žeče. Zde je možné registrovat obsluhy různých událostí (např. když se otevře nová záložka v prohlížeči nebo když je dané rozšíření poprvé nainstalováno). 
 \paragraph{Browser action} představuje tlačítko rozšíření umístěné v hlavním panelu nástrojů prohlížeče Google Chrome (vedle pole pro zadávání adresy). Po kliknutí na něj je vypuštěna událost mířící do background scriptu, kde se odehrává následné zpracování.
-\paragraph{Content script}\label{def:content_script} je tou nejdůležitější částí, jenž nás bude zajímat. Jedná se o kód, který se vloží do požadované stránky a spustí se v rámci jejího kontextu. To znamená, že každý takto vložený skript má \emph{kompletní přístup k DOMu} dané stránky i všem ostatním skriptům. Stane se validní součástí stránky, může \emph{vytvářet, mazat nebo měnit prvky}, a sice do doby, než je stránka obnovena a znovu načtena.
+\paragraph{Content script}\label{def:content_script} je tou nejdůležitější částí, jenž nás bude zajímat. Jedná se o kód, který je vložen do požadované stránky a spustí se v rámci jejího kontextu. To znamená, že každý takto vložený skript má \emph{kompletní přístup k DOMu} dané stránky i všem ostatním skriptům. Stane se validní součástí stránky, může \emph{vytvářet, mazat nebo měnit prvky}, a sice do doby, než je stránka obnovena a znovu načtena.
 
 \section{Představení nástroje}
-Před používáním nástroje je nutné si uvědomit jednu velmi podstatnou věc, a sice, co je výsledek, který očekáváme na konci. Jak mají vypadat data, která plánujeme extrahovat, jakou mají mít podobu? V rámci našeho nástroje se bude ve výsledku jednat vždy o \emph{tabulku}. Toto je nezbytné pro pochopení celého procesu.
+Před používáním nástroje je nutné si uvědomit jednu velmi podstatnou věc -- co je výsledek, který očekáváme na konci. Jak mají vypadat data, která plánujeme extrahovat, jakou mají mít podobu? V rámci našeho nástroje se bude ve výsledku jednat vždy o \emph{tabulku}. Toto je nezbytné pro pochopení celého procesu.
 
-Nyní se můžeme podívat na spuštění aplikace (předpokládejme, že rozšíření je již nainstalované v prohlížeči):
+Nyní se můžeme podívat na použití aplikace (předpokládejme, že rozšíření je již nainstalované v prohlížeči):
 \begin{enumerate}
 	\item Uživatel navštíví stránku, ze které si přeje extrahovat dat.
 	\item Klikne na ikonu rozšíření nacházející se v pravém horním rohu prohlížeče, v hlavním panelu nástrojů.
@@ -471,7 +471,7 @@ Jak jsme si řekli v úvodu, výsledná data budou ve formě tabulky, tedy musí
 
 Dle zadání v kapitole Návrh, sekce Specifikace požadavků, probíhá selekce třemi způsoby -- ruční označování prvků, hledání na základě textové shody a výběr pomocí CSS selektorů. Tyto tři druhy výběru jsou stejné jak pro výběr řádků, tak pro výběr sloupců. Jakýkoli výběr lze vzít zpět nebo následně provést znovu pomocí tlačítek \textsf{Undo} a \textsf{Redo} v horní části nástroje. Následuje popis každého ze způsobů výběru:
 \begin{description}
-	\item[Ruční označování] probíhá jednoduše klikáním myši na požadované elementy a zapíná se přepínačem nacházejícím se na kartě \textsf{Basics}. Pokud uživatel při vybírání podrží klávesu \textsf{Ctrl/control}, aplikace se pokusí vybrat všechny podobné prvky na základě předchozího kliknutí. Kliknutím na již označený element se výběr zruší.
+	\item[Ruční označování] probíhá klikáním myši na požadované elementy a zapíná se přepínačem nacházejícím se na kartě \textsf{Basics}. Pokud uživatel při vybí-rání podrží klávesu \textsf{Ctrl}, aplikace se pokusí vybrat všechny podobné prvky na základě předchozího kliknutí. Kliknutím na již označený element se výběr zruší.
 	
 	Největší část výběrů bude představovat právě tento způsob.
 	\item [Textová shoda] se nalézá na kartě \textsf{Text search}, která se skládá ze tří samostatných formulářů. Uživatel má možnost vybrat všechny elementy na stránce, jejichž text buď:
@@ -485,6 +485,7 @@ Dle zadání v kapitole Návrh, sekce Specifikace požadavků, probíhá selekce
 	
 	Toto je jistě nejsilnější z uvedených způsobů, jelikož s ním jde vybrat libovolná skupina prvků, avšak předpokládá alespoň základní znalost HTML, CSS a především struktury stránky. Je tedy spíš pro pokročilejší uživatele.
 \end{description}
+\vfill
 \begin{figure}[h]
 	\centering
 	\begin{minipage}{.5\linewidth}
@@ -501,7 +502,8 @@ Dle zadání v kapitole Návrh, sekce Specifikace požadavků, probíhá selekce
 	\end{minipage}
 \end{figure}
 
-Může se stát, že požadovaný element nejde označit ručně. Pro tyto případy je každý vybraný prvek opatřen čtveřicí tlačítek, která se objeví, pokud uživatel najede kurzorem na daný element, viz Obrázek \ref{fig:scraper_dom_navigation}. Tlačítko \textsf{$+$} posune označení na prvního syna, \textsf{$-$} na otce prvku, \textsf{$\leftarrow$} na předchozího sourozence a tlačítko \textsf{$\rightarrow$} na následujícího sourozence. Tímto způsobem může uživatel traverzovat napříč celým DOMem a vybrat tak libovolný prvek.
+\newpage
+Může se stát, že požadovaný element nejde označit ručně. Pro tyto případy je každý vybraný prvek opatřen čtveřicí tlačítek, která se objeví, pokud uživatel najede kurzorem na daný element, viz Obrázek \ref{fig:scraper_dom_navigation}. Tlačítko \textsf{$+$} posune označení na prvního syna prvku, \textsf{$-$} na otce, \textsf{$\leftarrow$} na předchozího sourozence a tlačítko \textsf{$\rightarrow$} na následujícího sourozence. Tímto způsobem může uživatel traverzovat napříč celým DOMem a vybrat tak libovolný prvek.
 \begin{figure}[h]
 	\includegraphics[width=\linewidth]{images/Scraper_dom_navigation.png}
 	\caption{Navigace výběru napříč dokumentem}
@@ -517,14 +519,15 @@ Poté, co jsme s výběrem hotovi, je možné data prohlídnout v tzv. \textit{P
 
 Na závěr stačí pomocí rozbalovacího výběru zvolit formát, do kterého chceme data exportovat (zatím je na výběr CSV a JSON) a kliknout na tlačítko \textsf{Download}.
 
+\newpage
 \section{Implementace zvoleného řešení}
 \subsection{Inicializace a spuštění}
-Jak již bylo řečeno v úvodu této kapitoly, použité řešení spočívá ve vložení ovládacího panelu do libovolné stránky. To umožňuje právě komponenta \hyperref[def:content_script]{content script}, jež byla zmíněna výše. Základní běh aplikace vypadá následovně:
+Jak již bylo řečeno v úvodu této kapitoly, použité řešení spočívá ve vložení ovládacího panelu do libovolné stránky. To umožňuje právě komponenta \hyperref[def:content_script]{content script}, jež byla zmíněna výše. Spuštění aplikace vypadá následovně:
 \begin{enumerate}
 	\item Po instalaci rozšíření do prohlížeče Google Chrome (a každém jeho spuštění) je vykonán kód, který je obsažen v background scriptu. Zde se nachází pouze obsluha vyzývající content script k zobrazení nebo schování ovládacího panelu.
 	\item Když je rozšíření aktivní, do \emph{každé} načtené stránky je vložen content script, jenž poslouchá zprávy od background scriptu.
-	\item Kliknutím na ikonu rozšíření v hlavním panelu nástrojů prohlížeče je vyvolána událost, na kterou reaguje background script -- aktivnímu oknu/záložce zašle zprávu, aby byl otevřen ovládací panel. 
-	\item Tu odchytí content script, který na dané stránce poslouchá a vloží do těla stránky nový iframe, do něhož načte HTML dokument, který představuje samotný ovládací panel. Při další žádostech je iframe pouze skryt/zobrazen.
+	\item Kliknutím na ikonu rozšíření v hlavním panelu nástrojů je vyvolána událost, na kterou reaguje background script -- aktivnímu oknu/záložce zašle zprávu, aby byl otevřen ovládací panel. 
+	\item Tu odchytí content script, který na dané stránce poslouchá a vloží do těla stránky nový iframe, do něhož načte HTML dokument, který představuje samotný ovládací panel. Při další žádostech je iframe pouze skryt/zobra-zen.
 	\item Vhodným nastavením příslušných CSS vlastností je iframe umístěn na boční straně prohlížené stránky a nabývá formy ovládacího panelu. 
 \end{enumerate}
 Obrázek \ref{fig:scraper_control_panel} ilustruje, jak ovládací panel vypadá po vložení do stránky.
@@ -563,10 +566,10 @@ Obrázek \ref{fig:scraper_control_panel} ilustruje, jak ovládací panel vypadá
 
 \begin{thebibliography}{99}
 	\bibitem{web_scraping_def}
-	VARGIU, Eloisa; URRU, Mirko. Exploiting web scraping in a collaborative filtering- based approach to web advertising. \textit{Artificial Intelligence Research} [online]. 2013, roč. 2, č. 1 [cit. 13. 4. 2019]. DOI: 10.5430/air.v2n1p44. ISSN 1927-6974. Dostupné z: \url{http://www.sciedu.ca/journal/index.php/air/article/view/1390/1115}.
+	VARGIU, Eloisa; URRU, Mirko. Exploiting web scraping in a collaborative filtering-based approach to web advertising. \textit{Artificial Intelligence Research} [online]. 2013, roč. 2, č. 1 [cit. 13. 4. 2019]. DOI: 10.5430/air.v2n1p44. ISSN 1927-6974. Dostupné z: \url{http://www.sciedu.ca/journal/index.php/air/article/view/1390/1115}.
 	
 	\bibitem{web_crawler_def}
-	KOBAYASHI, Mei; TAKEDA, Koichi.Information Retrieval on the Web. \textit{ACM Computing Surveys} [online]. 2000, roč. 32, č. 2 [cit. 13. 4. 2019]. DOI: 10.1145/358923.358934. ISSN 0360-0300. Dostupné z: \url{https://dl.acm.org/citation.cfm?doid=358923.358934}.
+	KOBAYASHI, Mei; TAKEDA, Koichi. Information Retrieval on the Web. \textit{ACM Computing Surveys} [online]. 2000, roč. 32, č. 2 [cit. 13. 4. 2019]. DOI: 10.1145/358923.358934. ISSN 0360-0300. Dostupné z: \url{https://dl.acm.org/citation.cfm?doid=358923.358934}.
 	
 	\bibitem{web_wanderer}
 	World Wide Web Wanderer. In: \textit{History-Computer} [online] [cit 13. 4. 2019]. Dostupné z: \url{https://history-computer.com/Internet/Conquering/Wanderer.html}.
@@ -578,7 +581,7 @@ Obrázek \ref{fig:scraper_control_panel} ilustruje, jak ovládací panel vypadá
 	ROUSH, Wade. Diffbot Is Using Computer Vision to Reinvent the Semantic Web. In: \textit{Xconomy} [online]. © 2007--2019, Xconomy [cit. 13. 4. 2019]. Dostupné z: \url{https://xconomy.com/san-francisco/2012/07/25/diffbot-is-using-computer-vision-to-reinvent-the-semantic-web/}.
 	
 	\bibitem{data_size}
-	WASSÉN, Olivia. Big Data facts – How much data is out there?. In: \textit{NodeGraph} [online]. © 2019 NodeGraph [cit. 13. 4. 2019]. Dostupné z: \url{https://www.nodegraph.se/big-data-facts/}.
+	WASSÉN, Olivia. Big Data facts -- How much data is out there? In: \textit{NodeGraph} [online]. © 2019 NodeGraph [cit. 13. 4. 2019]. Dostupné z: \url{https://www.nodegraph.se/big-data-facts/}.
 	
 	\bibitem{data_mining}
 	CLIFTON, Christopher. Data mining. In: \textit{Encyclopædia Britannica} [online]. ©2019 Encyclopædia Britannica, Inc. [cit. 13. 4. 2019]. Dostupné z: \url{https://www.britannica.com/technology/data-mining}.
@@ -587,7 +590,7 @@ Obrázek \ref{fig:scraper_control_panel} ilustruje, jak ovládací panel vypadá
 	KUNKEL, R. G. Recent developments in shrinkwrap, clickwrap and browsewrap licenses in the United States. \textit{MurUEJL} [online]. 2002, roč. 9, č. 3 [cit. 1. 4. 2019]. Dostupné z: \url{http://www5.austlii.edu.au/au/journals/MurUEJL/2002/34.html}.
 	
 	\bibitem{take_it_or_leave_it}
-	What Is a Take It or Leave It Contract?. In: \textit{UpCounsel} [online]. © 2019 UpCounsel, Inc [cit. 1. 4. 2019]. Dostupné z: \url{https://www.upcounsel.com/take-it-or-leave-it-contract}.
+	What Is a Take It or Leave It Contract? In: \textit{UpCounsel} [online]. © 2019 UpCounsel, Inc. [cit. 1. 4. 2019]. Dostupné z: \url{https://www.upcounsel.com/take-it-or-leave-it-contract}.
 	
 	\bibitem{click_wrap}
 	OBAR, Jonathan A.; OELDORF-HIRSCH, Anne. The Clickwrap: A Political Economic Mechanism for Manufacturing Consent on Social Media. \textit{Social Media + Society} [online]. 2018, roč. 4, č. 3 [cit. 1. 4. 2019]. DOI: 10.1177/2056305118784770. ISSN 2056-3051. Dostupné z: \url{https://journals.sagepub.com/doi/10.1177/2056305118784770}.
@@ -614,7 +617,7 @@ Obrázek \ref{fig:scraper_control_panel} ilustruje, jak ovládací panel vypadá
 	Věc C-444/02, rozsudek Soudního dvora (velkého senátu) ze dne 9. listopadu 2004 ve věci Fixtures Marketing Ltd v. Organismos prognostikon agonon podosfairou AE (OPAP). In: \textit{EUR-Lex} [online]. © European Union, 1998--2019 [cit. 30. 3. 2019]. Dostupné z: \url{https://eur-lex.europa.eu/legal-content/CS/TXT/?uri=CELEX:62002CJ0444}.
 	
 	\bibitem{C-30/14}
-	Věc C-30/14, rozsudek Soudního dvora (druhého senátu) ze dne 15. ledna 2015 ve věci Ryanair Ltd v. PR Aviation BV. In: \textit{EUR-Lex} [online]. © European Union, 1998--2019 [cit. 30. 3. 2019] .Dostupné z: \url{https://eur-lex.europa.eu/legal-content/CS/TXT/?uri=CELEX:62014CJ0030}.
+	Věc C-30/14, rozsudek Soudního dvora (druhého senátu) ze dne 15. ledna 2015 ve věci Ryanair Ltd v. PR Aviation BV. In: \textit{EUR-Lex} [online]. © European Union, 1998--2019 [cit. 30. 3. 2019]. Dostupné z: \url{https://eur-lex.europa.eu/legal-content/CS/TXT/?uri=CELEX:62014CJ0030}.
 	
 	\bibitem{hiq_linkedin_1}
 	Case 17-cv-03301-EMC, order granting plaintiff's motion for preliminary injunction, filed 08/14/17. In: \textit{The United States District Court for the Northern District of California} [online]. United States District Court [cit. 30. 3. 2019]. Dostupné z: \url{https://www.cand.uscourts.gov/filelibrary/3170/C-17-3301-hiQ-v.-LinkedIn-Order-Docket-No.-63.pdf}.
@@ -623,7 +626,7 @@ Obrázek \ref{fig:scraper_control_panel} ilustruje, jak ovládací panel vypadá
 	WILLIAMS, Jamie. ‘Scraping’ Is Just Automated Access, and Everyone Does It. In: \textit{Electronic Frontier Foundation} [online]. Electronic Frontier Foundation [cit. 1. 4. 2019]. Dostupné z: \url{https://www.eff.org/deeplinks/2018/04/scraping-just-automated-access-and-everyone-does-it}
 	
 	\bibitem{public_forum}
-	Forums, In: \textit{Legal Information Institute} [online]. Cornell Law School [cit. 30. 3. 2019]. Dostupné z: \url{https://www.law.cornell.edu/wex/forums}.
+	Forums. In: \textit{Legal Information Institute} [online]. Cornell Law School [cit. 30. 3. 2019]. Dostupné z: \url{https://www.law.cornell.edu/wex/forums}.
 	
 	\bibitem{hiq_linkedin_2}
 	NARULA, Prayag. LinkedIn Vs. hiQ Ruling Casts A Long Shadow Over The Tech Industry. In: \textit{Forbes} [online]. © 2019 Forbes Media LLC [cit. 30. 3. 2019]. Dostupné z: \url{https://www.forbes.com/sites/forbestechcouncil/2017/09/20/linkedin-vs-hiq-ruling-casts-a-long-shadow-over-the-tech-industry}.
@@ -632,7 +635,7 @@ Obrázek \ref{fig:scraper_control_panel} ilustruje, jak ovládací panel vypadá
 	Case 13-17154, Facebook v. Vachani. In: \textit{United States Court of Appeals for the Ninth Circuit} [online]. [cit. 31. 3. 2019]. Dostupné z: \url{https://cdn.ca9.uscourts.gov/datastore/opinions/2016/07/12/13-17102.pdf}.
 	
 	\bibitem{facebook_venture_2}
-	KERR, Orin. 9th Circuit: It’s a federal crime to visit a website after being told not to visit it. In: \textit{The Washington Post} [online]. © 1996--2019 The Washington Post [cit. 31. 3. 2019]. Dostupné z: \url{https://www.washingtonpost.com/news/volokh-conspiracy/wp/2016/07/12/9th-circuit-its-a-federal-crime-to-visit-a-website-after-being-told-not-to-visit-it/?noredirect=on\&utm_term=.ee6e01250364}.
+	KERR, Orin. 9th Circuit: It’s a federal crime to visit a website after being told not to visit it. In: \textit{The Washington Post} [online]. © 1996--2019 The Washington Post [cit. 31. 3. 2019]. Dostupné z: \url{https://www.washingtonpost.com/news/volokh-conspiracy/wp/2016/07/12/9th-circuit-its-a-federal-crime-to-visit-a-website-after-being-told-not-to-visit-it}.
 	
 	\bibitem{parsehub}
 	PARSEHUB. \textit{ParseHub. Version 54.0.1} [software]. 2015 [cit. 13. 4. 2019]. Dostupné z: \url{https://www.parsehub.com/quickstart}.
@@ -660,18 +663,18 @@ Obrázek \ref{fig:scraper_control_panel} ilustruje, jak ovládací panel vypadá
 \chapter{Seznam použitých zkratek}
 % \printglossaries
 \begin{description}
-	\item[HTML] HyperText Markup Language
-	\item[DOM] 
-	\item[XML] eXtensible Markup Language
 	\item[API] Application Programming Interface
-	\item[MIT] Massachusetts Institute of Technology
+	\item[CAN-SPAM] Controlling the Assault of Non-Solicited Pornography and Marketing Act
+	\item[CFAA] Computer Fraud and Abuse Act
 	\item[CSS] Cascading Style Sheets
 	\item[CSV] Comma-Separated Values
+	\item[DOM] Document Object Model
+	\item[HTML] HyperText Markup Language
 	\item[IP] Internet Protocol
 	\item[JSON] JavaScript Object Notation
+	\item[MIT] Massachusetts Institute of Technology
 	\item[XLS] formát souboru používaný aplikací Microsoft Excel
-	\item[CFAA] Computer Fraud and Abuse Act
-	\item[CAN-SPAM] Controlling the Assault of Non-Solicited Pornography and Marketing Act
+	\item[XML] eXtensible Markup Language	
 \end{description}
 
 % ================================================================================================
