@@ -361,7 +361,7 @@ Na druhou stranu se lze u~konkurence i inspirovat. Za vyzdvižení stojí určit
 
 Neméně důležitou vlastností aplikace je také schopnost sebe sama kvalitně, ale svižně představit, \emph{seznámit uživatele s~používáním} a poskytnout mu alespoň pro začátek určité vodítko. Pro většinu ovládacích prvků by však mělo platit to stejné, co platí pro správný kód -- měly by být tzv. \emph{self-explanatory}. Tedy každému by mělo být na první pohled jasné, co který element dělá.
 
-Pojďme si nyní všechny požadavky shrnout do několika bodů a rozdělit na funkční a nefunkční:
+Pojďme si nyní všechny požadavky shrnout do několika bodů a rozdělit na funkční a nefunkční.
 
 \subsection{Funkční požadavky}
 \begin{itemize}
@@ -378,13 +378,13 @@ Pojďme si nyní všechny požadavky shrnout do několika bodů a rozdělit na f
 			\item Prvek bude vybrán, pokud se jeho text přesně shoduje s hledaným výrazem
 		\end{enumerate}
 		\item pomocí CSS selektorů (tedy HTML tagy, třídy, id, hodnoty atributu, různé následnosti a vše ostatní, co CSS selektory umožňují, viz \href{https://www.w3schools.com/cssref/css_selectors.asp}{přehled CSS selektorů})
+		\item k dispozici bude přibližování (první potomek) a oddalování (otec) momentálního výběru pomocí ikony $+$ a $-$, případně přesunutí výběru na předchozího/následujícího sourozence v DOMu (uživatel může pomocí této funkce traverzovat napříč zanořenými prvky všemi směry)
 		\item na ovládacím panelu nalezneme i tlačítka s hotovými akcemi před-stavující šablonu pro nejpoužívanější operace (stažení všech e-mail-ových adres ze stránky, všech obrázků atd.)
 	\end{itemize}
 	\item pokud vybraným prvkem bude $\left<img\right>$ HTML tag, bude místo jeho textu extrahován atribut \textsf{src} (tedy zdroj obrázku)
-	\item po kliknutí na určitý prvek s přidrženou klávesou \textsf{Ctrl/control} se program pokusí vybrat všechny podobné prvky na základě předchozí selekce (tzv. \emph{auto-selection})
+	\item po kliknutí na určitý prvek s přidrženou klávesou \textsc{Ctrl/control} se program pokusí vybrat všechny podobné prvky na základě předchozí selekce (tzv. \emph{auto-selection})
 	\item mezi ovládacími prvky nalezneme tlačítka \textsf{undo} a \textsf{redo}, která umožní vracet zpět provedený výběr (například v situaci, kdy nesouhlasíme s výběrem auto-selectu)
 	\item všechny vybrané prvky budou barevně odlišeny, aby bylo jasné, co už je připraveno k extrakci a co ještě ne
-	\item k dispozici bude přibližování (první potomek) a oddalování (otec) momentálního výběru pomocí ikony $+$ a $-$, případně přesunutí výběru na předchozího/následujícího sourozence v DOMu (uživatel může pomocí této funkce traverzovat napříč zanořenými prvky všemi směry)
 	\item data z vybraných elementů si bude možné kdykoli prohlédnout v tzv. \textit{preview} módu -- půjde o obyčejnou tabulku, ze které bude možné vymazat nevyhovující řádky (vymazáním řádku se odebere výběr všech relevantních prvků na stránce)
 	\item získaná data půjdou exportovat do formátů JSON, CSV, XLS
 \end{itemize}
@@ -411,12 +411,37 @@ V předchozích dvou sekcích je shrnuto, jaké požadavky by aplikace v každé
 % ------------------------------------------------------------------------------------------------
 
 \section{Případy užití}
-\dots
+Hlavní užití vyvíjeného nástroje je přímočaré -- uživatel navštíví stránku, vybere elementy nesoucí požadovaná data a exportuje je do zvoleného formátu. Mohou však nastat různé situace, kterým se věnuje následující popis.
+
+\begin{enumerate}
+	\item Uživatel chce vybrat všechny řádky tabulky nacházející se na stránce. Otevře záložku \textsf{Basics}, zapne manuální označování přepínačem s nápisem \textsf{Selecting elements} a kliknutím myši označí první řádek tabulky. Poté s přidrženou klávesou \textsc{Ctrl/control} klikne na druhý řádek. Tím se automaticky označí všechny řádky dané tabulky.
+	\item Uživatel chce označit všechny e-mailové adresy na stránce. Otevře záložku \textsf{Text search}, do pole \textsf{Contains} zadá znak \uv{@} a potvrdí stiskem klávesy \textsc{Enter}.\footnote{Často se stránky proti takovému vytěžování e-mailových adres brání například tím, že textový znak @ nahradí obrázkem. V takovém případě tento postup samozřejmě nebude fungovat.}
+	\item Uživatel chce označit všechna rodná čísla, jež jsou z prvního dne v měsíci. Otevře záložku \textsf{Text search}, do pole \textsf{Ends with} zadá \uv{01} a potvrdí stiskem klávesy \textsc{Enter}.
+	\item Uživatel chce získat URL adresy všech obrázků z dané stránky a ví, že se nacházejí uvnitř $\left<img\right>$ HTML tagu. Otevře záložku \textsf{CSS selectors}, zadá \uv{img} a potvrdí stiskem klávesy \textsc{Enter}.
+	\item Uživatel chce vybrat nejlépe hodnocený film z každé kategorie. Ví, že všechny filmy jsou označeny třídou \textit{movie}, přičemž první je vždy ten nejlepší. Uživatel otevře záložku \textsf{CSS selectors}, zadá \uv{.movie:first-of-type} a potvrdí stiskem klávesy \textsc{Enter}.
+	\item Uživatel chce vybrat určitý HTML element, ale z nějakého důvodu to není možné (HTML struktura neumožňuje najet kurzorem na daný prvek). Vybere tak nejbližší prvek, který označit jde. Poté na něj najede kurzorem, čímž se zobrazí tlačítka pro navigaci DOMem. Pomocí nich pak může výběr přesunout na požadovaný element.
+	\item Může se stát, že vybrané elementy nesplňují představy uživatele. Výběr lze vždy vrátit zpět pomocí tlačítka \textsf{undo} v horní části ovládacího panelu. Vrácený výběr lze opět provést pomocí tlačítka \textsf{redo}. Také kliknutím myši se zapnutým ručním označováním na již vybraný element se selekce zruší.
+	\item Uživatel chce vybraná data zkontrolovat před jejich stažením. Klikne na tlačítko \textsf{Preview} v dolní části ovládacího panelu. Otevře se tabulka obsahující všechny doposud vybraná data. Nevyhovující záznamy uživatel odstraní pomocí křížku na levé straně každého řádku.
+\end{enumerate}
 
 % ------------------------------------------------------------------------------------------------
 
 \section{Architektura systému}
-\dots
+Jak bylo řečeno při specifikaci nefunkčních požadavků, aplikace poběží pouze na klientské straně a veškeré procesy se vykonají v rámci internetového prohlížeče. Prvotní úvaha sice může vést na použití klasického \textit{frontend-backend} schématu, jenže při hlubším zamyšlení zjistíme, že to vůbec není potřeba. Z požadavků plyne, že vybraná data budou nějakým způsobem označena, tím pádem je stejně budeme muset najít a zpracovat již v prohlížeči, neboť zasílat požadavek na vzdálený server při každém kliknutí uživatele nedává smysl. Taktéž možnost kdykoli si momentálně vybraná data prohlédnout nenahrává tomuto schématu.
+
+Celý systém se skládá z 5 hlavních komponent:
+\begin{description}
+	\item [Controller] který deleguje práci na ostatní komponenty a slouží jako prostředník při vzájemné komunikaci. Drží si přehled o všech ostatních částech a má na starosti základní inicializaci.
+	\item [Main panel] představuje ovládací panel se všemi prvky uživatelského rozhraní. Reaguje na akce uživatele zasláním zprávy Controlleru, který rozhoduje, co se má stát dál.
+	\item [Select engine] má na starosti výběr a označení požadovaných HTML elementů na stránce. Obsahuje menší komponenty:
+	\begin{itemize}
+		\item \emph{Selector}, jenž představuje jednotlivé způsoby výběru dat (ruční výběr, textová shoda atd.). Vybere požadované prvky na stránce a ty předá Select enginu ke zpracování.
+		\item \emph{Undo-redo store}, který umožňuje zvrátit předchozí výběry nebo je naopak provést znovu.
+	\end{itemize}
+	\item [Data engine] zařizuje extrakci dat z vybraných prvků na stránce (převážně tedy text, ale v případě obrázků se jedná o URL jejich zdroje a v budoucnu může být snadno rozšířeno o další možnosti) a export do požadovaného formátu.
+	\item [Preview] je komponenta reprezentující preview mód, ve kterém si uživatel může prohlédnout doposud vybraná data a ta nežádoucí z výběru odstranit.
+\end{description}
+
 
 % ------------------------------------------------------------------------------------------------
 
@@ -536,6 +561,15 @@ Jak již bylo řečeno v úvodu této kapitoly, použité řešení spočívá v
 	\item Vhodným nastavením příslušných CSS vlastností je iframe umístěn na boční straně prohlížené stránky a nabývá formy ovládacího panelu. 
 \end{enumerate}
 Obrázek \ref{fig:scraper_control_panel} ilustruje, jak ovládací panel vypadá po vložení do stránky.
+
+\begin{description}
+	\item [Controller,] který deleguje práci na ostatní komponenty. Slouží jako prostředník při spolupráci jednotlivých částí systému -- pokud modul A potřebuje nějakou akci od modulu B, zavolá příslušnou metodu v Controlleru, i když se často jedná pouze o přeposlání žádosti dál. To se může jevit jako zbytečné, na druhou stranu to přináší jednu velkou výhodu. Pokud by se v budoucnu měla potřebná metoda modulu B změnit, bylo by potřeba vykonat nějaké dodatečné akce a nebo třeba kompletně nahradit modul B nějakým jiným, stačí to udělat vždy pouze na jednom místě, a to právě v komponentě Controller.
+	\item [Selection] 
+	\item [Selection engine] obsahuje všechny dostupné Selectory. Vystavuje metody pro jednotlivé způsoby výběru, ve kterých deleguje zodpovědnost na patřičný Selector. Tedy slouží opět jako jakýsi prostředník mezi Selectory a okolním světem. Zároveň obsahuje k
+	
+	Taktéž řídí přechody mezi výběrem sloupců a řádků a 
+	\item [Selectors] představují způsoby výběru dat (tedy ruční výběr, na základě textové shody, pomocí CSS selektorů a navigace napříč DOMem). Selector dostane pokyn k výběru dat (například komponenta \textit{TextSelector} dostane textový řetězec a úkol vyhledat všechny elementy na stránce, jejichž text obsahuje daný řetězec)
+\end{description}
 
 \subsection{Výběr dat}
 \dots
@@ -681,6 +715,7 @@ Obrázek \ref{fig:scraper_control_panel} ilustruje, jak ovládací panel vypadá
 	\item[IP] Internet Protocol
 	\item[JSON] JavaScript Object Notation
 	\item[MIT] Massachusetts Institute of Technology
+	\item[URL] Uniform Resource Locator
 	\item[XLS] formát souboru používaný aplikací Microsoft Excel
 	\item[XML] eXtensible Markup Language	
 \end{description}
