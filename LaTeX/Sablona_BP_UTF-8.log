@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.3.8)  20 APR 2019 21:57
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.3.8)  20 APR 2019 22:16
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1220,57 +1220,29 @@ y na str^^Sance. Otev^^Tre z^^Salo^^Tzku
  []
 
 [22]
-Overfull \hbox (10.78499pt too wide) in paragraph at lines 431--432
-\OT1/lmr/m/n/10.95 na kli-entsk^^Se stran^^Te a ve^^Tsker^^Se pro-cesy se vy-ko
--naj^^S^^P v r^^Samci in-ter-ne-tov^^Seho prohl^^S^^P^^Tze^^Tce
+Overfull \hbox (2.69452pt too wide) in paragraph at lines 433--435
+[]\OT1/lmr/m/n/10.95 Cel^^Sy syst^^Sem se skl^^Sad^^Sa z 5 hlavn^^S^^Pch kom-po
+-nent, kter^^Se jsou na sob^^Te nez^^Savisl^^Se[][][]: 
  []
 
-
-Overfull \hbox (15.11046pt too wide) in paragraph at lines 435--436
-[]\OT1/lmr/m/n/10.95 kter^^Sy de-le-guje pr^^Saci na ostatn^^S^^P kom-po-nenty 
-a slou^^Tz^^S^^P jako prost^^Tredn^^S^^Pk
- []
-
-
-Overfull \hbox (18.19841pt too wide) in paragraph at lines 436--437
-[]\OT1/lmr/m/n/10.95 p^^Tredstavuje na^^Tctenou str^^Sanku a ovl^^Sadac^^S^^P p
-a-nel se v^^Tsemi prvky u^^Tzivatelsk^^Seho
- []
-
-[23]
-Overfull \hbox (10.07059pt too wide) in paragraph at lines 442--443
-\OT1/lmr/m/n/10.95 kom-po-nentu \OT1/lmr/m/it/10.95 Ex-por-ter\OT1/lmr/m/n/10.9
-5 , na kte-rou de-le-guje ex-port dat do zvo-len^^Seho form^^Satu. 
- []
-
-
-Overfull \hbox (1.35121pt too wide) in paragraph at lines 447--448
-[]\OT1/lmr/m/n/10.95 Spln^^Ten^^S^^P ne-funk^^Tcn^^S^^Pho po^^Tzadavku na rych-
-lost sa-motn^^Se ex-trakce (N6) nahr^^Sav^^Sa
- []
-
-[24]
-Overfull \hbox (6.43095pt too wide) in paragraph at lines 454--455
-[]\OT1/lmr/m/n/10.95 Dle po^^Tzadavku F1 je tedy apli-kace rozd^^Telena na pra-
-covn^^S^^P plo-chu s u^^Tzivatelem
- []
-
-<images/main_wireframe.png, id=478, 1927.2pt x 1084.05pt>
+[23] [24]
+<images/main_wireframe.png, id=480, 1927.2pt x 1084.05pt>
 File: images/main_wireframe.png Graphic file (type png)
 <use images/main_wireframe.png>
 Package pdftex.def Info: images/main_wireframe.png  used on input line 458.
 (pdftex.def)             Requested size: 369.0pt x 207.5596pt.
-<images/cols_wireframe.png, id=479, 1927.2pt x 1084.05pt>
+<images/cols_wireframe.png, id=481, 1927.2pt x 1084.05pt>
 File: images/cols_wireframe.png Graphic file (type png)
 <use images/cols_wireframe.png>
 Package pdftex.def Info: images/cols_wireframe.png  used on input line 463.
 (pdftex.def)             Requested size: 369.0pt x 207.5596pt.
-<images/text_search_wireframe.png, id=480, 1927.2pt x 1084.05pt>
+<images/text_search_wireframe.png, id=482, 1927.2pt x 1084.05pt>
 File: images/text_search_wireframe.png Graphic file (type png)
 <use images/text_search_wireframe.png>
 Package pdftex.def Info: images/text_search_wireframe.png  used on input line 4
 68.
 (pdftex.def)             Requested size: 369.0pt x 207.5596pt.
+
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
@@ -1281,26 +1253,26 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 text_search_wireframe.png>] [27
 
 ] [28]
-<images/Scraper_control_panel.png, id=508, 1445.4pt x 813.0375pt>
+<images/Scraper_control_panel.png, id=510, 1445.4pt x 813.0375pt>
 File: images/Scraper_control_panel.png Graphic file (type png)
 <use images/Scraper_control_panel.png>
 Package pdftex.def Info: images/Scraper_control_panel.png  used on input line 5
 12.
 (pdftex.def)             Requested size: 369.0pt x 207.56374pt.
-<images/Scraper_rows_cols.png, id=512, 1445.4pt x 813.0375pt>
+<images/Scraper_rows_cols.png, id=514, 1445.4pt x 813.0375pt>
 File: images/Scraper_rows_cols.png Graphic file (type png)
 <use images/Scraper_rows_cols.png>
 Package pdftex.def Info: images/Scraper_rows_cols.png  used on input line 519.
 (pdftex.def)             Requested size: 369.0pt x 207.56374pt.
  [29 <./images/Scraper_control_panel.png (PNG copy)>] [30 <./images/Scraper_row
 s_cols.png (PNG copy)>]
-<images/Scraper_text_search.png, id=530, 462.97969pt x 813.0375pt>
+<images/Scraper_text_search.png, id=532, 462.97969pt x 813.0375pt>
 File: images/Scraper_text_search.png Graphic file (type png)
 <use images/Scraper_text_search.png>
 Package pdftex.def Info: images/Scraper_text_search.png  used on input line 545
 .
 (pdftex.def)             Requested size: 166.04887pt x 291.60155pt.
-<images/Scraper_css_selector.png, id=531, 462.97969pt x 813.0375pt>
+<images/Scraper_css_selector.png, id=533, 462.97969pt x 813.0375pt>
 File: images/Scraper_css_selector.png Graphic file (type png)
 <use images/Scraper_css_selector.png>
 Package pdftex.def Info: images/Scraper_css_selector.png  used on input line 55
@@ -1308,7 +1280,7 @@ Package pdftex.def Info: images/Scraper_css_selector.png  used on input line 55
 (pdftex.def)             Requested size: 166.04887pt x 291.60155pt.
  [31 <./images/Scraper_text_search.png (PNG copy)> <./images/Scraper_css_select
 or.png (PNG copy)>]
-<images/Scraper_dom_navigation.png, id=539, 1445.4pt x 813.0375pt>
+<images/Scraper_dom_navigation.png, id=541, 1445.4pt x 813.0375pt>
 File: images/Scraper_dom_navigation.png Graphic file (type png)
 <use images/Scraper_dom_navigation.png>
 Package pdftex.def Info: images/Scraper_dom_navigation.png  used on input line 
@@ -1326,7 +1298,7 @@ Overfull \hbox (1.01912pt too wide) in paragraph at lines 558--564
 []. Tla^^Tc^^S^^Ptko $+$ po-sune ozna^^Tcen^^S^^P
  []
 
-<images/Scraper_preview_mode.png, id=542, 1445.4pt x 813.0375pt>
+<images/Scraper_preview_mode.png, id=544, 1445.4pt x 813.0375pt>
 File: images/Scraper_preview_mode.png Graphic file (type png)
 <use images/Scraper_preview_mode.png>
 Package pdftex.def Info: images/Scraper_preview_mode.png  used on input line 56
@@ -1546,8 +1518,8 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 755.
  ) 
 Here is how much of TeX's memory you used:
- 15004 strings out of 494889
- 212730 string characters out of 6179446
+ 15005 strings out of 494889
+ 212741 string characters out of 6179446
  342651 words of memory out of 5000000
  17950 multiletter control sequences out of 15000+600000
  72655 words of font info for 49 fonts, out of 8000000 for 9000
@@ -1567,10 +1539,10 @@ lm/lmri10.pfb></usr/share/texmf/fonts/type1/public/lm/lmri9.pfb></usr/share/tex
 mf/fonts/type1/public/lm/lmss10.pfb></usr/share/texmf/fonts/type1/public/lm/lms
 sbx10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy10.pfb></usr/share/texmf/
 fonts/type1/public/lm/lmtt10.pfb>
-Output written on Sablona_BP_UTF-8.pdf (57 pages, 2511280 bytes).
+Output written on Sablona_BP_UTF-8.pdf (57 pages, 2512097 bytes).
 PDF statistics:
- 779 PDF objects out of 1000 (max. 8388607)
- 669 compressed objects within 7 object streams
- 225 named destinations out of 1000 (max. 500000)
+ 782 PDF objects out of 1000 (max. 8388607)
+ 672 compressed objects within 7 object streams
+ 226 named destinations out of 1000 (max. 500000)
  236 words of extra memory for PDF output out of 10000 (max. 10000000)
 

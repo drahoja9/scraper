@@ -12,13 +12,13 @@
 \contentsline {paragraph}{Terms of Service}{5}{section*.10}
 \contentsline {paragraph}{Browsewrap}{6}{section*.11}
 \contentsline {paragraph}{Clickwrap}{6}{section*.12}
-\contentsline {subsection}{\numberline {1.2.2}Odpov\IeC {\v e}dnost v p\IeC {\v r}\IeC {\'\i }pad\IeC {\v e} protipr\IeC {\'a}vn\IeC {\'\i }ho jedn\IeC {\'a}n\IeC {\'\i }}{6}{subsection.1.2.2}
+\contentsline {subsection}{\numberline {1.2.2}Odpov\IeC {\v e}dnost v~p\IeC {\v r}\IeC {\'\i }pad\IeC {\v e} protipr\IeC {\'a}vn\IeC {\'\i }ho jedn\IeC {\'a}n\IeC {\'\i }}{6}{subsection.1.2.2}
 \contentsline {subsection}{\numberline {1.2.3}Obsah na webov\IeC {\'y}ch str\IeC {\'a}nk\IeC {\'a}ch a jeho mo\IeC {\v z}n\IeC {\'e} vyu\IeC {\v z}it\IeC {\'\i }}{6}{subsection.1.2.3}
 \contentsline {subsection}{\numberline {1.2.4}Obsah chr\IeC {\'a}n\IeC {\v e}n\IeC {\'y} autorsk\IeC {\'y}m z\IeC {\'a}konem}{8}{subsection.1.2.4}
 \contentsline {subsection}{\numberline {1.2.5}Web scraping a zvl\IeC {\'a}\IeC {\v s}tn\IeC {\'\i } pr\IeC {\'a}va po\IeC {\v r}izovatele datab\IeC {\'a}ze}{8}{subsection.1.2.5}
-\contentsline {subsection}{\numberline {1.2.6}D\IeC {\r u}le\IeC {\v z}it\IeC {\'e} soudn\IeC {\'\i } p\IeC {\v r}\IeC {\'\i }pady v Evrop\IeC {\v e}}{9}{subsection.1.2.6}
+\contentsline {subsection}{\numberline {1.2.6}D\IeC {\r u}le\IeC {\v z}it\IeC {\'e} soudn\IeC {\'\i } p\IeC {\v r}\IeC {\'\i }pady v~Evrop\IeC {\v e}}{9}{subsection.1.2.6}
 \contentsline {paragraph}{C-444/02}{9}{section*.13}
-\contentsline {paragraph}{C\IeC {\unhbox \voidb@x \hbox {-}}30/14}{10}{section*.14}
+\contentsline {paragraph}{C\IeC {\unhbox \voidb@x \hbox {-}}30/14}{9}{section*.14}
 \contentsline {subsection}{\numberline {1.2.7}D\IeC {\r u}le\IeC {\v z}it\IeC {\'e} soudn\IeC {\'\i } p\IeC {\v r}\IeC {\'\i }pady ve Spojen\IeC {\'y}ch st\IeC {\'a}tech}{10}{subsection.1.2.7}
 \contentsline {paragraph}{hiQ v. LinkedIn}{10}{section*.15}
 \contentsline {paragraph}{Facebook v. Power Venture (Vachani)}{10}{section*.16}
