@@ -364,49 +364,50 @@ Neméně důležitou vlastností aplikace je také schopnost sebe sama kvalitně
 Pojďme si nyní všechny požadavky shrnout do několika bodů a rozdělit na funkční a nefunkční.
 
 \subsection{Funkční požadavky}
-\begin{itemize}
-	\item uživatelské rozhraní se skládá z hlavní pracovní plochy, kde se bude nacházet uživatelem zadaná stránka a z postranního panelu, obsahující všechny ovládací prvky
-	\item postranní panel skryje tlačítka, formuláře a ostatní elementy k ovládání aplikace do několika záložek -- tímto se na uživatele nevyvalí velké kvantum informací a možností najednou; podle potřeby si každý rozbalí tu možnost, kterou potřebuje
-	\item hlavní činností uživatele bude výběr elementů na jím zadané webové stránce, ze kterých bude na konci procesu vyextrahován text; tento výběr bude probíhat následujícími způsoby:
-	\begin{itemize}
-		\item kliknutím myši na požadované elementy
-		\item na základě textové shody; zde bude mít uživatel 4 možnosti na výběr:
-		\begin{enumerate}
-			\item Prvek bude vybrán, pokud jeho text začíná hledaným výrazem
-			\item Prvek bude vybrán, pokud jeho text končí hledaným výrazem
-			\item Prvek bude vybrán, pokud jeho text obsahuje hledaný výraz
-			\item Prvek bude vybrán, pokud se jeho text přesně shoduje s hledaným výrazem
+\begin{enumerate}[F1)]
+	\item Uživatelské rozhraní se skládá z hlavní pracovní plochy, kde se bude nacházet uživatelem zadaná stránka a z postranního panelu, obsahující všechny ovládací prvky.
+	\item Postranní panel skryje tlačítka, formuláře a ostatní elementy k ovládání aplikace do několika záložek -- tímto se na uživatele nevyvalí velké kvantum informací a možností najednou. Podle potřeby si každý rozbalí tu možnost, kterou potřebuje.
+	\item Hlavní činností uživatele bude výběr elementů na jím zadané webové stránce, ze kterých bude na konci procesu vyextrahován text. Tento výběr bude probíhat následujícími způsoby:
+	\begin{enumerate}[F3.1)]
+		\item Kliknutím myši na požadované elementy.
+		\item Na základě textové shody. Zde bude mít uživatel 4 možnosti na výběr:
+		\begin{enumerate}[a)]
+			\item Prvek bude vybrán, pokud jeho text začíná hledaným výrazem.
+			\item Prvek bude vybrán, pokud jeho text končí hledaným výrazem.
+			\item Prvek bude vybrán, pokud jeho text obsahuje hledaný výraz.
+			\item Prvek bude vybrán, pokud se jeho text přesně shoduje s hledaným výrazem.
 		\end{enumerate}
-		\item pomocí CSS selektorů (tedy HTML tagy, třídy, id, hodnoty atributu, různé následnosti a vše ostatní, co CSS selektory umožňují, viz \href{https://www.w3schools.com/cssref/css_selectors.asp}{přehled CSS selektorů})
-		\item k dispozici bude přibližování (první potomek) a oddalování (otec) momentálního výběru pomocí ikony $+$ a $-$, případně přesunutí výběru na předchozího/následujícího sourozence v DOMu (uživatel může pomocí této funkce traverzovat napříč zanořenými prvky všemi směry)
-		\item na ovládacím panelu nalezneme i tlačítka s hotovými akcemi před-stavující šablonu pro nejpoužívanější operace (stažení všech e-mail-ových adres ze stránky, všech obrázků atd.)
-	\end{itemize}
-	\item pokud vybraným prvkem bude $\left<img\right>$ HTML tag, bude místo jeho textu extrahován atribut \textsf{src} (tedy zdroj obrázku)
-	\item po kliknutí na určitý prvek s přidrženou klávesou \textsc{Ctrl/control} se program pokusí vybrat všechny podobné prvky na základě předchozí selekce (tzv. \emph{auto-selection})
-	\item mezi ovládacími prvky nalezneme tlačítka \textsf{undo} a \textsf{redo}, která umožní vracet zpět provedený výběr (například v situaci, kdy nesouhlasíme s výběrem auto-selectu)
-	\item všechny vybrané prvky budou barevně odlišeny, aby bylo jasné, co už je připraveno k extrakci a co ještě ne
-	\item data z vybraných elementů si bude možné kdykoli prohlédnout v tzv. \textit{preview} módu -- půjde o obyčejnou tabulku, ze které bude možné vymazat nevyhovující řádky (vymazáním řádku se odebere výběr všech relevantních prvků na stránce)
-	\item získaná data půjdou exportovat do formátů JSON, CSV, XLS
-\end{itemize}
+		\item Pomocí CSS selektorů (tedy HTML tagy, třídy, id, hodnoty atributu, různé následnosti a vše ostatní, co CSS selektory umožňují, viz \href{https://www.w3schools.com/cssref/css_selectors.asp}{přehled CSS selektorů}).
+		\item K dispozici bude přibližování (první potomek) a oddalování (otec) momentálního výběru pomocí ikony $+$ a $-$, případně přesunutí výběru na předchozího/následujícího sourozence v DOMu (uživatel může pomocí této funkce traverzovat napříč zanořenými prvky všemi směry).
+		\item Na ovládacím panelu nalezneme i tlačítka s hotovými akcemi před-stavující šablonu pro nejpoužívanější operace (stažení všech e-mail-ových adres ze stránky, všech obrázků atd.).
+	\end{enumerate}
+	\item Pokud vybraným prvkem bude $\left<img\right>$ HTML tag, bude místo jeho textu extrahován atribut \textsf{src} (tedy zdroj obrázku).
+	\item Po kliknutí na určitý prvek s přidrženou klávesou \textsc{Ctrl/control} se program pokusí vybrat všechny podobné prvky na základě předchozí selekce (tzv. \emph{auto-selection}).
+	\item Mezi ovládacími prvky nalezneme tlačítka \textsf{undo} a \textsf{redo}, která umožní vracet zpět provedený výběr (například v situaci, kdy nesouhlasíme s výběrem auto-selectu).
+	\item Všechny vybrané prvky budou barevně odlišeny, aby bylo jasné, co už je připraveno k extrakci a co ještě ne.
+	\item Data z vybraných elementů si bude možné kdykoli prohlédnout v tzv. \textit{preview} módu -- půjde o obyčejnou tabulku, ze které bude možné vymazat nevyhovující řádky (vymazáním řádku se odebere výběr všech relevantních prvků na stránce).
+	\item Získaná data půjdou exportovat do formátů JSON, CSV, XLS.
+\end{enumerate}
 
 \subsection{Nefunkční požadavky}
-\begin{itemize}
-	\item půjde o webovou aplikaci běžící v internetovém prohlížeči, tedy nebude nutná žádná instalace
-	\item celý proces bude realizován na straně klienta -- bude se jednat pouze o frontend, žádný backend server nebude k dispozici
-	\item aplikace cílí primárně na celkový zážitek uživatele -- grafické rozhraní bude přehledné a co nejjednodušší, ovládání přímočaré a intuitivní
-	\item čas, za který se uživatel dostane k požadovaným datům (tedy čas, který stráví vybíráním dat; nepočítáme čas potřebný ke stažení), bude co nejmenší
-	\item čas nutný k samotné extrakci (od okamžiku, kdy uživatel klikne na tlačítko \textsf{Download}) nepřesáhne 5 vteřin
-\end{itemize}
+\begin{enumerate}[N1)]
+	\item Půjde o webovou aplikaci běžící v internetovém prohlížeči, tedy nebude nutná žádná instalace.
+	\item Celý proces bude realizován na straně klienta -- bude se jednat pouze o frontend, žádný backend server nebude k dispozici.
+	\item Aplikace cílí primárně na celkový zážitek uživatele -- grafické rozhraní bude přehledné a co nejjednodušší, ovládání přímočaré a intuitivní. Tento požadavek je jeden z nejdůležitějších, neboť právě tím se nástroj odlišuje od ostatních.
+	\item Důležitým aspektem je také snadná rozšiřitelnost, ať už se bude jednat o nové možnosti výběru či přidání funkcionality web crawlingu.
+	\item Čas, za který se uživatel dostane k požadovaným datům (tedy čas, který stráví vybíráním dat; nepočítáme čas potřebný ke stažení), bude co nejmenší.
+	\item Čas nutný k samotné extrakci (od okamžiku, kdy uživatel klikne na tlačítko \textsf{Download}) nepřesáhne 5 vteřin.
+\end{enumerate}
 
 \subsection{Nice to have požadavky}
 V předchozích dvou sekcích je shrnuto, jaké požadavky by aplikace v každém případě měla splňovat a bez nichž by neměla vůbec být uvedena k dispozici uživatelům. Pak tu jsou ale také požadavky, které rozhodně zlepšují celkovou kvalitu a pocit z nástroje samotného, avšak nejsou již pro funkcionalitu vitální a pokud by se jejich implementace nepovedla, aplikace bude stále plnohodnotná a připravená k použití. Patří sem:
-\begin{itemize}
-	\item uživatelské rozhraní aplikace nabídne intuitivní klávesové zkratky pro usnadnění práce -- \textsf{Ctrl +} a \textsf{Ctrl -} obstará přibližování/oddalování momentálního výběru, \textsf{Ctrl n} a \textsf{Ctrl p} vybere předchozího/následujícího sourozence vybraného prvku
-	\item postranní panel s ovládacími prvky půjde minimalizovat (zmenšit k přilehlé hraně tak, aby zabíral co nejméně místa a nepřekážel v manipulaci s webovou stránkou) nebo přesunout na protější stranu (např. v případě, že by zakrýval nějaké prvky na stránce)
-	\item export dat realizovatelný i do Google Sheets, Google Drive, Dropbox
-	\item interaktivní tutoriál, který v rychlosti představí práci s nástrojem
-	\item na základě výběru dat uživatelem se vytvoří určitý filtr (textový řetězec), který může být ručně upraven -- půjde tak o alternativu pro zkušenější uživatele, aniž by se zaneslo uživatelské rozhraní přehršlí možností a celé se tak znepřehlednilo
-\end{itemize}
+\begin{enumerate}[+1)]
+	\item Uživatelské rozhraní aplikace nabídne intuitivní klávesové zkratky pro usnadnění práce -- \textsf{Ctrl +} a \textsf{Ctrl -} obstará přibližování/oddalování momentálního výběru, \textsf{Ctrl n} a \textsf{Ctrl p} vybere předchozího/následujícího sourozence vybraného prvku, apod.
+	\item Postranní panel s ovládacími prvky půjde minimalizovat (zmenšit k přilehlé hraně tak, aby zabíral co nejméně místa a nepřekážel v manipulaci s webovou stránkou) nebo přesunout na protější stranu (např. v případě, že by zakrýval nějaké prvky na stránce).
+	\item Export dat realizovatelný i do Google Sheets, Google Drive, Dropbox.
+	\item Interaktivní tutoriál, který v rychlosti představí práci s nástrojem.
+	\item Na základě výběru dat uživatelem se vytvoří určitý filtr (textový řetězec), který může být ručně upraven -- půjde tak o alternativu pro zkušenější uživatele, aniž by se zaneslo uživatelské rozhraní přehršlí možností a celé se tak znepřehlednilo.
+\end{enumerate}
 
 % ------------------------------------------------------------------------------------------------
 
@@ -427,26 +428,47 @@ Hlavní užití vyvíjeného nástroje je přímočaré -- uživatel navštíví
 % ------------------------------------------------------------------------------------------------
 
 \section{Architektura systému}
-Jak bylo řečeno při specifikaci nefunkčních požadavků, aplikace poběží pouze na klientské straně a veškeré procesy se vykonají v rámci internetového prohlížeče. Prvotní úvaha sice může vést na použití klasického \textit{frontend-backend} schématu, jenže při hlubším zamyšlení zjistíme, že to vůbec není potřeba. Z požadavků plyne, že vybraná data budou nějakým způsobem označena, tím pádem je stejně budeme muset najít a zpracovat již v prohlížeči, neboť zasílat požadavek na vzdálený server při každém kliknutí uživatele nedává smysl. Taktéž možnost kdykoli si momentálně vybraná data prohlédnout nenahrává tomuto schématu.
+Jak bylo řečeno při specifikaci nefunkčních požadavků, aplikace poběží pouze na klientské straně a veškeré procesy se vykonají v rámci internetového prohlížeče (N2). Prvotní úvaha sice může vést na použití klasického \textit{frontend-backend} schématu, jenže při hlubším zamyšlení zjistíme, že to vůbec není potřeba. Z požadavků plyne, že vybraná data budou nějakým způsobem označena (F7), tím pádem je stejně budeme muset najít a zpracovat již v prohlížeči, neboť zasílat požadavek na vzdálený server při každém kliknutí uživatele nedává smysl. Taktéž možnost kdykoli si momentálně vybraná data prohlédnout (F8) nenahrává tomuto schématu.
 
-Celý systém se skládá z 5 hlavních komponent:
+Celý systém se skládá z 5 hlavních komponent, které jsou na sobě nezávislé (resp. pouze Controller sdružuje všechny ostatní a zajišťuje delegaci zodpovědnosti z jedné komponenty na druhou):
 \begin{description}
-	\item [Controller] který deleguje práci na ostatní komponenty a slouží jako prostředník při vzájemné komunikaci. Drží si přehled o všech ostatních částech a má na starosti základní inicializaci.
-	\item [Main panel] představuje ovládací panel se všemi prvky uživatelského rozhraní. Reaguje na akce uživatele zasláním zprávy Controlleru, který rozhoduje, co se má stát dál.
+	\item [Controller,] který deleguje práci na ostatní komponenty a slouží jako prostředník při spolupráci jednotlivých částí systému -- pokud modul A potřebuje nějakou akci od modulu B, zavolá příslušnou metodu v Controlleru, i když se často jedná pouze o přeposlání žádosti dál. To se může jevit jako zbytečné, na druhou stranu to přináší jednu velkou výhodu. Pokud by se v budoucnu měla potřebná metoda modulu B změnit, bylo by potřeba vykonat nějaké dodatečné akce a nebo třeba kompletně nahradit modul B nějakým jiným, stačí to udělat vždy pouze na jednom místě, a to právě v komponentě Controller. Drží si přehled o všech ostatních částech a má na starosti základní inicializaci.
+	\item [View] představuje načtenou stránku a ovládací panel se všemi prvky uživatelského rozhraní. Reaguje na akce uživatele zasláním zprávy Controlleru, který rozhoduje, co se má stát dál.
 	\item [Select engine] má na starosti výběr a označení požadovaných HTML elementů na stránce. Obsahuje menší komponenty:
 	\begin{itemize}
 		\item \emph{Selector}, jenž představuje jednotlivé způsoby výběru dat (ruční výběr, textová shoda atd.). Vybere požadované prvky na stránce a ty předá Select enginu ke zpracování.
 		\item \emph{Undo-redo store}, který umožňuje zvrátit předchozí výběry nebo je naopak provést znovu.
 	\end{itemize}
-	\item [Data engine] zařizuje extrakci dat z vybraných prvků na stránce (převážně tedy text, ale v případě obrázků se jedná o URL jejich zdroje a v budoucnu může být snadno rozšířeno o další možnosti) a export do požadovaného formátu.
+	\item [Data engine] zařizuje extrakci dat z vybraných prvků na stránce (převážně tedy text, ale v případě obrázků se jedná o URL jejich zdroje a v budoucnu může být snadno rozšířeno o další možnosti) a obsahuje menší komponentu \emph{Exporter}, na kterou deleguje export dat do zvoleného formátu.
 	\item [Preview] je komponenta reprezentující preview mód, ve kterém si uživatel může prohlédnout doposud vybraná data a ta nežádoucí z výběru odstranit.
 \end{description}
+Tato modularizace je hlavním předpokladem ke splnění požadavku snadné rozšiřitelnosti (N4) a je ukázkou tzv. \emph{open-closed} principu. Podporuje nízkou provázanost a vysokou soudržnost, což je v softwarovém inženýrství vždycky jeden z hlavních cílů. V případě přidání nového způsobu výběru stačí vytvořit další Selector, který prvky vybere podle požadovaných kritérií a Select engine se postará o zpracování. Přidání automatizace bude také bez zásahu do původní implementace, neboť je jedno, jestli samotné vybírání provádí uživatel nebo jiná část programu. Pokud budeme chtít kompletně změnit uživatelské rozhraní, postačí vyměnit komponentu Main panel za novou.
 
+Splnění nefunkčního požadavku na rychlost samotné extrakce (N6) nahrává rozhodnutí vytvořit pouze frontendovou aplikaci, neboť se ušetří čas strávený komunikací se serverem a po načtení požadované stránky může celý scraping probíhat vlastně offline. Tím eliminujeme rizika spojená s pomalým internetovým připojením. Je ale klíčové vymyslet rychlý a efektivní způsob, jak vybraná data extrahovat v prohlížeči -- tento úkol je ponechán na konkrétních implementacích.
 
 % ------------------------------------------------------------------------------------------------
-
+\newpage
 \section{Návrh uživatelského rozhraní}
-\dots
+Při návrhu uživatelského rozhraní je nutné zohlednit ten nejdůležitější aspekt vyvíjené aplikace, a sice intuitivní, jednoduché a přehledné ovládání (N3), kterým se tento nástroj chce odlišit od stávajícího softwaru zabývající se stejnou problematikou. V potaz je nutné brát i požadavek na co nejmenší čas strávený vybíráním dat (N5) -- od uživatele je potřeba co nejmenší počet kroků.
+
+Dle požadavku F1 je tedy aplikace rozdělena na pracovní plochu s uživatelem zadanou stránkou a postranní panel, skrz který probíhá veškerá ovládání. Dle F2 je pak panel rozdělen na záložky obsahující jednotlivé způsoby výběru. V horní části panelu pak nalezneme ovládací tlačítka akcí undo a redo. Zbývá už jen velké tlačítko \textsf{Preview} a \textsf{Download} spolu s výběrem formátu exportu.
+
+Následující wireframy představují návrh uživatelského rozhraní aplikace.
+\begin{figure}[h]
+	\includegraphics[width=\linewidth]{images/main_wireframe.png}
+	\caption{Ovládací panel aplikace}
+	\label{fig:scraper_main_wireframe}
+\end{figure}
+\begin{figure}[h]
+	\includegraphics[width=\linewidth]{images/cols_wireframe.png}
+	\caption{Výběr sloupců}
+	\label{fig:scraper_cols_wireframe}
+\end{figure}
+\begin{figure}[h]
+	\includegraphics[width=\linewidth]{images/text_search_wireframe.png}
+	\caption{Výběr na základě textové shody}
+	\label{fig:scraper_text_search_wireframe}
+\end{figure}
 
 % ================================================================================================
 
@@ -561,15 +583,6 @@ Jak již bylo řečeno v úvodu této kapitoly, použité řešení spočívá v
 	\item Vhodným nastavením příslušných CSS vlastností je iframe umístěn na boční straně prohlížené stránky a nabývá formy ovládacího panelu. 
 \end{enumerate}
 Obrázek \ref{fig:scraper_control_panel} ilustruje, jak ovládací panel vypadá po vložení do stránky.
-
-\begin{description}
-	\item [Controller,] který deleguje práci na ostatní komponenty. Slouží jako prostředník při spolupráci jednotlivých částí systému -- pokud modul A potřebuje nějakou akci od modulu B, zavolá příslušnou metodu v Controlleru, i když se často jedná pouze o přeposlání žádosti dál. To se může jevit jako zbytečné, na druhou stranu to přináší jednu velkou výhodu. Pokud by se v budoucnu měla potřebná metoda modulu B změnit, bylo by potřeba vykonat nějaké dodatečné akce a nebo třeba kompletně nahradit modul B nějakým jiným, stačí to udělat vždy pouze na jednom místě, a to právě v komponentě Controller.
-	\item [Selection] 
-	\item [Selection engine] obsahuje všechny dostupné Selectory. Vystavuje metody pro jednotlivé způsoby výběru, ve kterých deleguje zodpovědnost na patřičný Selector. Tedy slouží opět jako jakýsi prostředník mezi Selectory a okolním světem. Zároveň obsahuje k
-	
-	Taktéž řídí přechody mezi výběrem sloupců a řádků a 
-	\item [Selectors] představují způsoby výběru dat (tedy ruční výběr, na základě textové shody, pomocí CSS selektorů a navigace napříč DOMem). Selector dostane pokyn k výběru dat (například komponenta \textit{TextSelector} dostane textový řetězec a úkol vyhledat všechny elementy na stránce, jejichž text obsahuje daný řetězec)
-\end{description}
 
 \subsection{Výběr dat}
 \dots

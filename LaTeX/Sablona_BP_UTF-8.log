@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.3.8)  19 APR 2019 22:17
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.3.8)  20 APR 2019 21:57
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1158,7 +1158,7 @@ Overfull \hbox (1.26335pt too wide) in paragraph at lines 234--235
 rehlednost a rych-lost, se kte-rou se u^^Tzivatel
  []
 
-<images/ParseHub.png, id=346, 837.88031pt x 635.37375pt>
+<images/ParseHub.png, id=352, 837.88031pt x 635.37375pt>
 File: images/ParseHub.png Graphic file (type png)
 <use images/ParseHub.png>
 Package pdftex.def Info: images/ParseHub.png  used on input line 239.
@@ -1170,25 +1170,25 @@ r^^Sy na jed-no-duch^^Sych p^^Tr^^S^^Pkladech
  []
 
 [12] [13 <./images/ParseHub.png>]
-<images/Octoparse.png, id=362, 770.88pt x 626.34pt>
+<images/Octoparse.png, id=368, 770.88pt x 626.34pt>
 File: images/Octoparse.png Graphic file (type png)
 <use images/Octoparse.png>
 Package pdftex.def Info: images/Octoparse.png  used on input line 275.
 (pdftex.def)             Requested size: 369.0pt x 299.8083pt.
  [14 <./images/Octoparse.png>]
-<images/WebScraper.png, id=370, 859.71187pt x 627.84563pt>
+<images/WebScraper.png, id=376, 859.71187pt x 627.84563pt>
 File: images/WebScraper.png Graphic file (type png)
 <use images/WebScraper.png>
 Package pdftex.def Info: images/WebScraper.png  used on input line 283.
 (pdftex.def)             Requested size: 369.0pt x 269.47977pt.
  [15 <./images/WebScraper.png>]
-<images/Dexiio.png, id=379, 827.34094pt x 597.73312pt>
+<images/Dexiio.png, id=385, 827.34094pt x 597.73312pt>
 File: images/Dexiio.png Graphic file (type png)
 <use images/Dexiio.png>
 Package pdftex.def Info: images/Dexiio.png  used on input line 307.
 (pdftex.def)             Requested size: 369.0pt x 266.59692pt.
  [16 <./images/Dexiio.png>]
-<images/DataScraper.png, id=388, 1017.04968pt x 676.02562pt>
+<images/DataScraper.png, id=394, 1017.04968pt x 676.02562pt>
 File: images/DataScraper.png Graphic file (type png)
 <use images/DataScraper.png>
 Package pdftex.def Info: images/DataScraper.png  used on input line 344.
@@ -1201,318 +1201,358 @@ Overfull \hbox (4.18274pt too wide) in paragraph at lines 381--382
 r^^S^^P^^Tc zano^^Tren^^Symi prvky v^^Tsemi
  []
 
-[20] [21]
-Overfull \hbox (3.57605pt too wide) in paragraph at lines 418--419
+[20]
+Overfull \hbox (0.77428pt too wide) in paragraph at lines 396--397
+\OT1/lmr/m/n/10.95 bude p^^Trehledn^^Se a co nej-jed-nodu^^Ts^^Ts^^S^^P, ovl^^S
+ad^^San^^S^^P p^^Tr^^S^^Pmo^^Tcar^^Se a in-tu-i-tivn^^S^^P. Tento
+ []
+
+[21]
+Overfull \hbox (1.08311pt too wide) in paragraph at lines 409--410
+[]\OT1/lmr/m/n/10.95 Na z^^Saklad^^Te v^^Syb^^Teru dat u^^Tzivatelem se vy-tvo^
+^Tr^^S^^P ur^^Tcit^^Sy filtr (tex-tov^^Sy ^^Tret^^Tezec),
+ []
+
+
+Overfull \hbox (3.57605pt too wide) in paragraph at lines 419--420
 []\OT1/lmr/m/n/10.95 U^^Tzivatel chce ozna^^Tcit v^^Tsechny e-mailov^^Se ad-res
 y na str^^Sance. Otev^^Tre z^^Salo^^Tzku
  []
 
 [22]
-Overfull \hbox (13.82663pt too wide) in paragraph at lines 430--431
+Overfull \hbox (10.78499pt too wide) in paragraph at lines 431--432
 \OT1/lmr/m/n/10.95 na kli-entsk^^Se stran^^Te a ve^^Tsker^^Se pro-cesy se vy-ko
--naj^^S^^P v r^^Samci in-ter-ne-tov^^Seho prohl^^S^^P^^Tze^^Tce.
+-naj^^S^^P v r^^Samci in-ter-ne-tov^^Seho prohl^^S^^P^^Tze^^Tce
  []
 
 
-Overfull \hbox (0.7642pt too wide) in paragraph at lines 430--431
-\OT1/lmr/m/n/10.95 Pr-votn^^S^^P ^^Suvaha sice m^^Wu^^Tze v^^Sest na pou^^Tzit^
-^S^^P kla-sick^^Seho \OT1/lmr/m/it/10.95 frontend-backend \OT1/lmr/m/n/10.95 sc
-h^^Sematu,
- []
-
-
-Overfull \hbox (0.47058pt too wide) in paragraph at lines 430--431
-\OT1/lmr/m/n/10.95 kdy-koli si mo-ment^^Saln^^Te vy-bran^^Sa data prohl^^Sednou
-t ne-nahr^^Sav^^Sa to-muto sch^^Sematu. 
- []
-
-
-Overfull \hbox (11.61249pt too wide) in paragraph at lines 434--435
+Overfull \hbox (15.11046pt too wide) in paragraph at lines 435--436
 []\OT1/lmr/m/n/10.95 kter^^Sy de-le-guje pr^^Saci na ostatn^^S^^P kom-po-nenty 
 a slou^^Tz^^S^^P jako prost^^Tredn^^S^^Pk
  []
 
-[23] [24] [25
 
-] [26]
-<images/Scraper_control_panel.png, id=463, 1445.4pt x 813.0375pt>
+Overfull \hbox (18.19841pt too wide) in paragraph at lines 436--437
+[]\OT1/lmr/m/n/10.95 p^^Tredstavuje na^^Tctenou str^^Sanku a ovl^^Sadac^^S^^P p
+a-nel se v^^Tsemi prvky u^^Tzivatelsk^^Seho
+ []
+
+[23]
+Overfull \hbox (10.07059pt too wide) in paragraph at lines 442--443
+\OT1/lmr/m/n/10.95 kom-po-nentu \OT1/lmr/m/it/10.95 Ex-por-ter\OT1/lmr/m/n/10.9
+5 , na kte-rou de-le-guje ex-port dat do zvo-len^^Seho form^^Satu. 
+ []
+
+
+Overfull \hbox (1.35121pt too wide) in paragraph at lines 447--448
+[]\OT1/lmr/m/n/10.95 Spln^^Ten^^S^^P ne-funk^^Tcn^^S^^Pho po^^Tzadavku na rych-
+lost sa-motn^^Se ex-trakce (N6) nahr^^Sav^^Sa
+ []
+
+[24]
+Overfull \hbox (6.43095pt too wide) in paragraph at lines 454--455
+[]\OT1/lmr/m/n/10.95 Dle po^^Tzadavku F1 je tedy apli-kace rozd^^Telena na pra-
+covn^^S^^P plo-chu s u^^Tzivatelem
+ []
+
+<images/main_wireframe.png, id=478, 1927.2pt x 1084.05pt>
+File: images/main_wireframe.png Graphic file (type png)
+<use images/main_wireframe.png>
+Package pdftex.def Info: images/main_wireframe.png  used on input line 458.
+(pdftex.def)             Requested size: 369.0pt x 207.5596pt.
+<images/cols_wireframe.png, id=479, 1927.2pt x 1084.05pt>
+File: images/cols_wireframe.png Graphic file (type png)
+<use images/cols_wireframe.png>
+Package pdftex.def Info: images/cols_wireframe.png  used on input line 463.
+(pdftex.def)             Requested size: 369.0pt x 207.5596pt.
+<images/text_search_wireframe.png, id=480, 1927.2pt x 1084.05pt>
+File: images/text_search_wireframe.png Graphic file (type png)
+<use images/text_search_wireframe.png>
+Package pdftex.def Info: images/text_search_wireframe.png  used on input line 4
+68.
+(pdftex.def)             Requested size: 369.0pt x 207.5596pt.
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[25 <./images/main_wireframe.png>] [26 <./images/cols_wireframe.png> <./images/
+text_search_wireframe.png>] [27
+
+] [28]
+<images/Scraper_control_panel.png, id=508, 1445.4pt x 813.0375pt>
 File: images/Scraper_control_panel.png Graphic file (type png)
 <use images/Scraper_control_panel.png>
-Package pdftex.def Info: images/Scraper_control_panel.png  used on input line 4
-90.
+Package pdftex.def Info: images/Scraper_control_panel.png  used on input line 5
+12.
 (pdftex.def)             Requested size: 369.0pt x 207.56374pt.
-<images/Scraper_rows_cols.png, id=467, 1445.4pt x 813.0375pt>
+<images/Scraper_rows_cols.png, id=512, 1445.4pt x 813.0375pt>
 File: images/Scraper_rows_cols.png Graphic file (type png)
 <use images/Scraper_rows_cols.png>
-Package pdftex.def Info: images/Scraper_rows_cols.png  used on input line 497.
+Package pdftex.def Info: images/Scraper_rows_cols.png  used on input line 519.
 (pdftex.def)             Requested size: 369.0pt x 207.56374pt.
- [27 <./images/Scraper_control_panel.png (PNG copy)>]
-[28 <./images/Scraper_rows_cols.png (PNG copy)>]
-<images/Scraper_text_search.png, id=485, 462.97969pt x 813.0375pt>
+ [29 <./images/Scraper_control_panel.png (PNG copy)>] [30 <./images/Scraper_row
+s_cols.png (PNG copy)>]
+<images/Scraper_text_search.png, id=530, 462.97969pt x 813.0375pt>
 File: images/Scraper_text_search.png Graphic file (type png)
 <use images/Scraper_text_search.png>
-Package pdftex.def Info: images/Scraper_text_search.png  used on input line 523
+Package pdftex.def Info: images/Scraper_text_search.png  used on input line 545
 .
 (pdftex.def)             Requested size: 166.04887pt x 291.60155pt.
-<images/Scraper_css_selector.png, id=486, 462.97969pt x 813.0375pt>
+<images/Scraper_css_selector.png, id=531, 462.97969pt x 813.0375pt>
 File: images/Scraper_css_selector.png Graphic file (type png)
 <use images/Scraper_css_selector.png>
-Package pdftex.def Info: images/Scraper_css_selector.png  used on input line 52
-9.
+Package pdftex.def Info: images/Scraper_css_selector.png  used on input line 55
+1.
 (pdftex.def)             Requested size: 166.04887pt x 291.60155pt.
- [29 <./images/Scraper_text_search.png (PNG copy)> <./images/Scraper_css_select
+ [31 <./images/Scraper_text_search.png (PNG copy)> <./images/Scraper_css_select
 or.png (PNG copy)>]
-<images/Scraper_dom_navigation.png, id=493, 1445.4pt x 813.0375pt>
+<images/Scraper_dom_navigation.png, id=539, 1445.4pt x 813.0375pt>
 File: images/Scraper_dom_navigation.png Graphic file (type png)
 <use images/Scraper_dom_navigation.png>
 Package pdftex.def Info: images/Scraper_dom_navigation.png  used on input line 
-538.
+560.
 (pdftex.def)             Requested size: 369.0pt x 207.56374pt.
 
-Overfull \hbox (1.9954pt too wide) in paragraph at lines 536--542
+Overfull \hbox (1.9954pt too wide) in paragraph at lines 558--564
 \OT1/lmr/m/n/10.95 je ka^^Tzd^^Sy vy-bran^^Sy pr-vek opat^^Tren ^^Tctve^^Tric^^
 S^^P tla^^Tc^^S^^Ptek, kter^^Sa se ob-jev^^S^^P, po-kud u^^Tzivatel
  []
 
 
-Overfull \hbox (1.01912pt too wide) in paragraph at lines 536--542
+Overfull \hbox (1.01912pt too wide) in paragraph at lines 558--564
 \OT1/lmr/m/n/10.95 na-jede kur-zo-rem na dan^^Sy ele-ment, viz Obr^^Sazek []3.5
 []. Tla^^Tc^^S^^Ptko $+$ po-sune ozna^^Tcen^^S^^P
  []
 
-<images/Scraper_preview_mode.png, id=496, 1445.4pt x 813.0375pt>
+<images/Scraper_preview_mode.png, id=542, 1445.4pt x 813.0375pt>
 File: images/Scraper_preview_mode.png Graphic file (type png)
 <use images/Scraper_preview_mode.png>
-Package pdftex.def Info: images/Scraper_preview_mode.png  used on input line 54
-5.
+Package pdftex.def Info: images/Scraper_preview_mode.png  used on input line 56
+7.
 (pdftex.def)             Requested size: 369.0pt x 207.56374pt.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[30 <./images/Scraper_dom_navigation.png (PNG copy)>]
-Overfull \hbox (0.34958pt too wide) in paragraph at lines 560--561
+[32 <./images/Scraper_dom_navigation.png (PNG copy)>]
+Overfull \hbox (0.34958pt too wide) in paragraph at lines 582--583
 \OT1/lmr/m/n/10.95 str^^Sanky nov^^Sy if-rame, do n^^Teho^^Tz na^^Tcte HTML do-
 ku-ment, kter^^Sy p^^Tredstavuje
  []
 
+[33 <./images/Scraper_preview_mode.png (PNG copy)>] [34] [35
 
-Overfull \hbox (11.0953pt too wide) in paragraph at lines 566--567
-[]\OT1/lmr/m/n/10.95 kter^^Sy de-le-guje pr^^Saci na ostatn^^S^^P kom-po-nenty.
- Slou^^Tz^^S^^P jako prost^^Tredn^^S^^Pk
- []
+] [36
 
-[31 <./images/Scraper_preview_mode.png (PNG copy)>] [32] [33
-
-] [34
-
-] [35]
-[36]
+] [37]
+[38]
 bibitemlist
-LaTeX Font Info:    Try loading font information for OT1+lmtt on input line 611
+LaTeX Font Info:    Try loading font information for OT1+lmtt on input line 624
 .
 (/usr/share/texmf/tex/latex/lm/ot1lmtt.fd
 File: ot1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-Underfull \hbox (badness 1348) in paragraph at lines 611--612
+Underfull \hbox (badness 1348) in paragraph at lines 624--625
 \OT1/lmr/m/n/10.95 bo-ra-tive filtering-based ap-pro-ach to web ad-ver-ti-sing.
  \OT1/lmr/m/it/10.95 Ar-ti-fi-cial In-
  []
 
 
-Underfull \hbox (badness 1448) in paragraph at lines 611--612
+Underfull \hbox (badness 1448) in paragraph at lines 624--625
 \OT1/lmr/m/it/10.95 tel-li-gence Re-search \OT1/lmr/m/n/10.95 [on-line]. 2013, 
 ro^^Tc. 2, ^^Tc. 1 [cit. 13. 4. 2019].
  []
 
 
-Underfull \hbox (badness 2512) in paragraph at lines 611--612
+Underfull \hbox (badness 2512) in paragraph at lines 624--625
 \OT1/lmr/m/n/10.95 DOI: 10.5430/air.v2n1p44. ISSN 1927-6974. Do-stupn^^Se z: []
 $\OT1/lmtt/m/n/10.95 http : / /
  []
 
 
-Underfull \hbox (badness 4353) in paragraph at lines 617--618
+Underfull \hbox (badness 4353) in paragraph at lines 630--631
 \OT1/lmr/m/n/10.95 4. 2019]. Do-stupn^^Se z: []$\OT1/lmtt/m/n/10.95 https : / /
  history -[] computer\OML/lmm/m/it/10.95 :\OT1/lmtt/m/n/10.95 com / Internet /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 623--624
+Underfull \hbox (badness 10000) in paragraph at lines 636--637
 \OT1/lmtt/m/n/10.95 diffbot -[] is -[] using -[] computer -[] vision -[] to -[]
  reinvent -[] the -[] semantic -[]
  []
 
-[37
+[39
 
 ]
-Underfull \hbox (badness 1163) in paragraph at lines 635--636
+Underfull \hbox (badness 1163) in paragraph at lines 648--649
 [] \OT1/lmr/m/n/10.95 2019 Up-Coun-sel, Inc. [cit. 1. 4. 2019]. Do-stupn^^Se z:
  []$\OT1/lmtt/m/n/10.95 https : / /
  []
 
 
-Underfull \hbox (badness 1466) in paragraph at lines 647--648
+Underfull \hbox (badness 1466) in paragraph at lines 660--661
 \OT1/lmr/m/n/10.95 vi-sej^^S^^Pc^^S^^Pch s pr^^Savem au-torsk^^Sym a o zm^^Ten^
 ^Te n^^Tekter^^Sych z^^Sakon^^Wu (au-
  []
 
-[38]
-Underfull \hbox (badness 2035) in paragraph at lines 665--666
+[40]
+Underfull \hbox (badness 2035) in paragraph at lines 678--679
 []\OT1/lmr/m/n/10.95 Case 17-cv-03301-EMC, or-der gran-ting pla-in-tiff's mo-ti
 on for pre-
  []
 
 
-Underfull \hbox (badness 3601) in paragraph at lines 665--666
+Underfull \hbox (badness 3601) in paragraph at lines 678--679
 \OT1/lmr/m/n/10.95 li-mi-nary in-junction, fi-led 08/14/17. In: \OT1/lmr/m/it/1
 0.95 The Uni-ted Sta-tes Dis-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 665--666
+Underfull \hbox (badness 10000) in paragraph at lines 678--679
 \OT1/lmr/m/it/10.95 t-rict Court for the Northern Dis-t-rict of Ca-li-for-nia \
 OT1/lmr/m/n/10.95 [on-line].
  []
 
 
-Underfull \hbox (badness 6236) in paragraph at lines 665--666
+Underfull \hbox (badness 6236) in paragraph at lines 678--679
 \OT1/lmr/m/n/10.95 Uni-ted Sta-tes Dis-t-rict Court [cit. 30. 3. 2019]. Do-stup
 n^^Se z:
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 665--666
+Underfull \hbox (badness 10000) in paragraph at lines 678--679
 []$\OT1/lmtt/m/n/10.95 https : / / www\OML/lmm/m/it/10.95 :\OT1/lmtt/m/n/10.95 
 cand\OML/lmm/m/it/10.95 :\OT1/lmtt/m/n/10.95 uscourts\OML/lmm/m/it/10.95 :\OT1/
 lmtt/m/n/10.95 gov / filelibrary / 3170 / C -[] 17 -[] 3301 -[]
  []
 
 
-Underfull \hbox (badness 5345) in paragraph at lines 668--669
+Underfull \hbox (badness 5345) in paragraph at lines 681--682
 []\OT1/lmr/m/n/10.95 WILLIAMS, Ja-mie. `Scra-ping' Is Just Au-to-ma-ted Ac-cess
 , and
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 668--669
+Underfull \hbox (badness 10000) in paragraph at lines 681--682
 \OT1/lmr/m/n/10.95 Eve-ry-one Does It. In: \OT1/lmr/m/it/10.95 Electro-nic Fron
 -tier Foun-dation \OT1/lmr/m/n/10.95 [on-
  []
 
 
-Underfull \hbox (badness 2846) in paragraph at lines 668--669
+Underfull \hbox (badness 2846) in paragraph at lines 681--682
 \OT1/lmr/m/n/10.95 line]. Electro-nic Fron-tier Foun-dation [cit. 1. 4. 2019]. 
 Do-stupn^^Se
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 668--669
+Underfull \hbox (badness 10000) in paragraph at lines 681--682
 \OT1/lmr/m/n/10.95 z: []$\OT1/lmtt/m/n/10.95 https : / / www\OML/lmm/m/it/10.95
  :\OT1/lmtt/m/n/10.95 eff\OML/lmm/m/it/10.95 :\OT1/lmtt/m/n/10.95 org / deeplin
 ks / 2018 / 04 / scraping -[] just -[]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 674--675
+Underfull \hbox (badness 10000) in paragraph at lines 687--688
 \OT1/lmtt/m/n/10.95 forbestechcouncil / 2017 / 09 / 20 / linkedin -[] vs -[] hi
 q -[] ruling -[] casts -[]
  []
 
 
-Underfull \hbox (badness 1748) in paragraph at lines 677--678
+Underfull \hbox (badness 1748) in paragraph at lines 690--691
 \OT1/lmr/m/it/10.95 peals for the Ninth Ci-r-cuit \OT1/lmr/m/n/10.95 [on-line].
  [cit. 31. 3. 2019]. Do-stupn^^Se
  []
 
 
-Underfull \hbox (badness 1048) in paragraph at lines 680--681
+Underfull \hbox (badness 1048) in paragraph at lines 693--694
 []\OT1/lmr/m/n/10.95 KERR, Orin. 9th Ci-r-cuit: It's a fe-de-ral crime to vi-si
 t a web-site
  []
 
 
-Underfull \hbox (badness 1721) in paragraph at lines 680--681
+Underfull \hbox (badness 1721) in paragraph at lines 693--694
 [] \OT1/lmr/m/n/10.95 1996--2019 The Wa-shing-ton Post [cit. 31. 3. 2019]. Do-s
 tupn^^Se
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 680--681
+Underfull \hbox (badness 10000) in paragraph at lines 693--694
 \OT1/lmr/m/n/10.95 z: []$\OT1/lmtt/m/n/10.95 https : / / www\OML/lmm/m/it/10.95
  :\OT1/lmtt/m/n/10.95 washingtonpost\OML/lmm/m/it/10.95 :\OT1/lmtt/m/n/10.95 co
 m / news / volokh -[] conspiracy /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 680--681
+Underfull \hbox (badness 10000) in paragraph at lines 693--694
 \OT1/lmtt/m/n/10.95 wp / 2016 / 07 / 12 / 9th -[] circuit -[] its -[] a -[] fed
 eral -[] crime -[] to -[] visit -[] a -[]
  []
 
-[39]
-Underfull \hbox (badness 10000) in paragraph at lines 695--696
+[41]
+Underfull \hbox (badness 10000) in paragraph at lines 708--709
 []\OT1/lmr/m/n/10.95 SOFTWARE IN-NO-VATION LAB LLC. \OT1/lmr/m/it/10.95 Data sc
 ra-per. Ver-
  []
 
 
-Underfull \hbox (badness 4872) in paragraph at lines 695--696
+Underfull \hbox (badness 4872) in paragraph at lines 708--709
 \OT1/lmr/m/it/10.95 sion 3.299.84 \OT1/lmr/m/n/10.95 [soft-ware]. 2015 [cit. 13
 . 4. 2019]. Do-stupn^^Se z:
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 695--696
+Underfull \hbox (badness 10000) in paragraph at lines 708--709
 []$\OT1/lmtt/m/n/10.95 https : / / chrome\OML/lmm/m/it/10.95 :\OT1/lmtt/m/n/10.
 95 google\OML/lmm/m/it/10.95 :\OT1/lmtt/m/n/10.95 com / webstore / detail / dat
 a -[] scraper -[] easy -[]
  []
 
-[40]
-Overfull \hbox (2.43251pt too wide) in paragraph at lines 709--710
+[42]
+Overfull \hbox (2.43251pt too wide) in paragraph at lines 722--723
 []\OT1/lmr/m/n/10.95 Controlling the Assault of Non-Solicited Por-no-gra-phy an
 d Mar-
  []
 
-[41
+[43
 
-] [42
+] [44
 
 ]
 
 Class memoir Warning: The material used in the headers is too large
 (14.68782pt) for the given head height (13.6pt), it is recommended to
 either increase the head height or redesign the header
-(in both cases you will find help in the memoir manual). on input line 742.
+(in both cases you will find help in the memoir manual). on input line 755.
 
-[43]
+[45]
 \tf@toc=\write5
 \openout5 = `Sablona_BP_UTF-8.toc'.
 
 \tf@lof=\write6
 \openout6 = `Sablona_BP_UTF-8.lof'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 742.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 742.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 755.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 755.
  (./Sablona_BP_UTF-8.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 742.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 742.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 755.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 755.
 Package rerunfilecheck Info: File `Sablona_BP_UTF-8.out' has not changed.
-(rerunfilecheck)             Checksum: DB1A6C6CDA308DEA1A3F80D3956BA61A;2788.
+(rerunfilecheck)             Checksum: 0EEA39C6F702033B668066967B1ADBDD;2788.
 
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 742.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 755.
  ) 
 Here is how much of TeX's memory you used:
- 14950 strings out of 494889
- 211850 string characters out of 6179446
- 342346 words of memory out of 5000000
- 17929 multiletter control sequences out of 15000+600000
+ 15004 strings out of 494889
+ 212730 string characters out of 6179446
+ 342651 words of memory out of 5000000
+ 17950 multiletter control sequences out of 15000+600000
  72655 words of font info for 49 fonts, out of 8000000 for 9000
  24 hyphenation exceptions out of 8191
- 38i,11n,42p,1240b,483s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 38i,11n,42p,1240b,484s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/lm/lm-rmtt.enc}{/usr/share/texmf/fonts/enc/
 dvips/lm/lm-rm.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/sha
 re/texmf/fonts/enc/dvips/lm/lm-rmsc.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm
@@ -1527,10 +1567,10 @@ lm/lmri10.pfb></usr/share/texmf/fonts/type1/public/lm/lmri9.pfb></usr/share/tex
 mf/fonts/type1/public/lm/lmss10.pfb></usr/share/texmf/fonts/type1/public/lm/lms
 sbx10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy10.pfb></usr/share/texmf/
 fonts/type1/public/lm/lmtt10.pfb>
-Output written on Sablona_BP_UTF-8.pdf (55 pages, 2408816 bytes).
+Output written on Sablona_BP_UTF-8.pdf (57 pages, 2511280 bytes).
 PDF statistics:
- 726 PDF objects out of 1000 (max. 8388607)
- 624 compressed objects within 7 object streams
- 195 named destinations out of 1000 (max. 500000)
- 221 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 779 PDF objects out of 1000 (max. 8388607)
+ 669 compressed objects within 7 object streams
+ 225 named destinations out of 1000 (max. 500000)
+ 236 words of extra memory for PDF output out of 10000 (max. 10000000)
 
