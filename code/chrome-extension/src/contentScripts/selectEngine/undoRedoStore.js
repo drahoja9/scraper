@@ -1,4 +1,4 @@
-import { Messages } from '../constants.js';
+import { Messages } from '/src/constants.js';
 
 
 export class UndoRedoStore {

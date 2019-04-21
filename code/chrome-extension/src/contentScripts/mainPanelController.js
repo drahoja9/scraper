@@ -1,7 +1,7 @@
 import { MAIN_PANEL_PAGE, Messages } from '../constants.js';
 
 
-export class MainPanel {
+export class MainPanelController {
     constructor(controller, visibility) {
         this.isInjected = false;
         this.isVisible = false;

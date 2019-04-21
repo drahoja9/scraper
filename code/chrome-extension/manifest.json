@@ -1,7 +1,7 @@
 {
-  "name": "Bachelor thesis",
-  "version": "0.1",
-  "description": "To be done...",
+  "name": "Scraper",
+  "version": "1.0",
+  "description": "Web scraping tool made as part of the bachelor's thesis.",
   "permissions": [
     "activeTab",
     "storage",
@@ -19,7 +19,7 @@
       ],
       "css": [
         "src/contentScripts/contentScript.css",
-        "src/contentScripts/data/previewTable/previewTable.css"
+        "src/previewTable/previewTable.css"
       ],
       "js": [
         "lib/js/jquery-3.3.1.min.js",
@@ -28,25 +28,24 @@
     }
   ],
   "browser_action": {
-    "default_title": "To be done...",
+    "default_title": "Scraper",
     "default_icon": {
-      "16": "icon512.png",
-      "32": "icon512.png",
-      "48": "icon512.png",
-      "128": "icon512.png"
+      "16": "scraper.png",
+      "32": "scraper.png",
+      "48": "scraper.png",
+      "128": "scraper.png"
     }
   },
   "icons": {
-    "16": "icon512.png",
-    "32": "icon512.png",
-    "48": "icon512.png",
-    "128": "icon512.png"
+    "16": "scraper.png",
+    "32": "scraper.png",
+    "48": "scraper.png",
+    "128": "scraper.png"
   },
   "manifest_version": 2,
   "content_security_policy": "script-src 'self'; object-src 'self'",
   "web_accessible_resources": [
     "src/*.js",
-    "src/mainPanel/mainPanel.html",
-    "src/contentScripts/data/previewTable/previewTable.html"
+    "src/*.html"
   ]
 }

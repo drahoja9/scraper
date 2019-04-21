@@ -1,5 +1,5 @@
 import { Messages } from '/src/constants.js';
-import { isValid } from './utils.js';
+import { isValid } from '../utils.js';
 import { UndoRedoStore } from './undoRedoStore.js';
 
 
@@ -13,7 +13,7 @@ class Selection {
     }
 
     select(elements, shouldPushUndo = true) {
-        if (!elements) return;
+        if (elements.length === 0) return;
 
         let filtered = [];
         elements.forEach(element => {

@@ -2,10 +2,9 @@ import { Messages, MAIN_PANEL_PAGE } from '../constants.js';
 
 
 export class Communication {
-    constructor(controller, selectEngine) {
+    constructor(controller) {
         this._controller = controller;
         this._mainPanel = undefined;
-        this._selectEngine = selectEngine;
 
         this._communicationWithMainPanel = this._communicationWithMainPanel.bind(this);
     }
@@ -62,6 +61,7 @@ export class Communication {
     }
 
     _communicationWithMainPanel(event) {
+        // Message is not from our main panel
         if (chrome.runtime.getURL(MAIN_PANEL_PAGE).indexOf(event.origin) === -1) {
             return;
         }
@@ -76,10 +76,10 @@ export class Communication {
                 this.sendMessageToBackground({ msg: event.data.msg });
                 break;
             case Messages.SELECTING_ROWS:
-                this._selectEngine.selectingRows();
+                this._controller.selectingRows();
                 break;
             case Messages.SELECTING_COLS:
-                this._selectEngine.selectingCols();
+                this._controller.selectingCols();
                 break;
             case Messages.ADDED_COL:
             case Messages.RENAMED_COL:
@@ -87,31 +87,31 @@ export class Communication {
                 this._controller.invalidateData();
                 break;
             case Messages.CHOSEN_COL:
-                this._selectEngine.changeCol(event.data.payload);
+                this._controller.changeCol(event.data.payload);
                 break;
             case Messages.SELECTING_ELEMENTS:
-                this._selectEngine.toggleMouseSelector();
+                this._controller.toggleMouseSelector();
                 break;
             case Messages.UNDO:
-                this._selectEngine.undo();
+                this._controller.undo();
                 break;
             case Messages.REDO:
-                this._selectEngine.redo();
+                this._controller.redo();
                 break;
             case Messages.TEXT_SEARCH_CONTAINS:
-                this._selectEngine.contains(event.data.payload);
+                this._controller.textContains(event.data.payload);
                 break;
             case Messages.TEXT_SEARCH_STARTS:
-                this._selectEngine.startsWith(event.data.payload);
+                this._controller.textStartsWith(event.data.payload);
                 break;
             case Messages.TEXT_SEARCH_ENDS:
-                this._selectEngine.endsWith(event.data.payload);
+                this._controller.textEndsWith(event.data.payload);
                 break;
             case Messages.CSS_SELECT:
-                this._selectEngine.cssSelect(event.data.payload);
+                this._controller.cssSelect(event.data.payload);
                 break;
             case Messages.CSS_UNSELECT:
-                this._selectEngine.cssUnselect();
+                this._controller.cssUnselect();
                 break;
             case Messages.DISPLAY_PREVIEW:
                 this._controller.previewData(event.data.payload);

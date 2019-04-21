@@ -1,23 +1,17 @@
-import { PreviewTable } from "./previewTable/previewTable.js";
 import { JSONExporter, CSVExporter } from './exporter.js';
 
 
-export class DataProvider {
+export class DataEngine {
     constructor(controller) {
-        this.data = { columnNames: [], rowsData: [] };
+        this._data = { columnNames: [], rowsData: [] };
         this.isDataValid = false;
-        this._previewTable = new PreviewTable(this);
         this._controller = controller;
         this._exporter = undefined;
     }
 
-    injectPreviewTable() {
-        this._previewTable.inject();
-    }
-
-    preview(columns) {
+    getData(columns) {
         this._checkData(columns);
-        this._previewTable.display();
+        return this._data;
     }
 
     export(columns, format) {
@@ -34,15 +28,14 @@ export class DataProvider {
                 throw Error('Unknown export format!');
         }
 
-        const url = this._exporter.getFileUrl(this.data);
+        const url = this._exporter.getFileUrl(this._data);
         const filename = 'data' + this._exporter.extension;
         return { url, filename };
     }
 
     removeRow(row) {
-        this._controller.unselectRow(row);
-        const rowIdx = this.data.rowsData.indexOf(row);
-        this.data.rowsData.splice(rowIdx, 1);
+        const rowIdx = this._data.rowsData.indexOf(row);
+        this._data.rowsData.splice(rowIdx, 1);
     }
 
     _htmlExtractor(node) {
@@ -71,7 +64,7 @@ export class DataProvider {
             rowsData.push(dataRow);
         }
 
-        this.data = { columnNames, rowsData };
+        this._data = { columnNames, rowsData };
         this.isDataValid = true;
     }
 }

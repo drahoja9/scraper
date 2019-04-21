@@ -1,6 +1,3 @@
-import { isValid } from "../utils.js";
-
-
 export class TextSelector {
     constructor(selectEngine) {
         this._selectEngine = selectEngine;
