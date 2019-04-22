@@ -2,6 +2,11 @@
     "scripts": {
         "test": "jest"
     },
+    "jest": {
+        "moduleNameMapper": {
+            "^/src/(.*)$": "<rootDir>/src/$1"
+        }
+    },
     "jest.showCoverageOnLoad": true,
     "devDependencies": {
         "@babel/core": "^7.3.4",
