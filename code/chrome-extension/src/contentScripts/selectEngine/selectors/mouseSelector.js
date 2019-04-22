@@ -9,11 +9,11 @@ export class MouseSelector {
         this._highlightingFunc = this._highlightingFunc.bind(this);
     }
 
-    toggle(highlightingClass) {
+    toggle(highlightingClass = '') {
         this._highlightingClass = highlightingClass;
+        this._isTurnedOn = !this._isTurnedOn;
         this._toggleOnHoverHighlighting();
         this._toggleOnClickSelecting();
-        this._isTurnedOn = !this._isTurnedOn;
     }
 
     reset() {
@@ -111,7 +111,7 @@ export class MouseSelector {
     }
 
     _toggleEventListener(eventType, toggleFunc, capture = false) {
-        if (!this._isTurnedOn) {
+        if (this._isTurnedOn) {
             document.addEventListener(eventType, toggleFunc, capture);
         } else {
             document.removeEventListener(eventType, toggleFunc, capture);

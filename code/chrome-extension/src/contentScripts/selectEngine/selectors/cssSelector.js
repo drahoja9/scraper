@@ -14,6 +14,7 @@ export class CSSSelector {
     unselectCurrent() {
         if (this._current) {
             this._selectEngine.unselect(this._current);
+            this._current = undefined;
         }
     }
 }

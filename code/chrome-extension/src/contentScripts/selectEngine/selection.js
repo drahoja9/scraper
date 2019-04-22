@@ -26,7 +26,6 @@ class Selection {
         });
         this._controller.invalidateData();
         this._domNavigaton.notify({ msg: Messages.SELECTED, nodes: filtered });
-        this._controller.notify({ msg: Messages.SELECTED, nodes: filtered });
 
         if (shouldPushUndo) {
             this._undoRedoStore.pushUndo(this._getSelector(filtered));

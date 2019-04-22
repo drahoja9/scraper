@@ -14,17 +14,26 @@
     <div id="hidden-div-3" class="row" hidden>
         <p>This text is hidden via HTML attribute.</p>
     </div>
+    <div id="hidden-div-4" class="row display-none-class">
+        <p>This text is hidden via classic CSS (`display` set to `none` via JS in tests).</p>
+    </div>
+    <div id="hidden-div-5" class="row opacity-zero-class">
+        <p>This text is hidden via classic CSS (`opacity` set to 0 via JS in tests).</p>
+    </div>
+    <div id="hidden-div-6" class="row" style="opacity: 0;">
+        <p>This text is hidden via inline CSS (`opacity` set to 0).</p>
+    </div>
     <div id="container">
-        <div class="col" id="first-div">
+        <div class="col" id="first-div" special>
             <div class="row md-2" id="second-div">
                 <article class="post unread" id="post-1">
-                    <div class="col pd-3" data-attribute="332" id="first-img-div">
+                    <div class="col pd-3" data-attribute="332" id="first-img-div" special>
                         <img src="icon512.png" id="first-img" />
                         <p>Figure no. 1</p>
                     </div>
                     <div class="col" id="first-content-div">
                         <div class="row post-header" id="first-header">
-                            <h3>Article header</h3>
+                            <h3>Article header</h3 special>
                             This text should represent text child node of `first-header` div.
                         </div>
                         <div class="row post-text" id="first-text">
@@ -40,7 +49,7 @@
                             <span class="twitter-retweet" id="first-retweet">Retweet</span>
                         </div>
                     </div>
-                    <div class="col" id="first-span-div">
+                    <div class="col" id="first-span-div" special>
                         <span class="row" id="first-row-span"></span>
                     </div>
                 </article>
@@ -71,6 +80,55 @@
                     </div>
                 </article>
             </div>
+        </div>
+        <div>
+            <table class="employees" special>
+                <th>
+                <td>Name</td>
+                <td>E-mail</td>
+                <td>Position</td>
+                </th>
+                <tr>
+                    <td class="name">Michael Scott</td>
+                    <td class="email">best.boss.ever@scranton.pa</td>
+                    <td class="position">Scranton branch regional manager</td>
+                </tr>
+                <tr>
+                    <td class="name" special>Dwight Schrute</td>
+                    <td class="email">dwight.schrute@beets.com</td>
+                    <td class="position">Assistant to the regional manager; sales</td>
+                </tr>
+                <tr>
+                    <td class="name">Jim Halpert</td>
+                    <td class="email">jimmyhalpert73@gmail.com</td>
+                    <td class="position">Sales</td>
+                </tr>
+                <tr>
+                    <td class="name">Pamela Beasly</td>
+                    <td class="email">beaspam@pambeas.ca</td>
+                    <td class="position">Reception</td>
+                </tr>
+                <tr>
+                    <td class="name">Kevin Malone</td>
+                    <td class="email">cookiemonster@m&m.com</td>
+                    <td class="position">Accounting</td>
+                </tr>
+                <tr>
+                    <td class="name">Oscar Martinez</td>
+                    <td class="email">knowitall@example.org</td>
+                    <td class="position">Accounting</td>
+                </tr>
+                <tr>
+                    <td class="name">Stanley Hudson</td>
+                    <td class="email">floridaman8@leavemealone.hu</td>
+                    <td class="position">Sales</td>
+                </tr>
+            </table>
+        </div>
+        <div>
+            <iframe class="scraping-protected">Protected</iframe>
+            <b class="scraping-protected">Protected</b>
+            <a class="scraping-protected">Protected</a>
         </div>
     </div>
     <script src="some_random_script.js" class="row" id="script"></script>
