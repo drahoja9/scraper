@@ -21,6 +21,14 @@ export const _mouseout = (node) => {
     node.dispatchEvent(new MouseEvent('mouseout', { bubbles: true }));
 }
 
+export const _mouseenter = (node) => {
+    node.dispatchEvent(new MouseEvent('mouseenter', { bubbles: true }));
+}
+
+export const _mouseleave = (node) => {
+    node.dispatchEvent(new MouseEvent('mouseleave', { bubbles: true }));
+}
+
 export const _click = (node) => {
     node.dispatchEvent(new MouseEvent('click', {
         bubbles: true,

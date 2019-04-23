@@ -16,19 +16,19 @@ class Selection {
         if (elements.length === 0) return;
 
         let filtered = [];
-        elements.forEach(element => {
+        for (const element of elements) {
             if (!isValid(element) || this.areSelected([element])) return;
             element.classList.add(...this._scrapingClasses);
             if (this._rowId !== undefined) {
-                this._updateClasses(++this._rowId);
+                this._updateClasses(this._rowId + 1);
             }
             filtered.push(element);
-        });
+        };
         this._controller.invalidateData();
         this._domNavigaton.notify({ msg: Messages.SELECTED, nodes: filtered });
 
         if (shouldPushUndo) {
-            this._undoRedoStore.pushUndo(this._getSelector(filtered));
+            this._undoRedoStore.pushUndo(filtered);
         }
     }
 
@@ -37,7 +37,7 @@ class Selection {
         this._domNavigaton.notify({ msg: Messages.UNSELECTED, nodes: elements });
 
         if (shouldPushUndo) {
-            this._undoRedoStore.pushUndo(this._getSelector(elements));
+            this._undoRedoStore.pushUndo(elements);
         }
     }
 
@@ -75,14 +75,8 @@ class Selection {
         this._undoRedoStore.checkRedo();
     }
 
-    _getSelector(elements) {
-        let selectors = [];
-        for (const element of elements) {
-            const id = element.id || this._selectEngine.generateId();
-            element.id = id;
-            selectors.push(`#${id}`);
-        }
-        return selectors.join(',');
+    generateId() {
+        return this._selectEngine.generateId();
     }
 
     _getId(element, scrapingClass) {
@@ -123,16 +117,18 @@ export class RowSelection extends Selection {
     }
 
     unselect(elements, shouldPushUndo = true) {
+        const rowId = this._rowId;
         elements.forEach(element => {
             const rowId = this._getRowId(element);
             this._updateClasses(rowId);
             element.classList.remove(...this._scrapingClasses);
         });
-        this._updateClasses(this._rowId);
+        this._updateClasses(rowId);
         super.unselect(elements, shouldPushUndo);
     }
 
     areSelected(elements) {
+        const rowId = this._rowId;
         let selected = true;
         for (const element of elements) {
             const rowId = this._getRowId(element);
@@ -142,7 +138,7 @@ export class RowSelection extends Selection {
                 break;
             }
         }
-        this._updateClasses(this._rowId);
+        this._updateClasses(rowId);
         return selected;
     }
 
@@ -155,9 +151,10 @@ export class RowSelection extends Selection {
     }
 
     _updateClasses(rowId) {
+        this._rowId = rowId;
         this._scrapingClasses = [
             'scraping-selected-row',
-            `scraping-row-${rowId}`
+            `scraping-row-${this._rowId}`
         ];
     }
 }
@@ -200,9 +197,10 @@ export class ColumnSelection extends Selection {
     }
 
     _updateClasses(colId) {
+        this._colId = colId;
         this._scrapingClasses = [
             'scraping-selected-col',
-            `scraping-col-${colId}`,
+            `scraping-col-${this._colId}`,
             'scraping-active'
         ];
     }

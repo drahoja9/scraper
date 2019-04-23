@@ -44,8 +44,10 @@ export class MouseSelector {
     }
 
     _createAttributesString(target) {
-        const currentAttrs = this._current.hasAttributes() ? this._current.attributes : new NamedNodeMap();
-        const newAttrs = target.hasAttributes() ? target.attributes : new NamedNodeMap();
+        if (!this._current.hasAttributes() || ! target.hasAttributes()) return '';
+
+        const currentAttrs = this._current.attributes;
+        const newAttrs = target.attributes;
         let attributeString = ``;
 
         const isClass = attr => attr.name === 'class';

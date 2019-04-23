@@ -51,8 +51,8 @@ export class DOMNavigaton {
         }
         top -= htmlRect.top;
 
-        const elementHorizontalHalf = elementRect.width / 2
-        const controlsHorizontalHalf = this._controls.node.offsetWidth / 2
+        const elementHorizontalHalf = elementRect.width / 2;
+        const controlsHorizontalHalf = this._controls.node.offsetWidth / 2;
         let left = elementRect.left + elementHorizontalHalf - controlsHorizontalHalf;
         left -= htmlRect.left;
 

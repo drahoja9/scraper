@@ -25,8 +25,8 @@ export class UndoRedoStore {
         this._pushUndo(selector);
     }
 
-    pushUndo(selector) {
-        this._pushUndo(selector);
+    pushUndo(elements) {
+        this._pushUndo(this._getSelector(elements));
         this._clearRedos();
     }
 
@@ -44,6 +44,16 @@ export class UndoRedoStore {
         } else {
             this._controller.notify({ msg: Messages.ENABLE_REDO })
         }
+    }
+
+    _getSelector(elements) {
+        let selectors = [];
+        for (const element of elements) {
+            const id = element.id || this._selection.generateId();
+            element.id = id;
+            selectors.push(`#${id}`);
+        }
+        return selectors.join(',');
     }
 
     _pushUndo(selector) {

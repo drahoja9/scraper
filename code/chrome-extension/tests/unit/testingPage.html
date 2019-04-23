@@ -6,22 +6,22 @@
 
 <body>
     <div id="hidden-div-1" class="row" style="display: none;">
-        <p>This text is hidden via inline CSS (`display` set to `none`).</p>
+        <p>This is hidden via inline CSS (`display` set to `none`).</p>
     </div>
     <div id="hidden-div-2" class="row">
-        <p>This text is hidden with `offsetHeight` and `offsetWidth` set to 0 (via JS in tests).</p>
+        <p>This is hidden with `offsetHeight` and `offsetWidth` set to 0 (via JS in tests).</p>
     </div>
     <div id="hidden-div-3" class="row" hidden>
-        <p>This text is hidden via HTML attribute.</p>
+        <p>This is hidden via HTML attribute.</p>
     </div>
     <div id="hidden-div-4" class="row display-none-class">
-        <p>This text is hidden via classic CSS (`display` set to `none` via JS in tests).</p>
+        <p>This is hidden via classic CSS (`display` set to `none` via JS in tests).</p>
     </div>
     <div id="hidden-div-5" class="row opacity-zero-class">
-        <p>This text is hidden via classic CSS (`opacity` set to 0 via JS in tests).</p>
+        <p>This is hidden via classic CSS (`opacity` set to 0 via JS in tests).</p>
     </div>
     <div id="hidden-div-6" class="row" style="opacity: 0;">
-        <p>This text is hidden via inline CSS (`opacity` set to 0).</p>
+        <p>This is hidden via inline CSS (`opacity` set to 0).</p>
     </div>
     <div id="container">
         <div class="col" id="first-div" special>
@@ -33,15 +33,15 @@
                     </div>
                     <div class="col" id="first-content-div">
                         <div class="row post-header" id="first-header">
-                            <h3>Article header</h3 special>
+                            <h3 id="first-article-header" special>Article header</h3>
                             This text should represent text child node of `first-header` div.
                         </div>
                         <div class="row post-text" id="first-text">
                             <p id="first-p">
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                                 Suspendisse ornare ipsum vel augue sodales, non dapibus neque sodales.
-                                <a src="link_to_somewhere.com" id="first-link">Some link</a>
                                 Maecenas cursus sed sem dapibus elementum.
+                                Some random latin text.
                             </p>
                         </div>
                         <div class="row social-buttons" id="first-social-buttons">
@@ -62,12 +62,14 @@
                     </div>
                     <div class="col" id="second-content-div">
                         <div class="row post-header" id="second-header">
-                            <h3>Article header #2</h3>
+                            <h3 id="second-article-header">Article header</h3>
+                            <p id="second-header-text">This text is inside a paragraph HTML tag.</p>
                         </div>
                         <div class="row post-text" data-attribute="332" id="second-text">
                             <p id="second-p">
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                                 Aenean luctus felis in fringilla convallis. Curabitur ut pharetra ipsum.
+                                Some random latin text.
                             </p>
                         </div>
                         <div class="row social-buttons" id="second-social-buttons">
