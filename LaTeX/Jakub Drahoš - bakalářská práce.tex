@@ -41,13 +41,13 @@
 \authorFN{Drahoš} %příjmení autora
 \authorWithDegrees{Jakub Drahoš} %jméno autora včetně současných akademických titulů
 \author{Jakub Drahoš} %jméno autora bez akademických titulů
-\supervisor{Martin Podloucký}
+\supervisor{Mgr. Martin Podloucký}
 \acknowledgements{Doplňte, máte-li komu a za co děkovat. V~opačném případě úplně odstraňte tento příkaz.}
 \abstractCS{V~několika větách shrňte obsah a přínos této práce v~češtině. Po přečtení abstraktu by se čtenář měl mít čtenář dost informací pro rozhodnutí, zda chce Vaši práci číst.}
 \abstractEN{Sem doplňte ekvivalent abstraktu Vaší práce v~angličtině.}
 \placeForDeclarationOfAuthenticity{V~Praze}
 \declarationOfAuthenticityOption{4} %volba Prohlášení (číslo 1-6)
-\keywordsCS{web scraping, extrakce dat, aplikace, JavaScript, rozšíření do Chromu, právní rozbor}
+\keywordsCS{web scraping, extrakce dat, aplikace, JavaScript, rozšíření prohlížeče Chrome, právní rozbor}
 \keywordsEN{web scraping, data extraction, application, JavaScript, Chrome extension, legal analysis}
 % \website{http://site.example/thesis} %volitelná URL práce, objeví se v tiráži - úplně odstraňte, nemáte-li URL práce
 
@@ -68,7 +68,7 @@
 	Naopak v~rozsahu této práce není tvorba web crawlera ani žádného jiného podobného mechanismu, jenž by systematicky a především \emph{automatizovaně} procházel danou oblast webu.
 	
 	\section*{Motivace}
-	Věřím, že čím více informací se na internetu objevuje v~podobě webových stránek, tím více bude stoupat potřeba tyto informace určitým způsobem získávat a zpracovávat, například právě využitím web scrapingu. Dle mého názoru téměř kdokoli, kdo pracuje s daty dostupnými z~internetu, může profitovat z~využití nějakého nástroje k~vytěžování dat a zvýšit tak svoji konkurenceschopnost.
+	Věřím, že čím více informací se na internetu objevuje v~podobě webových stránek, tím více bude stoupat potřeba tyto informace určitým způsobem získávat a zpracovávat, například právě využitím web scrapingu. Dle mého názoru téměř kdokoli, kdo pracuje s~daty dostupnými z~internetu, může profitovat z~využití nějakého nástroje k~vytěžování dat a zvýšit tak svoji konkurenceschopnost.
 	\newpage
 	Tedy důvod k~vytvoření softwaru umožňující extrahovat data z~webových stránek je jasný. Ač podobných nástrojů existuje několik, jejich obsluha je~po-měrně složitá a je nutné strávit určitý čas, než se uživatel seznámí s~jejich fungováním a může je naplno využít. Právě tento aspekt se snaží aplikace vyvíjená v~rámci bakalářské práce eliminovat -- motivací je tak poskytnout uživatelům možnost jednoduše a rychle vytěžit požadovaná data bez zbytečného zdržování a dlouhého času stráveného seznamováním se s~nástrojem.
 	
@@ -91,14 +91,14 @@ V~této kapitole jsou představeny základní pojmy web scrapingu, jeho historie
 % ------------------------------------------------------------------------------------------------
 
 \section{Web scraping}
-\uv{\textit{Web scraping (nebo také web harvesting, web data extraction) je softwarová technika zaměřená na extrakci informací z~webových stránek}}\cite[překlad autora]{web_scraping_def}. Nejčastěji se v~tomto kontextu jedná o~automatizovaný proces strojového zpracování a získávání dat, nicméně může jít i o~manuální extrakci zadanou uživatelem skrze nějaký software (jako je tomu právě v~našem případě).
+\uv{\textit{Web scraping (nebo také web harvesting, web data extraction) je softwarová technika zaměřená na extrakci informací z~webových stránek}} \cite[překlad autora]{web_scraping_def}. Nejčastěji se v~tomto kontextu jedná o~automatizovaný proces strojového zpracování a získávání dat, nicméně může jít i~o~manuální extrakci zadanou uživatelem skrze nějaký software (jako je tomu právě v~našem případě).
 
-Často se také v~souvislosti s~pojmem web scraping používá spojení \emph{web crawler} (nebo také \emph{bot, spider, spiderbot}). Jedná se o~automatizovaný software, který systematicky prochází danou oblast webu a během toho vytěžuje kýžená data.\cite{web_crawler_def}
+Často se také v~souvislosti s~pojmem web scraping používá spojení \emph{web crawler} (nebo také \emph{bot, spider, spiderbot}). Jedná se o~automatizovaný software, který systematicky prochází danou oblast webu a během toho vytěžuje kýžená data. \cite{web_crawler_def}
 
 \subsection{Krátce z~historie}
-Historie web scrapingu sahá k~samým počátkům internetu (World Wide Web, 1989). Prvním webovým robotem, který byl vyvinut na MIT k~měření velikosti webu, byl World Wide Web Wanderer (napsaný v~jazyce Perl) z~roku 1993.\cite{web_wanderer}
+Historie web scrapingu sahá k~samým počátkům internetu (World Wide Web, 1989). Prvním webovým robotem, který byl vyvinut na MIT k~měření velikosti webu, byl World Wide Web Wanderer (napsaný v~jazyce Perl) z~roku 1993. \cite{web_wanderer}
 
-O~něco později, v~roce 2000, se ve velkém začala používat webová APIs -- lidé mohli získávat čistá data přímo od serveru a scraping se tak stal o~hodně jednodušším. Dalším milníkem v~historii web scrapingu je rok 2004, kdy byla vydána knihovna pro parsování HTML a XML dokumentů Beautiful Soup pro programovací jazyk Python. Ta je do dnes považována za nejsofistikovanější a nejpokročilejší knihovnu pro web scraping. Za zmínku stojí určitě i rok 2006, kdy je datován příchod vizuálního web scrapingu, tedy techniky, kdy uživatel skrze rozhraní aplikace označí klikáním myši, z~kterých oblastí webové stránky chce extrahovat data. Tímto se otevřely dveře web scrapingu pro všechny.\cite{web_scraping_history}
+O~něco později, v~roce 2000, se ve velkém začala používat webová API -- lidé mohli získávat čistá data přímo od serveru a scraping se tak stal o~hodně jednodušším. Dalším milníkem v~historii web scrapingu je rok 2004, kdy byla vydána knihovna pro parsování HTML a XML dokumentů Beautiful Soup pro programovací jazyk Python. Ta je do dnes považována za nejsofistikovanější a nejpokročilejší knihovnu pro web scraping. Za zmínku stojí určitě i~rok 2006, kdy je datován příchod vizuálního web scrapingu, tedy techniky, kdy uživatel skrze rozhraní aplikace označí klikáním myši, z~kterých oblastí webové stránky chce extrahovat data. Tímto se otevřely dveře web scrapingu pro všechny. \cite{web_scraping_history}
 
 \subsection{Techniky}
 Technik, jak z~webové stránky získat data existuje mnoho, podívejme se alespoň na některé z~nich:
@@ -114,7 +114,7 @@ Technik, jak z~webové stránky získat data existuje mnoho, podívejme se alesp
 Podob pro uplatnění scrapování dat z~webu je nespočet, a to obzvlášť v~dnešní době, kdy se dle \cite{data_size} velikost všech dat na celém internetu pohybuje v~řádech Zettabajtů ($1024^{7}$ B). Mezi ty hlavní patří:
 \begin{itemize}
 	\item získání kontaktních informací (např. e-mail) pro marketingové účely
-	\item indexování webových stránek, které však využívá hlavně web crawling (jako příklad můžeme uvést známý GoogleBot)
+	\item indexování webových stránek, které však využívá hlavně web crawling (jako příklad můžeme uvést známý GoogleBot \cite{google_bot})
 	\item data mining -- proces hledání vzorců ve velkých datových setech \cite{data_mining}
 	\item monitorování různých proměnných (např. sledování cen nebo hodnocení produktů)
 	\item recyklace již někdy použitých dat za účelem vytváření \uv{nového} obsahu
@@ -127,43 +127,43 @@ Podob pro uplatnění scrapování dat z~webu je nespočet, a to obzvlášť v~d
 \label{sec:pravni_aspekt}
 Podrobná právní analýza celé problematiky web scrapingu by vydala na samostatnou diplomovou práci, a tak se pokusím pouze shrnout základní body, představit hlavní právní pojmy a poskytnout čtenáři alespoň náhled do této oblasti. 
 
-Při získávání dat z~internetových stránek může nastat hned několik komplikací z~právního hlediska, na které by se autor takového softwaru měl připravit. Následuje stručný souhrn informací, kterým se podrobně věnují jednotlivé části celé sekce \ref{sec:pravni_aspekt}.
+Při získávání dat z~internetových stránek může nastat hned několik komplikací z~právního hlediska, na které by se autor takového softwaru měl připravit. Následuje stručný souhrn informací, kterým se podrobně věnují jednotlivé části celé této sekce.
 
-Obsah může být chráněn autorským zákonem, pokud nabývá určitých rysů -- zejména se musí jednat o~výsledek tvůrčí činnosti autora. Zároveň pod tuto oblast mohou spadat věci jako je obyčejná databáze, způsob, jakým jsou určitá data rozvrstvena a uspořádána na stránce nebo třeba rozpis fotbalových utkání. Další kategorie, do kterých data mohou spadat, jsou osobní údaje a projevy osobní povahy. Při jejich zpracování je nutné postupovat přesně podle stanovených pravidel v~příslušných zákonech a právních úpravách. A~i když data nejsou chráněna žádným zvláštním zákonem, stále je nutné řídit se smluvními podmínkami, které se mohou vztahovat na jakýkoliv obsah.
+Obsah může být chráněn autorským zákonem, pokud nabývá určitých rysů -- zejména se musí jednat o~výsledek tvůrčí činnosti autora. Zároveň pod tuto oblast mohou spadat věci jako je obyčejná databáze, způsob, jakým jsou určitá data rozvrstvena a uspořádána na stránce nebo třeba rozpis fotbalových utkání. Další kategorie, do kterých data mohou spadat, jsou osobní údaje a projevy osobní povahy. Při jejich zpracování je nutné postupovat přesně podle stanovených pravidel v~příslušných zákonech a právních úpravách. A~i~když data nejsou chráněna žádným zvláštním zákonem, stále je nutné řídit se smluv-ními podmínkami, které se mohou vztahovat na jakýkoliv obsah.
 
 Tím nejkritičtějším místem každého web scrapingu je ale způsob využití samotných dat. Ve směs je možné říci, že pokud používám data čistě pro svoji osobní/domácí potřebu, pro věděcké nebo pedagogické účely (kde má ale každé užití své podstatné náležitosti) a bez účelu dosažení hospodářského prospěchu, s~největší pravděpodobností se nedopustím žádného protiprávního jednání. Vždy je ale tím nejbezpečnějším řešením kontaktovat provozovatele dané stránky a na detailech se dohodnout.
 
-Nutno také podotknout, že celá tato oblast je relativně nová a zatím neexistuje jednotný právní precedent\footnote{Kontinentální právo (na rozdíl od anglosaského) nezná precedenty (tj. všeobecně závazná soudní rozhodnutí), resp. nepovažuje je právě za závazné. Na druhou stranu by soudy měly ve stejných případech postupovat stejně. Proto si zde dovolím tento výraz použít.}, podle kterého by se soudy mohli při posuzování jednotlivých případů řídit. Proto také můžeme nabýt pocitu, že i když se jedná o~často velmi podobné případy, výsledky soudních sporů jsou diametrálně odlišné. To se ale může změnit s~případem \emph{hiQ v. LinkedIn}, který je pravděpodobně tím největším milníkem v~právní historii web scrapingu -- pokud se výsledek ještě zvrátí ve prospěch společnosti LinkedIn, mohlo by to znamenat velké omezení otevřeného přístupu k~informacím pro všechny.
+Nutno také podotknout, že celá tato oblast je relativně nová a zatím neexistuje jednotný právní precedent\footnote{Kontinentální právo (na rozdíl od anglosaského) nezná precedenty (tj. všeobecně závazná soudní rozhodnutí), resp. nepovažuje je právě za závazné. Na druhou stranu by soudy měly ve stejných případech postupovat stejně. Proto si zde dovolím tento výraz použít.}, podle kterého by se soudy mohli při posuzování jednotlivých případů řídit. Proto také můžeme nabýt pocitu, že i~když se jedná o~často velmi podobné případy, výsledky soudních sporů jsou diametrálně odlišné. To se ale může změnit s~případem \emph{hiQ v. LinkedIn}, který je pravděpodobně tím největším milníkem v~právní historii web scrapingu -- pokud se výsledek ještě zvrátí ve prospěch společnosti LinkedIn, mohlo by to znamenat velké omezení otevřeného přístupu k~informacím pro všechny.
 
 \subsection{Základní pojmy}
 \paragraph{Terms of Service} (někdy také \textit{Terms of Use}, \textit{Terms and Conditions}) je soubor pravidel sepsaný provozovatelem služby a říká, jak se uživatel smí chovat při užívání dané služby (v~kontextu této práce se jedná o~webové stránky) a co naopak dělat nesmí.
 
-\paragraph{Browsewrap} je jeden ze způsobů dohody mezi dvěma stranami kontraktu. Není nutná žádná přímá interakce s~uživatelem, ať už jde o~souhlas či nesouhlas. Místo toho je na webové stránce (nejčastěji v~dolní části) umístěna krátká zpráva informující, že pouhým procházením daného webu souhlasí s~podmínkami používání (Terms of Service). Ty jsou umístěny na samostatné stránce, na kterou vede odkaz, jenž je součástí této zprávy. U~tohoto způsobu je těžké posoudit, zdali je tu jasný projev vůle, a tak je jeho vymahatelnost sporná a liší se případ od případu.\cite{browse_wrap}
+\paragraph{Browsewrap} je jeden ze způsobů dohody mezi dvěma stranami kontraktu. Není nutná žádná přímá interakce s~uživatelem, ať už jde o~souhlas či nesouhlas. Místo toho je na webové stránce (nejčastěji v~dolní části) umístěna krátká zpráva informující, že pouhým procházením daného webu souhlasí s~podmínkami používání (Terms of Service). Ty jsou umístěny na samostatné stránce, na kterou vede odkaz, jenž je součástí této zprávy. U~tohoto způsobu je těžké posoudit, zdali je tu jasný projev vůle, a tak je jeho vymahatelnost sporná a liší se případ od případu. \cite{browse_wrap}
 
-\paragraph{Clickwrap}\label{def:clickwrap} je oproti browse-wrap daleko lépe vymahatelný, neboť je uživa-tel nucen přímo vyjádřit souhlas či nesouhlas (kliknutím na tlačítko nebo zaškrtnutím políčka) se všemi uvedenými podmínkami, a to \emph{před} použitím dané služby. Tím je zde jasně určen projev vůle. Podmínky jsou stejně jako v~případě browsewrap často umístěny na samostatné stránce a je k~nim uveden pouze odkaz, i když někdy je k~dispozici i celé jejich znění. Jedná se o~tzv. \emph{ber nebo nech být} smlouvu -- \uv{\emph{Ber nebo nech být smlouva, také nazývána adhezní smlouva, říká, že smluvní podmínky nemůžou být vyjednávány.}}\cite[překlad autora]{take_it_or_leave_it}.\cite{click_wrap}
+\paragraph{Clickwrap}\label{def:clickwrap} je oproti browse-wrap daleko lépe vymahatelný, neboť je uživa-tel nucen přímo vyjádřit souhlas či nesouhlas (kliknutím na tlačítko nebo zaškrtnutím políčka) se všemi uvedenými podmínkami, a to \emph{před} použitím dané služby. Tím je zde jasně určen projev vůle. Podmínky jsou stejně jako v~případě browsewrap často umístěny na samostatné stránce a je k~nim uveden pouze odkaz, i~když někdy je k~dispozici i~celé jejich znění. Jedná se o~tzv. \emph{ber nebo nech být} smlouvu -- \uv{\emph{Ber nebo nech být smlouva, také nazývána adhezní smlouva, říká, že smluvní podmínky nemůžou být vyjednávány.}} \cite[překlad autora]{take_it_or_leave_it}. \cite{click_wrap}
 
 \subsection{Odpovědnost v~případě protiprávního jednání}
-Ve chvíli, kdy se uživatel dopustí protiprávního jednání při využívání určitého nástroje, odpovědnost jednoznačně spočívá na něm, nikoliv na tvůrci aplikace. Zároveň je třeba upozornit, že autor softwaru odpovídá v~situaci, kdy je software primárně určen k~protiprávnímu jednání. Lze tedy jen doporučit, aby byl uživatel prokazatelně seznámen s~odpovědností za užívání softwaru v~souladu s~právem.\cite{rozhovor}
+Ve chvíli, kdy se uživatel dopustí protiprávního jednání při využívání určitého nástroje, odpovědnost jednoznačně spočívá na něm, nikoliv na tvůrci aplikace. Zároveň je třeba upozornit, že autor softwaru odpovídá v~situaci, kdy je software primárně určen k~protiprávnímu jednání. Lze tedy jen doporučit, aby byl uživatel prokazatelně seznámen s~odpovědností za užívání softwaru v~souladu s~právem. \cite{rozhovor}
 
 \subsection{Obsah na webových stránkách a jeho možné využití}
 Dle \cite{rozhovor} může být obsah chráněn zejména jako:
 \begin{itemize}
 	\item projev osobní povahy
 	\begin{itemize}
-		\item zde lze připomenout z~občanského zákoníku -- \uv{\textit{Nikdo nesmí zasá-hnout do soukromí jiného, nemá-li k~tomu zákonný důvod. Zejména nelze bez svolení člověka narušit jeho soukromé prostory, sledovat jeho soukromý život nebo pořizovat o~tom zvukový nebo obrazový záznam, využívat takové či jiné záznamy pořízené o~soukromém životě člověka třetí osobou, nebo takové záznamy o~jeho soukromém životě šířit. Ve stejném rozsahu jsou chráněny i soukromé písemnosti osobní povahy.}}\cite[\S~86]{obcansky_zakon}
-		\item do této kategorie můžou spadat třeba i komentáře uživatelů na internetovém fóru
+		\item zde lze připomenout z~občanského zákoníku -- \uv{\textit{Nikdo nesmí zasá-hnout do soukromí jiného, nemá-li k~tomu zákonný důvod. Zejména nelze bez svolení člověka narušit jeho soukromé prostory, sledovat jeho soukromý život nebo pořizovat o~tom zvukový nebo obrazový záznam, využívat takové či jiné záznamy pořízené o~soukromém životě člověka třetí osobou, nebo takové záznamy o~jeho soukromém životě šířit. Ve stejném rozsahu jsou chráněny i~soukromé písemnosti osobní povahy.}} \cite[\S~86]{obcansky_zakon}
+		\item do této kategorie můžou spadat třeba i~komentáře uživatelů na internetovém fóru
 	\end{itemize}
 	\newpage
 	\item autorské dílo (včetně databáze, viz níže); z~autorského zákona lze zmínit:
 	\begin{itemize}
-		\item volné užití -- \uv{\textit{Za užití díla podle tohoto zákona se nepovažuje užití pro osobní potřebu fyzické osoby, jehož účelem není dosažení pří-mého nebo nepřímého hospodářského nebo obchodního prospěchu, nestanoví-li tento zákon jinak.}}\cite[\S~30 odst.~1]{autorsky_zakon}
+		\item volné užití -- \uv{\textit{Za užití díla podle tohoto zákona se nepovažuje užití pro osobní potřebu fyzické osoby, jehož účelem není dosažení pří-mého nebo nepřímého hospodářského nebo obchodního prospěchu, nestanoví-li tento zákon jinak.}} \cite[\S~30 odst.~1]{autorsky_zakon}
 		\item citaci -- \uv{\textit{Do práva autorského nezasahuje ten, kdo
 		\begin{enumerate}[a)]
 			\item užije v~odůvodněné míře výňatky ze zveřejněných děl jiných autorů ve svém díle,
 			\item užije výňatky z~díla nebo drobná celá díla pro účely kritiky nebo recenze vztahující se k~takovému dílu, vědecké či odborné tvorby a takové užití bude v~souladu s~poctivými zvyklostmi a v~rozsahu vyžadovaném konkrétním účelem,
 			\item užije dílo při vyučování pro ilustrační účel nebo při vědeckém výzkumu, jejichž účelem není dosažení přímého nebo nepřímého hospodářského nebo obchodního prospěchu, a nepřesáhne rozsah odpovídající sledovanému účelu;
 		\end{enumerate}
-		vždy je však nutno uvést, je-li to možné, jméno autora, nejde-li o~dílo anonymní, nebo jméno osoby, pod jejímž jménem se dílo uvádí na veřejnost, a dále název díla a pramen.}}\cite[\S~31 odst.~1]{autorsky_zakon}
+		vždy je však nutno uvést, je-li to možné, jméno autora, nejde-li o~dílo anonymní, nebo jméno osoby, pod jejímž jménem se dílo uvádí na veřejnost, a dále název díla a pramen.}} \cite[\S~31 odst.~1]{autorsky_zakon}
 	\end{itemize}
 	\item osobní údaje (čl.~2 GDPR)
 \end{itemize}
@@ -172,54 +172,54 @@ Je tedy možné shrnout, že použití pro osobní účely (resp. domácí činn
 
 Důležité je dát si velký pozor také při zpracování a využití osobních údajů, které upravuje čl.~2 GDPR -- toto téma by samo vydalo na několik desítek stránek, a tak se jím v~této práci nebudu zabývat a je zde zmíněno jen pro úplnost.
 
-V~neposlední řadě je třeba poznamenat, že při vytěžování webu není podstatné, jakým způsobem k získání obsahu došlo (zdali prostřednictvím automatizovaného nebo manuálního postupu)\footnote{Otázkou je, jestli by bylo vůbec vymahatelné, pokud by měla stránka přímo ve svých Terms of Service uvedeno, že si nepřeje automatizované procházení, nehledě na to, jestli zároveň probíhá extrakce dat či nikoliv. Taková podmínka by mohla být brána jako neadekvátní a nepřiměřená.}. Důležité je, jestli tak činím \emph{v~souladu s~běžným, očekávaným a přiměřeným použitím} -- je tak nutné dát si pozor na detaily automatizovaného procházení, např. omezit počet požadavků na server, aby odpovídal běžnému použití lidským uživatelem \footnote{Tedy pokud je nějaký software schopný projít celou doménu během pár vteřin, je to náznak, že nemusí respektovat výše uvedené podmínky.}. Rozhodně lze ale doporučit provádět scraping webových stránek se souhlasem jejich provozovatele (poskytovatele), a to dle právního režimu dat a dané jurisdikce (situace u~nás je jiná než třeba v~USA).\cite{rozhovor}
+V~neposlední řadě je třeba poznamenat, že při vytěžování webu není podstatné, jakým způsobem k získání obsahu došlo (zdali prostřednictvím automatizovaného nebo manuálního postupu)\footnote{Otázkou je, jestli by bylo vůbec vymahatelné, pokud by měla stránka přímo ve svých Terms of Service uvedeno, že si nepřeje automatizované procházení, nehledě na to, jestli zároveň probíhá extrakce dat či nikoliv. Taková podmínka by mohla být brána jako neadekvátní a nepřiměřená.}. Důležité je, jestli tak činím \emph{v~souladu s~běžným, očekávaným a přiměřeným použitím} -- je tak nutné dát si pozor na detaily automatizovaného procházení, např. omezit počet požadavků na server, aby odpovídal běžnému použití lidským uživatelem\footnote{Tedy pokud je nějaký software schopný projít celou doménu během pár vteřin, je to náznak, že nemusí respektovat výše uvedené podmínky.}. Rozhodně lze ale doporučit provádět scraping webových stránek se souhlasem jejich provozovatele (poskytovatele), a to dle právního režimu dat a dané jurisdikce (situace u~nás je jiná než třeba v~USA). \cite{rozhovor}
 
 \subsection{Obsah chráněný autorským zákonem}
 Autorské právo chrání na internetu různý obsah, zejména budou chráněny různé články, obrázky, videa atd. Vždy však bude muset naplňovat znaky autorského díla, tj. bude muset být \uv{\textit{\dots jedinečným výsledkem tvůrčí činnosti autora a být vyjádřen v~jakékoli objektivně vnímatelné podobě včetně podoby elektronické, trvale nebo dočasně, bez ohledu na jeho rozsah, účel nebo význam\dots}} \cite[\S~2 odst.~1]{autorsky_zakon}.
 
-Taková kritéria však může splňovat i obsah, který by se na první pohled vůbec nemusel zdát chráněný autorským zákonem -- jako příklad může posloužit celkové rozvržení stránky (neboli \textit{layout}), které ponese určitý prvek originality a bude na první pohled asociovatelné s~danou webovou stránkou.
+Taková kritéria však může splňovat i~obsah, který by se na první pohled vůbec nemusel zdát chráněný autorským zákonem -- jako příklad může posloužit celkové rozvržení stránky (neboli \textit{layout}), které ponese určitý prvek originality a bude na první pohled asociovatelné s~danou webovou stránkou.
 
 Naopak výše zmíněnou definici určitě nesplňují různá počítačem generovaná data, tedy například logy chráněné autorským zákonem nebudou.
 
 \subsection{Web scraping a zvláštní práva pořizovatele databáze}
-Dle \cite{rozhovor} žádný zvláštní zákon věnující se výslovně vytěžování webových stránek neexistuje. Z~naší právní úpravy je tomu nejblíže úprava zvláštního práva pořizovatele databáze (hlava III autorského zákona), která definuje, co to je databáze -- \uv{\textit{Databází je pro účely tohoto zákona soubor nezávislých děl, údajů nebo jiných prvků, systematicky nebo metodicky uspořádaných a individuálně přístupných elektronickými nebo jinými prostředky, bez ohledu na formu jejich vyjádření.}}\cite[\S~88]{autorsky_zakon}. Za nezávislé se v~tomto kontextu považují prvky, \uv{\textit{které lze od sebe oddělit, aniž by tím byl dotčen jejich informační, literární, umělecký, hudební nebo jiný obsah}}\cite{polcak}.
+Dle \cite{rozhovor} žádný zvláštní zákon věnující se výslovně vytěžování webových stránek neexistuje. Z~naší právní úpravy je tomu nejblíže úprava zvláštního práva pořizovatele databáze (hlava III autorského zákona), která definuje, co to je databáze -- \uv{\textit{Databází je pro účely tohoto zákona soubor nezávislých děl, údajů nebo jiných prvků, systematicky nebo metodicky uspořádaných a individuálně přístupných elektronickými nebo jinými prostředky, bez ohledu na formu jejich vyjádření.}} \cite[\S~88]{autorsky_zakon}. Za nezávislé se v~tomto kontextu považují prvky, \uv{\textit{které lze od sebe oddělit, aniž by tím byl dotčen jejich informační, literární, umělecký, hudební nebo jiný obsah}} \cite{polcak}.
 
-\uv{\textit{Tato právní úprava byla do autorského zákona převzata ze Směrnice Evropského parlamentu a Rady EU 96/9/ES, o~právní ochraně databází}}\cite{ikaros}, a tak můžeme informace čerpané z~této sekce vztahovat nejen na Českou Republiku, ale na jakoukoli zemi Evropské Unie.
+\uv{\textit{Tato právní úprava byla do autorského zákona převzata ze Směrnice Evropského parlamentu a Rady EU 96/9/ES, o~právní ochraně databází}} \cite{ikaros}, a tak můžeme informace čerpané z~této sekce vztahovat nejen na Českou Republiku, ale na jakoukoli zemi Evropské Unie.
 
 Dále jsou upraveny některé způsoby užití databáze v souladu s~autorským zákonem:
 \begin{itemize}
-	\item Omezení zvláštního práva pořizovatele databáze -- \uv{\textit{Do práva pořizo-vatele databáze, která byla zpřístupněna jakýmkoli způsobem veřejnosti, nezasahuje oprávněný uživatel, který vytěžuje nebo zužitkovává kvalitativně nebo kvantitativně nepodstatné části obsahu databáze nebo její části, a to k~jakémukoli účelu, za podmínky, že tento uživatel databázi užívá běžně a přiměřeně, nikoli systematicky či opakovaně, a bez újmy oprávněných zájmů pořizovatele databáze, a že nezpůsobuje újmu autorovi ani nositeli práv souvisejících s~právem autorským k~dílům nebo jiným předmětům ochrany obsaženým v~databázi.}}\cite[\S~91]{autorsky_zakon}
+	\item Omezení zvláštního práva pořizovatele databáze -- \uv{\textit{Do práva pořizo-vatele databáze, která byla zpřístupněna jakýmkoli způsobem veřejnosti, nezasahuje oprávněný uživatel, který vytěžuje nebo zužitkovává kvalitativně nebo kvantitativně nepodstatné části obsahu databáze nebo její části, a to k~jakémukoli účelu, za podmínky, že tento uživatel databázi užívá běžně a přiměřeně, nikoli systematicky či opakovaně, a bez újmy oprávněných zájmů pořizovatele databáze, a že nezpůsobuje újmu autorovi ani nositeli práv souvisejících s~právem autorským k~dílům nebo jiným předmětům ochrany obsaženým v~databázi.}} \cite[\S~91]{autorsky_zakon}
 	\item Bezúplatné zákonné licence -- \uv{\textit{Do práva pořizovatele jím zpřístupněné databáze též nezasahuje oprávněný uživatel, který vytěžuje nebo zužitko-vává podstatnou část obsahu databáze
 		\begin{enumerate}[a)]
 			\item pro svou osobní potřebu; ustanovení \S~30 odst. 3 zůstává nedotčeno,
 			\item pro účely vědecké nebo vyučovací, uvede-li pramen, v~rozsahu odů-vodněném sledovaným nevýdělečným účelem, a
 			\item pro účely veřejné bezpečnosti nebo správního či soudního řízení.
-	\end{enumerate}}}\cite[\S~92]{autorsky_zakon}
+	\end{enumerate}}} \cite[\S~92]{autorsky_zakon}
 \end{itemize}
 
 Tedy pokud využívám databázi čistě pro osobní potřebu či pro věděcké nebo vyučovací účely, kdy uvedu zdroj, je vše v~pořádku. Taktéž pokud využí-vám pouze nepodstatnou část obsahu databáze, a pokud tak dělám v~souladu s~běžným, očekávaným a přiměřeným použitím, nikoliv systematicky a opakovaně, je v~pořádku využití dokonce k~jakémukoliv účelu. Důležité je zde ale spojení \textit{oprávněný uživatel} -- v~každém případě musím mít k~datům autorizovaný přístup.
 
 \subsection{Důležité soudní případy v~Evropě}
-Rozbor jednotlivých soudních případů je velice důležitý, neboť právě podle nich se mohou soudy řídit při posuzování nových žalob a soudních rozepří. Stejně tak se o~ně mohou opírat žalobci i obhájci a pro širokou veřejnost může být více předvídatelné, jak by se obdobné problémy mohly řešit v~budoucnu. Mezi nejvýznamnější rozhodnutí na půdě Soudního dvora Evropské unie patří:
+Rozbor jednotlivých soudních případů je velice důležitý, neboť právě podle nich se mohou soudy řídit při posuzování nových žalob a soudních rozepří. Stejně tak se o~ně mohou opírat žalobci i~obhájci a pro širokou veřejnost může být více předvídatelné, jak by se obdobné problémy mohly řešit v~budoucnu. Mezi nejvýznamnější rozhodnutí na půdě Soudního dvora Evropské unie patří:
 
-\paragraph{C-444/02} kdy společnost Fixtures Marketing Limited (dále jen "Fixtures") žalovala společnost Organismos Prognostikon Agonon Podosfairou AE (dále jen "OPAP") kvůli opakovanému vytěžování rozpisů ligových soutěží ve fotbale v~Anglii (které vytvářela, sestavovala a zveřejňovala společnost Fixtures) a jejich následnému užití na webových stránkách společnosti OPAP.\cite{C-444/02_1}
+\paragraph{C-444/02} kdy společnost Fixtures Marketing Limited (dále jen \uv{Fixtures}) žalovala společnost Organismos Prognostikon Agonon Podosfairou AE (dále jen \uv{OPAP}) kvůli opakovanému vytěžování rozpisů ligových soutěží ve fotbale v~Anglii (které vytvářela, sestavovala a zveřejňovala společnost Fixtures) a jejich následnému užití na webových stránkách společnosti OPAP. \cite{C-444/02_1}
 
-Výsledkem jednání bylo, že i \emph{rozpis fotbalových utkání je databází} ve smyslu čl.~1 odst.~2 směrnice 96/9 a jako takový může být předmětem ochrany, kdy pořizovatel databáze má právo zabránit vytěžování nebo zužitkování dat. (ačkoliv u~společnosti Fixtures nebyl prokázán podstatný vklad, jenž by mohl odůvodnit poskytnutí ochrany).\cite{C-444/02_2}
+Výsledkem jednání bylo, že i~\emph{rozpis fotbalových utkání je databází} ve smyslu čl.~1 odst.~2 směrnice 96/9 a jako takový může být předmětem ochrany, kdy pořizovatel databáze má právo zabránit vytěžování nebo zužitkování dat. (ačkoliv u~společnosti Fixtures nebyl prokázán podstatný vklad, jenž by mohl odůvodnit poskytnutí ochrany). \cite{C-444/02_2}
 
-\paragraph{C‑30/14} kdy společnost Ryanair Ltd. žalovala společnost PR Aviation BV kvůli automatizovanému sběru dat o~cenách, letech a letových řádech, jež byly volně přístupné spotřebitelům z~webových stránek Ryanair Ltd. K~přístupu musel uživatel potvrdit souhlas (viz \hyperref[def:clickwrap]{clickwrap}) se všeobecnými podmínkami, ve kterých byl mimo jiné výslovně zakázán způsob, jakým data využívala PR Aviation BV. Tyto data pak společnost PR Aviation BV používala ke srovnávání cen na svém vlastním portálu.\cite{C-30/14}
+\paragraph{C‑30/14} kdy společnost Ryanair Ltd. žalovala společnost PR Aviation BV kvůli automatizovanému sběru dat o~cenách, letech a letových řádech, jež byly volně přístupné spotřebitelům z~webových stránek Ryanair Ltd. K~přístupu musel uživatel potvrdit souhlas (viz \hyperref[def:clickwrap]{sekce 1.2.1, definice pojmu clickwrap}) se všeobecnými podmínkami, ve kterých byl mimo jiné výslovně zakázán způsob, jakým data využívala PR Aviation BV. Tyto data pak společnost PR Aviation BV používala ke srovnávání cen na svém vlastním portálu. \cite{C-30/14}
 
-Soudní dvůr rozhodl ve prospěch Ryanair -- \emph{jestliže se autor databáze, která není chráněna autorským zákonem nebo právem pořizovatele, rozhodne poskytnout souhlas s~jejím využitím, nic mu nebrání ve stanovení smluvních podmínek}, jež by omezily používání databáze ze strany třetích osob, aniž by přitom bylo dotčeno použitelné vnitrostátní právo.\cite{C-30/14}
+Soudní dvůr rozhodl ve prospěch Ryanair -- \emph{jestliže se autor databáze, která není chráněna autorským zákonem nebo právem pořizovatele, rozhodne poskytnout souhlas s~jejím využitím, nic mu nebrání ve stanovení smluvních podmínek}, jež by omezily používání databáze ze strany třetích osob, aniž by přitom bylo dotčeno použitelné vnitrostátní právo. \cite{C-30/14}
 
 \subsection{Důležité soudní případy ve Spojených státech}
 Úprava v USA je postavena na jiné právní úpravě, a závěry tak nejsou automaticky přenositelné do našeho práva (což ovšem nevylučuje možnost použití těchto rozhodnutí pro účely argumentace). Představíme si dva nejdůležitější případy v~právní historii web scrapingu, se kterými mimo jiné vyvstávají otázky jako \uv{Komu doopravdy patří data uživatelů na internetu?} a \uv{Kdo má rozhodovat o~přístupu k~veřejným datům, jestli o~tom vůbec má někdo rozhodovat?}.
 
 \paragraph{hiQ v. LinkedIn} kdy analytická společnost hiQ automatizovaně extrahovala veřejně dostupná (bez nutnosti registrace účtu) data z~profilů uživatelů sítě LinkedIn. Ta společnosti hiQ zaslala tzv. \textit{cease and desist letter} a požado-vala okamžité ukončení činnosti ze strany hiQ pod pohrůžkou porušení CFAA. \cite{hiq_linkedin_1}
 
-K~dispozici je zatím pouze předběžné opatření ve prospěch hiQ, které říká, že \textit{nelze zabránit přístupu k~veřejně dostupným informacím} -- k~porušení CFAA (jako neoprávněný přístup) by došlo pouze v~případě obejití systému autentizace. Ze strany společnosti LinkedIn padl argument, že automatizovaný přístup k~veřejným datům není to samé jako normální \uv{osobní} užití, stejně jako je odlišné dlouhodobé sledování osoby přes GPS zařízení od letmého potkávání \cite{linkedin_arg}. hiQ mimo jiné argumentoval i tím, že sociální sítě jsou novodobá veřejná fóra (místa pro veřejné projevy, zejména politického charak-teru\cite{public_forum}) a rozhodování o~udělení přístupu k~nim (ať už ze strany státu či soukromé společnosti) je porušením svobody slova a vyjadřování, a tím i samotné ústavy státu Kalifornie.\cite{hiq_linkedin_2}
+K~dispozici je zatím pouze předběžné opatření ve prospěch hiQ, které říká, že \textit{nelze zabránit přístupu k~veřejně dostupným informacím} -- k~porušení CFAA (jako neoprávněný přístup) by došlo pouze v~případě obejití systému autentizace. Ze strany společnosti LinkedIn padl argument, že automatizovaný přístup k~veřejným datům není to samé jako normální \uv{osobní} užití, stejně jako je odlišné dlouhodobé sledování osoby přes GPS zařízení od letmého potkávání \cite{linkedin_arg}. hiQ mimo jiné argumentoval i~tím, že sociální sítě jsou novodobá veřejná fóra (místa pro veřejné projevy, zejména politického charak-teru \cite{public_forum}) a rozhodování o~udělení přístupu k~nim (ať už ze strany státu či soukromé společnosti) je porušením svobody slova a vyjadřování, a tím i~samotné ústavy státu Kalifornie. \cite{hiq_linkedin_2}
 
-\paragraph{Facebook v. Power Venture (Vachani)} kdy společnost Power Venture (CEO Steven Suraj Vachani), jež umožňovala agregovat různé sociální sítě a používat všechny jejich klíčové funkce z~jednoho místa, byla žalována sociální sítí Facebook kvůli neoprávněnému vytěžování profilů a zasílání e-mailů uživa-telům, které úmyslně vypadaly jako odeslané společností Facebook (údajné porušení CFAA, CAN-SPAM a California Penal Code, sekce 502). Facebook zaslal Power Venture \textit{cease and desist letter} a snažil se zamezit přístupu k~datům pomocí blokování IP adres. Power Venture přesto pokračoval ve své činnosti.\cite{facebook_venture_1}
+\paragraph{Facebook v. Power Venture (Vachani)} kdy společnost Power Venture (CEO Steven Suraj Vachani), jež umožňovala agregovat různé sociální sítě a používat všechny jejich klíčové funkce z~jednoho místa, byla žalována sociální sítí Facebook kvůli neoprávněnému vytěžování profilů a zasílání e-mailů uživa-telům, které úmyslně vypadaly jako odeslané společností Facebook (údajné porušení CFAA, CAN-SPAM a California Penal Code, sekce 502). Facebook zaslal Power Venture \textit{cease and desist letter} a snažil se zamezit přístupu k~datům pomocí blokování IP adres. Power Venture přesto pokračoval ve své činnosti. \cite{facebook_venture_1}
 
-Soud rozhodl ve prospěch společnosti Facebook -- jednání Power Venture bylo v~rozporu se zákonem. Jako hlavní argument posloužil fakt, že Power Venture pokračoval ve svém jednání i po explicitním odejmutí oprávnění přístupu k~datům společnosti Facebook. Zde je ale vhodné uvést, že Power Venture \emph{přistupoval k~profilům uživatelů pouze s~jejich vlastním souhlasem}, ač bez souhlasu Facebooku.\cite{facebook_venture_2}
+Soud rozhodl ve prospěch společnosti Facebook -- jednání Power Venture bylo v~rozporu se zákonem. Jako hlavní argument posloužil fakt, že Power Venture pokračoval ve svém jednání i~po explicitním odejmutí oprávnění přístupu k~datům společnosti Facebook. Zde je ale vhodné uvést, že Power Venture \emph{přistupoval k~profilům uživatelů pouze s~jejich vlastním souhlasem}, ač bez souhlasu Facebooku. \cite{facebook_venture_2}
 
 % ------------------------------------------------------------------------------------------------
 
@@ -229,7 +229,7 @@ První skupinou, na kterou můžeme při hledání na internetu narazit, jsou sp
 
 Pro tuto práci mnohem relevantnější kategorií je konkurenční nabídka nástrojů poskytujících uživatelům rozhraní k~web scrapingu. Zaměřím se pouze na takové nástroje, které nevyžadují jakoukoli znalost programování -- tedy žádné knihovny, API a nástroje pro budování vlastních scraperů.
 
-Mezi ty největší představitele patří ParseHub, Octoparse, WebScraper, Data Scraper a Dexi.io. Čtyři ze zmíněných nástrojů jsou volně dostupné (které mají však velmi omezenou funkcionalitu a pokročilejší operace se odemknou až s~určitým platebním plánem -- tzv. freemium model) a jeden poskytuje bezplatně pouze 7denní zkušební verzi.
+Mezi ty největší představitele patří ParseHub \cite{parsehub}, Octoparse \cite{octoparse}, WebScraper \cite{webscraper}, Dexi.io \cite{dexio} a Data Scraper \cite{data_scraper}. Čtyři ze zmíněných nástrojů jsou volně dostupné (které mají však velmi omezenou funkcionalitu a pokročilejší operace se odemknou až s~určitým platebním plánem -- tzv. freemium model) a jeden poskytuje bezplatně pouze 7denní zkušební verzi.
 
 Předtím, než bude možné jednotlivé nástroje porovnávat, je nutné určit kritéria, podle kterých lze hodnotit kvalitu daného nástroje. Především půjde o~jednoduchost používání, celkovou přehlednost a rychlost, se kterou se uživatel dostane k~požadovaným datům. Důležitý je také způsob výběru dat, možnosti exportu získaných dat, jak aplikace sama dokáže uživatele seznámit s~použí-váním a také, v~jaké formě se nástroj vůbec používá a čím se od ostatních odlišuje (ať už v~pozitivním či negativním smyslu). 
 
@@ -237,7 +237,7 @@ Poj\v{d}me se tedy na některé nástroje podívat blíže:
 
 \begin{figure}
 	\includegraphics[width=\linewidth]{images/ParseHub.png}
-	\caption{Desktopová aplikace ParseHub\cite[snímek pořídil autor]{parsehub}}
+	\caption{Desktopová aplikace ParseHub \cite[snímek pořídil autor]{parsehub}}
 	\label{fig:parseHub}
 \end{figure}
 \subsection{ParseHub}
@@ -245,13 +245,13 @@ Poj\v{d}me se tedy na některé nástroje podívat blíže:
 \begin{itemize}
 	\item výběr dat jak pomocí klikání (inteligentní hledání vzorců/podobností na základě prvních dvou kliknutí), tak pomocí XPath, regulárních výrazů nebo CSS selektorů
 	\item aplikace obsahuje interaktivní tutoriál, který na jednoduchých příkladech ukáže, jak s~nástrojem zacházet
-	\item možnost získání dat různými formami - přes API, jako CSV/XLS, do GoogleSheets nebo do Tableau
+	\item možnost získání dat různými formami -- přes API, jako CSV/XLS, do GoogleSheets nebo do Tableau
 	\item různé módy kliknutí (výběr, relativní výběr, kliknutí), zooming in/out na HTML elementy -- když se uživatel netrefí (nebo ani trefit nemůže) přesně na požadovaný prvek, lze na něj lehce přejít pomocí této funkce
 	\item automatická rotace IP adresy (tedy nedochází k~blokování ze strany serveru)
 \end{itemize}
 \textbf{Nevýhody:}
 \begin{itemize}
-	\item nutnost stažení aplikace (ale je zde podpora pro Windows, Linux i Mac)
+	\item nutnost stažení aplikace (ale je zde podpora pro Windows, Linux i~Mac)
 	\item aplikace je celkově těžkopádná, nemá moc přívětivé uživatelské rozhraní, ovládání působí nepřehledně a přehlceně -- na uživatele se vyvalí hodně informací a možností najednou
 \end{itemize}
 
@@ -262,7 +262,7 @@ Poj\v{d}me se tedy na některé nástroje podívat blíže:
 	\item nástroj obsahuje hotové šablony, které mohou velmi urychlit práci
 	\item pestrá paleta možností (branch judgment, tvoření smyček apod.) -- dá se vytvořit téměř jakákoli logika procházení webu a extrakce dat
 	\item lehký způsob, jak scrapování automatizovat
-	\item možnost řídit tasky přes API (a získávat tak data taktéž přes API); data jdou nahrát rovnou i do lokální databáze
+	\item možnost řídit tasky přes API (a získávat tak data taktéž přes API); data jdou nahrát rovnou i~do lokální databáze
 \end{itemize}
 \textbf{Nevýhody:}
 \begin{itemize}
@@ -273,15 +273,15 @@ Poj\v{d}me se tedy na některé nástroje podívat blíže:
 \end{itemize}
 \begin{figure}[h]
 	\includegraphics[width=\linewidth]{images/Octoparse.png}
-	\caption{Desktopová aplikace Octoparse\cite[snímek pořídil autor]{octoparse}}
+	\caption{Desktopová aplikace Octoparse \cite[snímek pořídil autor]{octoparse}}
 	\label{fig:octoparse}
 \end{figure}
 
 \newpage
 \subsection{WebScaper}
-\begin{figure}[h]
+\begin{figure}
 	\includegraphics[width=\linewidth]{images/WebScraper.png}
-	\caption{Rozšíření WebScraper\cite[snímek pořídil autor]{webscraper}}
+	\caption{Rozšíření WebScraper \cite[snímek pořídil autor]{webscraper}}
 	\label{fig:webScraper}
 \end{figure}
 \textbf{Výhody:}
@@ -303,9 +303,9 @@ Poj\v{d}me se tedy na některé nástroje podívat blíže:
 \end{itemize}
 
 \subsection{Dexi.io}
-\begin{figure}[h]
+\begin{figure}[b]
 	\includegraphics[width=\linewidth]{images/Dexiio.png}
-	\caption{Webová aplikace Dexi.io\cite[snímek pořídil autor]{dexio}}
+	\caption{Webová aplikace Dexi.io \cite[snímek pořídil autor]{dexio}}
 	\label{fig:dexi.io}
 \end{figure}
 \textbf{Výhody:}
@@ -331,7 +331,7 @@ Poj\v{d}me se tedy na některé nástroje podívat blíže:
 	\item jednoduchá instalace (jedná se pouze o~rozšíření do prohlížeče Google Chrome).
 	\item velmi jednoduché ovládání a přehledné rozhraní
 	\item výběr dat probíhá pomocí klikání
-	\item klikáním se utváří JQuery selektor, který si uživatel může podle svého upravit a doladit tak drobné detaily, jež by jinak nutně zahltily uživatel-ské rozhraní (tedy je možné vyhledávat i podle HTML tagů, id, CSS selektorů -- zkrátka vše, co umí klasické JQuery)
+	\item klikáním se utváří JQuery selektor, který si uživatel může podle svého upravit a doladit tak drobné detaily, jež by jinak nutně zahltily uživatel-ské rozhraní (tedy je možné vyhledávat i~podle HTML tagů, id, CSS selektorů -- zkrátka vše, co umí klasické JQuery)
 	\item různé druhy kliknutí
 	\item možnost spustit na stránce libovolný JavaScriptový kód v~rámci scrapování
 \end{itemize}
@@ -342,22 +342,22 @@ Poj\v{d}me se tedy na některé nástroje podívat blíže:
 \end{itemize}
 \begin{figure}
 	\includegraphics[width=\linewidth]{images/DataScraper.png}
-	\caption{Rozšíření Data Scraper\cite[snímek pořídil autor]{data_scraper}}
+	\caption{Rozšíření Data Scraper \cite[snímek pořídil autor]{data_scraper}}
 	\label{fig:dataScraper}
 \end{figure}
 
 % ================================================================================================
 
 \chapter{Návrh}
-Tato kapitola definuje funkční i nefunkční požadavky kladené na vyvíjený software, jež částečně vyplývají z~předchozí analýzy stávajících řešení -- problémy konkurenčních nástrojů se snaží napravit, zároveň agregují dobré vlastnosti zmíněných aplikací. Součástí kapitole je také diskuze případů užití výsledné aplikace. Poté je věnován prostor návrhu celé architektury systému a v~závěru kapitoly i návrhu uživatelského rozhraní.
+V této kapitole definuji funkční i~nefunkční požadavky kladené na vyvíjený software, jež částečně vyplývají z~předchozí analýzy stávajících řešení -- problé-my konkurenčních nástrojů se snaží napravit, zároveň agregují dobré vlastnosti zmíněných aplikací. Součástí kapitoly je také diskuze případů užití výsledné aplikace. Poté se věnuji návrhu celé architektury systému a v~závěru kapitoly i~návrhu uživatelského rozhraní.
 
 % ------------------------------------------------------------------------------------------------
 
 \label{sec:requirements_specification}
 \section{Specifikace požadavků}
-Jak jsme viděli v~předchozí analýze stávajících řešení, největšími neduhy, které se prolínají napříč valnou většinou aplikací, jsou \emph{těžkopádné uživatelské rozhraní}, \emph{neintuitivní ovládání} a \emph{rychlost} (nebo spíš pomalost), se kterou se uživatel dostane k~požadovaným datům. Pro aplikaci, jíž se tato práce zabývá, bude klíčové se výše zmíněným nedostatkům vyhnout a nabídnout jejich přesný opak. Také jsme se přesvědčili, že nejpříjemnější cestou je celou aplikaci ovládat přes webové rozhraní  \emph{bez nutnosti stahování a instalace}.
+Jak je patrné z~předchozí analýzy stávajících řešení, největšími neduhy, které se prolínají napříč valnou většinou aplikací, jsou \emph{těžkopádné uživatelské rozhraní}, \emph{neintuitivní ovládání} a \emph{rychlost} (nebo spíš pomalost), se kterou se uživatel dostane k~požadovaným datům. Pro aplikaci, jíž se tato práce zabývá, bude klíčové se výše zmíněným nedostatkům vyhnout a nabídnout jejich přesný opak. Také jsme se přesvědčili, že nejpříjemnější cestou je celou aplikaci ovládat přes webové rozhraní  \emph{bez nutnosti stahování a instalace}.
 
-Na druhou stranu se lze u~konkurence i inspirovat. Za vyzdvižení stojí určitě \emph{různé druhy výběru dat} -- \emph{klikání} přímo na stránce spolu s~inteligentním hledáním podobných prvků jistě tvoří mocný mechanismus. Avšak je potřeba zajistit i ostatní způsoby výběru (jako je např. \emph{textová shoda, HTML tagy, CSS selektory}) pro případ, kdy je pouhé klikání zdlouhavé či nevyhovující. Rovněž široký výběr způsobů exportu dat, intuitivní klávesové zkratky a zooming in/out na prvky může uživatelům zpříjemnit práci s~nástrojem.
+Na druhou stranu se lze u~konkurence i~inspirovat. Za vyzdvižení stojí určitě \emph{různé druhy výběru dat} -- \emph{klikání} přímo na stránce spolu s~inteligentním hledáním podobných prvků jistě tvoří mocný mechanismus. Avšak je potřeba zajistit i~ostatní způsoby výběru (jako je např. \emph{textová shoda, HTML tagy, CSS selektory}) pro případ, kdy je pouhé klikání zdlouhavé či nevyhovující. Rovněž široký výběr způsobů exportu dat, intuitivní klávesové zkratky a zooming in/out na prvky může uživatelům zpříjemnit práci s~nástrojem.
 
 Neméně důležitou vlastností aplikace je také schopnost sebe sama kvalitně, ale svižně představit, \emph{seznámit uživatele s~používáním} a poskytnout mu alespoň pro začátek určité vodítko. Pro většinu ovládacích prvků by však mělo platit to stejné, co platí pro správný kód -- měly by být tzv. \emph{self-explanatory}. Tedy každému by mělo být na první pohled jasné, co který element dělá.
 
@@ -377,9 +377,9 @@ Pojďme si nyní všechny požadavky shrnout do několika bodů a rozdělit na f
 			\item Prvek bude vybrán, pokud jeho text obsahuje hledaný výraz.
 			\item Prvek bude vybrán, pokud se jeho text přesně shoduje s~hledaným výrazem.
 		\end{enumerate}
-		\item Pomocí CSS selektorů (tedy HTML tagy, třídy, id, hodnoty atributu, různé následnosti a vše ostatní, co CSS selektory umožňují, viz \href{https://www.w3schools.com/cssref/css_selectors.asp}{přehled CSS selektorů}).
-		\item K~dispozici bude přibližování (první potomek) a oddalování (otec) momentálního výběru pomocí ikony $+$ a $-$, případně přesunutí výběru na předchozího/následujícího sourozence v~DOMu (uživatel může pomocí této funkce traverzovat napříč zanořenými prvky všemi směry).
-		\item Na ovládacím panelu nalezneme i tlačítka s~hotovými akcemi před-stavující šablonu pro nejpoužívanější operace (stažení všech e-mail-ových adres ze stránky, všech obrázků atd.).
+		\item Pomocí CSS selektorů (tedy HTML tagy, třídy, id, hodnoty atributu, různé následnosti a vše ostatní, co CSS selektory umožňují, viz přehled CSS selektorů\footnote{\url{https://www.w3schools.com/cssref/css_selectors.asp}}).
+		\item K~dispozici bude přibližování (první potomek) a oddalování (otec) momentálního výběru pomocí ikony $+$ a $-$, případně přesunutí výběru na předchozího/následujícího sourozence v~DOMu (uživatel může pomocí této funkce traverzovat napříč zanořenými prvky vše-mi směry).
+		\item Na ovládacím panelu nalezneme i~tlačítka s~hotovými akcemi před-stavující šablonu pro nejpoužívanější operace (stažení všech e-mail-ových adres ze stránky, všech obrázků atd.).
 	\end{enumerate}
 	\item Pokud vybraným prvkem bude $\left<img\right>$ HTML tag, bude místo jeho textu extrahován atribut \textsf{src} (tedy zdroj obrázku).
 	\item Po kliknutí na určitý prvek s~přidrženou klávesou \textsc{Ctrl/control} se program pokusí vybrat všechny podobné prvky na základě předchozí selekce (tzv. \emph{auto-selection}).
@@ -400,11 +400,11 @@ Pojďme si nyní všechny požadavky shrnout do několika bodů a rozdělit na f
 \end{enumerate}
 
 \subsection{Nice to have požadavky}
-V~předchozích dvou sekcích je shrnuto, jaké požadavky by aplikace v~každém případě měla splňovat a bez nichž by neměla vůbec být uvedena k~dispozici uživatelům. Pak tu jsou ale také požadavky, které rozhodně zlepšují celkovou kvalitu a pocit z~nástroje samotného, avšak nejsou již pro funkcionalitu vitální a pokud by se jejich implementace nepovedla, aplikace bude stále plno-hodnotná a připravená k~použití. Patří sem:
+V~předchozích dvou sekcích jsem uvedl, jaké požadavky by aplikace v~každém případě měla splňovat a bez nichž by neměla vůbec být uvedena k~dispozici uživatelům. Pak tu jsou ale také požadavky, které rozhodně zlepšují celkovou kvalitu a pocit z~nástroje samotného, avšak nejsou již pro funkcionalitu vitální a pokud by se jejich implementace nepovedla, aplikace bude stále plno-hodnotná a připravená k~použití. Patří sem:
 \begin{enumerate}[+1)]
-	\item Uživatelské rozhraní aplikace nabídne intuitivní klávesové zkratky pro usnadnění práce -- \textsf{Ctrl +} a \textsf{Ctrl -} obstará přibližování/oddalování momentálního výběru, \textsf{Ctrl n} a \textsf{Ctrl p} vybere předchozího/následujícího sourozence vybraného prvku, apod.
+	\item Uživatelské rozhraní aplikace nabídne intuitivní klávesové zkratky pro usnadnění práce -- \textsf{\uv{Ctrl +}} a \textsf{\uv{Ctrl -}} obstará přibližování/oddalování momentálního výběru, \textsf{\uv{Ctrl n}} a \textsf{\uv{Ctrl p}} vybere předchozího/následu-jícího sourozence vybraného prvku, apod.
 	\item Postranní panel s~ovládacími prvky půjde minimalizovat (zmenšit k~při-lehlé hraně tak, aby zabíral co nejméně místa a nepřekážel v~manipulaci s~webovou stránkou) nebo přesunout na protější stranu (např. v~případě, že by zakrýval nějaké prvky na stránce).
-	\item Export dat realizovatelný i do Google Sheets, Google Drive, Dropbox.
+	\item Export dat realizovatelný i~do Google Sheets, Google Drive, Dropbox.
 	\item Interaktivní tutoriál, který v~rychlosti představí práci s~nástrojem.
 	\item Na základě výběru dat uživatelem se vytvoří určitý filtr (textový řetězec), jenž může být ručně upraven -- půjde tak o~alternativu pro zkušenější uživatele, aniž by se zaneslo uživatelské rozhraní přehršlí možností a celé se tak znepřehlednilo.
 \end{enumerate}
@@ -416,7 +416,7 @@ Hlavní užití vyvíjeného nástroje je přímočaré -- uživatel navštíví
 
 \begin{enumerate}
 	\item Uživatel chce vybrat všechny řádky tabulky nacházející se na stránce. Otevře záložku \textsf{Basics}, zapne manuální označování přepínačem s~nápisem \textsf{Selecting elements} a kliknutím myši označí první řádek tabulky. Poté s~přidrženou klávesou \textsc{Ctrl/control} klikne na druhý řádek. Tím se automaticky označí všechny řádky dané tabulky.
-	\item Uživatel chce označit všechny e-mailové adresy na stránce. Otevře záložku \textsf{Text search}, do pole \textsf{Contains} zadá znak \uv{@} a potvrdí stiskem klávesy \textsc{Enter}.\footnote{Často se stránky proti takovému vytěžování e-mailových adres brání například tím, že textový znak @ nahradí obrázkem. V~takovém případě tento postup samozřejmě nebude fungovat.}
+	\item Uživatel chce označit všechny e-mailové adresy na stránce. Otevře zá-ložku \textsf{Text search}, do pole \textsf{Contains} zadá znak \uv{@} a potvrdí stiskem klávesy \textsc{Enter}.\footnote{Často se stránky proti takovému vytěžování e-mailových adres brání například tím, že textový znak @ nahradí obrázkem. V~takovém případě tento postup samozřejmě nebude fungovat.}
 	\item Uživatel chce označit všechna rodná čísla, jež jsou z~prvního dne v~měsíci. Otevře záložku \textsf{Text search}, do pole \textsf{Ends with} zadá \uv{01} a potvrdí stiskem klávesy \textsc{Enter}.
 	\item Uživatel chce získat URL adresy všech obrázků z~dané stránky a ví, že se nacházejí uvnitř $\left<img\right>$ HTML tagu. Otevře záložku \textsf{CSS selectors}, zadá \uv{img} a potvrdí stiskem klávesy \textsc{Enter}.
 	\item Uživatel chce vybrat nejlépe hodnocený film z~každé kategorie. Ví, že všechny filmy jsou označeny třídou \textit{movie}, přičemž první je vždy ten nejlepší. Uživatel otevře záložku \textsf{CSS selectors}, zadá \uv{.movie:first-of-type} a potvrdí stiskem klávesy \textsc{Enter}.
@@ -432,7 +432,7 @@ Jak bylo řečeno při specifikaci nefunkčních požadavků, aplikace poběží
 
 Celý systém se skládá z~5 hlavních komponent, které jsou na sobě nezávislé\footnote{Resp. pouze Controller sdružuje všechny ostatní a zajišťuje delegaci zodpovědnosti z~jedné komponenty na druhou.}:
 \begin{description}
-	\item [Controller,] který deleguje práci na ostatní komponenty a slouží jako pro-středník při spolupráci jednotlivých částí systému -- pokud modul A potřebuje nějakou akci od modulu B, zavolá příslušnou metodu v~Controlleru, i když se často jedná pouze o~přeposlání žádosti dál. To se může jevit jako zbytečné, na druhou stranu to přináší jednu velkou výhodu. Pokud by se v~budoucnu měla potřebná metoda modulu B změnit, bylo by potřeba vykonat nějaké dodatečné akce a nebo třeba kompletně nahradit modul B nějakým jiným, stačí to udělat vždy pouze na jednom místě, a to právě v~komponentě Controller. Drží si přehled o~všech ostatních částech a má na starosti základní inicializaci.
+	\item [Controller,] který deleguje práci na ostatní komponenty a slouží jako pro-středník při spolupráci jednotlivých částí systému -- pokud modul A~po-třebuje nějakou akci od modulu B, zavolá příslušnou metodu v~Controlleru, i~když se často jedná pouze o~přeposlání žádosti dál. To se může jevit jako zbytečné, na druhou stranu to přináší jednu velkou výhodu. Pokud by se v~budoucnu měla potřebná metoda modulu B změnit, bylo by potřeba vykonat nějaké dodatečné akce a nebo třeba kompletně nahradit modul B nějakým jiným, stačí to udělat vždy pouze na jednom místě, a to právě v~komponentě Controller. Drží si přehled o~všech ostatních částech a má na starosti základní inicializaci.
 	\item [View] představuje načtenou stránku a ovládací panel se všemi prvky uživatel-ského rozhraní. Reaguje na akce uživatele zasláním zprávy Controlleru, který rozhoduje, co se má stát dál.
 	\item [Select engine] má na starosti výběr a označení požadovaných HTML elementů na stránce. Obsahuje menší komponenty:
 	\begin{itemize}
@@ -449,22 +449,17 @@ Splnění nefunkčního požadavku na rychlost samotné extrakce (N6) nahrá-vá
 % ------------------------------------------------------------------------------------------------
 \newpage
 \section{Návrh uživatelského rozhraní}
-Při návrhu uživatelského rozhraní je nutné zohlednit ten nejdůležitější aspekt vyvíjené aplikace, a sice intuitivní, jednoduché a přehledné ovládání (N3), kterým se tento nástroj chce odlišit od stávajícího softwaru zabývající se stejnou problematikou. V~potaz je nutné brát i požadavek na co nejmenší čas strávený vybíráním dat (N5) -- od uživatele je potřeba co nejmenší počet kroků.
+Při návrhu uživatelského rozhraní je nutné zohlednit ten nejdůležitější aspekt vyvíjené aplikace, a sice intuitivní, jednoduché a přehledné ovládání (N3), kterým se tento nástroj chce odlišit od stávajícího softwaru zabývající se stejnou problematikou. V~potaz je nutné brát i~požadavek na co nejmenší čas strávený vybíráním dat (N5) -- od uživatele je potřeba co nejmenší počet kroků.
 
-Dle požadavku F1 je aplikace rozdělena na pracovní plochu s~uživatelem zadanou stránkou a postranní panel, skrz který probíhá veškerá ovládání. Dle F2 je pak panel rozdělen na záložky obsahující jednotlivé způsoby výběru. V~horní části panelu pak nalezneme ovládací tlačítka akcí undo a redo. Zbývá už jen velké tlačítko \textsf{Preview} a \textsf{Download} spolu s~výběrem formátu exportu.
+Dle požadavku F1 je aplikace rozdělena na pracovní plochu s~uživatelem zadanou stránkou a postranní panel, skrz který probíhá veškerá ovládání. Dle F2 je pak panel rozdělen na záložky obsahující jednotlivé způsoby výběru. V~horní části panelu nalezneme ovládací tlačítka akcí undo a redo. Zbývá už jen velké tlačítko \textsf{Preview} a \textsf{Download} spolu s~výběrem formátu exportu.
 
-Následující wireframy představují návrh uživatelského rozhraní aplikace.
+Následující obrázky \ref{fig:scraper_main_wireframe} a \ref{fig:scraper_text_search_wireframe} představují wireframy uživatelského rozhraní aplikace.
 \begin{figure}[h]
 	\includegraphics[width=\linewidth]{images/main_wireframe.png}
 	\caption{Ovládací panel aplikace}
 	\label{fig:scraper_main_wireframe}
 \end{figure}
-\begin{figure}[h]
-	\includegraphics[width=\linewidth]{images/cols_wireframe.png}
-	\caption{Výběr sloupců}
-	\label{fig:scraper_cols_wireframe}
-\end{figure}
-\begin{figure}[h]
+\begin{figure}
 	\includegraphics[width=\linewidth]{images/text_search_wireframe.png}
 	\caption{Výběr na základě textové shody}
 	\label{fig:scraper_text_search_wireframe}
@@ -474,21 +469,21 @@ Následující wireframy představují návrh uživatelského rozhraní aplikace
 
 
 \chapter{Realizace}
-Tato část se zabývá naplněním funkčních a nefunkčních požadavků z~minulé kapitoly z~hlediska konkrétní implementace. Jsou diskutovány problémy a zádrhely, které nastaly při vývoji aplikace (především pak podrobně vysvětluji, proč bylo upřednostněno rozšíření do prohlížeče před webovou aplikací), stejně tak jejich možná řešení a proč bylo zvoleno zrovna dané rozhodnutí. Dále je představena výsledná aplikace, popsán způsob jejího používání a v~poslední sekci nalezneme realizaci jednotlivých komponent systému.
+Tato část se zabývá naplněním funkčních a nefunkčních požadavků z~minulé kapitoly z~hlediska konkrétní implementace. Diskutuji problémy a zádrhely, které nastaly při vývoji aplikace (především pak podrobně vysvětluji, proč bylo upřednostněno rozšíření do prohlížeče před webovou aplikací), stejně tak jejich možná řešení a proč bylo zvoleno zrovna dané rozhodnutí. Dále představuji výslednou aplikaci, popisuji způsob jejího používání a v~poslední sekci nalezneme realizaci jednotlivých komponent systému.
 
 % ------------------------------------------------------------------------------------------------
 
 \label{sec:possible_solutions}
 \section{Diskuze možných řešení}
-Původní záměr byl vytvořit webovou aplikaci. Důvod je jednoduchý, nikdo v~dnešní době nechce cokoli stahovat a instalovat. Vzhledem k~důrazu vyví-jeného nástroje kladeného na jednoduchost a rychlost používání je tak webová aplikace jasnou volbou, jelikož se jedná o~nejpřímočařejší řešení a pro uživatele určitě nejpohodlnější.
+Původní záměr byl vytvořit webovou aplikaci, neboť věřím, že nikdo v~dnešní době nechce cokoli stahovat a instalovat. Vzhledem k~důrazu vyvíjeného ná-stroje kladeného na jednoduchost a rychlost používání je tak webová aplikace jasnou volbou, jelikož se jedná o~nejpřímočařejší řešení a pro uživatele určitě nejpohodlnější.
 
 Návrh tedy předpokládal jednoduchou webovou aplikaci s~hlavní obrazovkou, kde by byla zobrazená uživatelem zadaná stránka a postranním panelem, který by obsahoval veškeré ovládací prvky. Jasným řešením tak byl HTML iframe, který reprezentuje vnořený kontext procházení (kontext procházení si můžeme představit jako jedno okno/záložku prohlížeče) -- tedy umožňuje zobrazit HTML dokument uvnitř jiného HTML dokumentu.
 
-Ač se toto zprvu zdálo jako ideální řešení, hned v~úvodu jsem narazil na stěžejní implementační problém -- z~bezpečnostních důvodů existuje HTTP hlavička \emph{X-Frame-Options}, která určuje, kdo může danou stránku vložit do iframe tagu a zobrazit ji tak v~rámci své vlastní stránky (viz \href{https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Frame-Options}{MDN web docs}). Spousta webových stránek nastavuje tuto hlavičku tak, aby nebylo možné jejich stránky vkládat do iframů, čímž se brání tzv. \emph{clickjacking} útokům (viz \href{https://en.wikipedia.org/wiki/Clickjacking}{wikipedia}). Jenže to představuje v~podstatě neřešitelný problém, neboť HTTP hlavičky se v~prohlížeči nedají nijak obejít a dá se předpokládat, že toto blokování bude provádět mnoho stránek.
+Ač se toto zprvu zdálo jako ideální řešení, hned v~úvodu jsem narazil na stěžejní implementační problém -- z~bezpečnostních důvodů existuje HTTP hlavička \emph{X-Frame-Options}, která určuje, kdo může danou stránku vložit do iframe tagu a zobrazit ji tak v~rámci své vlastní stránky (viz MDN web docs\footnote{\url{https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Frame-Options}}). Spousta webových stránek nastavuje tuto hlavičku tak, aby nebylo možné jejich stránky vkládat do iframů, čímž se brání tzv. \emph{clickjacking} útokům (viz wikipedia\footnote{\url{https://en.wikipedia.org/wiki/Clickjacking}}). Jenže to představuje v~podstatě neřešitelný problém, neboť HTTP hlavičky se v~prohlížeči nedají nijak obejít a dá se předpokládat, že toto blokování bude provádět mnoho stránek.
 
 Možnou alternativou by bylo stáhnout veškerý obsah ze zadané domény (HTML, CSS, JavaScript, všechny assety jako obrázky apod.), ten sestavit dohromady a poskytovat z~vlastního serveru pouze danému uživateli. V~podstatě by tak došlo k~vyscrapování všech dat z~cílové domény a uživatel by již pouze odfiltroval informace, o~které nemá zájem. To je ale nevhodné hned z~několika důvodů -- jednak by byla uživatelům prezentována stránka, která ve skutečnosti není tou, za kterou se vydává; mohlo by docházet k~porušení copyrightu a autorských práv a v~neposlední řadě by složitost takového řešení naprosto neodpovídala poměrně přímočarému úkolu výsledné aplikace.
 
-Na problém se však lze dívat i opačně a základní myšlenku invertovat, což nás dovede k~použitému řešení. Pokud není možné vložit stránku do webové aplikace, je nutné vložit aplikaci do požadované stránky. To lze elegantně vyřešit pomocí rozšíření do internetového prohlížeče Google Chrome -- tzv. \emph{Chrome-extension}.
+Na problém se však lze dívat i~opačně a základní myšlenku invertovat, což nás dovede k~použitému řešení. Pokud není možné vložit stránku do webové aplikace, je nutné vložit aplikaci do požadované stránky. To lze elegantně vyřešit pomocí rozšíření do internetového prohlížeče Google Chrome -- tzv. \emph{Chrome-extension}.
 
 \section{Použité technologie}	
 Celé řešení zadaného problému je tedy nakonec implementováno jako rozšíření do internetového prohlížeče Google Chrome (jehož popisu se věnuji níže). Z~tohoto důvodu je zvoleným programovacím jazykem čistý JavaScript, resp. ECMA-Script 2018 verze 9. Dále je použit značkovací jazyk HTML k~definici struktury celého ovládacího panelu a zbylých kontrolních prvků spolu s~CSS jazykem určujícím styl zobrazení jednotlivých elementů. K~testování aplikace byl použit JavaScriptový testovací framework Jest.
@@ -497,7 +492,7 @@ Celé řešení zadaného problému je tedy nakonec implementováno jako rozší
 Chrome-extensions se skládají z~několika různých komponent:
 \paragraph{Background script} je základní komponenta (můžeme si ji představit jako takový backend celého rozšíření), která se vykoná při každém spuštění prohlí-žeče. Zde je možné registrovat obsluhy různých událostí (např. když se otevře nová záložka v~prohlížeči nebo když je dané rozšíření poprvé nainstalováno). 
 \paragraph{Browser action} představuje tlačítko rozšíření umístěné v~hlavním panelu nástrojů prohlížeče Google Chrome (vedle pole pro zadávání adresy). Po kliknutí na něj je vypuštěna událost mířící do background scriptu, kde se odehrává následné zpracování.
-\paragraph{Content script}\label{def:content_script} je zajisté tím nejsilnějším mechanismem, které Chrome extensions nabízí. Zároveň je nejdůležitější částí tohoto ekosystému, jenž nás bude zajímat. Jedná se o~kód, který je vložen do požadované stránky a spustí se v~rámci jejího kontextu. To znamená, že každý takto vložený skript má \emph{kompletní přístup k~DOMu} dané stránky i všem ostatním skriptům. Stane se validní součástí stránky, může \emph{vytvářet, mazat nebo měnit prvky}, a sice do doby, než je stránka obnovena a znovu načtena.
+\paragraph{Content script}\label{def:content_script} je zajisté tím nejsilnějším mechanismem, které Chrome extensions nabízí. Zároveň je nejdůležitější částí tohoto ekosystému, jenž nás bude zajímat. Jedná se o~kód, který je vložen do požadované stránky a spustí se v~rámci jejího kontextu. To znamená, že každý takto vložený skript má \emph{kompletní přístup k~DOMu} dané stránky i~všem ostatním skriptům. Stane se validní součástí stránky, může \emph{vytvářet, mazat nebo měnit prvky}, a sice do doby, než je stránka obnovena a znovu načtena.
 
 \section{Představení nástroje}
 Před používáním nástroje je nutné si uvědomit jednu velmi podstatnou věc -- co je výsledek, který očekáváme na konci. Jak mají vypadat data, která plánujeme extrahovat, jakou mají mít podobu? V~rámci našeho nástroje se bude ve výsledku jednat vždy o~\emph{tabulku}. Toto je nezbytné pro pochopení celého procesu.
@@ -506,15 +501,15 @@ Nyní se můžeme podívat na použití aplikace (předpokládejme, že rozší�
 \begin{enumerate}
 	\item Uživatel navštíví stránku, ze které si přeje extrahovat dat.
 	\item Klikne na ikonu rozšíření nacházející se v~pravém horním rohu prohlížeče, v~hlavním panelu nástrojů.
-	\item Zobrazí se hlavní ovládací panel a aplikace je připravena k~výběru dat, viz Obrázek \ref{fig:scraper_control_panel}.
+	\item Zobrazí se hlavní ovládací panel a aplikace je připravena k~výběru dat, viz obrázek \ref{fig:scraper_control_panel}.
 \end{enumerate}
-\begin{figure}[h]
+\begin{figure}[b]
 	\includegraphics[width=\linewidth]{images/Scraper_control_panel.png}
 	\caption{Ovládací panel aplikace}
 	\label{fig:scraper_control_panel}
 \end{figure}
 
-Jak jsme si řekli v~úvodu, výsledná data budou ve formě tabulky, tedy musíme vybrat, které elementy na stránce budou reprezentovat řádky výsledné tabulky a které budou reprezentovat sloupce, viz Obrázek \ref{fig:scraper_rows_cols}. K~tomu slouží dvě velká tlačítka \textsf{Rows} a \textsf{Columns}, kterými se přepíná výběr právě mezi řádky a sloupci. Doporučený postup je nejdřív vybrat řádky\footnote{To budou nejčastěji různé \uv{kontejnery}, které sdružují data jedné entity dohromady -- jako příklad lze uvést kartu produktu v~přehledu produktů e-shopu.} a poté uvnitř těchto větších elementů vybírat sloupce\footnote{To může být například cena nebo jméno daného produktu.}.
+Jak již bylo zmíněno v~úvodu, výsledná data budou ve formě tabulky, tedy musíme vybrat, které elementy na stránce budou reprezentovat řádky výsledné tabulky a které budou reprezentovat sloupce, viz obrázek \ref{fig:scraper_rows_cols}. K~tomu slouží dvě velká tlačítka \textsf{Rows} a \textsf{Columns}, kterými se přepíná výběr právě mezi řádky a sloupci. Doporučený postup je nejdřív vybrat řádky\footnote{To budou nejčastěji různé \uv{kontejnery}, které sdružují data jedné entity dohromady -- jako příklad lze uvést kartu produktu v~přehledu produktů e-shopu.} a poté uvnitř těchto větších elementů vybírat sloupce\footnote{To může být například cena nebo jméno daného produktu.}.
 \begin{figure}
 	\includegraphics[width=\linewidth]{images/Scraper_rows_cols.png}
 	\caption{Výběr řádků (tyrkysově) a sloupců (vínově)}
@@ -523,9 +518,10 @@ Jak jsme si řekli v~úvodu, výsledná data budou ve formě tabulky, tedy musí
 
 Dle zadání v~kapitole \hyperref[sec:requirements_specification]{Návrh, sekce Specifikace požadavků}, probíhá selekce třemi způsoby -- ruční označování prvků, hledání na základě textové shody a výběr pomocí CSS selektorů. Tyto tři druhy výběru jsou stejné jak pro výběr řádků, tak pro výběr sloupců. Jakýkoli výběr lze vzít zpět nebo následně provést znovu pomocí tlačítek \textsf{Undo} a \textsf{Redo} v~horní části nástroje. Následuje popis každého ze způsobů výběru:
 \begin{description}
-	\item[Ruční označování] probíhá klikáním myši na požadované elementy a zapíná se přepínačem nacházejícím se na kartě \textsf{Basics}. Pokud uživatel při vybí-rání podrží klávesu \textsf{Ctrl}, aplikace se pokusí vybrat všechny podobné prvky na základě předchozího kliknutí. Kliknutím na již označený element se výběr zruší.
+	\item[Ruční označování] probíhá klikáním myši na požadované elementy a zapíná se přepínačem nacházejícím se na kartě \textsf{Basics}. Pokud uživatel při vybí-rání podrží klávesu \textsc{Ctrl}, aplikace se pokusí vybrat všechny podobné prvky na základě předchozího kliknutí. Kliknutím na již označený element se výběr zruší.
 	
 	Největší část výběrů bude představovat právě tento způsob.
+	\clearpage
 	\item [Textová shoda] se nalézá na kartě \textsf{Text search}, která se skládá ze tří samostatných formulářů. Uživatel má možnost vybrat všechny elementy na stránce, jejichž text buď:
 	\begin{enumerate}[a)]
 		\item začíná daným výrazem,
@@ -533,7 +529,7 @@ Dle zadání v~kapitole \hyperref[sec:requirements_specification]{Návrh, sekce 
 		\item obsahuje daný výraz nebo se mu přímo rovná.
 	\end{enumerate}
 	Tento způsob se osvědčí například v~případě, kdy chceme vybrat všechny e-mailové adresy na stránce -- stačí hledat prvky, které obsahují zavináč.
-	\item [CSS selektory] najdeme na kartě s~názvem \textsf{CSS selectors} a jedná se o~jednoduché textové pole, které přijímá libovolný CSS selektor. Můžeme tedy pomocí něj vybírat na základě HTML tagů (\textsf{jmenoTagu}), tříd (\textsf{.jmenoTridy}), atributů (\textsf{[atribut=hodnota]}), různé následnosti (\textsf{otec $>$ syn $+$ naslednik}) a zkrátka vše, co CSS selektory umí, viz \href{https://www.w3schools.com/cssref/css_selectors.asp}{přehled selektorů}.
+	\item [CSS selektory] najdeme na kartě s~názvem \textsf{CSS selectors} a jedná se o~jednoduché textové pole, které přijímá libovolný CSS selektor. Můžeme tedy pomocí něj vybírat na základě HTML tagů (\textsf{jmenoTagu}), tříd (\textsf{.jmenoTridy}), atributů (\textsf{[atribut=hodnota]}), různé následnosti (\textsf{otec $>$ syn $+$ naslednik}) a zkrátka vše, co CSS selektory umí, viz přehled selektorů \footnote{\url{https://www.w3schools.com/cssref/css_selectors.asp}}.
 	
 	Toto je jistě nejsilnější z~uvedených způsobů, jelikož s~ním jde vybrat libovolná skupina prvků, avšak předpokládá alespoň základní znalost HTML, CSS a především struktury stránky. Je tedy spíš pro pokročilejší uživatele.
 \end{description}
@@ -542,28 +538,28 @@ Dle zadání v~kapitole \hyperref[sec:requirements_specification]{Návrh, sekce 
 	\centering
 	\begin{minipage}{.5\linewidth}
 		\centering
-		\includegraphics[width=.9\linewidth]{images/Scraper_text_search.png}
-		\caption{Výběr na základě textové shody}
+		\includegraphics[width=.75\linewidth]{images/Scraper_text_search.png}
+		\caption{Výběr na základě \newline textové shody}
 		\label{fig:scraper_text_search}
 	\end{minipage}%
 	\begin{minipage}{.5\linewidth}
 		\centering
-		\includegraphics[width=.9\linewidth]{images/Scraper_css_selector.png}
-		\caption{Výběr s~pomocí CSS selektoru}
+		\includegraphics[width=.75\linewidth]{images/Scraper_css_selector.png}
+		\caption{Výběr s~pomocí CSS \newline selektoru}
 		\label{fig:scraper_css_selector}
 	\end{minipage}
 \end{figure}
 
 \newpage
-Může se stát, že požadovaný element nejde označit ručně. Pro tyto případy je každý vybraný prvek opatřen čtveřicí tlačítek, která se objeví, pokud uživatel najede kurzorem na daný element, viz Obrázek \ref{fig:scraper_dom_navigation}. Tlačítko \textsf{$+$} posune označení na prvního syna prvku, \textsf{$-$} na otce, \textsf{$\leftarrow$} na předchozího sourozence a tlačítko \textsf{$\rightarrow$} na následujícího sourozence. Tímto způsobem může uživatel traverzovat napříč celým DOMem a vybrat tak libovolný prvek.
-\begin{figure}[h]
+Může se stát, že požadovaný element nejde označit ručně. Pro tyto případy je každý vybraný prvek opatřen čtveřicí tlačítek, která se objeví, pokud uživatel najede kurzorem na daný element, viz obrázek \ref{fig:scraper_dom_navigation}. Tlačítko \textsf{$+$} posune označení na prvního syna prvku, \textsf{$-$} na otce, \textsf{$\leftarrow$} na předchozího sourozence a tlačítko \textsf{$\rightarrow$} na následujícího sourozence. Tímto způsobem může uživatel traverzovat napříč celým DOMem a vybrat tak libovolný prvek.
+\begin{figure}
 	\includegraphics[width=\linewidth]{images/Scraper_dom_navigation.png}
 	\caption{Navigace výběru napříč dokumentem}
 	\label{fig:scraper_dom_navigation}
 \end{figure}
 
-Poté, co jsme s~výběrem hotovi, je možné data prohlídnout v~tzv. \textit{Preview módu}. Zobrazí se tabulka obsahující námi zadané řádky a sloupce\footnote{Nutno podotknout, že prvky označené jako sloupce, které se \emph{nenacházejí} uvnitř prvku označeného jako řádek, nebudou zahrnuty do výsledku.}. V~tuto chvíli je možné zkontrolovat veškerá extrahovaná data a případně vyřadit ta, která nevyhovují našim potřebám pomocí křížku na levé straně každého řádku (ten se objeví až po najetí kurzorem na daný řádek), viz Obrázek \ref{fig:scraper_preview_mode}. Vyřazení záznamu způsobí zrušení výběru elementů, které obsahují příslušná data.
-\begin{figure}[h]
+Poté, co jsme s~výběrem hotovi, je možné data prohlídnout v~tzv. \textit{Preview módu}. Zobrazí se tabulka obsahující námi zadané řádky a sloupce\footnote{Nutno podotknout, že prvky označené jako sloupce, které se \emph{nenacházejí} uvnitř prvku označeného jako řádek, nebudou zahrnuty do výsledku.}. V~tuto chvíli je možné zkontrolovat veškerá extrahovaná data a případně vyřadit ta, která nevyhovují našim potřebám pomocí křížku na levé straně každého řádku (ten se objeví až po najetí kurzorem na daný řádek), viz obrázek \ref{fig:scraper_preview_mode}. Vyřazení záznamu způsobí zrušení výběru elementů, které obsahují příslušná data.
+\begin{figure}
 	\includegraphics[width=\linewidth]{images/Scraper_preview_mode.png}
 	\caption{Tabulka obsahující náhled extrahovaných dat}
 	\label{fig:scraper_preview_mode}
@@ -574,7 +570,7 @@ Na závěr stačí pomocí rozbalovacího výběru zvolit formát, do kterého c
 \newpage
 \section{Implementace zvoleného řešení}
 \subsection{Inicializace a spuštění}
-Jak již bylo řečeno v~úvodu této kapitoly, použité řešení spočívá ve vložení ovládacího panelu do libovolné stránky. To umožňuje právě komponenta \hyperref[def:content_script]{content script}, jež byla zmíněna výše. Spuštění aplikace vypadá následovně:
+Jak již bylo řečeno v~úvodu této kapitoly, použité řešení spočívá ve vložení ovládacího panelu do libovolné stránky. To umožňuje právě komponenta \hyperref[def:content_script]{content script}, jež byla zmíněna v sekci Použité technologie této kapitoly. Spuštění aplikace vypadá následovně:
 \begin{enumerate}
 	\item Po instalaci rozšíření do prohlížeče Google Chrome (a každém jeho spuštění) je vykonán kód, který je obsažen v~background scriptu. Zde se nachází pouze obsluha vyzývající content script k~zobrazení nebo schování ovládacího panelu.
 	\item Když je rozšíření aktivní, do \emph{každé} načtené stránky je vložen content script, jenž poslouchá zprávy od background scriptu.
@@ -614,7 +610,7 @@ Obrázek \ref{fig:scraper_control_panel} ilustruje, jak ovládací panel vypadá
 	
 	Jak již bylo několikrát řečeno, přínos samotné aplikace spočívá především v~její jednoduchosti. Z~toho mohou těžit uživatelé, kteří se nezabývají programováním nebo tvorbou webo-vých stránek. Využije ji tak kdokoli, kdo potřebuje jednorázově získat data z~webové stránky, jež obsahuje velké množ-ství dat pohromadě na jedno místě. Z~důvodu chybějící automatizace a crawlingu je naopak nevhodná k~pravidelnému získávání dat (jako je například dlouhodobé sledování cen produktů) či ke zpracování stránek, kde se jednotlivá data nacházejí rozptýlená po celé doméně.
 	
-	Hlavní i vedlejší cíle tak považuji za úspěšně splněné. Zároveň se zde otevírá obrovský prostor pro potenciální navazující práce. Na tomto základu by mohla vzniknout opravdu hluboká a plnohodnotná právní analýza celé domény. Taktéž nástroj samotný je připraven pro další vylepšení, ať už by se jednalo o~dokončení všech definovaných požadavků či přidání klíčové funkcionality, která by diametrálně změnila jeho konkurenceschopnost -- web crawlingu nebo možnosti automatizace.
+	Hlavní i~vedlejší cíle tak považuji za úspěšně splněné. Zároveň se zde otevírá obrovský prostor pro potenciální navazující práce. Na tomto základu by mohla vzniknout opravdu hluboká a plnohodnotná právní analýza celé domény. Taktéž nástroj samotný je připraven pro další vylepšení, ať už by se jednalo o~dokončení všech definovaných požadavků či přidání klíčové funkcionality, která by diametrálně změnila jeho konkurenceschopnost -- web crawlingu nebo možnosti automatizace.
 \end{conclusion}
 
 % ================================================================================================
@@ -637,6 +633,9 @@ Obrázek \ref{fig:scraper_control_panel} ilustruje, jak ovládací panel vypadá
 	
 	\bibitem{data_size}
 	WASSÉN, Olivia. Big Data facts -- How much data is out there? In: \textit{NodeGraph} [online]. © 2019 NodeGraph [cit. 13. 4. 2019]. Dostupné z: \url{https://www.nodegraph.se/big-data-facts/}.
+	
+	\bibitem{google_bot}
+	Googlebot. In: \textit{Google Help Center} [online]. © 2019 Google [cit 23. 4. 2019]. Dostupné z: \url{https://support.google.com/webmasters/answer/182072}.
 	
 	\bibitem{data_mining}
 	CLIFTON, Christopher. Data mining. In: \textit{Encyclopædia Britannica} [online]. ©2019 Encyclopædia Britannica, Inc. [cit. 13. 4. 2019]. Dostupné z: \url{https://www.britannica.com/technology/data-mining}.
@@ -730,7 +729,7 @@ Obrázek \ref{fig:scraper_control_panel} ilustruje, jak ovládací panel vypadá
 	\item[MIT] Massachusetts Institute of Technology
 	\item[URL] Uniform Resource Locator
 	\item[XLS] formát souboru používaný aplikací Microsoft Excel
-	\item[XML] eXtensible Markup Language	
+	\item[XML] eXtensible Markup Language
 \end{description}
 
 % ================================================================================================
