@@ -91,31 +91,31 @@ V~této kapitole jsou představeny základní pojmy web scrapingu, jeho historie
 % ------------------------------------------------------------------------------------------------
 
 \section{Web scraping}
-\uv{\textit{Web scraping (nebo také web harvesting, web data extraction) je softwarová technika zaměřená na extrakci informací z~webových stránek}} \cite[překlad autora]{web_scraping_def}. Nejčastěji se v~tomto kontextu jedná o~automatizovaný proces strojového zpracování a získávání dat, nicméně může jít i~o~manuální extrakci zadanou uživatelem skrze nějaký software (jako je tomu právě v~našem případě).
+\uv{\textit{Web scraping (nebo také web harvesting, web data extraction) je softwarová technika zaměřená na extrakci informací z~webových stránek}}~\cite[překlad autora]{web_scraping_def}. Nejčastěji se v~tomto kontextu jedná o~automatizovaný proces strojového zpracování a získávání dat, nicméně může jít i~o~manuální extrakci zadanou uživatelem skrze nějaký software (jako je tomu právě v~našem případě).
 
-Často se také v~souvislosti s~pojmem web scraping používá spojení \emph{web crawler} (nebo také \emph{bot, spider, spiderbot}). Jedná se o~automatizovaný software, který systematicky prochází danou oblast webu a během toho vytěžuje kýžená data. \cite{web_crawler_def}
+Často se také v~souvislosti s~pojmem web scraping používá spojení \emph{web crawler} (nebo také \emph{bot, spider, spiderbot}). Jedná se o~automatizovaný software, který systematicky prochází danou oblast webu a během toho vytěžuje kýžená data.~\cite{web_crawler_def}
 
 \subsection{Krátce z~historie}
-Historie web scrapingu sahá k~samým počátkům internetu (World Wide Web, 1989). Prvním webovým robotem, který byl vyvinut na MIT k~měření velikosti webu, byl World Wide Web Wanderer (napsaný v~jazyce Perl) z~roku 1993. \cite{web_wanderer}
+Historie web scrapingu sahá k~samým počátkům internetu (World Wide Web, 1989). Prvním webovým robotem, který byl vyvinut na MIT k~měření velikosti webu, byl World Wide Web Wanderer (napsaný v~jazyce Perl) z~roku 1993.~\cite{web_wanderer}
 
-O~něco později, v~roce 2000, se ve velkém začala používat webová API -- lidé mohli získávat čistá data přímo od serveru a scraping se tak stal o~hodně jednodušším. Dalším milníkem v~historii web scrapingu je rok 2004, kdy byla vydána knihovna pro parsování HTML a XML dokumentů Beautiful Soup pro programovací jazyk Python. Ta je do dnes považována za nejsofistikovanější a nejpokročilejší knihovnu pro web scraping. Za zmínku stojí určitě i~rok 2006, kdy je datován příchod vizuálního web scrapingu, tedy techniky, kdy uživatel skrze rozhraní aplikace označí klikáním myši, z~kterých oblastí webové stránky chce extrahovat data. Tímto se otevřely dveře web scrapingu pro všechny. \cite{web_scraping_history}
+O~něco později, v~roce 2000, se ve velkém začala používat webová API -- lidé mohli získávat čistá data přímo od serveru a scraping se tak stal o~hodně jednodušším. Dalším milníkem v~historii web scrapingu je rok 2004, kdy byla vydána knihovna pro parsování HTML a XML dokumentů Beautiful Soup pro programovací jazyk Python. Ta je do dnes považována za nejsofistikovanější a nejpokročilejší knihovnu pro web scraping. Za zmínku stojí určitě i~rok 2006, kdy je datován příchod vizuálního web scrapingu, tedy techniky, kdy uživatel skrze rozhraní aplikace označí klikáním myši, z~kterých oblastí webové stránky chce extrahovat data. Tímto se otevřely dveře web scrapingu pro všechny.~\cite{web_scraping_history}
 
 \subsection{Techniky}
 Technik, jak z~webové stránky získat data existuje mnoho, podívejme se alespoň na některé z~nich:
 \begin{itemize}
 	\item vyhledávání na základě textové shody -- např. pomocí UNIX nástroje grep nebo regulárních výrazů
 	\item HTML parsování -- základní a stále ještě nejpoužívanější technika extrakce dat; informace jednoduše získáváme z~HTML elementů, popř. pomocí tříd nebo id
-	\item počítačové vidění, strojové učení, zapojení umělé inteligence -- snaha napodobit způsob, jakým vidí a zpracovává webovou stránku člověk; podobný přístup zkouší např. projekt Diffbot \cite{computer_vision}
+	\item počítačové vidění, strojové učení, zapojení umělé inteligence -- snaha napodobit způsob, jakým vidí a zpracovává webovou stránku člověk; podobný přístup zkouší např. projekt Diffbot~\cite{computer_vision}
 	\item vizuální web scraping -- jak již bylo zmíněno výše, požadovaná data se musí ručně naklikat skrze rozhraní nějaké aplikace (značně to však usnadňuje např. hledání podobných prvků na základě prvních pár kliknutí)
 	\item manuální vyhledávání a stahování dat (někdy nazývané také \emph{copy-paste})
 \end{itemize}
 
 \subsection{Využití web scrapingu}
-Podob pro uplatnění scrapování dat z~webu je nespočet, a to obzvlášť v~dnešní době, kdy se dle \cite{data_size} velikost všech dat na celém internetu pohybuje v~řádech Zettabajtů ($1024^{7}$ B). Mezi ty hlavní patří:
+Podob pro uplatnění scrapování dat z~webu je nespočet, a to obzvlášť v~dnešní době, kdy se dle~\cite{data_size} velikost všech dat na celém internetu pohybuje v~řádech Zettabajtů ($1024^{7}$ B). Mezi ty hlavní patří:
 \begin{itemize}
 	\item získání kontaktních informací (např. e-mail) pro marketingové účely
-	\item indexování webových stránek, které však využívá hlavně web crawling (jako příklad můžeme uvést známý GoogleBot \cite{google_bot})
-	\item data mining -- proces hledání vzorců ve velkých datových setech \cite{data_mining}
+	\item indexování webových stránek, které však využívá hlavně web crawling (jako příklad můžeme uvést známý GoogleBot~\cite{google_bot})
+	\item data mining -- proces hledání vzorců ve velkých datových setech~\cite{data_mining}
 	\item monitorování různých proměnných (např. sledování cen nebo hodnocení produktů)
 	\item recyklace již někdy použitých dat za účelem vytváření \uv{nového} obsahu
 	\item analýza a zpracování dat k~výzkumným účelům
@@ -138,32 +138,32 @@ Nutno také podotknout, že celá tato oblast je relativně nová a zatím neexi
 \subsection{Základní pojmy}
 \paragraph{Terms of Service} (někdy také \textit{Terms of Use}, \textit{Terms and Conditions}) je soubor pravidel sepsaný provozovatelem služby a říká, jak se uživatel smí chovat při užívání dané služby (v~kontextu této práce se jedná o~webové stránky) a co naopak dělat nesmí.
 
-\paragraph{Browsewrap} je jeden ze způsobů dohody mezi dvěma stranami kontraktu. Není nutná žádná přímá interakce s~uživatelem, ať už jde o~souhlas či nesouhlas. Místo toho je na webové stránce (nejčastěji v~dolní části) umístěna krátká zpráva informující, že pouhým procházením daného webu souhlasí s~podmínkami používání (Terms of Service). Ty jsou umístěny na samostatné stránce, na kterou vede odkaz, jenž je součástí této zprávy. U~tohoto způsobu je těžké posoudit, zdali je tu jasný projev vůle, a tak je jeho vymahatelnost sporná a liší se případ od případu. \cite{browse_wrap}
+\paragraph{Browsewrap} je jeden ze způsobů dohody mezi dvěma stranami kontraktu. Není nutná žádná přímá interakce s~uživatelem, ať už jde o~souhlas či nesouhlas. Místo toho je na webové stránce (nejčastěji v~dolní části) umístěna krátká zpráva informující, že pouhým procházením daného webu souhlasí s~podmínkami používání (Terms of Service). Ty jsou umístěny na samostatné stránce, na kterou vede odkaz, jenž je součástí této zprávy. U~tohoto způsobu je těžké posoudit, zdali je tu jasný projev vůle, a tak je jeho vymahatelnost sporná a liší se případ od případu.~\cite{browse_wrap}
 
-\paragraph{Clickwrap}\label{def:clickwrap} je oproti browse-wrap daleko lépe vymahatelný, neboť je uživa-tel nucen přímo vyjádřit souhlas či nesouhlas (kliknutím na tlačítko nebo zaškrtnutím políčka) se všemi uvedenými podmínkami, a to \emph{před} použitím dané služby. Tím je zde jasně určen projev vůle. Podmínky jsou stejně jako v~případě browsewrap často umístěny na samostatné stránce a je k~nim uveden pouze odkaz, i~když někdy je k~dispozici i~celé jejich znění. Jedná se o~tzv. \emph{ber nebo nech být} smlouvu -- \uv{\emph{Ber nebo nech být smlouva, také nazývána adhezní smlouva, říká, že smluvní podmínky nemůžou být vyjednávány.}} \cite[překlad autora]{take_it_or_leave_it}. \cite{click_wrap}
+\paragraph{Clickwrap}\label{def:clickwrap} je oproti browse-wrap daleko lépe vymahatelný, neboť je uživa-tel nucen přímo vyjádřit souhlas či nesouhlas (kliknutím na tlačítko nebo zaškrtnutím políčka) se všemi uvedenými podmínkami, a to \emph{před} použitím dané služby. Tím je zde jasně určen projev vůle. Podmínky jsou stejně jako v~případě browsewrap často umístěny na samostatné stránce a je k~nim uveden pouze odkaz, i~když někdy je k~dispozici i~celé jejich znění. Jedná se o~tzv. \emph{ber nebo nech být} smlouvu -- \uv{\emph{Ber nebo nech být smlouva, také nazývána adhezní smlouva, říká, že smluvní podmínky nemůžou být vyjednávány.}}~\cite[překlad autora]{take_it_or_leave_it}.~\cite{click_wrap}
 
 \subsection{Odpovědnost v~případě protiprávního jednání}
-Ve chvíli, kdy se uživatel dopustí protiprávního jednání při využívání určitého nástroje, odpovědnost jednoznačně spočívá na něm, nikoliv na tvůrci aplikace. Zároveň je třeba upozornit, že autor softwaru odpovídá v~situaci, kdy je software primárně určen k~protiprávnímu jednání. Lze tedy jen doporučit, aby byl uživatel prokazatelně seznámen s~odpovědností za užívání softwaru v~souladu s~právem. \cite{rozhovor}
+Ve chvíli, kdy se uživatel dopustí protiprávního jednání při využívání určitého nástroje, odpovědnost jednoznačně spočívá na něm, nikoliv na tvůrci aplikace. Zároveň je třeba upozornit, že autor softwaru odpovídá v~situaci, kdy je software primárně určen k~protiprávnímu jednání. Lze tedy jen doporučit, aby byl uživatel prokazatelně seznámen s~odpovědností za užívání softwaru v~souladu s~právem.~\cite{rozhovor}
 
 \subsection{Obsah na webových stránkách a jeho možné využití}
-Dle \cite{rozhovor} může být obsah chráněn zejména jako:
+Dle~\cite{rozhovor} může být obsah chráněn zejména jako:
 \begin{itemize}
 	\item projev osobní povahy
 	\begin{itemize}
-		\item zde lze připomenout z~občanského zákoníku -- \uv{\textit{Nikdo nesmí zasá-hnout do soukromí jiného, nemá-li k~tomu zákonný důvod. Zejména nelze bez svolení člověka narušit jeho soukromé prostory, sledovat jeho soukromý život nebo pořizovat o~tom zvukový nebo obrazový záznam, využívat takové či jiné záznamy pořízené o~soukromém životě člověka třetí osobou, nebo takové záznamy o~jeho soukromém životě šířit. Ve stejném rozsahu jsou chráněny i~soukromé písemnosti osobní povahy.}} \cite[\S~86]{obcansky_zakon}
+		\item zde lze připomenout z~občanského zákoníku -- \uv{\textit{Nikdo nesmí zasá-hnout do soukromí jiného, nemá-li k~tomu zákonný důvod. Zejména nelze bez svolení člověka narušit jeho soukromé prostory, sledovat jeho soukromý život nebo pořizovat o~tom zvukový nebo obrazový záznam, využívat takové či jiné záznamy pořízené o~soukromém životě člověka třetí osobou, nebo takové záznamy o~jeho soukromém životě šířit. Ve stejném rozsahu jsou chráněny i~soukromé písemnosti osobní povahy.}}~\cite[\S~86]{obcansky_zakon}
 		\item do této kategorie můžou spadat třeba i~komentáře uživatelů na internetovém fóru
 	\end{itemize}
 	\newpage
 	\item autorské dílo (včetně databáze, viz níže); z~autorského zákona lze zmínit:
 	\begin{itemize}
-		\item volné užití -- \uv{\textit{Za užití díla podle tohoto zákona se nepovažuje užití pro osobní potřebu fyzické osoby, jehož účelem není dosažení pří-mého nebo nepřímého hospodářského nebo obchodního prospěchu, nestanoví-li tento zákon jinak.}} \cite[\S~30 odst.~1]{autorsky_zakon}
+		\item volné užití -- \uv{\textit{Za užití díla podle tohoto zákona se nepovažuje užití pro osobní potřebu fyzické osoby, jehož účelem není dosažení pří-mého nebo nepřímého hospodářského nebo obchodního prospěchu, nestanoví-li tento zákon jinak.}}~\cite[\S~30 odst.~1]{autorsky_zakon}
 		\item citaci -- \uv{\textit{Do práva autorského nezasahuje ten, kdo
 		\begin{enumerate}[a)]
 			\item užije v~odůvodněné míře výňatky ze zveřejněných děl jiných autorů ve svém díle,
 			\item užije výňatky z~díla nebo drobná celá díla pro účely kritiky nebo recenze vztahující se k~takovému dílu, vědecké či odborné tvorby a takové užití bude v~souladu s~poctivými zvyklostmi a v~rozsahu vyžadovaném konkrétním účelem,
 			\item užije dílo při vyučování pro ilustrační účel nebo při vědeckém výzkumu, jejichž účelem není dosažení přímého nebo nepřímého hospodářského nebo obchodního prospěchu, a nepřesáhne rozsah odpovídající sledovanému účelu;
 		\end{enumerate}
-		vždy je však nutno uvést, je-li to možné, jméno autora, nejde-li o~dílo anonymní, nebo jméno osoby, pod jejímž jménem se dílo uvádí na veřejnost, a dále název díla a pramen.}} \cite[\S~31 odst.~1]{autorsky_zakon}
+		vždy je však nutno uvést, je-li to možné, jméno autora, nejde-li o~dílo anonymní, nebo jméno osoby, pod jejímž jménem se dílo uvádí na veřejnost, a dále název díla a pramen.}}~\cite[\S~31 odst.~1]{autorsky_zakon}
 	\end{itemize}
 	\item osobní údaje (čl.~2 GDPR)
 \end{itemize}
@@ -172,29 +172,29 @@ Je tedy možné shrnout, že použití pro osobní účely (resp. domácí činn
 
 Důležité je dát si velký pozor také při zpracování a využití osobních údajů, které upravuje čl.~2 GDPR -- toto téma by samo vydalo na několik desítek stránek, a tak se jím v~této práci nebudu zabývat a je zde zmíněno jen pro úplnost.
 
-V~neposlední řadě je třeba poznamenat, že při vytěžování webu není podstatné, jakým způsobem k získání obsahu došlo (zdali prostřednictvím automatizovaného nebo manuálního postupu)\footnote{Otázkou je, jestli by bylo vůbec vymahatelné, pokud by měla stránka přímo ve svých Terms of Service uvedeno, že si nepřeje automatizované procházení, nehledě na to, jestli zároveň probíhá extrakce dat či nikoliv. Taková podmínka by mohla být brána jako neadekvátní a nepřiměřená.}. Důležité je, jestli tak činím \emph{v~souladu s~běžným, očekávaným a přiměřeným použitím} -- je tak nutné dát si pozor na detaily automatizovaného procházení, např. omezit počet požadavků na server, aby odpovídal běžnému použití lidským uživatelem\footnote{Tedy pokud je nějaký software schopný projít celou doménu během pár vteřin, je to náznak, že nemusí respektovat výše uvedené podmínky.}. Rozhodně lze ale doporučit provádět scraping webových stránek se souhlasem jejich provozovatele (poskytovatele), a to dle právního režimu dat a dané jurisdikce (situace u~nás je jiná než třeba v~USA). \cite{rozhovor}
+V~neposlední řadě je třeba poznamenat, že při vytěžování webu není podstatné, jakým způsobem k získání obsahu došlo (zdali prostřednictvím automatizovaného nebo manuálního postupu)\footnote{Otázkou je, jestli by bylo vůbec vymahatelné, pokud by měla stránka přímo ve svých Terms of Service uvedeno, že si nepřeje automatizované procházení, nehledě na to, jestli zároveň probíhá extrakce dat či nikoliv. Taková podmínka by mohla být brána jako neadekvátní a nepřiměřená.}. Důležité je, jestli tak činím \emph{v~souladu s~běžným, očekávaným a přiměřeným použitím} -- je tak nutné dát si pozor na detaily automatizovaného procházení, např. omezit počet požadavků na server, aby odpovídal běžnému použití lidským uživatelem\footnote{Tedy pokud je nějaký software schopný projít celou doménu během pár vteřin, je to náznak, že nemusí respektovat výše uvedené podmínky.}. Rozhodně lze ale doporučit provádět scraping webových stránek se souhlasem jejich provozovatele (poskytovatele), a to dle právního režimu dat a dané jurisdikce (situace u~nás je jiná než třeba v~USA).~\cite{rozhovor}
 
 \subsection{Obsah chráněný autorským zákonem}
-Autorské právo chrání na internetu různý obsah, zejména budou chráněny různé články, obrázky, videa atd. Vždy však bude muset naplňovat znaky autorského díla, tj. bude muset být \uv{\textit{\dots jedinečným výsledkem tvůrčí činnosti autora a být vyjádřen v~jakékoli objektivně vnímatelné podobě včetně podoby elektronické, trvale nebo dočasně, bez ohledu na jeho rozsah, účel nebo význam\dots}} \cite[\S~2 odst.~1]{autorsky_zakon}.
+Autorské právo chrání na internetu různý obsah, zejména budou chráněny různé články, obrázky, videa atd. Vždy však bude muset naplňovat znaky autorského díla, tj. bude muset být \uv{\textit{\dots jedinečným výsledkem tvůrčí činnosti autora a být vyjádřen v~jakékoli objektivně vnímatelné podobě včetně podoby elektronické, trvale nebo dočasně, bez ohledu na jeho rozsah, účel nebo vý-znam\dots}}~\cite[\S~2 odst.~1]{autorsky_zakon}.
 
 Taková kritéria však může splňovat i~obsah, který by se na první pohled vůbec nemusel zdát chráněný autorským zákonem -- jako příklad může posloužit celkové rozvržení stránky (neboli \textit{layout}), které ponese určitý prvek originality a bude na první pohled asociovatelné s~danou webovou stránkou.
 
 Naopak výše zmíněnou definici určitě nesplňují různá počítačem generovaná data, tedy například logy chráněné autorským zákonem nebudou.
 
 \subsection{Web scraping a zvláštní práva pořizovatele databáze}
-Dle \cite{rozhovor} žádný zvláštní zákon věnující se výslovně vytěžování webových stránek neexistuje. Z~naší právní úpravy je tomu nejblíže úprava zvláštního práva pořizovatele databáze (hlava III autorského zákona), která definuje, co to je databáze -- \uv{\textit{Databází je pro účely tohoto zákona soubor nezávislých děl, údajů nebo jiných prvků, systematicky nebo metodicky uspořádaných a individuálně přístupných elektronickými nebo jinými prostředky, bez ohledu na formu jejich vyjádření.}} \cite[\S~88]{autorsky_zakon}. Za nezávislé se v~tomto kontextu považují prvky, \uv{\textit{které lze od sebe oddělit, aniž by tím byl dotčen jejich informační, literární, umělecký, hudební nebo jiný obsah}} \cite{polcak}.
+Dle~\cite{rozhovor} žádný zvláštní zákon věnující se výslovně vytěžování webových stránek neexistuje. Z~naší právní úpravy je tomu nejblíže úprava zvláštního práva pořizovatele databáze (hlava III autorského zákona), která definuje, co to je databáze -- \uv{\textit{Databází je pro účely tohoto zákona soubor nezávislých děl, údajů nebo jiných prvků, systematicky nebo metodicky uspořádaných a individuálně přístupných elektronickými nebo jinými prostředky, bez ohledu na formu jejich vyjádření.}}~\cite[\S~88]{autorsky_zakon}. Za nezávislé se v~tomto kontextu považují prvky, \uv{\textit{které lze od sebe oddělit, aniž by tím byl dotčen jejich informační, literární, umělecký, hudební nebo jiný obsah}}~\cite{polcak}.
 
-\uv{\textit{Tato právní úprava byla do autorského zákona převzata ze Směrnice Evropského parlamentu a Rady EU 96/9/ES, o~právní ochraně databází}} \cite{ikaros}, a tak můžeme informace čerpané z~této sekce vztahovat nejen na Českou Republiku, ale na jakoukoli zemi Evropské Unie.
+\uv{\textit{Tato právní úprava byla do autorského zákona převzata ze Směrnice Evropského parlamentu a Rady EU 96/9/ES, o~právní ochraně databází}}~\cite{ikaros}, a tak můžeme informace čerpané z~této sekce vztahovat nejen na Českou Republiku, ale na jakoukoli zemi Evropské Unie.
 
 Dále jsou upraveny některé způsoby užití databáze v souladu s~autorským zákonem:
 \begin{itemize}
-	\item Omezení zvláštního práva pořizovatele databáze -- \uv{\textit{Do práva pořizo-vatele databáze, která byla zpřístupněna jakýmkoli způsobem veřejnosti, nezasahuje oprávněný uživatel, který vytěžuje nebo zužitkovává kvalitativně nebo kvantitativně nepodstatné části obsahu databáze nebo její části, a to k~jakémukoli účelu, za podmínky, že tento uživatel databázi užívá běžně a přiměřeně, nikoli systematicky či opakovaně, a bez újmy oprávněných zájmů pořizovatele databáze, a že nezpůsobuje újmu autorovi ani nositeli práv souvisejících s~právem autorským k~dílům nebo jiným předmětům ochrany obsaženým v~databázi.}} \cite[\S~91]{autorsky_zakon}
+	\item Omezení zvláštního práva pořizovatele databáze -- \uv{\textit{Do práva pořizo-vatele databáze, která byla zpřístupněna jakýmkoli způsobem veřejnosti, nezasahuje oprávněný uživatel, který vytěžuje nebo zužitkovává kvalitativně nebo kvantitativně nepodstatné části obsahu databáze nebo její části, a to k~jakémukoli účelu, za podmínky, že tento uživatel databázi užívá běžně a přiměřeně, nikoli systematicky či opakovaně, a bez újmy oprávněných zájmů pořizovatele databáze, a že nezpůsobuje újmu autorovi ani nositeli práv souvisejících s~právem autorským k~dílům nebo jiným předmětům ochrany obsaženým v~databázi.}}~\cite[\S~91]{autorsky_zakon}
 	\item Bezúplatné zákonné licence -- \uv{\textit{Do práva pořizovatele jím zpřístupněné databáze též nezasahuje oprávněný uživatel, který vytěžuje nebo zužitko-vává podstatnou část obsahu databáze
 		\begin{enumerate}[a)]
 			\item pro svou osobní potřebu; ustanovení \S~30 odst. 3 zůstává nedotčeno,
 			\item pro účely vědecké nebo vyučovací, uvede-li pramen, v~rozsahu odů-vodněném sledovaným nevýdělečným účelem, a
 			\item pro účely veřejné bezpečnosti nebo správního či soudního řízení.
-	\end{enumerate}}} \cite[\S~92]{autorsky_zakon}
+	\end{enumerate}}}~\cite[\S~92]{autorsky_zakon}
 \end{itemize}
 
 Tedy pokud využívám databázi čistě pro osobní potřebu či pro věděcké nebo vyučovací účely, kdy uvedu zdroj, je vše v~pořádku. Taktéž pokud využí-vám pouze nepodstatnou část obsahu databáze, a pokud tak dělám v~souladu s~běžným, očekávaným a přiměřeným použitím, nikoliv systematicky a opakovaně, je v~pořádku využití dokonce k~jakémukoliv účelu. Důležité je zde ale spojení \textit{oprávněný uživatel} -- v~každém případě musím mít k~datům autorizovaný přístup.
@@ -202,24 +202,24 @@ Tedy pokud využívám databázi čistě pro osobní potřebu či pro věděcké
 \subsection{Důležité soudní případy v~Evropě}
 Rozbor jednotlivých soudních případů je velice důležitý, neboť právě podle nich se mohou soudy řídit při posuzování nových žalob a soudních rozepří. Stejně tak se o~ně mohou opírat žalobci i~obhájci a pro širokou veřejnost může být více předvídatelné, jak by se obdobné problémy mohly řešit v~budoucnu. Mezi nejvýznamnější rozhodnutí na půdě Soudního dvora Evropské unie patří:
 
-\paragraph{C-444/02} kdy společnost Fixtures Marketing Limited (dále jen \uv{Fixtures}) žalovala společnost Organismos Prognostikon Agonon Podosfairou AE (dále jen \uv{OPAP}) kvůli opakovanému vytěžování rozpisů ligových soutěží ve fotbale v~Anglii (které vytvářela, sestavovala a zveřejňovala společnost Fixtures) a jejich následnému užití na webových stránkách společnosti OPAP. \cite{C-444/02_1}
+\paragraph{C-444/02} kdy společnost Fixtures Marketing Limited (dále jen \uv{Fixtures}) žalovala společnost Organismos Prognostikon Agonon Podosfairou AE (dále jen \uv{OPAP}) kvůli opakovanému vytěžování rozpisů ligových soutěží ve fotbale v~Anglii (které vytvářela, sestavovala a zveřejňovala společnost Fixtures) a jejich následnému užití na webových stránkách společnosti OPAP.~\cite{C-444/02_1}
 
-Výsledkem jednání bylo, že i~\emph{rozpis fotbalových utkání je databází} ve smyslu čl.~1 odst.~2 směrnice 96/9 a jako takový může být předmětem ochrany, kdy pořizovatel databáze má právo zabránit vytěžování nebo zužitkování dat. (ačkoliv u~společnosti Fixtures nebyl prokázán podstatný vklad, jenž by mohl odůvodnit poskytnutí ochrany). \cite{C-444/02_2}
+Výsledkem jednání bylo, že i~\emph{rozpis fotbalových utkání je databází} ve smyslu čl.~1 odst.~2 směrnice 96/9 a jako takový může být předmětem ochrany, kdy pořizovatel databáze má právo zabránit vytěžování nebo zužitkování dat. (ačkoliv u~společnosti Fixtures nebyl prokázán podstatný vklad, jenž by mohl odůvodnit poskytnutí ochrany).~\cite{C-444/02_2}
 
-\paragraph{C‑30/14} kdy společnost Ryanair Ltd. žalovala společnost PR Aviation BV kvůli automatizovanému sběru dat o~cenách, letech a letových řádech, jež byly volně přístupné spotřebitelům z~webových stránek Ryanair Ltd. K~přístupu musel uživatel potvrdit souhlas (viz \hyperref[def:clickwrap]{sekce 1.2.1, definice pojmu clickwrap}) se všeobecnými podmínkami, ve kterých byl mimo jiné výslovně zakázán způsob, jakým data využívala PR Aviation BV. Tyto data pak společnost PR Aviation BV používala ke srovnávání cen na svém vlastním portálu. \cite{C-30/14}
+\paragraph{C‑30/14} kdy společnost Ryanair Ltd. žalovala společnost PR Aviation BV kvůli automatizovanému sběru dat o~cenách, letech a letových řádech, jež byly volně přístupné spotřebitelům z~webových stránek Ryanair Ltd. K~přístupu musel uživatel potvrdit souhlas (viz \hyperref[def:clickwrap]{sekce 1.2.1, definice pojmu clickwrap}) se všeobecnými podmínkami, ve kterých byl mimo jiné výslovně zakázán způsob, jakým data využívala PR Aviation BV. Tyto data pak společnost PR Aviation BV používala ke srovnávání cen na svém vlastním portálu.~\cite{C-30/14}
 
-Soudní dvůr rozhodl ve prospěch Ryanair -- \emph{jestliže se autor databáze, která není chráněna autorským zákonem nebo právem pořizovatele, rozhodne poskytnout souhlas s~jejím využitím, nic mu nebrání ve stanovení smluvních podmínek}, jež by omezily používání databáze ze strany třetích osob, aniž by přitom bylo dotčeno použitelné vnitrostátní právo. \cite{C-30/14}
+Soudní dvůr rozhodl ve prospěch Ryanair -- \emph{jestliže se autor databáze, která není chráněna autorským zákonem nebo právem pořizovatele, rozhodne poskytnout souhlas s~jejím využitím, nic mu nebrání ve stanovení smluvních podmínek}, jež by omezily používání databáze ze strany třetích osob, aniž by přitom bylo dotčeno použitelné vnitrostátní právo.~\cite{C-30/14}
 
 \subsection{Důležité soudní případy ve Spojených státech}
 Úprava v USA je postavena na jiné právní úpravě, a závěry tak nejsou automaticky přenositelné do našeho práva (což ovšem nevylučuje možnost použití těchto rozhodnutí pro účely argumentace). Představíme si dva nejdůležitější případy v~právní historii web scrapingu, se kterými mimo jiné vyvstávají otázky jako \uv{Komu doopravdy patří data uživatelů na internetu?} a \uv{Kdo má rozhodovat o~přístupu k~veřejným datům, jestli o~tom vůbec má někdo rozhodovat?}.
 
 \paragraph{hiQ v. LinkedIn} kdy analytická společnost hiQ automatizovaně extrahovala veřejně dostupná (bez nutnosti registrace účtu) data z~profilů uživatelů sítě LinkedIn. Ta společnosti hiQ zaslala tzv. \textit{cease and desist letter} a požado-vala okamžité ukončení činnosti ze strany hiQ pod pohrůžkou porušení CFAA. \cite{hiq_linkedin_1}
 
-K~dispozici je zatím pouze předběžné opatření ve prospěch hiQ, které říká, že \textit{nelze zabránit přístupu k~veřejně dostupným informacím} -- k~porušení CFAA (jako neoprávněný přístup) by došlo pouze v~případě obejití systému autentizace. Ze strany společnosti LinkedIn padl argument, že automatizovaný přístup k~veřejným datům není to samé jako normální \uv{osobní} užití, stejně jako je odlišné dlouhodobé sledování osoby přes GPS zařízení od letmého potkávání \cite{linkedin_arg}. hiQ mimo jiné argumentoval i~tím, že sociální sítě jsou novodobá veřejná fóra (místa pro veřejné projevy, zejména politického charak-teru \cite{public_forum}) a rozhodování o~udělení přístupu k~nim (ať už ze strany státu či soukromé společnosti) je porušením svobody slova a vyjadřování, a tím i~samotné ústavy státu Kalifornie. \cite{hiq_linkedin_2}
+K~dispozici je zatím pouze předběžné opatření ve prospěch hiQ, které říká, že \textit{nelze zabránit přístupu k~veřejně dostupným informacím} -- k~porušení CFAA (jako neoprávněný přístup) by došlo pouze v~případě obejití systému autentizace. Ze strany společnosti LinkedIn padl argument, že automatizovaný přístup k~veřejným datům není to samé jako normální \uv{osobní} užití, stejně jako je odlišné dlouhodobé sledování osoby přes GPS zařízení od letmého potkávání~\cite{linkedin_arg}. hiQ mimo jiné argumentoval i~tím, že sociální sítě jsou novodobá veřejná fóra (místa pro veřejné projevy, zejména politického charak-teru~\cite{public_forum}) a rozhodování o~udělení přístupu k~nim (ať už ze strany státu či soukromé společnosti) je porušením svobody slova a vyjadřování, a tím i~samotné ústavy státu Kalifornie.~\cite{hiq_linkedin_2}
 
-\paragraph{Facebook v. Power Venture (Vachani)} kdy společnost Power Venture (CEO Steven Suraj Vachani), jež umožňovala agregovat různé sociální sítě a používat všechny jejich klíčové funkce z~jednoho místa, byla žalována sociální sítí Facebook kvůli neoprávněnému vytěžování profilů a zasílání e-mailů uživa-telům, které úmyslně vypadaly jako odeslané společností Facebook (údajné porušení CFAA, CAN-SPAM a California Penal Code, sekce 502). Facebook zaslal Power Venture \textit{cease and desist letter} a snažil se zamezit přístupu k~datům pomocí blokování IP adres. Power Venture přesto pokračoval ve své činnosti. \cite{facebook_venture_1}
+\paragraph{Facebook v. Power Venture (Vachani)} kdy společnost Power Venture (CEO Steven Suraj Vachani), jež umožňovala agregovat různé sociální sítě a používat všechny jejich klíčové funkce z~jednoho místa, byla žalována sociální sítí Facebook kvůli neoprávněnému vytěžování profilů a zasílání e-mailů uživa-telům, které úmyslně vypadaly jako odeslané společností Facebook (údajné porušení CFAA, CAN-SPAM a California Penal Code, sekce 502). Facebook zaslal Power Venture \textit{cease and desist letter} a snažil se zamezit přístupu k~datům pomocí blokování IP adres. Power Venture přesto pokračoval ve své činnosti.~\cite{facebook_venture_1}
 
-Soud rozhodl ve prospěch společnosti Facebook -- jednání Power Venture bylo v~rozporu se zákonem. Jako hlavní argument posloužil fakt, že Power Venture pokračoval ve svém jednání i~po explicitním odejmutí oprávnění přístupu k~datům společnosti Facebook. Zde je ale vhodné uvést, že Power Venture \emph{přistupoval k~profilům uživatelů pouze s~jejich vlastním souhlasem}, ač bez souhlasu Facebooku. \cite{facebook_venture_2}
+Soud rozhodl ve prospěch společnosti Facebook -- jednání Power Venture bylo v~rozporu se zákonem. Jako hlavní argument posloužil fakt, že Power Venture pokračoval ve svém jednání i~po explicitním odejmutí oprávnění přístupu k~datům společnosti Facebook. Zde je ale vhodné uvést, že Power Venture \emph{přistupoval k~profilům uživatelů pouze s~jejich vlastním souhlasem}, ač bez souhlasu Facebooku.~\cite{facebook_venture_2}
 
 % ------------------------------------------------------------------------------------------------
 
@@ -229,7 +229,7 @@ První skupinou, na kterou můžeme při hledání na internetu narazit, jsou sp
 
 Pro tuto práci mnohem relevantnější kategorií je konkurenční nabídka nástrojů poskytujících uživatelům rozhraní k~web scrapingu. Zaměřím se pouze na takové nástroje, které nevyžadují jakoukoli znalost programování -- tedy žádné knihovny, API a nástroje pro budování vlastních scraperů.
 
-Mezi ty největší představitele patří ParseHub \cite{parsehub}, Octoparse \cite{octoparse}, WebScraper \cite{webscraper}, Dexi.io \cite{dexio} a Data Scraper \cite{data_scraper}. Čtyři ze zmíněných nástrojů jsou volně dostupné (které mají však velmi omezenou funkcionalitu a pokročilejší operace se odemknou až s~určitým platebním plánem -- tzv. freemium model) a jeden poskytuje bezplatně pouze 7denní zkušební verzi.
+Mezi ty největší představitele patří ParseHub~\cite{parsehub}, Octoparse~\cite{octoparse}, WebScraper~\cite{webscraper}, Dexi.io~\cite{dexio} a Data Scraper~\cite{data_scraper}. Čtyři ze zmíněných nástrojů jsou volně dostupné (které mají však velmi omezenou funkcionalitu a pokročilejší operace se odemknou až s~určitým platebním plánem -- tzv. freemium model) a jeden poskytuje bezplatně pouze 7denní zkušební verzi.
 
 Předtím, než bude možné jednotlivé nástroje porovnávat, je nutné určit kritéria, podle kterých lze hodnotit kvalitu daného nástroje. Především půjde o~jednoduchost používání, celkovou přehlednost a rychlost, se kterou se uživatel dostane k~požadovaným datům. Důležitý je také způsob výběru dat, možnosti exportu získaných dat, jak aplikace sama dokáže uživatele seznámit s~použí-váním a také, v~jaké formě se nástroj vůbec používá a čím se od ostatních odlišuje (ať už v~pozitivním či negativním smyslu). 
 
@@ -237,7 +237,7 @@ Poj\v{d}me se tedy na některé nástroje podívat blíže:
 
 \begin{figure}
 	\includegraphics[width=\linewidth]{images/ParseHub.png}
-	\caption{Desktopová aplikace ParseHub \cite[snímek pořídil autor]{parsehub}}
+	\caption{Desktopová aplikace ParseHub~\cite[snímek pořídil autor]{parsehub}}
 	\label{fig:parseHub}
 \end{figure}
 \subsection{ParseHub}
@@ -273,7 +273,7 @@ Poj\v{d}me se tedy na některé nástroje podívat blíže:
 \end{itemize}
 \begin{figure}[h]
 	\includegraphics[width=\linewidth]{images/Octoparse.png}
-	\caption{Desktopová aplikace Octoparse \cite[snímek pořídil autor]{octoparse}}
+	\caption{Desktopová aplikace Octoparse~\cite[snímek pořídil autor]{octoparse}}
 	\label{fig:octoparse}
 \end{figure}
 
@@ -281,7 +281,7 @@ Poj\v{d}me se tedy na některé nástroje podívat blíže:
 \subsection{WebScaper}
 \begin{figure}
 	\includegraphics[width=\linewidth]{images/WebScraper.png}
-	\caption{Rozšíření WebScraper \cite[snímek pořídil autor]{webscraper}}
+	\caption{Rozšíření WebScraper~\cite[snímek pořídil autor]{webscraper}}
 	\label{fig:webScraper}
 \end{figure}
 \textbf{Výhody:}
@@ -305,7 +305,7 @@ Poj\v{d}me se tedy na některé nástroje podívat blíže:
 \subsection{Dexi.io}
 \begin{figure}[b]
 	\includegraphics[width=\linewidth]{images/Dexiio.png}
-	\caption{Webová aplikace Dexi.io \cite[snímek pořídil autor]{dexio}}
+	\caption{Webová aplikace Dexi.io~\cite[snímek pořídil autor]{dexio}}
 	\label{fig:dexi.io}
 \end{figure}
 \textbf{Výhody:}
@@ -342,7 +342,7 @@ Poj\v{d}me se tedy na některé nástroje podívat blíže:
 \end{itemize}
 \begin{figure}
 	\includegraphics[width=\linewidth]{images/DataScraper.png}
-	\caption{Rozšíření Data Scraper \cite[snímek pořídil autor]{data_scraper}}
+	\caption{Rozšíření Data Scraper~\cite[snímek pořídil autor]{data_scraper}}
 	\label{fig:dataScraper}
 \end{figure}
 
