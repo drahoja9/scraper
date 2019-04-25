@@ -1,6 +1,6 @@
 import { MouseSelector } from '/src/contentScripts/selectEngine/selectors/mouseSelector.js';
 import { SelectEngineMockup } from './mocks.js';
-import { _click, _clickWithCtrl, _mouseover, _mouseout } from './utils.js';
+import { _click, _clickWithCtrl, _mouseout, _mouseover } from './utils.js';
 import { JSDOM } from 'jsdom';
 
 
@@ -11,7 +11,7 @@ let selectEngine;
 beforeEach(async function () {
     selectEngine = new SelectEngineMockup();
     selector = new MouseSelector(selectEngine);
-    const dom = await JSDOM.fromFile('/home/jakub/BP/code/chrome-extension/tests/unit/testingPage.html');
+    const dom = await JSDOM.fromFile('/home/jakub/BP/code/chrome-extension/tests/testingPage.html');
     document.body.innerHTML = dom.window.document.body.innerHTML;
 });
 

@@ -2,7 +2,7 @@ import { MouseSelector } from './selectors/mouseSelector.js';
 import { TextSelector } from './selectors/textSelector.js';
 import { DOMNavigaton } from './selectors/domNavigation/domNavigation.js';
 import { CSSSelector } from './selectors/cssSelector.js';
-import { RowSelection, ColumnSelection } from './selection.js';
+import { ColumnSelection, RowSelection } from './selection.js';
 
 
 export class SelectEngine {
@@ -52,7 +52,7 @@ export class SelectEngine {
         this.unselect([targetRow]);
 
         // Return back to initial state
-        this.changeCol({ coldId: currentCol });
+        this.changeCol({ colId: currentCol });
         isSelectingRows ? this.selectingRows() : this.selectingCols();
     }
 

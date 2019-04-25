@@ -36,7 +36,6 @@ async function getTabInfo(tabId) {
     }
 }
 
-
 // ========================================================================================================
 
 
@@ -71,6 +70,12 @@ chrome.runtime.onMessage.addListener(async function (request, sender, sendRespon
             url: request.url,
             filename: request.filename,
             saveAs: true
+        }, function downloadStarted(downloadId) {
+            chrome.downloads.onChanged.addListener(function ({ id, state }) {
+                if (id === downloadId && state.current === 'complete') {
+                    URL.revokeObjectURL(request.url);
+                }
+            });
         });
     } else if (request.msg === Messages.SWITCH_SIDES) {
         const tabInfo = await getTabInfo(sender.tab.id);

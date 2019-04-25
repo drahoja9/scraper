@@ -2,7 +2,7 @@ export class SelectEngineMockup {
     constructor() {
         this.selected = [];
         this._classes = ['scraping-class-1', 'scraping-class-2'];
-        this._id = 'scraping-0';
+        this._id = 0;
     }
 
     areSelected(elements) {
@@ -46,9 +46,25 @@ export class SelectEngineMockup {
     }
 
     generateId() {
-        const currentId = this._id.match(/scraping-(\d*)/)[1];
-        this._id = `scraping-${Number(currentId) + 1}`;
-        return this._id;
+        return `scraping-${++this._id}`;
+    }
+}
+
+
+export class SelectionMockup {
+    constructor() {
+        this._id = 0;
+        this.toggled = undefined;
+        this.pushedUndo = false;
+    }
+
+    toggle(elements, pushUndo = true) {
+        this.toggled = elements;
+        this.pushedUndo = pushUndo;
+    }
+
+    generateId() {
+        return `scraping-${this._id++}`;
     }
 }
 
@@ -56,6 +72,8 @@ export class SelectEngineMockup {
 export class ControllerMockup {
     constructor() {
         this.isDataValid = true;
+        this.msg = [];
+        this.nodes = [];
     }
 
     invalidateData() {
@@ -63,7 +81,8 @@ export class ControllerMockup {
     }
 
     notify({ msg, nodes }) {
-
+        this.msg.push(msg);
+        this.nodes.push(nodes);
     }
 }
 

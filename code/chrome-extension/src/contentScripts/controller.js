@@ -8,7 +8,7 @@ import { PreviewTable } from '../previewTable/previewTable.js';
 
 export class Controller {
     constructor(shouldBeVisible, minimized, onLeft) {
-        this._dataEngine = new DataEngine(this);
+        this._dataEngine = new DataEngine();
         this._previewTable = new PreviewTable(this);
         this._selectEngine = new SelectEngine(this);
         this.communication = new Communication(this);
@@ -26,7 +26,7 @@ export class Controller {
     }
 
     previewData({ cols }) {
-        const { columnNames, rowsData } = this._dataEngine.getData(cols)
+        const { columnNames, rowsData } = this._dataEngine.getData(cols);
         this._previewTable.display(columnNames, rowsData);
     }
 

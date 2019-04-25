@@ -10,6 +10,8 @@ export class UndoRedoStore {
     }
 
     undo() {
+        if (this._undos.length === 0) return;
+
         const selector = this._popUndo();
         const elements = document.querySelectorAll(selector);
 
@@ -18,6 +20,8 @@ export class UndoRedoStore {
     }
 
     redo() {
+        if (this._redos.length === 0) return;
+
         const selector = this._popRedo();
         const elements = document.querySelectorAll(selector);
 

@@ -22,7 +22,7 @@ let selectEngine;
 beforeEach(async function () {
     selectEngine = new SelectEngineMockup();
     selector = new DOMNavigaton(selectEngine);
-    const dom = await JSDOM.fromFile('/home/jakub/BP/code/chrome-extension/tests/unit/testingPage.html');
+    const dom = await JSDOM.fromFile('/home/jakub/BP/code/chrome-extension/tests/testingPage.html');
     document.body.innerHTML = dom.window.document.body.innerHTML;
 
     // Need to set non-inline CSS via JS

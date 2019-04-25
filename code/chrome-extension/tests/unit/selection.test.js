@@ -1,6 +1,6 @@
-import { RowSelection, ColumnSelection } from "/src/contentScripts/selectEngine/selection.js";
+import { ColumnSelection, RowSelection } from "/src/contentScripts/selectEngine/selection.js";
 import { Messages } from "/src/constants.js";
-import { SelectEngineMockup, ControllerMockup, DOMNavigationMockup, UndoRedoStoreMockup } from "./mocks.js";
+import { ControllerMockup, DOMNavigationMockup, SelectEngineMockup, UndoRedoStoreMockup } from "./mocks.js";
 import { JSDOM } from 'jsdom';
 
 
@@ -32,7 +32,7 @@ beforeEach(async function () {
     colSelection = new ColumnSelection(controller, domNavigation, 0, selectEngine);
     rowSelection._undoRedoStore = undoRedoStore;
     colSelection._undoRedoStore = undoRedoStore;
-    const dom = await JSDOM.fromFile('/home/jakub/BP/code/chrome-extension/tests/unit/testingPage.html');
+    const dom = await JSDOM.fromFile('/home/jakub/BP/code/chrome-extension/tests/testingPage.html');
     document.body.innerHTML = dom.window.document.body.innerHTML;
 });
 
@@ -213,6 +213,7 @@ test('generate ID', () => {
     expect(colSelection.generateId()).toEqual('scraping-2');
     expect(rowSelection.generateId()).toEqual('scraping-3');
     expect(colSelection.generateId()).toEqual('scraping-4');
+    expect(colSelection.generateId()).toEqual('scraping-5');
 });
 
 test('is selecting rows', () => {

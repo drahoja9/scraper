@@ -1,11 +1,10 @@
-import { JSONExporter, CSVExporter } from './exporter.js';
+import { CSVExporter, JSONExporter } from './exporter.js';
 
 
 export class DataEngine {
-    constructor(controller) {
+    constructor() {
         this._data = { columnNames: [], rowsData: [] };
         this.isDataValid = false;
-        this._controller = controller;
         this._exporter = undefined;
     }
 
