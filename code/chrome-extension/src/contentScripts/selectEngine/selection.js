@@ -23,7 +23,8 @@ class Selection {
                 this._updateClasses(this._rowId + 1);
             }
             filtered.push(element);
-        };
+        }
+        if (filtered.length === 0) return;
         this._controller.invalidateData();
         this._domNavigaton.notify({ msg: Messages.SELECTED, nodes: filtered });
 

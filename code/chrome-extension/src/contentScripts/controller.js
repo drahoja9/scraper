@@ -11,13 +11,13 @@ export class Controller {
         this._dataEngine = new DataEngine();
         this._previewTable = new PreviewTable(this);
         this._selectEngine = new SelectEngine(this);
-        this.communication = new Communication(this);
-        this._mainPanelController = new MainPanelController(
-            this,
-            { shouldBeVisible, minimized, onLeft }
-        );
+        this._mainPanelController = new MainPanelController(this);
+        this._communication = new Communication(this, this._mainPanelController);
 
-        this.communication.init(this._mainPanelController);
+        if (shouldBeVisible) {
+            this._communication.toggle();
+            this._mainPanelController.toggleMainPanel(minimized, onLeft);
+        }
     }
 
     injectParts() {
@@ -32,7 +32,7 @@ export class Controller {
 
     downloadData({ format, cols }) {
         const { url, filename } = this._dataEngine.export(cols, format);
-        this.communication.sendMessageToBackground({
+        this._communication.sendMessageToBackground({
             msg: Messages.DOWNLOAD,
             url: url,
             filename: filename
@@ -49,7 +49,7 @@ export class Controller {
     }
 
     notify({ msg }) {
-        this.communication.sendMessageToMainPanel({
+        this._communication.sendMessageToMainPanel({
             msg: msg
         });
     }

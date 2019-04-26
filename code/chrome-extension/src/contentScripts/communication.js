@@ -1,25 +1,17 @@
-import { Messages, MAIN_PANEL_PAGE } from '../constants.js';
+import { MAIN_PANEL_PAGE, Messages } from '../constants.js';
 
 
 export class Communication {
-    constructor(controller) {
+    constructor(controller, mainPanelController) {
         this._controller = controller;
-        this._mainPanel = undefined;
+        this._mainPanelController = mainPanelController;
 
         this._communicationWithMainPanel = this._communicationWithMainPanel.bind(this);
-    }
-
-    init(mainPanel) {
-        this._mainPanel = mainPanel;
         this.listenToBackground();
     }
 
-    toggle(mainPanel) {
-        if (this._mainPanel === undefined && mainPanel) {
-            this._mainPanel = mainPanel;
-        }
-
-        if (this._mainPanel.isVisible) {
+    toggle() {
+        if (this._mainPanelController.isVisible) {
             window.addEventListener('message', this._communicationWithMainPanel);
         } else {
             window.removeEventListener('message', this._communicationWithMainPanel);
@@ -30,20 +22,19 @@ export class Communication {
         // Communication with backrground.js (something like "backend" of the extension)
         chrome.runtime.onMessage.addListener(
             (request, sender, sendResponse) => {
-                if (request.msg === Messages.BROWSER_ACTION_CLICKED) {
-                    this._mainPanel.toggleMainPannel();
-                }
-
-                if (
+                const extensionIconClicked = request => request.msg === Messages.BROWSER_ACTION_CLICKED;
+                const pageUpdatedWithExtensionOn = request => (
                     request.msg === Messages.TAB_UPDATED &&
                     request.shouldBeVisible === true &&
-                    !this._mainPanel.isInjected
-                ) {
-                    this._mainPanel.handleInitialLoad(
-                        request.shouldBeVisible,
+                    !this._mainPanelController.isInjected
+                );
+
+                if (extensionIconClicked(request) || pageUpdatedWithExtensionOn(request)) {
+                    this._mainPanelController.toggleMainPanel(
                         request.minimized,
                         request.onLeft
                     );
+                    this.toggle();
                 }
             }
         );
@@ -54,7 +45,7 @@ export class Communication {
     }
 
     sendMessageToMainPanel(msg) {
-        this._mainPanel.iframe.contentWindow.postMessage(
+        this._mainPanelController.iframe.contentWindow.postMessage(
             { ...msg, type: Messages.FROM_CONTROLLER },
             chrome.runtime.getURL(MAIN_PANEL_PAGE)
         );
@@ -68,11 +59,11 @@ export class Communication {
 
         switch (event.data.msg) {
             case Messages.MINIMIZE_MAXIMIZE:
-                this._mainPanel.toggleMinMax();
+                this._mainPanelController.toggleMinMax();
                 this.sendMessageToBackground({ msg: event.data.msg });
                 break;
             case Messages.SWITCH_SIDES:
-                this._mainPanel.switchSides();
+                this._mainPanelController.switchSides();
                 this.sendMessageToBackground({ msg: event.data.msg });
                 break;
             case Messages.SELECTING_ROWS:

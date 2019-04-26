@@ -2,36 +2,31 @@ import { MAIN_PANEL_PAGE, Messages } from '../constants.js';
 
 
 export class MainPanelController {
-    constructor(controller, visibility) {
+    constructor(controller) {
         this.isInjected = false;
         this.isVisible = false;
         this.iframe = undefined;
+        this._minimized = false;
+        this._onLeft = false;
 
         this._controller = controller;
-
-        if (visibility.shouldBeVisible) {
-            this._minimized = visibility.minimized;
-            this._onLeft = visibility.onLeft;
-            this.toggleMainPannel();
-        }
     }
 
     handleInitialLoad() {
         if (this._minimized) {
             this.toggleMinMax();
-            this._controller.communication.sendMessageToMainPanel({
-                msg: Messages.MINIMIZE_MAXIMIZE
-            });
+            this._controller.notify({ msg: Messages.MINIMIZE_MAXIMIZE });
         }
         if (this._onLeft) {
             this.switchSides();
-            this._controller.communication.sendMessageToMainPanel({
-                msg: Messages.SWITCH_SIDES
-            });
+            this._controller.notify({ msg: Messages.SWITCH_SIDES });
         }
     }
 
-    toggleMainPannel() {
+    toggleMainPanel(minimized, onLeft) {
+        this._minimized = minimized;
+        this._onLeft = onLeft;
+
         if (this.isVisible) {
             this._hideMainPanel();
         } else if (this.isInjected) {
@@ -42,7 +37,6 @@ export class MainPanelController {
             this._injectMainPanel();
             this._controller.injectParts();
         }
-        this._controller.communication.toggle(this);
     }
 
     toggleMinMax() {
