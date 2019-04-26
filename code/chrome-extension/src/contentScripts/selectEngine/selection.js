@@ -17,7 +17,7 @@ class Selection {
 
         let filtered = [];
         for (const element of elements) {
-            if (!isValid(element) || this.areSelected([element])) return;
+            if (!isValid(element) || this.areSelected([element])) continue;
             element.classList.add(...this._scrapingClasses);
             if (this._rowId !== undefined) {
                 this._updateClasses(this._rowId + 1);

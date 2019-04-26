@@ -44,7 +44,7 @@ export class MouseSelector {
     }
 
     _createAttributesString(target) {
-        if (!this._current.hasAttributes() || ! target.hasAttributes()) return '';
+        if (!this._current.hasAttributes() || !target.hasAttributes()) return '';
 
         const currentAttrs = this._current.attributes;
         const newAttrs = target.attributes;
