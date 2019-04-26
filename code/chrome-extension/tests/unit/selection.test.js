@@ -9,10 +9,14 @@ import { JSDOM } from 'jsdom';
 beforeAll(function () {
     // Mocking the `offsetWidth` and `offsetHeight`
     Object.defineProperty(window.HTMLElement.prototype, 'offsetWidth', {
-        get: function () { return this._customOffsetWidth !== undefined ? this._customOffsetWidth : 123; }
+        get: function () {
+            return this._customOffsetWidth !== undefined ? this._customOffsetWidth : 123;
+        }
     });
     Object.defineProperty(window.HTMLElement.prototype, 'offsetHeight', {
-        get: function () { return this._customOffsetHeight !== undefined ? this._customOffsetHeight : 123; }
+        get: function () {
+            return this._customOffsetHeight !== undefined ? this._customOffsetHeight : 123;
+        }
     });
 });
 
@@ -54,10 +58,13 @@ test('select rows', () => {
     classes2.map(cls => {
         expect(secondLike.classList.contains(cls)).toBe(true);
     });
-    expect(controller.isDataValid).toBe(false);
-    expect(domNavigation.msg).toBe(Messages.SELECTED);
-    expect(domNavigation.nodes).toEqual([firstLike, secondLike]);
-    expect(undoRedoStore.pushedUndos).toEqual([firstLike, secondLike]);
+    expect(controller.invalidateData.mock.calls.length).toBe(1);
+    expect(domNavigation.notify.mock.calls.length).toBe(1);
+    expect(domNavigation.notify.mock.calls[0][0]).toEqual(
+        { msg: Messages.SELECTED, nodes: [firstLike, secondLike] }
+    );
+    expect(undoRedoStore.pushUndo.mock.calls.length).toBe(1);
+    expect(undoRedoStore.pushUndo.mock.calls[0][0]).toEqual([firstLike, secondLike]);
 });
 
 test('try select already selected', () => {
@@ -74,10 +81,9 @@ test('try select already selected', () => {
     classes.map(cls => {
         expect(secondLike.classList.contains(cls)).toBe(true);
     });
-    expect(controller.isDataValid).toBe(true);
-    expect(domNavigation.msg).toBe(undefined);
-    expect(domNavigation.nodes).toBe(undefined);
-    expect(undoRedoStore.pushedUndos).toEqual([]);
+    expect(controller.invalidateData.mock.calls.length).toBe(0);
+    expect(domNavigation.notify.mock.calls.length).toBe(0);
+    expect(undoRedoStore.pushUndo.mock.calls.length).toBe(0);
 });
 
 test('try select invalid', () => {
@@ -92,10 +98,9 @@ test('try select invalid', () => {
     classes.map(cls => {
         expect(hiddenDiv.classList.contains(cls)).toBe(false);
     });
-    expect(controller.isDataValid).toBe(true);
-    expect(domNavigation.msg).toBe(undefined);
-    expect(domNavigation.nodes).toBe(undefined);
-    expect(undoRedoStore.pushedUndos).toEqual([]);
+    expect(controller.invalidateData.mock.calls.length).toBe(0);
+    expect(domNavigation.notify.mock.calls.length).toBe(0);
+    expect(undoRedoStore.pushUndo.mock.calls.length).toBe(0);
 });
 
 test('unselect columns', () => {
@@ -112,10 +117,13 @@ test('unselect columns', () => {
     classes.map(cls => {
         expect(secondLike.classList.contains(cls)).toBe(false);
     });
-    expect(controller.isDataValid).toBe(false);
-    expect(domNavigation.msg).toBe(Messages.UNSELECTED);
-    expect(domNavigation.nodes).toEqual([firstLike, secondLike]);
-    expect(undoRedoStore.pushedUndos).toEqual([firstLike, secondLike]);
+    expect(controller.invalidateData.mock.calls.length).toBe(1);
+    expect(domNavigation.notify.mock.calls.length).toBe(1);
+    expect(domNavigation.notify.mock.calls[0][0]).toEqual(
+        { msg: Messages.UNSELECTED, nodes: [firstLike, secondLike] }
+    );
+    expect(undoRedoStore.pushUndo.mock.calls.length).toBe(1);
+    expect(undoRedoStore.pushUndo.mock.calls[0][0]).toEqual([firstLike, secondLike]);
 });
 
 test('unselect rows', () => {
@@ -136,10 +144,13 @@ test('unselect rows', () => {
     classes2.map(cls => {
         expect(secondLike.classList.contains(cls)).toBe(false);
     });
-    expect(controller.isDataValid).toBe(false);
-    expect(domNavigation.msg).toBe(Messages.UNSELECTED);
-    expect(domNavigation.nodes).toEqual([firstLike, secondLike]);
-    expect(undoRedoStore.pushedUndos).toEqual([firstLike, secondLike]);
+    expect(controller.invalidateData.mock.calls.length).toBe(1);
+    expect(domNavigation.notify.mock.calls.length).toBe(1);
+    expect(domNavigation.notify.mock.calls[0][0]).toEqual(
+        { msg: Messages.UNSELECTED, nodes: [firstLike, secondLike] }
+    );
+    expect(undoRedoStore.pushUndo.mock.calls.length).toBe(1);
+    expect(undoRedoStore.pushUndo.mock.calls[0][0]).toEqual([firstLike, secondLike]);
     expect(rowSelection.classes).toEqual(['scraping-selected-row', 'scraping-row-999']);
 });
 
@@ -152,22 +163,25 @@ test('toggle selection', () => {
     classes.map(cls => {
         expect(secondLike.classList.contains(cls)).toBe(true);
     });
-    expect(controller.isDataValid).toBe(false);
-    expect(domNavigation.msg).toBe(Messages.SELECTED);
-    expect(domNavigation.nodes).toEqual([firstLike, secondLike]);
-    expect(undoRedoStore.pushedUndos).toEqual([firstLike, secondLike]);
-
-    controller.isDataValid = true;
-    domNavigation.nodes = undefined;
+    expect(controller.invalidateData.mock.calls.length).toBe(1);
+    expect(domNavigation.notify.mock.calls.length).toBe(1);
+    expect(domNavigation.notify.mock.calls[0][0]).toEqual(
+        { msg: Messages.SELECTED, nodes: [firstLike, secondLike] }
+    );
+    expect(undoRedoStore.pushUndo.mock.calls.length).toBe(1);
+    expect(undoRedoStore.pushUndo.mock.calls[0][0]).toEqual([firstLike, secondLike]);
 
     colSelection.toggle([firstLike, secondLike]);
     classes.map(cls => {
         expect(secondLike.classList.contains(cls)).toBe(false);
     });
-    expect(controller.isDataValid).toBe(false);
-    expect(domNavigation.msg).toBe(Messages.UNSELECTED);
-    expect(domNavigation.nodes).toEqual([firstLike, secondLike]);
-    expect(undoRedoStore.pushedUndos).toEqual([firstLike, secondLike, firstLike, secondLike]);
+    expect(controller.invalidateData.mock.calls.length).toBe(2);
+    expect(domNavigation.notify.mock.calls.length).toBe(2);
+    expect(domNavigation.notify.mock.calls[1][0]).toEqual(
+        { msg: Messages.UNSELECTED, nodes: [firstLike, secondLike] }
+    );
+    expect(undoRedoStore.pushUndo.mock.calls.length).toBe(2);
+    expect(undoRedoStore.pushUndo.mock.calls[1][0]).toEqual([firstLike, secondLike]);
 });
 
 test('whether rows are selected or not', () => {
@@ -189,23 +203,23 @@ test('whether rows are selected or not', () => {
 });
 
 test('undo', () => {
-    expect(undoRedoStore.wasUndoCalled).toBe(false);
+    expect(undoRedoStore.undo.mock.calls.length).toBe(0);
     colSelection.undo();
-    expect(undoRedoStore.wasUndoCalled).toBe(true);
+    expect(undoRedoStore.undo.mock.calls.length).toBe(1);
 });
 
 test('redo', () => {
-    expect(undoRedoStore.wasRedoCalled).toBe(false);
+    expect(undoRedoStore.redo.mock.calls.length).toBe(0);
     rowSelection.redo();
-    expect(undoRedoStore.wasRedoCalled).toBe(true);
+    expect(undoRedoStore.redo.mock.calls.length).toBe(1);
 });
 
 test('check undo/redo', () => {
-    expect(undoRedoStore.wasUndoChecked).toBe(false);
-    expect(undoRedoStore.wasRedoChecked).toBe(false);
+    expect(undoRedoStore.checkUndo.mock.calls.length).toBe(0);
+    expect(undoRedoStore.checkRedo.mock.calls.length).toBe(0);
     colSelection.checkUndoRedo();
-    expect(undoRedoStore.wasUndoChecked).toBe(true);
-    expect(undoRedoStore.wasRedoChecked).toBe(true);
+    expect(undoRedoStore.checkUndo.mock.calls.length).toBe(1);
+    expect(undoRedoStore.checkRedo.mock.calls.length).toBe(1);
 });
 
 test('generate ID', () => {

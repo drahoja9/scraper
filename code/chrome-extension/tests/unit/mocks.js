@@ -54,14 +54,10 @@ export class SelectEngineMockup {
 export class SelectionMockup {
     constructor() {
         this._id = 0;
-        this.toggled = undefined;
-        this.pushedUndo = false;
     }
 
-    toggle(elements, pushUndo = true) {
-        this.toggled = elements;
-        this.pushedUndo = pushUndo;
-    }
+    toggle = jest.fn((elements, pushUndo = true) => {
+    });
 
     generateId() {
         return `scraping-${this._id++}`;
@@ -72,60 +68,71 @@ export class SelectionMockup {
 export class ControllerMockup {
     constructor() {
         this.isDataValid = true;
-        this.msg = [];
-        this.nodes = [];
     }
 
-    invalidateData() {
-        this.isDataValid = false;
-    }
+    invalidateData = jest.fn(() => {
+    });
+    notify = jest.fn(({ msg }) => {
+    });
+    selectingRows = jest.fn(() => {
+    });
+    selectingCols = jest.fn(() => {
+    });
+    changeCol = jest.fn(payload => {
+    });
+    toggleMouseSelector = jest.fn(() => {
+    });
+    undo = jest.fn(() => {
+    });
+    redo = jest.fn(() => {
+    });
+    textContains = jest.fn(payload => {
+    });
+    textStartsWith = jest.fn(payload => {
+    });
+    textEndsWith = jest.fn(payload => {
+    });
+    cssSelect = jest.fn(payload => {
+    });
+    cssUnselect = jest.fn(() => {
+    });
+    previewData = jest.fn(({ cols }) => {
+    });
+    downloadData = jest.fn(({ format, cols }) => {
+    });
+}
 
-    notify({ msg, nodes }) {
-        this.msg.push(msg);
-        this.nodes.push(nodes);
+
+export class MainPanelControllerMockup {
+    toggleMainPanel = jest.fn(() => {
+        this.isVisible = !this.isVisible;
+        this.isInjected = true;
+    });
+    handleInitialLoad = jest.fn((shouldBeVisible, minimized, onLeft) => {
+    });
+
+    constructor() {
+        this.isVisible = false;
+        this.isInjected = false;
     }
 }
 
 
 export class DOMNavigationMockup {
-    constructor() {
-        this.msg = undefined;
-        this.nodes = undefined;
-    }
-
-    notify({ msg, nodes }) {
-        this.msg = msg;
-        this.nodes = nodes;
-    }
+    notify = jest.fn(({ msg, nodes }) => {
+    });
 }
 
 
 export class UndoRedoStoreMockup {
-    constructor() {
-        this.pushedUndos = [];
-        this.wasUndoCalled = false;
-        this.wasRedoCalled = false;
-        this.wasUndoChecked = false;
-        this.wasRedoChecked = false;
-    }
-
-    pushUndo(elements) {
-        this.pushedUndos.push(...elements);
-    }
-
-    undo() {
-        this.wasUndoCalled = true;
-    }
-
-    redo() {
-        this.wasRedoCalled = true;
-    }
-
-    checkUndo() {
-        this.wasUndoChecked = true;
-    }
-
-    checkRedo() {
-        this.wasRedoChecked = true;
-    }
+    pushUndo = jest.fn(elements => {
+    });
+    undo = jest.fn(() => {
+    });
+    redo = jest.fn(() => {
+    });
+    checkUndo = jest.fn(() => {
+    });
+    checkRedo = jest.fn(() => {
+    });
 }

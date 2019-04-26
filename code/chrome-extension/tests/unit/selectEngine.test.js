@@ -55,7 +55,9 @@ test('selecting rows', () => {
 
     selectEngine.selectingRows();
     expect(selectEngine._selection).toBe(selectEngine._rows);
-    expect(controller.msg).toEqual([Messages.DISABLE_UNDO, Messages.DISABLE_REDO]);
+    expect(controller.notify.mock.calls.length).toBe(2);
+    expect(controller.notify.mock.calls[0][0]).toEqual({ msg: Messages.DISABLE_UNDO });
+    expect(controller.notify.mock.calls[1][0]).toEqual({ msg: Messages.DISABLE_REDO });
     expect(selectEngine._mouseSelector._current).toBe(undefined);
     expect(selectEngine._mouseSelector._isTurnedOn).toBe(true);
 });
@@ -66,7 +68,9 @@ test('selecting columns', () => {
 
     selectEngine.selectingCols();
     expect(selectEngine._selection).toBe(selectEngine._columns[selectEngine._currentCol]);
-    expect(controller.msg).toEqual([Messages.DISABLE_UNDO, Messages.DISABLE_REDO]);
+    expect(controller.notify.mock.calls.length).toBe(2);
+    expect(controller.notify.mock.calls[0][0]).toEqual({ msg: Messages.DISABLE_UNDO });
+    expect(controller.notify.mock.calls[1][0]).toEqual({ msg: Messages.DISABLE_REDO });
     expect(selectEngine._mouseSelector._current).toBe(undefined);
     expect(selectEngine._mouseSelector._isTurnedOn).toBe(true);
 
