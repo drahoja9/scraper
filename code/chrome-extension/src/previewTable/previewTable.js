@@ -9,14 +9,23 @@ export class PreviewTable {
         this._placeholder.id = 'scraping-data-preview';
         this._placeholder.className = 'scraping-protected';
         this._controller = controller;
+        this._modal = undefined;
 
         this._hide = this._hide.bind(this);
         this._hideFromClickAway = this._hideFromClickAway.bind(this);
+    }
 
-        $(this._placeholder).load(chrome.runtime.getURL(DATA_PREVIEW), () => {
-            this._modal = this._placeholder.firstElementChild;
-            const closeBtn = this._placeholder.querySelector('.scraping-modal-close');
-            closeBtn.addEventListener('click', this._hide);
+    init() {
+        return new Promise(resolve => {
+            fetch(chrome.runtime.getURL(DATA_PREVIEW))
+                .then(response => response.text())
+                .then(html => {
+                    this._placeholder.innerHTML = html;
+                    this._modal = this._placeholder.firstElementChild;
+                    const closeBtn = this._placeholder.querySelector('.scraping-modal-close');
+                    closeBtn.addEventListener('click', this._hide);
+                    resolve();
+                });
         });
     }
 
@@ -27,7 +36,7 @@ export class PreviewTable {
     display(columnNames, rowsData) {
         this._fillHeader(columnNames);
         this._fillBody(columnNames, rowsData);
-        this._placeholder.querySelector('.scraping-modal').style.display = 'flex';
+        this._modal.style.display = 'flex';
         window.addEventListener('click', this._hideFromClickAway);
     }
 

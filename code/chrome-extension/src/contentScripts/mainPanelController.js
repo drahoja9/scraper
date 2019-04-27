@@ -1,8 +1,28 @@
-import { MAIN_PANEL_PAGE, Messages } from '../constants.js';
+import { Messages } from '../constants.js';
 
 
-export class MainPanelController {
+class MainPanelControllerInterface {
+    handleInitialLoad() {
+        throw Error('Not implemented!');
+    }
+
+    toggleMainPanel(minimized, onLeft) {
+        throw Error('Not implemented!');
+    }
+
+    toggleMinMax() {
+        throw Error('Not implemented!');
+    }
+
+    switchSides() {
+        throw Error('Not implemented!');
+    }
+}
+
+
+export class MainPanelController extends MainPanelControllerInterface {
     constructor(controller) {
+        super();
         this.isInjected = false;
         this.isVisible = false;
         this.iframe = undefined;
@@ -64,15 +84,26 @@ export class MainPanelController {
 
     _injectMainPanel() {
         const iframe = document.createElement('iframe');
-        iframe.src = chrome.runtime.getURL(MAIN_PANEL_PAGE);
+        // iframe.src = chrome.runtime.getURL(MAIN_PANEL_PAGE);
+        const path = require('path');
+        // iframe.src = path.resolve(__dirname, '../mainPanel/mainPanel.html');
+        iframe.src = 'file:///home/jakub/BP/code/chrome-extension/src/mainPanel/mainPanel.html';
+        // console.log(iframe.src);
         iframe.className = 'scraping-iframe-panel scraping-right';
         iframe.frameBorder = 0;
-        document.querySelector('body').appendChild(iframe);
+        document.body.appendChild(iframe);
 
         this.isInjected = true;
         this.isVisible = true;
         this.iframe = iframe;
 
-        this.iframe.onload = this.handleInitialLoad.bind(this);
+        // this.iframe.onload = this.handleInitialLoad.bind(this);
+    }
+
+    onload(cb) {
+        this.iframe.onload = () => {
+            this.handleInitialLoad();
+            cb();
+        };
     }
 }

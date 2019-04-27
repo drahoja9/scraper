@@ -1,8 +1,28 @@
 import { CSVExporter, JSONExporter } from './exporter.js';
 
 
-export class DataEngine {
+class DataEngineInterface {
     constructor() {
+        this.isDataValid = undefined;
+    }
+
+    getData(columns) {
+        throw Error('Not implemented!');
+    }
+
+    export(columns, format) {
+        throw Error('Not implemented!');
+    }
+
+    removeRow(row) {
+        throw Error('Not implemented!');
+    }
+}
+
+
+export class DataEngine extends DataEngineInterface {
+    constructor() {
+        super();
         this._data = { columnNames: [], rowsData: [] };
         this.isDataValid = false;
         this._exporter = undefined;

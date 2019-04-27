@@ -5,20 +5,112 @@ import { CSSSelector } from './selectors/cssSelector.js';
 import { ColumnSelection, RowSelection } from './selection.js';
 
 
-export class SelectEngine {
+class SelectEngineInterface {
+    get isSelectingRows() {
+        throw Error('Not implemented!');
+    }
+
+    get classes() {
+        throw Error('Not implemented!');
+    }
+
+    set classes(classList) {
+        throw Error('Not implemented!');
+    }
+
+    select(elements) {
+        throw Error('Not implemented!');
+    }
+
+    unselect(elements) {
+        throw Error('Not implemented!');
+    }
+
+    unselectRow(rowData) {
+        throw Error('Not implemented!');
+    }
+
+    toggle(elements) {
+        throw Error('Not implemented!');
+    }
+
+    areSelected(elemnets) {
+        throw Error('Not implemented!');
+    }
+
+    selectingRows() {
+        throw Error('Not implemented!');
+    }
+
+    selectingCols() {
+        throw Error('Not implemented!');
+    }
+
+    changeCol({ colId }) {
+        throw Error('Not implemented!');
+    }
+
+    injectDomNavigation() {
+        throw Error('Not implemented!');
+    }
+
+    toggleMouseSelector() {
+        throw Error('Not implemented!');
+    }
+
+    contains(payload) {
+        throw Error('Not implemented!');
+    }
+
+    startsWith(payload) {
+        throw Error('Not implemented!');
+    }
+
+    endsWith(payload) {
+        throw Error('Not implemented!');
+    }
+
+    cssSelect(payload) {
+        throw Error('Not implemented!');
+    }
+
+    cssUnselect() {
+        throw Error('Not implemented!');
+    }
+
+    resetMouseSelector() {
+        throw Error('Not implemented!');
+    }
+
+    undo() {
+        throw Error('Not implemented!');
+    }
+
+    redo() {
+        throw Error('Not implemented!');
+    }
+
+    generateId() {
+        throw Error('Not implemented!');
+    }
+}
+
+
+export class SelectEngine extends SelectEngineInterface {
     constructor(controller) {
+        super();
         this._controller = controller;
         this._mouseSelector = new MouseSelector(this);
         this._textSelector = new TextSelector(this);
-        this._domNavigaton = new DOMNavigaton(this);
+        this._domNavigation = new DOMNavigaton(this);
         this._cssSelector = new CSSSelector(this);
 
         this._currentCol = 0;
-        this._rows = new RowSelection(controller, this._domNavigaton, this);
+        this._rows = new RowSelection(controller, this._domNavigation, this);
         this._columns = {
             [this._currentCol]: new ColumnSelection(
                 controller,
-                this._domNavigaton,
+                this._domNavigation,
                 this._currentCol,
                 this
             )
@@ -86,7 +178,7 @@ export class SelectEngine {
         if (!this._columns[this._currentCol]) {
             this._columns[this._currentCol] = new ColumnSelection(
                 this._controller,
-                this._domNavigaton,
+                this._domNavigation,
                 this._currentCol,
                 this
             );
@@ -103,7 +195,7 @@ export class SelectEngine {
     }
 
     injectDomNavigation() {
-        this._domNavigaton.inject();
+        this._domNavigation.inject();
     }
 
     toggleMouseSelector() {

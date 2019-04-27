@@ -1,5 +1,17 @@
-export class MouseSelector {
+class MouseSelectorInterface {
+    toggle(highlightingClass = '') {
+        throw Error('Not implemented!');
+    }
+
+    reset() {
+        throw Error('Not implemented!');
+    }
+}
+
+
+export class MouseSelector extends MouseSelectorInterface {
     constructor(selectEngine) {
+        super();
         this._isTurnedOn = false;
         this._current = undefined;
         this._highlightingClass = undefined;

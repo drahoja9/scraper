@@ -1,5 +1,21 @@
-export class TextSelector {
+class TextSelectorInterface {
+    startsWith({ value }) {
+        throw Error('Not implemented!');
+    }
+
+    endsWith({ value }) {
+        throw Error('Not implemented!');
+    }
+
+    contains({ value, exactCheck }) {
+        throw Error('Not implemented!');
+    }
+}
+
+
+export class TextSelector extends TextSelectorInterface {
     constructor(selectEngine) {
+        super();
         this._selectEngine = selectEngine;
     }
 
@@ -23,7 +39,7 @@ export class TextSelector {
         let nodes = [document.body];
 
         const hasChildren = node => node.children.length > 0;
-        const hasText = node => node.innerText ? true : false;
+        const hasText = node => !!node.innerText;
         const isTextNode = node => node.nodeType === 3;
 
         while (nodes.length !== 0) {

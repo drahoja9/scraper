@@ -3,8 +3,48 @@ import { isValid } from '../utils.js';
 import { UndoRedoStore } from './undoRedoStore.js';
 
 
-class Selection {
+class SelectionInterface {
+    select(elements) {
+        throw Error('Not implemented!');
+    }
+
+    unselect(elements) {
+        throw Error('Not implemented!');
+    }
+
+    toggle(elements) {
+        throw Error('Not implemented!');
+    }
+
+    areSelected(elements) {
+        throw Error('Not implemented!');
+    }
+
+    undo() {
+        throw Error('Not implemented!');
+    }
+
+    redo() {
+        throw Error('Not implemented!');
+    }
+
+    checkUndoRedo() {
+        throw Error('Not implemented!');
+    }
+
+    generateId() {
+        throw Error('Not implemented!');
+    }
+
+    activateColumn() {
+        throw Error('Not implemented!');
+    }
+}
+
+
+class Selection extends SelectionInterface {
     constructor(controller, domNavigation, selectEngine) {
+        super();
         this._scrapingClasses = undefined;
         this._controller = controller;
         this._selectEngine = selectEngine;

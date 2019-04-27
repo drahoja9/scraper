@@ -7,17 +7,23 @@ import { PreviewTable } from '../previewTable/previewTable.js';
 
 
 export class Controller {
-    constructor(shouldBeVisible, minimized, onLeft) {
+    constructor() {
         this._dataEngine = new DataEngine();
         this._previewTable = new PreviewTable(this);
         this._selectEngine = new SelectEngine(this);
         this._mainPanelController = new MainPanelController(this);
         this._communication = new Communication(this, this._mainPanelController);
+    }
 
-        if (shouldBeVisible) {
-            this._communication.toggle();
-            this._mainPanelController.toggleMainPanel(minimized, onLeft);
-        }
+    async init(shouldBeVisible, minimized, onLeft) {
+        return new Promise(async resolve => {
+            await this._previewTable.init();
+            if (shouldBeVisible) {
+                this._mainPanelController.toggleMainPanel(minimized, onLeft);
+                this._communication.toggle();
+            }
+            resolve();
+        });
     }
 
     injectParts() {

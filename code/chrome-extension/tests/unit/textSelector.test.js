@@ -6,7 +6,7 @@ import { JSDOM } from 'jsdom';
 // -------------------------------------------- Setup and teardown ----------------------------------------------
 
 beforeAll(function () {
-    Object.defineProperty(global.Element.prototype, 'innerText', {
+    Object.defineProperty(window.HTMLElement.prototype, 'innerText', {
         get: function () { return this.textContent.replace(/\s\s/g, '').trim() },
     });
 });

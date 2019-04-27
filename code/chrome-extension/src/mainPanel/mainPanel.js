@@ -113,10 +113,6 @@ class MainPanel {
         this._redoBtn.classList.add('disabled');
     }
 
-    hideUndoBtn() {
-        this._undoBtn.style.display = 'none';
-    }
-
     switchSides() {
         document.querySelector('#name').classList.toggle('left');
         document.querySelector('#tools-btn-group').classList.toggle('left');

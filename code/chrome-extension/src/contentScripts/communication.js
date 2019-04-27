@@ -1,8 +1,28 @@
 import { MAIN_PANEL_PAGE, Messages } from '../constants.js';
 
 
-export class Communication {
+class CommunicationInterface {
+    toggle() {
+        throw Error('Not implemented!');
+    }
+
+    listenToBackground() {
+        throw Error('Not implemented!');
+    }
+
+    sendMessageToBackground() {
+        throw Error('Not implemented!');
+    }
+
+    sendMessageToMainPanel() {
+        throw Error('Not implemented!');
+    }
+}
+
+
+export class Communication extends CommunicationInterface {
     constructor(controller, mainPanelController) {
+        super();
         this._controller = controller;
         this._mainPanelController = mainPanelController;
 

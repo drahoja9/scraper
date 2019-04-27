@@ -3,8 +3,32 @@ import { isValid } from '/src/contentScripts/utils.js';
 import { NavigationControls } from './navigationControls.js';
 
 
-export class DOMNavigaton {
+class DOMNavigationInterface {
+    inject() {
+        throw Error('Not implemented!');
+    }
+
+    notify({ msg, nodes }) {
+        throw Error('Not implemented!');
+    }
+
+    attachControls() {
+        throw Error('Not implemented!');
+    }
+
+    hideControls() {
+        throw Error('Not implemented!');
+    }
+
+    changeCurrent() {
+        throw Error('Not implemented!');
+    }
+}
+
+
+export class DOMNavigaton extends DOMNavigationInterface {
     constructor(selectEngine) {
+        super();
         this._current = undefined;
         this._shouldUnselect = true;
         this._selectEngine = selectEngine;

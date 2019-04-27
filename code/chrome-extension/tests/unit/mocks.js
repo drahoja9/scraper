@@ -48,6 +48,33 @@ export class SelectEngineMockup {
     generateId() {
         return `scraping-${++this._id}`;
     }
+
+    injectDomNavigation = jest.fn(() => {
+    });
+    unselectRow = jest.fn(rowData => {
+    });
+    selectingRows = jest.fn(() => {
+    });
+    selectingCols = jest.fn(() => {
+    });
+    changeCol = jest.fn(payload => {
+    });
+    toggleMouseSelector = jest.fn(() => {
+    });
+    undo = jest.fn(() => {
+    });
+    redo = jest.fn(() => {
+    });
+    contains = jest.fn(payload => {
+    });
+    startsWith = jest.fn(payload => {
+    });
+    endsWith = jest.fn(payload => {
+    });
+    cssSelect = jest.fn(payload => {
+    });
+    cssUnselect = jest.fn(() => {
+    });
 }
 
 
@@ -96,24 +123,37 @@ export class ControllerMockup {
     });
     cssUnselect = jest.fn(() => {
     });
-    previewData = jest.fn(({ cols }) => {
+    previewData = jest.fn(payload => {
     });
-    downloadData = jest.fn(({ format, cols }) => {
+    downloadData = jest.fn(payload => {
+    });
+    injectParts = jest.fn(() => {
     });
 }
 
 
 export class MainPanelControllerMockup {
+    toggleMinMax = jest.fn(() => {
+    });
+
     toggleMainPanel = jest.fn(() => {
         this.isVisible = !this.isVisible;
         this.isInjected = true;
     });
     handleInitialLoad = jest.fn((shouldBeVisible, minimized, onLeft) => {
     });
+    switchSides = jest.fn(() => {
+    });
 
     constructor() {
         this.isVisible = false;
         this.isInjected = false;
+        this.iframe = {
+            contentWindow: {
+                postMessage: jest.fn((message, origin) => {
+                })
+            }
+        }
     }
 }
 
@@ -134,5 +174,35 @@ export class UndoRedoStoreMockup {
     checkUndo = jest.fn(() => {
     });
     checkRedo = jest.fn(() => {
+    });
+}
+
+
+export class DataEngineMockup {
+    getData = jest.fn(cols => ({ columnNames: [], rowsData: [] }));
+    export = jest.fn((cols, format) => ({ url: '', filename: '' }));
+    removeRow = jest.fn(row => {
+    });
+
+    constructor() {
+        this.isDataValid = true;
+    }
+}
+
+
+export class PreviewTableMockup {
+    inject = jest.fn(() => {
+    });
+    display = jest.fn((columnNames, rowsData) => {
+    });
+}
+
+
+export class CommunicationMockup {
+    toggle = jest.fn(() => {
+    });
+    sendMessageToBackground = jest.fn(msg => {
+    });
+    sendMessageToMainPanel = jest.fn(msg => {
     });
 }

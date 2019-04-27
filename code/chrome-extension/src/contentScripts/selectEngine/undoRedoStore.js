@@ -1,8 +1,32 @@
 import { Messages } from '/src/constants.js';
 
 
-export class UndoRedoStore {
+class UndoRedoStoreInterface {
+    undo() {
+        throw Error('Not implemented!');
+    }
+
+    redo() {
+        throw Error('Not implemented!');
+    }
+
+    pushUndo(elements) {
+        throw Error('Not implemented!');
+    }
+
+    checkUndo() {
+        throw Error('Not implemented!');
+    }
+
+    checkRedo() {
+        throw Error('Not implemented!');
+    }
+}
+
+
+export class UndoRedoStore extends UndoRedoStoreInterface {
     constructor(controller, selection) {
+        super();
         this._controller = controller;
         this._selection = selection;
         this._undos = [];

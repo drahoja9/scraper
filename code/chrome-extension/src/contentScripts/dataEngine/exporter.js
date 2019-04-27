@@ -3,6 +3,10 @@ class Exporter {
         throw Error('Not implemented!');
     }
 
+    static getFileUrl({ rowsData }) {
+        throw Error('Not implemented!');
+    }
+
     static _getFileUrl(blob) {
         return URL.createObjectURL(blob);
     }

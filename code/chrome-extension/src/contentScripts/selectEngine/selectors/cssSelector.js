@@ -1,5 +1,17 @@
-export class CSSSelector {
+class CSSSelectorInteface {
+    select({ selector }) {
+        throw Error('Not implemented!');
+    }
+
+    unselectCurrent() {
+        throw Error('Not implemented!');
+    }
+}
+
+
+export class CSSSelector extends CSSSelectorInteface {
     constructor(selectEngine) {
+        super();
         this._selectEngine = selectEngine;
         this._current = undefined;
     }
