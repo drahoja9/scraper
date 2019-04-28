@@ -1,7 +1,7 @@
 import { DOMNavigaton } from "/src/contentScripts/selectEngine/selectors/domNavigation/domNavigation.js";
 import { Messages } from "/src/constants.js";
 import { SelectEngineMockup } from "./mocks.js";
-import { _mouseenter, _mouseleave } from "./utils.js";
+import { _mouseenter, _mouseleave } from "../utils.js";
 import { JSDOM } from 'jsdom';
 
 

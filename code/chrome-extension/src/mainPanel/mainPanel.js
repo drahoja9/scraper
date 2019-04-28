@@ -128,8 +128,7 @@ class MainPanel {
 
 // ========================================================================================================
 
-
-$(function () {
+function init() {
     const mainPanel = new MainPanel();
 
     window.addEventListener('message', (event) => {
@@ -158,5 +157,9 @@ $(function () {
         }
     });
 
-    $('[data-toggle="tooltip"]').tooltip();
+    // $('[data-toggle="tooltip"]').tooltip();
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+    init();
 });

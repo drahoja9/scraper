@@ -3,113 +3,113 @@
 
 <head>
     <link href="../../lib/css/bootstrap.min.css" rel="stylesheet"/>
-    <link rel="stylesheet" href="mainPanel.css" />
+    <link href="mainPanel.css" rel="stylesheet"/>
 </head>
 
 <body>
 <div class="content" id="control-panel-content">
-        <div class="header">
-            <div id="tools-btn-group">
-                <span id="min-max-btn">&#129054;</span>
-                <span id="switch-sides-btn">&#11120;</span>
-                <span id="undo-btn" class="disabled">&#x21b6;</span>
-                <span id="redo-btn" class="disabled">&#x21b7;</span>
+    <div class="header">
+        <div id="tools-btn-group">
+            <span id="min-max-btn">&#129054;</span>
+            <span id="switch-sides-btn">&#11120;</span>
+            <span class="disabled" id="undo-btn">&#x21b6;</span>
+            <span class="disabled" id="redo-btn">&#x21b7;</span>
+        </div>
+        <h1 id="name">Scraper</h1>
+    </div>
+
+    <div class="middle">
+        <div class="tab-nav">
+            <button class="primary-btn active" id="rows-btn">Rows</button>
+            <button class="primary-btn" id="cols-btn">Columns</button>
+        </div>
+        <div class="tooltip-holder">
+            <div class="tooltip-border">
+                    <span class="tooltip-help active" id="rows-tooltip" data-toggle="tooltip" data-placement="auto"
+                          title="First select elements on the page that will represent all rows of the resulting table.">&#63;</span>
+                <span class="tooltip-help" data-placement="auto" data-toggle="tooltip" id="cols-tooltip"
+                      title="Now select elements that will represent columns of the resulting table.
+                            Each element selected as a column needs to be inside an element selected as a row.">&#63;</span>
             </div>
-            <h1 id="name">Scraper</h1>
+        </div>
+        <div class="cols-pool-border hidden">
+            <div class="cols-pool">
+                <button class="col-btn" id="add-col-btn">&plus;</button>
+            </div>
         </div>
 
-        <div class="middle">
-            <div class="tab-nav">
-                <button class="primary-btn active" id="rows-btn">Rows</button>
-                <button class="primary-btn" id="cols-btn">Columns</button>
-            </div>
-            <div class="tooltip-holder">
-                <div class="tooltip-border">
-                    <span class="tooltip-help active" id="rows-tooltip" data-toggle="tooltip" data-placement="auto"
-                        title="First select elements on the page that will represent all rows of the resulting table.">&#63;</span>
-                    <span class="tooltip-help" id="cols-tooltip" data-toggle="tooltip" data-placement="auto"
-                        title="Now select elements that will represent columns of the resulting table. 
-                            Each element selected as a column needs to be inside an element selected as a row.">&#63;</span>
+        <div class="accordion" id="main-navs">
+            <div class="card col">
+                <div class="card-header row collapsed" data-target="#basics-collapse" data-toggle="collapse"
+                     id="select-basics">
+                    <h2>Basics</h2>
                 </div>
-            </div>
-            <div class="cols-pool-border hidden">
-                <div class="cols-pool">
-                    <button class="col-btn" id="add-col-btn">&plus;</button>
-                </div>
-            </div>
-
-            <div class="accordion" id="main-navs">
-                <div class="card col">
-                    <div class="card-header row collapsed" id="select-basics" data-toggle="collapse"
-                        data-target="#basics-collapse">
-                        <h2>Basics</h2>
-                    </div>
-                    <div class="collapse" id="basics-collapse" data-parent="#main-navs">
-                        <div class="card-body row">
-                            <div class="row" style="align-items: center;">
-                                <label class="switch-container">
-                                    <input id="select-elements-checkbox" type="checkbox">
-                                    <span id="select-elements-switch" class="switch-outter switch-row">
+                <div class="collapse" data-parent="#main-navs" id="basics-collapse">
+                    <div class="card-body row">
+                        <div class="row" style="align-items: center;">
+                            <label class="switch-container">
+                                <input id="select-elements-checkbox" type="checkbox">
+                                <span class="switch-outter switch-row" id="select-elements-switch">
                                         <span class="switch-inner"></span>
                                     </span>
-                                </label>
-                                <h5>Selecting elements</h5>
-                                <div class="tooltip-border" style="margin-left: 15px;">
+                            </label>
+                            <h5>Selecting elements</h5>
+                            <div class="tooltip-border" style="margin-left: 15px;">
                                     <span class="tooltip-help active" data-toggle="tooltip"
                                           data-html="true" data-placement="auto" title="
                                         Select elements by clicking on them.<br>
                                         Click with the <b>CTRL</b> key pressed down will atempt to select all similiar elements based on previous selection.
                                         ">&#63;</span>
-                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="card col">
-                    <div class="card-header row collapsed" id="select-text" data-toggle="collapse"
-                        data-target="#text-collapse">
-                        <h2>Text search</h2>
-                    </div>
-                    <div class="collapse" id="text-collapse" data-parent="#main-navs">
-                        <div class="card-body">
-                            <div class="search-form">
-                                <h5>Starts with</h5>
-                                <input class="form-control" type="text" placeholder="Type here..."
-                                    id="text-search-starts">
-                            </div>
-                            <div class="search-form">
-                                <h5>Ends with</h5>
-                                <input class="form-control" type="text" placeholder="Type here..."
-                                    id="text-search-ends">
-                            </div>
-                            <div class="search-form">
-                                <h5>Contains</h5>
-                                <input class="form-control" type="text" placeholder="Type here..."
-                                    id="text-search-contains">
-                            </div>
-                            <div class="search-form-last">
-                                <div style="display: flex;">
-                                    <p class="text-small">Only exact match</p>
-                                    <input type="checkbox" name="contains-exact" id="contains-exact" />
-                                </div>
+            </div>
+            <div class="card col">
+                <div class="card-header row collapsed" data-target="#text-collapse" data-toggle="collapse"
+                     id="select-text">
+                    <h2>Text search</h2>
+                </div>
+                <div class="collapse" data-parent="#main-navs" id="text-collapse">
+                    <div class="card-body">
+                        <div class="search-form">
+                            <h5>Starts with</h5>
+                            <input class="form-control" id="text-search-starts" placeholder="Type here..."
+                                   type="text">
+                        </div>
+                        <div class="search-form">
+                            <h5>Ends with</h5>
+                            <input class="form-control" id="text-search-ends" placeholder="Type here..."
+                                   type="text">
+                        </div>
+                        <div class="search-form">
+                            <h5>Contains</h5>
+                            <input class="form-control" id="text-search-contains" placeholder="Type here..."
+                                   type="text">
+                        </div>
+                        <div class="search-form-last">
+                            <div style="display: flex;">
+                                <p class="text-small">Only exact match</p>
+                                <input id="contains-exact" name="contains-exact" type="checkbox"/>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="card col">
-                    <div class="card-header row collapsed" id="select-css" data-toggle="collapse"
-                        data-target="#css-collapse">
-                        <h2>CSS selector</h2>
-                    </div>
-                    <div class="collapse" id="css-collapse" data-parent="#main-navs">
-                        <div class="card-body row">
-                            <div class="search-form">
-                                <h5 style="margin-bottom: 20px;">CSS selector</h5>
-                                <div id="css-form">
-                                    <textarea class="form-control" placeholder="Type here..." id="css-input"></textarea>
-                                    <span id="css-form-error">Invalid selector</span>
-                                </div>
-                                <div class="tooltip-border" style="margin-bottom: 15px;">
+            </div>
+            <div class="card col">
+                <div class="card-header row collapsed" data-target="#css-collapse" data-toggle="collapse"
+                     id="select-css">
+                    <h2>CSS selector</h2>
+                </div>
+                <div class="collapse" data-parent="#main-navs" id="css-collapse">
+                    <div class="card-body row">
+                        <div class="search-form">
+                            <h5 style="margin-bottom: 20px;">CSS selector</h5>
+                            <div id="css-form">
+                                <textarea class="form-control" id="css-input" placeholder="Type here..."></textarea>
+                                <span id="css-form-error">Invalid selector</span>
+                            </div>
+                            <div class="tooltip-border" style="margin-bottom: 15px;">
                                     <span class="tooltip-help active" data-toggle="tooltip"
                                           data-html="true" data-placement="auto" title="
                                             <b>IDs:</b> <em>#id</em><br>
@@ -119,7 +119,6 @@
                                             You can enter as many selectors as you want.<br>
                                             For more information, search for 'css selectors' on the internet.
                                             ">&#63;</span>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -127,19 +126,20 @@
             </div>
         </div>
     </div>
-    <div class="btn-group">
-        <button id="preview-btn" class="secondary-btn" style="margin-right: 10px;">Preview</button>
-        <button id="download-btn" class="primary-btn active">Download</button>
-        <select id="format-select" class="custom-select">
-            <option value="csv">CSV</option>
-            <option value="json">JSON</option>
-        </select>
-    </div>
+</div>
+<div class="btn-group">
+    <button class="secondary-btn" id="preview-btn" style="margin-right: 10px;">Preview</button>
+    <button class="primary-btn active" id="download-btn">Download</button>
+    <select class="custom-select" id="format-select">
+        <option value="csv">CSV</option>
+        <option value="json">JSON</option>
+    </select>
+</div>
 
 <script src="../../lib/js/jquery-3.3.1.min.js"></script>
 <script src="../../lib/js/popper.min.js"></script>
 <script src="../../lib/js/bootstrap.min.js"></script>
-    <script type="module" src="mainPanel.js"></script>
+<script id="main-script" src="mainPanel.js" type="module"></script>
 </body>
 
 </html>

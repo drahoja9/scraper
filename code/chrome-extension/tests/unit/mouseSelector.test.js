@@ -1,6 +1,6 @@
 import { MouseSelector } from '/src/contentScripts/selectEngine/selectors/mouseSelector.js';
 import { SelectEngineMockup } from './mocks.js';
-import { _click, _clickWithCtrl, _mouseout, _mouseover } from './utils.js';
+import { _click, _clickWithCtrl, _mouseout, _mouseover } from '../utils.js';
 import { JSDOM } from 'jsdom';
 
 

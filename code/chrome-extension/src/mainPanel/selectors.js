@@ -1,5 +1,5 @@
-import { Messages, ENTER_KEY } from '../constants.js';
-import { registerClickHandler, registerInputHandler, sendMessageToContentScript, registerHandler } from './utils.js';
+import { ENTER_KEY, Messages } from '../constants.js';
+import { registerClickHandler, registerInputHandler, sendMessageToContentScript } from './utils.js';
 
 
 export class Selectors {
