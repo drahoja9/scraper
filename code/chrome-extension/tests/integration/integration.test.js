@@ -24,9 +24,8 @@ beforeAll(function () {
     });
 
     const fs = require('fs');
-    const path = require('path');
-    const readTableContents = resolve => fs.readFile(
-        path.resolve(__dirname, "../../src/previewTable/previewTable.html"),
+    const readTableContents = (url, resolve) => fs.readFile(
+        url.split('file://')[1],
         (err, data) => {
             if (err) throw err;
             resolve(data.toString());
@@ -35,9 +34,9 @@ beforeAll(function () {
 
     chromeAPI = new ChromeAPI();
     global.chrome = chromeAPI.get();
-    global.fetch = () => new Promise(resolve => resolve({
+    global.fetch = url => new Promise(resolve => resolve({
         text: () => new Promise(resolve => {
-            readTableContents(resolve);
+            readTableContents(url, resolve);
         })
     }));
 });
@@ -46,23 +45,15 @@ let controller;
 let chromeAPI;
 
 beforeEach(async function () {
-    controller = new Controller();
-    await controller.init(false, false, false);
-
     const dom = await JSDOM.fromFile('/home/jakub/BP/code/chrome-extension/tests/testingPage.html', {
         resources: 'usable'
     });
     document.body.innerHTML = dom.window.document.body.innerHTML;
 
+    // In order to get the main panel iframe properly loaded, we need to access `window.document`
+    // from JSDOM instead of regular `window.document`
     delete global.window.document;
     global.window.document = dom.window.document;
-
-    const iframe = document.createElement('iframe');
-    iframe.src = 'file:///home/jakub/BP/code/chrome-extension/src/previewTable/previewTable.html';
-    iframe.onload = () => {
-        console.log('loaded!!!')
-    };
-    document.body.appendChild(iframe);
 
     // Need to set non-inline CSS via JS
     let style = document.createElement('style');
@@ -75,29 +66,35 @@ beforeEach(async function () {
     const hidden2 = document.querySelector('#hidden-div-2');
     hidden2._customOffsetWidth = 0;
     hidden2._customOffsetHeight = 0;
+
+    controller = new Controller();
+    await controller.init(false, false, false);
 });
 
 // -------------------------------------------------- Tests -----------------------------------------------------
 
-// test('insert all parts inside a page after clicking on browser icon', done => {
-//     chromeAPI.messageHandler({
-//         msg: Messages.BROWSER_ACTION_CLICKED
-//     }, null, null);
-//
-//     const tests = () => {
-//         const panelIframe = controller._mainPanelController.iframe;
-//         const domNavigation = controller._selectEngine._domNavigation._controls.node;
-//         const previewTable = controller._previewTable._modal;
-//         expect(document.querySelector('#control-panel-content')).not.toBe(null);
-//         expect(document.querySelector('.scraping-iframe-panel')).toBe(panelIframe);
-//         expect(document.querySelector('.scraping-dom-navigation')).toBe(domNavigation);
-//         expect(document.querySelector('.scraping-modal')).toBe(previewTable);
-//         done();
-//     };
-//     controller._mainPanelController.onload(tests);
-// }, 5000);
+test('insert all parts inside a page after clicking on browser icon', done => {
+    chromeAPI.messageHandler({
+        msg: Messages.BROWSER_ACTION_CLICKED
+    }, null, null);
 
-test('insert all parts inside a page after a reload', () => {
+    const panelIframe = controller._mainPanelController.iframe;
+    const domNavigation = controller._selectEngine._domNavigation._controls.node;
+    const previewTable = controller._previewTable._modal;
+    expect(controller._mainPanelController.isVisible).toBe(true);
+    expect(controller._mainPanelController.isInjected).toBe(true);
+    expect(document.querySelector('.scraping-iframe-panel')).toBe(panelIframe);
+    expect(document.querySelector('.scraping-dom-navigation')).toBe(domNavigation);
+    expect(document.querySelector('.scraping-modal')).toBe(previewTable);
+
+    const panelDocument = panelIframe.contentWindow.window.document;
+    panelDocument.onload = () => {
+        expect(panelDocument.querySelector('#control-panel-content')).not.toBe(null);
+        done();
+    };
+});
+
+test('insert all parts inside a page after a reload', done => {
     chromeAPI.messageHandler({
         msg: Messages.TAB_UPDATED,
         shouldBeVisible: true
@@ -108,42 +105,67 @@ test('insert all parts inside a page after a reload', () => {
     const previewTable = controller._previewTable._modal;
     expect(controller._mainPanelController.isVisible).toBe(true);
     expect(controller._mainPanelController.isInjected).toBe(true);
-    expect(document.querySelector('#control-panel-content')).not.toBe(null);
     expect(document.querySelector('.scraping-iframe-panel')).toBe(panelIframe);
     expect(document.querySelector('.scraping-dom-navigation')).toBe(domNavigation);
     expect(document.querySelector('.scraping-modal')).toBe(previewTable);
+
+    const panelDocument = panelIframe.contentWindow.window.document;
+    panelDocument.onload = () => {
+        expect(panelDocument.querySelector('#control-panel-content')).not.toBe(null);
+        done();
+    };
 });
-//
-// test('insert all parts inside a page after a reload (before the message handler is set)', async () => {
-//     controller = new Controller();
-//     await controller.init(true, false, false);
-//
-//     const panelIframe = controller._mainPanelController.iframe;
-//     const domNavigation = controller._selectEngine._domNavigation._controls.node;
-//     const previewTable = controller._previewTable._modal;
-//     expect(controller._mainPanelController.isVisible).toBe(true);
-//     expect(controller._mainPanelController.isInjected).toBe(true);
-//     expect(document.querySelector('#control-panel-content')).not.toBe(null);
-//     expect(document.querySelector('.scraping-iframe-panel')).toBe(panelIframe);
-//     expect(document.querySelector('.scraping-dom-navigation')).toBe(domNavigation);
-//     expect(document.querySelector('.scraping-modal')).toBe(previewTable);
-// });
-//
-// test('ensure the control panel is in correct state after injecting', () => {
-//     chromeAPI.messageHandler({
-//         msg: Messages.TAB_UPDATED,
-//         shouldBeVisible: true,
-//         minimized: true,
-//         onLeft: true
-//     }, null, null);
-//
-//     const controlPanel = document.querySelector('.scraping-iframe-panel');
-//     expect(controlPanel.classList.contains('scraping-minimized')).toBe(true);
-//     expect(controlPanel.classList.contains('scraping-left')).toBe(true);
-// });
 
-test('', () => {
+test('insert all parts inside a page after a reload (before the message handler is set)', async () => {
+    controller = new Controller();
+    await controller.init(true, false, false);
 
+    const panelIframe = controller._mainPanelController.iframe;
+    const domNavigation = controller._selectEngine._domNavigation._controls.node;
+    const previewTable = controller._previewTable._modal;
+    expect(controller._mainPanelController.isVisible).toBe(true);
+    expect(controller._mainPanelController.isInjected).toBe(true);
+    expect(document.querySelector('.scraping-iframe-panel')).toBe(panelIframe);
+    expect(document.querySelector('.scraping-dom-navigation')).toBe(domNavigation);
+    expect(document.querySelector('.scraping-modal')).toBe(previewTable);
+
+    const panelDocument = panelIframe.contentWindow.window.document;
+    panelDocument.onload = () => {
+        expect(panelDocument.querySelector('#control-panel-content')).not.toBe(null);
+        done();
+    };
+});
+
+test('ensure the control panel is in correct state after injecting', done => {
+    chromeAPI.messageHandler({
+        msg: Messages.TAB_UPDATED,
+        shouldBeVisible: true,
+        minimized: true,
+        onLeft: true
+    }, null, null);
+
+    const panelIframe = controller._mainPanelController.iframe;
+    const panelDocument = panelIframe.contentWindow.window.document;
+    panelDocument.onload = () => {
+        const controlPanel = document.querySelector('.scraping-iframe-panel');
+        expect(controlPanel.classList.contains('scraping-minimized')).toBe(true);
+        expect(controlPanel.classList.contains('scraping-left')).toBe(true);
+        done();
+    };
+});
+
+test('ensure the control panel is in correct state after injecting (before the message handler is set)', async done => {
+    controller = new Controller();
+    await controller.init(true, true, true);
+
+    const panelIframe = controller._mainPanelController.iframe;
+    const panelDocument = panelIframe.contentWindow.window.document;
+    panelDocument.onload = () => {
+        const controlPanel = document.querySelector('.scraping-iframe-panel');
+        expect(controlPanel.classList.contains('scraping-minimized')).toBe(true);
+        expect(controlPanel.classList.contains('scraping-left')).toBe(true);
+        done();
+    };
 });
 
 test('', () => {

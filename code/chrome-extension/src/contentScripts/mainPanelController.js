@@ -1,4 +1,4 @@
-import { Messages } from '../constants.js';
+import { MAIN_PANEL_PAGE, Messages } from '../constants.js';
 
 
 class MainPanelControllerInterface {
@@ -84,11 +84,7 @@ export class MainPanelController extends MainPanelControllerInterface {
 
     _injectMainPanel() {
         const iframe = document.createElement('iframe');
-        // iframe.src = chrome.runtime.getURL(MAIN_PANEL_PAGE);
-        const path = require('path');
-        // iframe.src = path.resolve(__dirname, '../mainPanel/mainPanel.html');
-        iframe.src = 'file:///home/jakub/BP/code/chrome-extension/src/mainPanel/mainPanel.html';
-        // console.log(iframe.src);
+        iframe.src = chrome.runtime.getURL(MAIN_PANEL_PAGE);
         iframe.className = 'scraping-iframe-panel scraping-right';
         iframe.frameBorder = 0;
         document.body.appendChild(iframe);
@@ -97,13 +93,6 @@ export class MainPanelController extends MainPanelControllerInterface {
         this.isVisible = true;
         this.iframe = iframe;
 
-        // this.iframe.onload = this.handleInitialLoad.bind(this);
-    }
-
-    onload(cb) {
-        this.iframe.onload = () => {
-            this.handleInitialLoad();
-            cb();
-        };
+        this.iframe.onload = this.handleInitialLoad.bind(this);
     }
 }
