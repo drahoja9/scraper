@@ -47,11 +47,11 @@
 \contentsline {section}{\numberline {3.4}Implementace zvolen\IeC {\'e}ho \IeC {\v r}e\IeC {\v s}en\IeC {\'\i }}{33}{section.3.4}
 \contentsline {subsection}{\numberline {3.4.1}Inicializace a spu\IeC {\v s}t\IeC {\v e}n\IeC {\'\i }}{33}{subsection.3.4.1}
 \contentsline {subsection}{\numberline {3.4.2}V\IeC {\'y}b\IeC {\v e}r dat}{34}{subsection.3.4.2}
-\contentsline {subsection}{\numberline {3.4.3}Komunikace mezi komponentami}{34}{subsection.3.4.3}
-\contentsline {subsection}{\numberline {3.4.4}Extrakce dat}{34}{subsection.3.4.4}
-\contentsline {subsection}{\numberline {3.4.5}Ostatn\IeC {\'\i }}{34}{subsection.3.4.5}
-\contentsline {chapter}{\chapternumberline {4}Testov\IeC {\'a}n\IeC {\'\i }}{35}{chapter.4}
-\contentsline {chapter}{Z{\' a}v{\v e}r}{37}{chapter*.32}
-\contentsline {chapter}{Literatura}{39}{section*.34}
-\contentsline {appendix}{\chapternumberline {A}Seznam pou\IeC {\v z}it\IeC {\'y}ch zkratek}{43}{appendix.A}
-\contentsline {appendix}{\chapternumberline {B}Obsah p\IeC {\v r}ilo\IeC {\v z}en\IeC {\'e}ho CD}{45}{appendix.B}
+\contentsline {subsection}{\numberline {3.4.3}Komunikace mezi komponentami}{35}{subsection.3.4.3}
+\contentsline {subsection}{\numberline {3.4.4}Extrakce dat}{35}{subsection.3.4.4}
+\contentsline {subsection}{\numberline {3.4.5}Ostatn\IeC {\'\i }}{35}{subsection.3.4.5}
+\contentsline {chapter}{\chapternumberline {4}Testov\IeC {\'a}n\IeC {\'\i }}{37}{chapter.4}
+\contentsline {chapter}{Z{\' a}v{\v e}r}{39}{chapter*.32}
+\contentsline {chapter}{Literatura}{41}{section*.34}
+\contentsline {appendix}{\chapternumberline {A}Seznam pou\IeC {\v z}it\IeC {\'y}ch zkratek}{45}{appendix.A}
+\contentsline {appendix}{\chapternumberline {B}Obsah p\IeC {\v r}ilo\IeC {\v z}en\IeC {\'e}ho CD}{47}{appendix.B}

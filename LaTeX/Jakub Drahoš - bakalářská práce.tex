@@ -436,6 +436,7 @@ Celý systém se skládá z~5 hlavních komponent, které jsou na sobě nezávis
 	\item [View] představuje načtenou stránku a ovládací panel se všemi prvky uživatel-ského rozhraní. Reaguje na akce uživatele zasláním zprávy Controlleru, který rozhoduje, co se má stát dál.
 	\item [Select engine] má na starosti výběr a označení požadovaných HTML elementů na stránce. Obsahuje menší komponenty:
 	\begin{itemize}
+		\item \emph{Selection} reprezentující výběr řádků a výběr sloupců.
 		\item \emph{Selector}, jenž představuje jednotlivé způsoby výběru dat (ruční výběr, textová shoda atd.). Vybere požadované prvky na stránce a ty předá Select enginu ke zpracování.
 		\item \emph{Undo-redo store}, který umožňuje zvrátit předchozí výběry nebo je naopak provést znovu.
 	\end{itemize}
@@ -572,7 +573,7 @@ Na závěr stačí pomocí rozbalovacího výběru zvolit formát, do kterého c
 \subsection{Inicializace a spuštění}
 Jak již bylo řečeno v~úvodu této kapitoly, použité řešení spočívá ve vložení ovládacího panelu do libovolné stránky. To umožňuje právě komponenta \hyperref[def:content_script]{content script}, jež byla zmíněna v sekci Použité technologie této kapitoly. Spuštění aplikace vypadá následovně:
 \begin{enumerate}
-	\item Po instalaci rozšíření do prohlížeče Google Chrome (a každém jeho spuštění) je vykonán kód, který je obsažen v~background scriptu. Zde se nachází pouze obsluha vyzývající content script k~zobrazení nebo schování ovládacího panelu.
+	\item Po instalaci rozšíření (a každém jeho spuštění) do prohlížeče Google Chrome je vykonán kód, který je obsažen v~background scriptu. Zde se nachází pouze obsluha vyzývající content script k~zobrazení nebo schování ovládacího panelu.
 	\item Když je rozšíření aktivní, do \emph{každé} načtené stránky je vložen content script, jenž poslouchá zprávy od background scriptu.
 	\item Kliknutím na ikonu rozšíření v~hlavním panelu nástrojů je vyvolána událost, na kterou reaguje background script -- aktivnímu oknu/záložce zašle zprávu, aby byl otevřen ovládací panel. 
 	\item Tu odchytí content script, který na dané stránce poslouchá a vloží do těla stránky nový iframe, do něhož načte HTML dokument, který představuje samotný ovládací panel. Při dalších žádostech je iframe pouze skryt/zob-razen.
@@ -581,7 +582,15 @@ Jak již bylo řečeno v~úvodu této kapitoly, použité řešení spočívá v
 Obrázek \ref{fig:scraper_control_panel} ilustruje, jak ovládací panel vypadá po vložení do stránky.
 
 \subsection{Výběr dat}
-\dots
+Výběr dat má na starosti komponenta Select engine, která obsahuje menší komponenty Selection, Selector a Undo-redo store. Selection definuje, jakým způsobem probíhá samotný výběr řádků/sloupců -- od konkrétního Selectoru dostane pole HTML elementů a každému přidá patřičnou CSS třídu (řádky mají jinou než sloupce, navíc každý řádek/sloupec má své vlastní pořadové číslo, jež je obsažené v této třídě). Ta zajistí, že jsou všechny vybrané elementy na stránce barevně ohraničeny a je tak jasné, které prvky jsou již označeny. Přidávat a odebírat CSS třídy nám umožňuje opět komponenta content script, díky které máme kompletní přístup k DOMu navštívené stránky. [přidat příklad CSS tříd?]
+
+Jednotlivé Selectory fungují následovně:
+\begin{itemize}
+	\item MouseSelector -- po zapnutí jsou na celém dokumentu zaregistrovány dva handlery. První reaguje na události typu \emph{mouseover}/\emph{mouseout} a zajišťuje, že je daný HTML element barevně podbarven, pokud na něj uživatel najede kurzorem myši. Druhý pak naslouchá události \emph{click}. Pokud nastane, přeruší její probublávání do dalších handlerů a zabrání provedení defaultní akce. Tím je zajištěno, že kliknutí myší se zapnutým MouseSelectorem pouze označí vybraný prvek, ale nespustí žádnou akci, kterou by normálně spustit měl.\footnote{Jako příklad si můžeme představit kliknutí na odkaz, které defaultně přesměruje uživatel na adresu obsaženou v atributu \textsf{href}.} Poté je element, na kterém byla událost \emph{click} spuštěna, předán Select enginu k označení, případně je proveden ještě auto-select všech podobných prvků. [popsat jak probíhá auto-select?]
+	\item TextSelector -- obdrží hledaný řetězec a poté iteruje přes všechny HTML elementy na stránce od toho nejvyššího (\textsf{$\left<body\right>$}) po ty nejvíce zanořené. Pokud narazí na prvek, který obsahuje nějaký text a zároveň má nějaké potomky, zařadí ho do fronty procházení. Pokud narazí na prvek, který obsahuje nějaký text, ale už nemá žádné potomky, porovná jeho text s hledaným řetězcem a v případě shody ho uloží do pole, které je na konci předáno Select enginu k označení. Hledání je case insensitive.
+	\item CSSSelector -- obdrží CSS selektor a pomocí funkce \verb|document.querySelectorAll()| vybere všechny odpovídající prvky, která předá Select enginu k označení.
+	\item DOMNavigation -- ovládací tlačítka jsou vloženy do stránky spolu s ovládacím panelem hned při prvním spuštění rozšíření na dané stránce, akorát jsou ihned schovány. Každému vybranému HTML elementu je po označení zaregistrována obsluha událostí \emph{mouseenter} a \emph{mouseleave}. Ta zajišťuje, že po najetí kurzorem myši na již vybraný prvek jsou ovládací tlačítko tohoto Selectoru zobrazena nad nebo pod daným elementem a po opuštění této oblasti zase zmizí. Samotná tlačítka pomocí Select enginu pouze zruší momentální výběr a vyberou nový prvek skrze atributy HTML elementu \emph{parentElement}, \emph{firstElementChild}, \emph{nextElementSibling} nebo \emph{previousElementSibling}.\footnote{Záměrně je použita vždy varianta s \emph{Element} (tedy např. \emph{firstElementChild} a ne \emph{firstChild}), neboť vždy chceme vybrat Element node a ne například Text node, který nemá nic jako CSS třídy apod.} [popsat, jak probíhá validace následujícího prvku?]
+\end{itemize}
 
 \subsection{Komunikace mezi komponentami}
 \dots
