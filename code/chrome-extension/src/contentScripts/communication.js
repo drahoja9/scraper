@@ -72,7 +72,6 @@ export class Communication extends CommunicationInterface {
     }
 
     _communicationWithMainPanel(event) {
-        console.log('INCOMING', event);
         // Message is not from our main panel
         if (chrome.runtime.getURL(MAIN_PANEL_PAGE).indexOf(event.origin) === -1) {
             return;
@@ -102,7 +101,6 @@ export class Communication extends CommunicationInterface {
                 this._controller.changeCol(event.data.payload);
                 break;
             case Messages.SELECTING_ELEMENTS:
-                console.log('SELECTING ELEMENTS');
                 this._controller.toggleMouseSelector();
                 break;
             case Messages.UNDO:

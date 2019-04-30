@@ -106,10 +106,10 @@ export class SelectEngine extends SelectEngineInterface {
         this._cssSelector = new CSSSelector(this);
 
         this._currentCol = 0;
-        this._rows = new RowSelection(controller, this._domNavigation, this);
+        this._rows = new RowSelection(this._controller, this._domNavigation, this);
         this._columns = {
             [this._currentCol]: new ColumnSelection(
-                controller,
+                this._controller,
                 this._domNavigation,
                 this._currentCol,
                 this

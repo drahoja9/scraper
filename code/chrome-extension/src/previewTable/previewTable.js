@@ -3,7 +3,22 @@ import { PreviewTableCell } from './previewTableCell.js';
 import { PreviewTableRow } from './previewTableRow.js';
 
 
-export class PreviewTable {
+class PreviewTableInterface {
+    init() {
+        throw Error('Not implemented!');
+    }
+
+    inject() {
+        throw Error('Not implemented!');
+    }
+
+    display(columnNames, rowsData) {
+        throw Error('Not implemented!');
+    }
+}
+
+
+export class PreviewTable extends PreviewTableInterface {
     constructor(controller) {
         this._placeholder = document.createElement('div');
         this._placeholder.id = 'scraping-data-preview';
