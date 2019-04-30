@@ -40,18 +40,18 @@
 \contentsline {section}{\numberline {3.1}Diskuze mo\IeC {\v z}n\IeC {\'y}ch \IeC {\v r}e\IeC {\v s}en\IeC {\'\i }}{27}{section.3.1}
 \contentsline {section}{\numberline {3.2}Pou\IeC {\v z}it\IeC {\'e} technologie}{28}{section.3.2}
 \contentsline {subsection}{\numberline {3.2.1}Roz\IeC {\v s}\IeC {\'\i }\IeC {\v r}en\IeC {\'\i } do prohl\IeC {\'\i }\IeC {\v z}e\IeC {\v c}e Google Chrome}{28}{subsection.3.2.1}
-\contentsline {paragraph}{Background script}{28}{section*.24}
-\contentsline {paragraph}{Browser action}{28}{section*.25}
-\contentsline {paragraph}{Content script}{29}{section*.26}
+\contentsline {paragraph}{Background script}{28}{section*.25}
+\contentsline {paragraph}{Browser action}{28}{section*.26}
+\contentsline {paragraph}{Content script}{29}{section*.27}
 \contentsline {section}{\numberline {3.3}P\IeC {\v r}edstaven\IeC {\'\i } n\IeC {\'a}stroje}{29}{section.3.3}
 \contentsline {section}{\numberline {3.4}Implementace zvolen\IeC {\'e}ho \IeC {\v r}e\IeC {\v s}en\IeC {\'\i }}{33}{section.3.4}
 \contentsline {subsection}{\numberline {3.4.1}Inicializace a spu\IeC {\v s}t\IeC {\v e}n\IeC {\'\i }}{33}{subsection.3.4.1}
 \contentsline {subsection}{\numberline {3.4.2}V\IeC {\'y}b\IeC {\v e}r dat}{34}{subsection.3.4.2}
-\contentsline {subsection}{\numberline {3.4.3}Komunikace mezi komponentami}{35}{subsection.3.4.3}
-\contentsline {subsection}{\numberline {3.4.4}Extrakce dat}{35}{subsection.3.4.4}
-\contentsline {subsection}{\numberline {3.4.5}Ostatn\IeC {\'\i }}{35}{subsection.3.4.5}
+\contentsline {subsection}{\numberline {3.4.3}Komunikace mezi t\IeC {\v r}\IeC {\'\i }dami}{35}{subsection.3.4.3}
+\contentsline {subsection}{\numberline {3.4.4}Extrakce dat}{36}{subsection.3.4.4}
+\contentsline {subsection}{\numberline {3.4.5}Ostatn\IeC {\'\i }}{36}{subsection.3.4.5}
 \contentsline {chapter}{\chapternumberline {4}Testov\IeC {\'a}n\IeC {\'\i }}{37}{chapter.4}
-\contentsline {chapter}{Z{\' a}v{\v e}r}{39}{chapter*.32}
-\contentsline {chapter}{Literatura}{41}{section*.34}
+\contentsline {chapter}{Z{\' a}v{\v e}r}{39}{chapter*.34}
+\contentsline {chapter}{Literatura}{41}{section*.36}
 \contentsline {appendix}{\chapternumberline {A}Seznam pou\IeC {\v z}it\IeC {\'y}ch zkratek}{45}{appendix.A}
 \contentsline {appendix}{\chapternumberline {B}Obsah p\IeC {\v r}ilo\IeC {\v z}en\IeC {\'e}ho CD}{47}{appendix.B}

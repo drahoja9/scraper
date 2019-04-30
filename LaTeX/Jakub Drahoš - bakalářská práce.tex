@@ -430,7 +430,7 @@ Hlavní užití vyvíjeného nástroje je přímočaré -- uživatel navštíví
 \section{Architektura systému}
 Jak bylo řečeno při specifikaci nefunkčních požadavků, aplikace poběží pouze na klientské straně a veškeré procesy se vykonají v~rámci internetového prohlí-žeče (N2). Prvotní úvaha sice může vést na použití klasického \textit{frontend-backend} schématu, jenže při hlubším zamyšlení zjistíme, že to vůbec není potřeba. Z~požadavků plyne, že vybraná data budou nějakým způsobem označena (F7), tím pádem je stejně budeme muset najít a zpracovat již v~prohlížeči, neboť zasílat požadavek na vzdálený server při každém kliknutí uživatele nedává smysl. Taktéž možnost kdykoli si momentálně vybraná data prohlédnout (F8) nenahrává tomuto schématu.
 
-Celý systém se skládá z~5 hlavních komponent, které jsou na sobě nezávislé\footnote{Resp. pouze Controller sdružuje všechny ostatní a zajišťuje delegaci zodpovědnosti z~jedné komponenty na druhou.}:
+Celý systém se skládá z~5 hlavních komponent (viz diagram \ref{fig:conceptual_diagram}, jenž znázorňuje kompletní konceptuální model zpracovávané domény), které jsou na sobě nezávislé\footnote{Resp. pouze Controller sdružuje všechny ostatní a zajišťuje delegaci zodpovědnosti z~jedné komponenty na druhou.}:
 \begin{description}
 	\item [Controller,] který deleguje práci na ostatní komponenty a slouží jako pro-středník při spolupráci jednotlivých částí systému -- pokud modul A~po-třebuje nějakou akci od modulu B, zavolá příslušnou metodu v~Controlleru, i~když se často jedná pouze o~přeposlání žádosti dál. To se může jevit jako zbytečné, na druhou stranu to přináší jednu velkou výhodu. Pokud by se v~budoucnu měla potřebná metoda modulu B změnit, bylo by potřeba vykonat nějaké dodatečné akce a nebo třeba kompletně nahradit modul B nějakým jiným, stačí to udělat vždy pouze na jednom místě, a to právě v~komponentě Controller. Drží si přehled o~všech ostatních částech a má na starosti základní inicializaci.
 	\item [View] představuje načtenou stránku a ovládací panel se všemi prvky uživatel-ského rozhraní. Reaguje na akce uživatele zasláním zprávy Controlleru, který rozhoduje, co se má stát dál.
@@ -446,6 +446,12 @@ Celý systém se skládá z~5 hlavních komponent, které jsou na sobě nezávis
 Tato modularizace je hlavním předpokladem ke splnění požadavku snadné rozšiřitelnosti (N4) a je ukázkou tzv. \emph{open-closed} principu. Podporuje nízkou provázanost a vysokou soudržnost, což je v~softwarovém inženýrství vždycky jeden z~hlavních cílů. V~případě přidání nového způsobu výběru stačí vytvořit další Selector, který prvky vybere podle požadovaných kritérií a Select engine se postará o~zpracování. Přidání automatizace bude také bez zásahu do původní implementace, neboť je jedno, jestli samotné vybírání provádí uživatel nebo jiná část programu. Pokud budeme chtít kompletně změnit uživatelské rozhraní, postačí vyměnit komponentu Main panel za novou.
 
 Splnění nefunkčního požadavku na rychlost samotné extrakce (N6) nahrá-vá rozhodnutí vytvořit pouze frontendovou aplikaci, neboť se ušetří čas strá-vený komunikací se serverem a po načtení požadované stránky může celý scraping probíhat vlastně offline. Tím eliminujeme rizika spojená s~pomalým internetovým připojením. Je ale klíčové vymyslet rychlý a efektivní způsob, jak vybraná data extrahovat v~prohlížeči -- tento úkol je ponechán na konkrétních implementacích.
+
+\begin{figure}
+	\includegraphics[width=\linewidth]{images/conceptual_diagram.png}
+	\caption{Diagram představující analytický doménový model}
+	\label{fig:conceptual_diagram}
+\end{figure}
 
 % ------------------------------------------------------------------------------------------------
 \newpage
@@ -571,7 +577,7 @@ Na závěr stačí pomocí rozbalovacího výběru zvolit formát, do kterého c
 \newpage
 \section{Implementace zvoleného řešení}
 \subsection{Inicializace a spuštění}
-Jak již bylo řečeno v~úvodu této kapitoly, použité řešení spočívá ve vložení ovládacího panelu do libovolné stránky. To umožňuje právě komponenta \hyperref[def:content_script]{content script}, jež byla zmíněna v sekci Použité technologie této kapitoly. Spuštění aplikace vypadá následovně:
+Jak již bylo řečeno v~úvodu této kapitoly, použité řešení spočívá ve vložení ovládacího panelu do libovolné stránky. To umožňuje právě komponenta \hyperref[def:content_script]{content script}, jež byla zmíněna v sekci 3.2 Použité technologie. Tuto komponentu reprezentují v aplikaci komponenty Controller, SelectEngine a DataEngine. Spuštění aplikace vypadá následovně:
 \begin{enumerate}
 	\item Po instalaci rozšíření (a každém jeho spuštění) do prohlížeče Google Chrome je vykonán kód, který je obsažen v~background scriptu. Zde se nachází pouze obsluha vyzývající content script k~zobrazení nebo schování ovládacího panelu.
 	\item Když je rozšíření aktivní, do \emph{každé} načtené stránky je vložen content script, jenž poslouchá zprávy od background scriptu.
@@ -582,21 +588,39 @@ Jak již bylo řečeno v~úvodu této kapitoly, použité řešení spočívá v
 Obrázek \ref{fig:scraper_control_panel} ilustruje, jak ovládací panel vypadá po vložení do stránky.
 
 \subsection{Výběr dat}
-Výběr dat má na starosti komponenta Select engine, která obsahuje menší komponenty Selection, Selector a Undo-redo store. Selection definuje, jakým způsobem probíhá samotný výběr řádků/sloupců -- od konkrétního Selectoru dostane pole HTML elementů a každému přidá patřičnou CSS třídu (řádky mají jinou než sloupce, navíc každý řádek/sloupec má své vlastní pořadové číslo, jež je obsažené v této třídě). Ta zajistí, že jsou všechny vybrané elementy na stránce barevně ohraničeny a je tak jasné, které prvky jsou již označeny. Přidávat a odebírat CSS třídy nám umožňuje opět komponenta content script, díky které máme kompletní přístup k DOMu navštívené stránky. [přidat příklad CSS tříd?]
+Výběr dat má na starosti třída SelectEngine, která téměř všechnu svou práci deleguje na třídy Selection a Selector. 
 
-Jednotlivé Selectory fungují následovně:
-\begin{itemize}
-	\item MouseSelector -- po zapnutí jsou na celém dokumentu zaregistrovány dva handlery. První reaguje na události typu \emph{mouseover}/\emph{mouseout} a zajišťuje, že je daný HTML element barevně podbarven, pokud na něj uživatel najede kurzorem myši. Druhý pak naslouchá události \emph{click}. Pokud nastane, přeruší její probublávání do dalších handlerů a zabrání provedení defaultní akce. Tím je zajištěno, že kliknutí myší se zapnutým MouseSelectorem pouze označí vybraný prvek, ale nespustí žádnou akci, kterou by normálně spustit měl.\footnote{Jako příklad si můžeme představit kliknutí na odkaz, které defaultně přesměruje uživatel na adresu obsaženou v atributu \textsf{href}.} Poté je element, na kterém byla událost \emph{click} spuštěna, předán Select enginu k označení, případně je proveden ještě auto-select všech podobných prvků. [popsat jak probíhá auto-select?]
-	\item TextSelector -- obdrží hledaný řetězec a poté iteruje přes všechny HTML elementy na stránce od toho nejvyššího (\textsf{$\left<body\right>$}) po ty nejvíce zanořené. Pokud narazí na prvek, který obsahuje nějaký text a zároveň má nějaké potomky, zařadí ho do fronty procházení. Pokud narazí na prvek, který obsahuje nějaký text, ale už nemá žádné potomky, porovná jeho text s hledaným řetězcem a v případě shody ho uloží do pole, které je na konci předáno Select enginu k označení. Hledání je case insensitive.
-	\item CSSSelector -- obdrží CSS selektor a pomocí funkce \verb|document.querySelectorAll()| vybere všechny odpovídající prvky, která předá Select enginu k označení.
-	\item DOMNavigation -- ovládací tlačítka jsou vloženy do stránky spolu s ovládacím panelem hned při prvním spuštění rozšíření na dané stránce, akorát jsou ihned schovány. Každému vybranému HTML elementu je po označení zaregistrována obsluha událostí \emph{mouseenter} a \emph{mouseleave}. Ta zajišťuje, že po najetí kurzorem myši na již vybraný prvek jsou ovládací tlačítko tohoto Selectoru zobrazena nad nebo pod daným elementem a po opuštění této oblasti zase zmizí. Samotná tlačítka pomocí Select enginu pouze zruší momentální výběr a vyberou nový prvek skrze atributy HTML elementu \emph{parentElement}, \emph{firstElementChild}, \emph{nextElementSibling} nebo \emph{previousElementSibling}.\footnote{Záměrně je použita vždy varianta s \emph{Element} (tedy např. \emph{firstElementChild} a ne \emph{firstChild}), neboť vždy chceme vybrat Element node a ne například Text node, který nemá nic jako CSS třídy apod.} [popsat, jak probíhá validace následujícího prvku?]
-\end{itemize}
+\begin{description}
+	\item[Selection] definuje, jakým způsobem probíhá samotný výběr řádků/sloup-ců -- od Select enginu dostane pole HTML elementů a \emph{každému přidá patřičnou CSS třídu}\footnote{Řádky mají jinou třídu než sloupce, navíc každý řádek/sloupec má své vlastní pořadové číslo, jež je obsažené v této třídě, např. \textsf{scraping-col-1}.}. Ta zajistí, že jsou všechny vybrané elementy na stránce barevně ohraničeny a je tak jasné, které prvky jsou již označeny. Přidávat a odebírat CSS třídy nám umožňuje opět komponenta \emph{content script}, díky které máme kompletní přístup k DOMu navštívené stránky.
+	
+	Každý prvek, předtím než je vybrán, je zároveň zkontrolován, jestli je pro výběr vhodný -- především, jestli je viditelný. Ověřuje se tedy existence HTML atributu \textsf{hidden}, kladnost atributů \textsf{offsetWidth, offsetHeight} a CSS vlastnosti \textsf{display} a \textsf{opacity}.
+	
+	\item[Selector] najde požadované prvky na stránce a předá je rodičovské třídě SelectEngine k označení, viz diagram \ref{fig:sequence_diagram}. Jednotlivé Selectory fungují následovně:
+	\begin{itemize}
+		\item MouseSelector -- po zapnutí jsou na celém dokumentu zaregistrovány dva handlery. První reaguje na události typu \emph{mouseover}/\emph{mouseout} a zajišťuje, že je daný HTML element barevně podbarven, pokud na něj uživatel najede kurzorem myši. Druhý pak naslouchá události \emph{click}. Pokud nastane, přeruší její probublávání do dalších handlerů a zabrání provedení defaultní akce. Tím je zajištěno, že kliknutí myší se zapnutým MouseSelectorem pouze označí vybraný prvek, ale nespustí žádnou akci, kterou by normálně spustit měl.\footnote{Jako příklad si můžeme představit kliknutí na odkaz, které defaultně přesměruje uživatel na adresu obsaženou v atributu \textsf{href}.} [popsat jak probíhá auto-select?]
+		\item TextSelector -- obdrží hledaný řetězec a poté iteruje přes všechny HTML elementy na stránce od toho nejvyššího (\textsf{$\left<body\right>$}) po ty nejvíce zanořené. Pokud narazí na prvek, který neobsahuje žádný text, pokračuje ve zpracování následujícího elementu. Pokud má prvek nějaké potomky, zařadí ho do fronty procházení, jinak porovná jeho text s hledaným řetězcem a v případě shody ho uloží do pole prvků určených k označení. Hledání shody nerozlišuje velká a malá písmena.
+		\item CSSSelector -- obdrží libovolný CSS selektor a pomocí volání metody \verb|document.querySelectorAll()| vybere všechny odpovídající prvky, které předá k označení.
+		\item DOMNavigation -- ovládací tlačítka jsou vložena do stránky spolu s ovládacím panelem hned při prvním spuštění rozšíření na dané stránce, akorát jsou ihned schována. Každému označenému HTML elementu je po vybrání zaregistrována obsluha událostí \emph{mouseenter} a \emph{mouseleave} (viz diagram \ref{fig:sequence_diagram}). Ta zajišťuje, že po najetí kurzorem myši na již vybraný prvek jsou ovládací tlačítka tohoto Selectoru zobrazena nad nebo pod daným elementem a po opuštění této oblasti zase zmizí. Samotná tlačítka pomocí Select enginu pouze zruší momentální výběr a vyberou nový prvek skrze atributy HTML elementu \emph{parentElement}, \emph{firstElementChild}, \emph{nextElementSibling} nebo \emph{previousElementSibling}.\footnote{Záměrně je použita vždy varianta s \emph{Element} (tedy např. \emph{firstElementChild} a ne \emph{firstChild}), neboť vždy chceme vybrat Element node a ne například Text node, který nemá nic jako CSS třídy apod.}
+	\end{itemize}
+\end{description}
 
-\subsection{Komunikace mezi komponentami}
-\dots
+\begin{figure}
+	\includegraphics[width=\linewidth]{images/sequence_diagram.png}
+	\caption{Sekvenční diagram naznačující průběh výběru dat}
+	\label{fig:sequence_diagram}
+\end{figure}
+
+\subsection{Komunikace mezi třídami}
+Jednotlivé třídy spolu interagují nepřímo, vždy přes rodičovskou komponentu. Tedy například pokud třída Selector potřebuje zavolat nějakou metodu z třídy Selection, udělá tak přes rodičovskou třídu SelectEngine (ke které jako jediné má přístup), viz diagram \ref{fig:sequence_diagram}.
+
+Tento postup však není možný v případě třídy MainPanel reprezentující ovládací panel vložený do stránky skrze iframe. Panelu není jak předat Controller, neboť to z bezpečnostních důvodů lze pouze v situaci, kdy je iframe i stránka, ve které je vložený, ze stejné domény\footnote{Opět narážíme na tzv. \emph{same-origin policy}.}. A to v tomto případě nejsou -- HTML stránka reprezentující ovládací panel pochází z domény rozšíření \verb|chrome-extension://<extension-id>|. 
+
+Třídy MainPanel a Controller tak spolu komunikují skrze zasílání zpráv pomocí funkce \verb|window.postMessage()|, na které reaguje třída Communication, jež je součástí hlavního Controlleru. Tato třída taktéž zajišťuje komunikaci mezi background scriptem a Controllerem.
 
 \subsection{Extrakce dat}
-\dots
+Návrh aplikace pouze říká, že extrakce dat proběhne v prohlížeči na straně klienta a konkrétním implementacím ponechává volnost v řešení tohoto problému. Jelikož je nutné již vybrané prvky zvýraznit, přidává se ke každému takovému elementu příslušná CSS třída. Toho lze velmi jednoduše využít i při samotné extrakci dat -- aplikace nejdříve načte všechny elementy s třídou reprezentující řádky výsledné tabulky a v každém tomto elementu posléze načte všechny dostupné prvky s třídou reprezentující sloupce, z nichž vyextrahuje text (HTML atribut \textsf{innerText}), případně zdroj (HTML atribut \textsf{src}) v případě obrázků. To vše opět s pomocí funkce \verb|document.querySelectorAll()|.
+
+Výsledná data jsou poté pomocí třídy Exporter převedena do požadovaného formátu a je vytvořena URL adresa souboru. Ta se zašle background scriptu, který se už postará o samotné stažení -- otevře dialog vyzývající uživatele k vybrání umístění souboru.
 
 \subsection{Ostatní}
 \dots
