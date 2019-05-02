@@ -32,7 +32,7 @@
 \contentsline {section}{\numberline {2.1}Specifikace po\IeC {\v z}adavk\IeC {\r u}}{19}{section.2.1}
 \contentsline {subsection}{\numberline {2.1.1}Funk\IeC {\v c}n\IeC {\'\i } po\IeC {\v z}adavky}{20}{subsection.2.1.1}
 \contentsline {subsection}{\numberline {2.1.2}Nefunk\IeC {\v c}n\IeC {\'\i } po\IeC {\v z}adavky}{21}{subsection.2.1.2}
-\contentsline {subsection}{\numberline {2.1.3}Nice to have po\IeC {\v z}adavky}{21}{subsection.2.1.3}
+\contentsline {subsection}{\numberline {2.1.3}Nice-to-have po\IeC {\v z}adavky}{21}{subsection.2.1.3}
 \contentsline {section}{\numberline {2.2}P\IeC {\v r}\IeC {\'\i }pady u\IeC {\v z}it\IeC {\'\i }}{22}{section.2.2}
 \contentsline {section}{\numberline {2.3}Architektura syst\IeC {\'e}mu}{23}{section.2.3}
 \contentsline {section}{\numberline {2.4}N\IeC {\'a}vrh u\IeC {\v z}ivatelsk\IeC {\'e}ho rozhran\IeC {\'\i }}{25}{section.2.4}
@@ -48,10 +48,14 @@
 \contentsline {subsection}{\numberline {3.4.1}Inicializace a spu\IeC {\v s}t\IeC {\v e}n\IeC {\'\i }}{34}{subsection.3.4.1}
 \contentsline {subsection}{\numberline {3.4.2}V\IeC {\'y}b\IeC {\v e}r dat}{34}{subsection.3.4.2}
 \contentsline {subsection}{\numberline {3.4.3}Komunikace mezi t\IeC {\v r}\IeC {\'\i }dami}{36}{subsection.3.4.3}
-\contentsline {subsection}{\numberline {3.4.4}Extrakce dat}{37}{subsection.3.4.4}
-\contentsline {subsection}{\numberline {3.4.5}Ostatn\IeC {\'\i }}{37}{subsection.3.4.5}
+\contentsline {subsection}{\numberline {3.4.4}Extrakce dat}{38}{subsection.3.4.4}
+\contentsline {subsection}{\numberline {3.4.5}Ostatn\IeC {\'\i }}{38}{subsection.3.4.5}
 \contentsline {chapter}{\chapternumberline {4}Testov\IeC {\'a}n\IeC {\'\i }}{39}{chapter.4}
-\contentsline {chapter}{Z{\' a}v{\v e}r}{41}{chapter*.34}
-\contentsline {chapter}{Literatura}{43}{section*.36}
-\contentsline {appendix}{\chapternumberline {A}Seznam pou\IeC {\v z}it\IeC {\'y}ch zkratek}{47}{appendix.A}
-\contentsline {appendix}{\chapternumberline {B}Obsah p\IeC {\v r}ilo\IeC {\v z}en\IeC {\'e}ho CD}{49}{appendix.B}
+\contentsline {section}{\numberline {4.1}Unit testy}{39}{section.4.1}
+\contentsline {section}{\numberline {4.2}Integra\IeC {\v c}n\IeC {\'\i } testy}{40}{section.4.2}
+\contentsline {section}{\numberline {4.3}Napln\IeC {\v e}n\IeC {\'\i } zadan\IeC {\'y}ch po\IeC {\v z}adavk\IeC {\r u}}{40}{section.4.3}
+\contentsline {section}{\numberline {4.4}Nedostatky aplikace}{42}{section.4.4}
+\contentsline {chapter}{Z{\' a}v{\v e}r}{43}{chapter*.36}
+\contentsline {chapter}{Literatura}{45}{section*.38}
+\contentsline {appendix}{\chapternumberline {A}Seznam pou\IeC {\v z}it\IeC {\'y}ch zkratek}{49}{appendix.A}
+\contentsline {appendix}{\chapternumberline {B}Obsah p\IeC {\v r}ilo\IeC {\v z}en\IeC {\'e}ho CD}{51}{appendix.B}
