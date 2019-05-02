@@ -1,7 +1,7 @@
 import { SelectEngine } from '/src/contentScripts/selectEngine/selectEngine.js';
 import { Messages } from '/src/constants.js';
 import { ControllerMockup } from "./mocks";
-import { JSDOM } from 'jsdom';
+import { prepareTestPage } from "./setup";
 
 
 // -------------------------------------------- Setup and teardown ----------------------------------------------
@@ -10,10 +10,9 @@ let selectEngine;
 let controller;
 
 beforeEach(async function () {
+    await prepareTestPage();
     controller = new ControllerMockup();
     selectEngine = new SelectEngine(controller);
-    const dom = await JSDOM.fromFile('/home/jakub/BP/code/chrome-extension/tests/testingPage.html');
-    document.body.innerHTML = dom.window.document.body.innerHTML;
 });
 
 // -------------------------------------------------- Tests -----------------------------------------------------
@@ -119,7 +118,10 @@ test('reset mouse selector', () => {
 test('generate new ID for an element', () => {
     expect(selectEngine.generateId()).toEqual('scraping-1');
     expect(selectEngine.generateId()).toEqual('scraping-2');
-    expect(selectEngine.generateId()).toEqual('scraping-3');
-    expect(selectEngine.generateId()).toEqual('scraping-4');
+    // ID `scraping-3` is already in the document
+    const id = selectEngine.generateId();
+    expect(id).not.toEqual('scraping-3');
+    expect(id).toEqual('scraping-4');
     expect(selectEngine.generateId()).toEqual('scraping-5');
+    expect(selectEngine.generateId()).toEqual('scraping-6');
 });

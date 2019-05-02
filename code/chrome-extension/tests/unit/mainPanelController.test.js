@@ -1,7 +1,7 @@
 import { MainPanelController } from "/src/contentScripts/mainPanelController.js";
 import { ControllerMockup } from "./mocks.js";
 import { Messages } from "/src/constants.js";
-import { JSDOM } from "jsdom";
+import { prepareTestPage } from "./setup";
 
 
 // -------------------------------------------- Setup and teardown ----------------------------------------------
@@ -10,15 +10,9 @@ let controller;
 let mainPanelController;
 
 beforeEach(async function () {
-    global.chrome = {
-        runtime: {
-            getURL: jest.fn(url => url),
-        }
-    };
+    await prepareTestPage();
     controller = new ControllerMockup();
     mainPanelController = new MainPanelController(controller);
-    const dom = await JSDOM.fromFile('/home/jakub/BP/code/chrome-extension/tests/testingPage.html');
-    document.body.innerHTML = dom.window.document.body.innerHTML;
 });
 
 // -------------------------------------------------- Tests -----------------------------------------------------

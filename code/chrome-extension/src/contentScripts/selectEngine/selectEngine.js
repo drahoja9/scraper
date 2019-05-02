@@ -93,6 +93,18 @@ class SelectEngineInterface {
     generateId() {
         throw Error('Not implemented!');
     }
+
+    notifyController(msg) {
+        throw Error('Not implemented!');
+    }
+
+    invalidateData() {
+        throw Error('Not implemented!');
+    }
+
+    notifyDOMNavigation(msg) {
+        throw Error('Not implemented!');
+    }
 }
 
 
@@ -106,14 +118,9 @@ export class SelectEngine extends SelectEngineInterface {
         this._cssSelector = new CSSSelector(this);
 
         this._currentCol = 0;
-        this._rows = new RowSelection(this._controller, this._domNavigation, this);
+        this._rows = new RowSelection(this);
         this._columns = {
-            [this._currentCol]: new ColumnSelection(
-                this._controller,
-                this._domNavigation,
-                this._currentCol,
-                this
-            )
+            [this._currentCol]: new ColumnSelection(this._currentCol, this)
         };
         this._selection = this._rows;
 
@@ -176,12 +183,7 @@ export class SelectEngine extends SelectEngineInterface {
 
     selectingCols() {
         if (!this._columns[this._currentCol]) {
-            this._columns[this._currentCol] = new ColumnSelection(
-                this._controller,
-                this._domNavigation,
-                this._currentCol,
-                this
-            );
+            this._columns[this._currentCol] = new ColumnSelection(this._currentCol, this);
         }
         this._selection = this._columns[this._currentCol];
         this._selection.checkUndoRedo();
@@ -239,6 +241,22 @@ export class SelectEngine extends SelectEngineInterface {
     generateId() {
         const currentId = this._scrapingId.match(/scraping-(\d*)/)[1];
         this._scrapingId = `scraping-${Number(currentId) + 1}`;
+        // Generate IDs until it's unique in the whole document
+        if (document.querySelector(`#${this._scrapingId}`) !== null) {
+            this.generateId();
+        }
         return this._scrapingId;
+    }
+
+    notifyController(msg) {
+        this._controller.notify(msg);
+    }
+
+    invalidateData() {
+        this._controller.invalidateData();
+    }
+
+    notifyDOMNavigation(msg) {
+        this._domNavigation.notify(msg);
     }
 }

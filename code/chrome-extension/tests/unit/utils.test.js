@@ -1,5 +1,5 @@
 import { isValid } from '/src/contentScripts/utils.js';
-import { JSDOM } from 'jsdom';
+import { defineHTMLProperties, prepareTestPage } from "./setup";
 
 
 // ------------------------------------------------- Helpers -----------------------------------------------------
@@ -21,30 +21,11 @@ const _areInvalid = (invalidNodes) => {
 // -------------------------------------------- Setup and teardown ----------------------------------------------
 
 beforeAll(function () {
-    // Mocking the `offsetWidth` and `offsetHeight`
-    Object.defineProperty(window.HTMLElement.prototype, 'offsetWidth', {
-        get: function () { return this._customOffsetWidth !== undefined ? this._customOffsetWidth : 123; }
-    });
-    Object.defineProperty(window.HTMLElement.prototype, 'offsetHeight', {
-        get: function () { return this._customOffsetHeight !== undefined ? this._customOffsetHeight : 123; }
-    });
+    defineHTMLProperties();
 });
 
 beforeEach(async function () {
-    const dom = await JSDOM.fromFile('/home/jakub/BP/code/chrome-extension/tests/testingPage.html');
-    document.body.innerHTML = dom.window.document.body.innerHTML;
-
-    // Need to set non-inline CSS via JS
-    let style = document.createElement('style');
-    style.innerHTML =
-        '.display-none-class{ display: none; }' +
-        '.opacity-zero-class{ opacity: 0; }';
-    document.head.appendChild(style);
-
-    // JSDOM does no rendering, so offsetWidth/offsetHeight have to be set via JS
-    const hidden2 = document.querySelector('#hidden-div-2');
-    hidden2._customOffsetWidth = 0;
-    hidden2._customOffsetHeight = 0;
+    await prepareTestPage();
 });
 
 // -------------------------------------------------- Tests -----------------------------------------------------

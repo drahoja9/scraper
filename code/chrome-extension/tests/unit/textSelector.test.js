@@ -1,23 +1,20 @@
 import { TextSelector } from '/src/contentScripts/selectEngine/selectors/textSelector.js';
 import { SelectEngineMockup } from './mocks.js';
-import { JSDOM } from 'jsdom';
+import { defineHTMLProperties, prepareTestPage } from "./setup";
 
 
 // -------------------------------------------- Setup and teardown ----------------------------------------------
 
 beforeAll(function () {
-    Object.defineProperty(window.HTMLElement.prototype, 'innerText', {
-        get: function () { return this.textContent.replace(/\s\s/g, '').trim() },
-    });
+    defineHTMLProperties();
 });
 
 let selector;
 let selectEngine;
 beforeEach(async function () {
+    await prepareTestPage();
     selectEngine = new SelectEngineMockup();
     selector = new TextSelector(selectEngine);
-    const dom = await JSDOM.fromFile('/home/jakub/BP/code/chrome-extension/tests/testingPage.html');
-    document.body.innerHTML = dom.window.document.body.innerHTML;
 });
 
 // -------------------------------------------------- Tests -----------------------------------------------------

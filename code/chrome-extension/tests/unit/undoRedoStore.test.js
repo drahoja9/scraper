@@ -1,18 +1,16 @@
 import { UndoRedoStore } from '/src/contentScripts/selectEngine/undoRedoStore.js';
 import { Messages } from "/src/constants.js";
-import { ControllerMockup, SelectionMockup } from "./mocks.js";
+import { SelectionMockup } from "./mocks.js";
 
 
 // -------------------------------------------- Setup and teardown ----------------------------------------------
 
-let controller;
 let selection;
 let undoRedoStore;
 
 beforeEach(async function () {
-    controller = new ControllerMockup();
     selection = new SelectionMockup();
-    undoRedoStore = new UndoRedoStore(controller, selection);
+    undoRedoStore = new UndoRedoStore(selection);
 });
 
 // -------------------------------------------------- Tests -----------------------------------------------------
@@ -24,41 +22,41 @@ test('adding selection to undo store', () => {
 
     undoRedoStore.pushUndo([elementWithId, elementWithoutId]);
     expect(undoRedoStore._undos).toEqual(['#unique-id-1,#scraping-0']);
-    expect(controller.notify.mock.calls.length).toBe(2);
-    expect(controller.notify.mock.calls[0][0]).toEqual({ msg: Messages.ENABLE_UNDO });
-    expect(controller.notify.mock.calls[1][0]).toEqual({ msg: Messages.DISABLE_REDO });
+    expect(selection.notifyController.mock.calls.length).toBe(2);
+    expect(selection.notifyController.mock.calls[0][0]).toEqual({ msg: Messages.ENABLE_UNDO });
+    expect(selection.notifyController.mock.calls[1][0]).toEqual({ msg: Messages.DISABLE_REDO });
     expect(undoRedoStore._redos).toEqual([]);
 });
 
 test('check if there is something to undo', () => {
     undoRedoStore.checkUndo();
-    expect(controller.notify.mock.calls.length).toBe(1);
-    expect(controller.notify.mock.calls[0][0]).toEqual({ msg: Messages.DISABLE_UNDO });
+    expect(selection.notifyController.mock.calls.length).toBe(1);
+    expect(selection.notifyController.mock.calls[0][0]).toEqual({ msg: Messages.DISABLE_UNDO });
 
     undoRedoStore.pushUndo([{ id: 'some-element' }]);
     undoRedoStore.checkUndo();
-    expect(controller.notify.mock.calls.length).toBe(4);
-    expect(controller.notify.mock.calls[0][0]).toEqual({ msg: Messages.DISABLE_UNDO });
-    expect(controller.notify.mock.calls[1][0]).toEqual({ msg: Messages.ENABLE_UNDO });
-    expect(controller.notify.mock.calls[2][0]).toEqual({ msg: Messages.DISABLE_REDO });
-    expect(controller.notify.mock.calls[3][0]).toEqual({ msg: Messages.ENABLE_UNDO });
+    expect(selection.notifyController.mock.calls.length).toBe(4);
+    expect(selection.notifyController.mock.calls[0][0]).toEqual({ msg: Messages.DISABLE_UNDO });
+    expect(selection.notifyController.mock.calls[1][0]).toEqual({ msg: Messages.ENABLE_UNDO });
+    expect(selection.notifyController.mock.calls[2][0]).toEqual({ msg: Messages.DISABLE_REDO });
+    expect(selection.notifyController.mock.calls[3][0]).toEqual({ msg: Messages.ENABLE_UNDO });
 });
 
 test('check if there is something to redo', () => {
     undoRedoStore.checkRedo();
-    expect(controller.notify.mock.calls.length).toBe(1);
-    expect(controller.notify.mock.calls[0][0]).toEqual({ msg: Messages.DISABLE_REDO });
+    expect(selection.notifyController.mock.calls.length).toBe(1);
+    expect(selection.notifyController.mock.calls[0][0]).toEqual({ msg: Messages.DISABLE_REDO });
 
     undoRedoStore.pushUndo([{ id: 'some-element' }]);
     undoRedoStore.undo();
     undoRedoStore.checkRedo();
-    expect(controller.notify.mock.calls.length).toBe(6);
-    expect(controller.notify.mock.calls[0][0]).toEqual({ msg: Messages.DISABLE_REDO });
-    expect(controller.notify.mock.calls[1][0]).toEqual({ msg: Messages.ENABLE_UNDO });
-    expect(controller.notify.mock.calls[2][0]).toEqual({ msg: Messages.DISABLE_REDO });
-    expect(controller.notify.mock.calls[3][0]).toEqual({ msg: Messages.DISABLE_UNDO });
-    expect(controller.notify.mock.calls[4][0]).toEqual({ msg: Messages.ENABLE_REDO });
-    expect(controller.notify.mock.calls[5][0]).toEqual({ msg: Messages.ENABLE_REDO });
+    expect(selection.notifyController.mock.calls.length).toBe(6);
+    expect(selection.notifyController.mock.calls[0][0]).toEqual({ msg: Messages.DISABLE_REDO });
+    expect(selection.notifyController.mock.calls[1][0]).toEqual({ msg: Messages.ENABLE_UNDO });
+    expect(selection.notifyController.mock.calls[2][0]).toEqual({ msg: Messages.DISABLE_REDO });
+    expect(selection.notifyController.mock.calls[3][0]).toEqual({ msg: Messages.DISABLE_UNDO });
+    expect(selection.notifyController.mock.calls[4][0]).toEqual({ msg: Messages.ENABLE_REDO });
+    expect(selection.notifyController.mock.calls[5][0]).toEqual({ msg: Messages.ENABLE_REDO });
 });
 
 test('undoing single action', () => {
@@ -71,16 +69,16 @@ test('undoing single action', () => {
     undoRedoStore.undo();
     expect(undoRedoStore._undos).toEqual(['#elem-1']);
     expect(undoRedoStore._redos).toEqual(['#scraping-0']);
-    expect(controller.notify.mock.calls.length).toBe(6);
-    expect(controller.notify.mock.calls[4][0]).toEqual({ msg: Messages.ENABLE_UNDO });
-    expect(controller.notify.mock.calls[5][0]).toEqual({ msg: Messages.ENABLE_REDO });
+    expect(selection.notifyController.mock.calls.length).toBe(6);
+    expect(selection.notifyController.mock.calls[4][0]).toEqual({ msg: Messages.ENABLE_UNDO });
+    expect(selection.notifyController.mock.calls[5][0]).toEqual({ msg: Messages.ENABLE_REDO });
 
     undoRedoStore.undo();
     expect(undoRedoStore._undos).toEqual([]);
     expect(undoRedoStore._redos).toEqual(['#scraping-0', '#elem-1']);
-    expect(controller.notify.mock.calls.length).toBe(8);
-    expect(controller.notify.mock.calls[6][0]).toEqual({ msg: Messages.DISABLE_UNDO });
-    expect(controller.notify.mock.calls[7][0]).toEqual({ msg: Messages.ENABLE_REDO });
+    expect(selection.notifyController.mock.calls.length).toBe(8);
+    expect(selection.notifyController.mock.calls[6][0]).toEqual({ msg: Messages.DISABLE_UNDO });
+    expect(selection.notifyController.mock.calls[7][0]).toEqual({ msg: Messages.ENABLE_REDO });
 });
 
 test('undoing multiple action', () => {
@@ -93,16 +91,16 @@ test('undoing multiple action', () => {
     undoRedoStore.undo();
     expect(undoRedoStore._undos).toEqual([]);
     expect(undoRedoStore._redos).toEqual(['#elem-1,#scraping-0,#scraping-1']);
-    expect(controller.notify.mock.calls.length).toBe(4);
-    expect(controller.notify.mock.calls[2][0]).toEqual({ msg: Messages.DISABLE_UNDO });
-    expect(controller.notify.mock.calls[3][0]).toEqual({ msg: Messages.ENABLE_REDO });
+    expect(selection.notifyController.mock.calls.length).toBe(4);
+    expect(selection.notifyController.mock.calls[2][0]).toEqual({ msg: Messages.DISABLE_UNDO });
+    expect(selection.notifyController.mock.calls[3][0]).toEqual({ msg: Messages.ENABLE_REDO });
 });
 
 test('try undoing with no action', () => {
     undoRedoStore.undo();
     expect(undoRedoStore._undos).toEqual([]);
     expect(undoRedoStore._redos).toEqual([]);
-    expect(controller.notify.mock.calls.length).toBe(0);
+    expect(selection.notifyController.mock.calls.length).toBe(0);
 });
 
 test('redoing single action', () => {
@@ -117,16 +115,16 @@ test('redoing single action', () => {
     undoRedoStore.redo();
     expect(undoRedoStore._undos).toEqual(['#elem-1']);
     expect(undoRedoStore._redos).toEqual(['#scraping-0']);
-    expect(controller.notify.mock.calls.length).toBe(10);
-    expect(controller.notify.mock.calls[8][0]).toEqual({ msg: Messages.ENABLE_REDO });
-    expect(controller.notify.mock.calls[9][0]).toEqual({ msg: Messages.ENABLE_UNDO });
+    expect(selection.notifyController.mock.calls.length).toBe(10);
+    expect(selection.notifyController.mock.calls[8][0]).toEqual({ msg: Messages.ENABLE_REDO });
+    expect(selection.notifyController.mock.calls[9][0]).toEqual({ msg: Messages.ENABLE_UNDO });
 
     undoRedoStore.redo();
     expect(undoRedoStore._undos).toEqual(['#elem-1', '#scraping-0']);
     expect(undoRedoStore._redos).toEqual([]);
-    expect(controller.notify.mock.calls.length).toBe(12);
-    expect(controller.notify.mock.calls[10][0]).toEqual({ msg: Messages.DISABLE_REDO });
-    expect(controller.notify.mock.calls[11][0]).toEqual({ msg: Messages.ENABLE_UNDO });
+    expect(selection.notifyController.mock.calls.length).toBe(12);
+    expect(selection.notifyController.mock.calls[10][0]).toEqual({ msg: Messages.DISABLE_REDO });
+    expect(selection.notifyController.mock.calls[11][0]).toEqual({ msg: Messages.ENABLE_UNDO });
 });
 
 test('redoing multiple action', () => {
@@ -140,14 +138,14 @@ test('redoing multiple action', () => {
     undoRedoStore.redo();
     expect(undoRedoStore._undos).toEqual(['#elem-1,#scraping-0,#scraping-1']);
     expect(undoRedoStore._redos).toEqual([]);
-    expect(controller.notify.mock.calls.length).toBe(6);
-    expect(controller.notify.mock.calls[4][0]).toEqual({ msg: Messages.DISABLE_REDO });
-    expect(controller.notify.mock.calls[5][0]).toEqual({ msg: Messages.ENABLE_UNDO });
+    expect(selection.notifyController.mock.calls.length).toBe(6);
+    expect(selection.notifyController.mock.calls[4][0]).toEqual({ msg: Messages.DISABLE_REDO });
+    expect(selection.notifyController.mock.calls[5][0]).toEqual({ msg: Messages.ENABLE_UNDO });
 });
 
 test('try redoing with no action', () => {
     undoRedoStore.redo();
     expect(undoRedoStore._undos).toEqual([]);
     expect(undoRedoStore._redos).toEqual([]);
-    expect(controller.notify.mock.calls.length).toBe(0);
+    expect(selection.notifyController.mock.calls.length).toBe(0);
 });

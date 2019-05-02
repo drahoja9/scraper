@@ -26,11 +26,20 @@ test('export to JSON', async done => {
     ];
 
     const downloadedData = await JSONExporter.getFileUrl({ rowsData });
-    const rowsWithoutIds = rowsData.map(row => {
-        const { rowId, ...rest } = row;
-        return rest;
-    });
-    expect(downloadedData).toEqual(JSON.stringify(rowsWithoutIds, null, 3));
+    expect(downloadedData).toEqual('[\n' +
+        '   {\n' +
+        '      "col-1": "123",\n' +
+        '      "col-2": "some, random, data,,,"\n' +
+        '   },\n' +
+        '   {\n' +
+        '      "col-1": "456",\n' +
+        '      "col-2": "\\"\\"\\"x\\"\\"y\\"z\\"\\"\\"\\""\n' +
+        '   },\n' +
+        '   {\n' +
+        '      "col-1": "789",\n' +
+        '      "col-2": "/.,;[]=-09\\\\8765432:\\"|{}?><|}{+_)(*&^%$#@!~>1`<`"\n' +
+        '   }\n' +
+        ']');
     done();
 });
 
@@ -43,17 +52,11 @@ test('export to CSV', async done => {
     const columnNames = ['col-1', 'col-2'];
 
     const downloadedData = await CSVExporter.getFileUrl({ rowsData, columnNames });
-    const rowsWithoutIds = rowsData.map(row => {
-        const { rowId, ...rest } = row;
-        return rest;
-    });
-    const header = columnNames.map(colName => `"${colName}"`).join(',');
-    const data = rowsWithoutIds
-        .map(row => {
-            row['col-2'] = row['col-2'].replace(/"/g, '""');
-            return row;
-        })
-        .map(row => `"${row['col-1']}","${row['col-2']}"`).join('\n');
-    expect(downloadedData).toEqual(header + '\n' + data);
+    expect(downloadedData).toEqual(
+        '"col-1","col-2"\n' +
+        '"123","some, random, data,,,"\n' +
+        '"456","""""""x""""y""z"""""""""\n' +
+        '"789","/.,;[]=-09\\8765432:""|{}?><|}{+_)(*&^%$#@!~>1`<`"'
+    );
     done();
 });

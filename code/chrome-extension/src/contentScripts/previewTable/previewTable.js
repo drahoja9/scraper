@@ -1,4 +1,4 @@
-import { DATA_PREVIEW } from '../constants.js';
+import { DATA_PREVIEW } from '/src/constants.js';
 import { PreviewTableCell } from './previewTableCell.js';
 import { PreviewTableRow } from './previewTableRow.js';
 
@@ -20,6 +20,7 @@ class PreviewTableInterface {
 
 export class PreviewTable extends PreviewTableInterface {
     constructor(controller) {
+        super();
         this._placeholder = document.createElement('div');
         this._placeholder.id = 'scraping-data-preview';
         this._placeholder.className = 'scraping-protected';

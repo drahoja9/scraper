@@ -1,9 +1,5 @@
 export class ChromeAPI {
-    constructor() {
-        this.messageHandler = undefined;
-    }
-
-    get() {
+    static mock() {
         const path = require('path');
         return {
             runtime: {
@@ -11,8 +7,9 @@ export class ChromeAPI {
                 sendMessage: jest.fn(msg => {
                 }),
                 onMessage: {
+                    listener: undefined,
                     addListener: jest.fn(cb => {
-                        this.messageHandler = cb;
+                        chrome.runtime.onMessage.listener = cb;
                     })
                 }
             }

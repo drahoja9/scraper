@@ -39,17 +39,19 @@ class SelectionInterface {
     activateColumn() {
         throw Error('Not implemented!');
     }
+
+    notifyController(msg) {
+        throw Error('Not implemented!');
+    }
 }
 
 
 class Selection extends SelectionInterface {
-    constructor(controller, domNavigation, selectEngine) {
+    constructor(selectEngine) {
         super();
         this._scrapingClasses = undefined;
-        this._controller = controller;
         this._selectEngine = selectEngine;
-        this._domNavigaton = domNavigation;
-        this._undoRedoStore = new UndoRedoStore(controller, this);
+        this._undoRedoStore = new UndoRedoStore(this);
     }
 
     select(elements, shouldPushUndo = true) {
@@ -65,8 +67,8 @@ class Selection extends SelectionInterface {
             filtered.push(element);
         }
         if (filtered.length === 0) return;
-        this._controller.invalidateData();
-        this._domNavigaton.notify({ msg: Messages.SELECTED, nodes: filtered });
+        this._selectEngine.invalidateData();
+        this._selectEngine.notifyDOMNavigation({ msg: Messages.SELECTED, nodes: filtered });
 
         if (shouldPushUndo) {
             this._undoRedoStore.pushUndo(filtered);
@@ -74,8 +76,8 @@ class Selection extends SelectionInterface {
     }
 
     unselect(elements, shouldPushUndo = true) {
-        this._controller.invalidateData();
-        this._domNavigaton.notify({ msg: Messages.UNSELECTED, nodes: elements });
+        this._selectEngine.invalidateData();
+        this._selectEngine.notifyDOMNavigation({ msg: Messages.UNSELECTED, nodes: elements });
 
         if (shouldPushUndo) {
             this._undoRedoStore.pushUndo(elements);
@@ -143,12 +145,16 @@ class Selection extends SelectionInterface {
     get isSelectingRows() {
         throw Error('Not implemented!');
     }
+
+    notifyController(msg) {
+        this._selectEngine.notifyController(msg);
+    }
 }
 
 
 export class RowSelection extends Selection {
-    constructor(controller, domNavigation, selectEngine) {
-        super(controller, domNavigation, selectEngine);
+    constructor(selectEngine) {
+        super(selectEngine);
         this._rowId = 0;
         this._scrapingClasses = [
             'scraping-selected-row',
@@ -202,8 +208,8 @@ export class RowSelection extends Selection {
 
 
 export class ColumnSelection extends Selection {
-    constructor(controller, domNavigation, colId, selectEngine) {
-        super(controller, domNavigation, selectEngine);
+    constructor(colId, selectEngine) {
+        super(selectEngine);
         this._colId = colId;
         this._scrapingClasses = [
             'scraping-selected-col',

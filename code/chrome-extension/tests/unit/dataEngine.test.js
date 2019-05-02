@@ -1,23 +1,18 @@
 import { DataEngine } from "/src/contentScripts/dataEngine/dataEngine.js";
-import { JSDOM } from "jsdom";
+import { defineHTMLProperties, prepareTestPage } from "./setup";
 
 
 // -------------------------------------------- Setup and teardown ----------------------------------------------
 
 beforeAll(function () {
-    Object.defineProperty(global.Element.prototype, 'innerText', {
-        get: function () {
-            return this.textContent.replace(/\s\s/g, '').trim()
-        },
-    });
+    defineHTMLProperties();
 });
 
 let dataEngine;
 
 beforeEach(async function () {
+    await prepareTestPage();
     dataEngine = new DataEngine();
-    const dom = await JSDOM.fromFile('/home/jakub/BP/code/chrome-extension/tests/testingPage.html');
-    document.body.innerHTML = dom.window.document.body.innerHTML;
 });
 
 // -------------------------------------------------- Tests -----------------------------------------------------

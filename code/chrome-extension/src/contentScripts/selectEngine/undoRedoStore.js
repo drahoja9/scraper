@@ -25,9 +25,8 @@ class UndoRedoStoreInterface {
 
 
 export class UndoRedoStore extends UndoRedoStoreInterface {
-    constructor(controller, selection) {
+    constructor(selection) {
         super();
-        this._controller = controller;
         this._selection = selection;
         this._undos = [];
         this._redos = [];
@@ -60,17 +59,17 @@ export class UndoRedoStore extends UndoRedoStoreInterface {
 
     checkUndo() {
         if (this._undos.length === 0) {
-            this._controller.notify({ msg: Messages.DISABLE_UNDO });
+            this._selection.notifyController({ msg: Messages.DISABLE_UNDO });
         } else {
-            this._controller.notify({ msg: Messages.ENABLE_UNDO });
+            this._selection.notifyController({ msg: Messages.ENABLE_UNDO });
         }
     }
 
     checkRedo() {
         if (this._redos.length === 0) {
-            this._controller.notify({ msg: Messages.DISABLE_REDO });
+            this._selection.notifyController({ msg: Messages.DISABLE_REDO });
         } else {
-            this._controller.notify({ msg: Messages.ENABLE_REDO })
+            this._selection.notifyController({ msg: Messages.ENABLE_REDO })
         }
     }
 
@@ -86,12 +85,12 @@ export class UndoRedoStore extends UndoRedoStoreInterface {
 
     _pushUndo(selector) {
         this._undos.push(selector);
-        this._controller.notify({ msg: Messages.ENABLE_UNDO });
+        this._selection.notifyController({ msg: Messages.ENABLE_UNDO });
     }
 
     _pushRedo(selector) {
         this._redos.push(selector);
-        this._controller.notify({ msg: Messages.ENABLE_REDO })
+        this._selection.notifyController({ msg: Messages.ENABLE_REDO })
     }
 
     _popUndo() {
@@ -108,6 +107,6 @@ export class UndoRedoStore extends UndoRedoStoreInterface {
 
     _clearRedos() {
         this._redos = [];
-        this._controller.notify({ msg: Messages.DISABLE_REDO });
+        this._selection.notifyController({ msg: Messages.DISABLE_REDO });
     }
 }

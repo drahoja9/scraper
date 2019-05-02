@@ -75,6 +75,10 @@ export class SelectEngineMockup {
     });
     cssUnselect = jest.fn(() => {
     });
+    invalidateData = jest.fn(() => {
+    });
+    notifyDOMNavigation = jest.fn(msg => {
+    });
 }
 
 
@@ -85,6 +89,8 @@ export class SelectionMockup {
 
     toggle = jest.fn((elements, pushUndo = true) => {
     });
+    notifyController = jest.fn(msg => {
+    });
 
     generateId() {
         return `scraping-${this._id++}`;
@@ -93,10 +99,12 @@ export class SelectionMockup {
 
 
 export class ControllerMockup {
-    constructor() {
-        this.isDataValid = true;
-    }
-
+    unselectRow = jest.fn(() => {
+    });
+    toggleMainPanel = jest.fn((minimized, onLeft) => {
+        this.isVisible = !this.isVisible;
+        this.isInjected = true;
+    });
     invalidateData = jest.fn(() => {
     });
     notify = jest.fn(({ msg }) => {
@@ -129,6 +137,34 @@ export class ControllerMockup {
     });
     injectParts = jest.fn(() => {
     });
+    switchMainPanelSides = jest.fn(() => {
+    });
+    toggleMainPanelMinMax = jest.fn(() => {
+    });
+
+    constructor() {
+        this.isDataValid = true;
+        this.isVisible = false;
+        this.isInjected = false;
+        this.iframe = {
+            contentWindow: {
+                postMessage: jest.fn((message, origin) => {
+                })
+            }
+        }
+    }
+
+    get isMainPanelInjected() {
+        return this.isInjected;
+    }
+
+    get isMainPanelVisible() {
+        return this.isVisible;
+    }
+
+    get mainPanelIframe() {
+        return this.iframe;
+    }
 }
 
 
@@ -178,31 +214,21 @@ export class UndoRedoStoreMockup {
 }
 
 
-export class DataEngineMockup {
-    getData = jest.fn(cols => ({ columnNames: [], rowsData: [] }));
-    export = jest.fn((cols, format) => ({ url: '', filename: '' }));
-    removeRow = jest.fn(row => {
-    });
-
-    constructor() {
-        this.isDataValid = true;
+export class ChromeAPI {
+    static mock() {
+        const path = require('path');
+        return {
+            runtime: {
+                getURL: jest.fn(url => 'file://' + path.resolve(__dirname, '../..' + url)),
+                sendMessage: jest.fn(msg => {
+                }),
+                onMessage: {
+                    listener: undefined,
+                    addListener: jest.fn(cb => {
+                        chrome.runtime.onMessage.listener = cb;
+                    })
+                }
+            }
+        };
     }
-}
-
-
-export class PreviewTableMockup {
-    inject = jest.fn(() => {
-    });
-    display = jest.fn((columnNames, rowsData) => {
-    });
-}
-
-
-export class CommunicationMockup {
-    toggle = jest.fn(() => {
-    });
-    sendMessageToBackground = jest.fn(msg => {
-    });
-    sendMessageToMainPanel = jest.fn(msg => {
-    });
 }

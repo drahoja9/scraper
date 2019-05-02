@@ -1,30 +1,18 @@
 import { Communication } from "/src/contentScripts/communication.js";
 import { Messages } from "/src/constants.js";
-import { ControllerMockup, MainPanelControllerMockup } from "./mocks";
+import { ChromeAPI, ControllerMockup } from "./mocks";
 import { _postMessage } from "../utils.js";
 
 
 // -------------------------------------------- Setup and teardown ----------------------------------------------
 
 let controller;
-let mainPanelController;
 let communication;
 
 beforeEach(async function () {
-    global.chrome = {
-        runtime: {
-            onMessage: {
-                listener: undefined,
-                addListener: jest.fn(fn => global.chrome.runtime.onMessage.listener = fn)
-            },
-            getURL: jest.fn(url => url),
-            sendMessage: jest.fn(msg => {
-            })
-        }
-    };
+    global.chrome = ChromeAPI.mock();
     controller = new ControllerMockup();
-    mainPanelController = new MainPanelControllerMockup();
-    communication = new Communication(controller, mainPanelController);
+    communication = new Communication(controller);
 });
 
 // -------------------------------------------------- Tests -----------------------------------------------------
@@ -32,16 +20,16 @@ beforeEach(async function () {
 test('processing messages from main panel', () => {
     communication.sendMessageToBackground = jest.fn(({ msg }) => {
     });
-    mainPanelController.isVisible = true;
+    controller.isVisible = true;
 
     communication.toggle();
     _postMessage(Messages.MINIMIZE_MAXIMIZE);
-    expect(mainPanelController.toggleMinMax.mock.calls.length).toBe(1);
+    expect(controller.toggleMainPanelMinMax.mock.calls.length).toBe(1);
     expect(communication.sendMessageToBackground.mock.calls.length).toBe(1);
     expect(communication.sendMessageToBackground.mock.calls[0][0]).toEqual({ msg: Messages.MINIMIZE_MAXIMIZE });
 
     _postMessage(Messages.SWITCH_SIDES);
-    expect(mainPanelController.switchSides.mock.calls.length).toBe(1);
+    expect(controller.switchMainPanelSides.mock.calls.length).toBe(1);
     expect(communication.sendMessageToBackground.mock.calls.length).toBe(2);
     expect(communication.sendMessageToBackground.mock.calls[1][0]).toEqual({ msg: Messages.SWITCH_SIDES });
 
@@ -80,22 +68,22 @@ test('processing messages from main panel', () => {
 });
 
 test('turn communication on and off', () => {
-    mainPanelController.isVisible = true;
+    controller.isVisible = true;
     communication.toggle();
     _postMessage(Messages.ADDED_COL);
     expect(controller.invalidateData.mock.calls.length).toBe(1);
 
-    mainPanelController.isVisible = true;
+    controller.isVisible = true;
     communication.toggle();
     _postMessage(Messages.ADDED_COL);
     expect(controller.invalidateData.mock.calls.length).toBe(2);
 
-    mainPanelController.isVisible = false;
+    controller.isVisible = false;
     communication.toggle();
     _postMessage(Messages.ADDED_COL);
     expect(controller.invalidateData.mock.calls.length).toBe(2);
 
-    mainPanelController.isVisible = false;
+    controller.isVisible = false;
     communication.toggle();
     _postMessage(Messages.ADDED_COL);
     expect(controller.invalidateData.mock.calls.length).toBe(2);
@@ -111,8 +99,8 @@ test('send message to background script', () => {
 test('send message to main panel', () => {
     const msg = { msg: 'some message', payload: 'some data' };
     communication.sendMessageToMainPanel(msg);
-    expect(mainPanelController.iframe.contentWindow.postMessage.mock.calls.length).toBe(1);
-    expect(mainPanelController.iframe.contentWindow.postMessage.mock.calls[0][0]).toEqual({
+    expect(controller.iframe.contentWindow.postMessage.mock.calls.length).toBe(1);
+    expect(controller.iframe.contentWindow.postMessage.mock.calls[0][0]).toEqual({
         ...msg, type: Messages.FROM_CONTROLLER
     });
 });
@@ -126,40 +114,40 @@ test('listening for messages from background script', () => {
         minimized: false,
         onLeft: false
     }, null, null);
-    expect(mainPanelController.toggleMainPanel.mock.calls.length).toBe(1);
+    expect(controller.toggleMainPanel.mock.calls.length).toBe(1);
     expect(communication.toggle.mock.calls.length).toBe(1);
-    expect(mainPanelController.toggleMainPanel.mock.calls[0][0]).toBe(false);
-    expect(mainPanelController.toggleMainPanel.mock.calls[0][1]).toBe(false);
+    expect(controller.toggleMainPanel.mock.calls[0][0]).toBe(false);
+    expect(controller.toggleMainPanel.mock.calls[0][1]).toBe(false);
 
-    mainPanelController.isInjected = false;
+    controller.isInjected = false;
     chrome.runtime.onMessage.listener({
         msg: Messages.TAB_UPDATED,
         shouldBeVisible: false,
         minimized: true,
         onLeft: true
     }, null, null);
-    expect(mainPanelController.toggleMainPanel.mock.calls.length).toBe(1);
+    expect(controller.toggleMainPanel.mock.calls.length).toBe(1);
     expect(communication.toggle.mock.calls.length).toBe(1);
 
-    mainPanelController.isInjected = true;
+    controller.isInjected = true;
     chrome.runtime.onMessage.listener({
         msg: Messages.TAB_UPDATED,
         shouldBeVisible: true,
         minimized: true,
         onLeft: true
     }, null, null);
-    expect(mainPanelController.toggleMainPanel.mock.calls.length).toBe(1);
+    expect(controller.toggleMainPanel.mock.calls.length).toBe(1);
     expect(communication.toggle.mock.calls.length).toBe(1);
 
-    mainPanelController.isInjected = false;
+    controller.isInjected = false;
     chrome.runtime.onMessage.listener({
         msg: Messages.TAB_UPDATED,
         shouldBeVisible: true,
         minimized: true,
         onLeft: true
     }, null, null);
-    expect(mainPanelController.toggleMainPanel.mock.calls.length).toBe(2);
+    expect(controller.toggleMainPanel.mock.calls.length).toBe(2);
     expect(communication.toggle.mock.calls.length).toBe(2);
-    expect(mainPanelController.toggleMainPanel.mock.calls[1][0]).toBe(true);
-    expect(mainPanelController.toggleMainPanel.mock.calls[1][1]).toBe(true);
+    expect(controller.toggleMainPanel.mock.calls[1][0]).toBe(true);
+    expect(controller.toggleMainPanel.mock.calls[1][1]).toBe(true);
 });

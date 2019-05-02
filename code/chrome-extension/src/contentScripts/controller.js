@@ -3,7 +3,7 @@ import { Communication } from './communication.js';
 import { SelectEngine } from './selectEngine/selectEngine.js';
 import { DataEngine } from './dataEngine/dataEngine.js';
 import { MainPanelController } from './mainPanelController.js';
-import { PreviewTable } from '../previewTable/previewTable.js';
+import { PreviewTable } from './previewTable/previewTable.js';
 
 
 export class Controller {
@@ -12,7 +12,7 @@ export class Controller {
         this._previewTable = new PreviewTable(this);
         this._selectEngine = new SelectEngine(this);
         this._mainPanelController = new MainPanelController(this);
-        this._communication = new Communication(this, this._mainPanelController);
+        this._communication = new Communication(this);
     }
 
     async init(shouldBeVisible, minimized, onLeft) {
@@ -102,5 +102,29 @@ export class Controller {
 
     cssUnselect() {
         this._selectEngine.cssUnselect();
+    }
+
+    get isMainPanelInjected() {
+        return this._mainPanelController.isInjected;
+    }
+
+    get isMainPanelVisible() {
+        return this._mainPanelController.isVisible;
+    }
+
+    get mainPanelIframe() {
+        return this._mainPanelController.iframe;
+    }
+
+    toggleMainPanel(minimized, onLeft) {
+        this._mainPanelController.toggleMainPanel(minimized, onLeft);
+    }
+
+    switchMainPanelSides() {
+        this._mainPanelController.switchSides();
+    }
+
+    toggleMainPanelMinMax() {
+        this._mainPanelController.toggleMinMax();
     }
 }

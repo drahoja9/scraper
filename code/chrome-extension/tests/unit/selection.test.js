@@ -1,43 +1,28 @@
 import { ColumnSelection, RowSelection } from "/src/contentScripts/selectEngine/selection.js";
 import { Messages } from "/src/constants.js";
-import { ControllerMockup, DOMNavigationMockup, SelectEngineMockup, UndoRedoStoreMockup } from "./mocks.js";
-import { JSDOM } from 'jsdom';
+import { SelectEngineMockup, UndoRedoStoreMockup } from "./mocks.js";
+import { defineHTMLProperties, prepareTestPage } from "./setup";
 
 
 // -------------------------------------------- Setup and teardown ----------------------------------------------
 
 beforeAll(function () {
-    // Mocking the `offsetWidth` and `offsetHeight`
-    Object.defineProperty(window.HTMLElement.prototype, 'offsetWidth', {
-        get: function () {
-            return this._customOffsetWidth !== undefined ? this._customOffsetWidth : 123;
-        }
-    });
-    Object.defineProperty(window.HTMLElement.prototype, 'offsetHeight', {
-        get: function () {
-            return this._customOffsetHeight !== undefined ? this._customOffsetHeight : 123;
-        }
-    });
+    defineHTMLProperties();
 });
 
 let rowSelection;
 let colSelection;
-let controller;
-let domNavigation;
 let undoRedoStore;
 let selectEngine;
 
 beforeEach(async function () {
-    controller = new ControllerMockup();
-    domNavigation = new DOMNavigationMockup();
+    await prepareTestPage();
     selectEngine = new SelectEngineMockup();
     undoRedoStore = new UndoRedoStoreMockup();
-    rowSelection = new RowSelection(controller, domNavigation, selectEngine);
-    colSelection = new ColumnSelection(controller, domNavigation, 0, selectEngine);
+    rowSelection = new RowSelection(selectEngine);
+    colSelection = new ColumnSelection(0, selectEngine);
     rowSelection._undoRedoStore = undoRedoStore;
     colSelection._undoRedoStore = undoRedoStore;
-    const dom = await JSDOM.fromFile('/home/jakub/BP/code/chrome-extension/tests/testingPage.html');
-    document.body.innerHTML = dom.window.document.body.innerHTML;
 });
 
 // -------------------------------------------------- Tests -----------------------------------------------------
@@ -58,9 +43,9 @@ test('select rows', () => {
     classes2.map(cls => {
         expect(secondLike.classList.contains(cls)).toBe(true);
     });
-    expect(controller.invalidateData.mock.calls.length).toBe(1);
-    expect(domNavigation.notify.mock.calls.length).toBe(1);
-    expect(domNavigation.notify.mock.calls[0][0]).toEqual(
+    expect(selectEngine.invalidateData.mock.calls.length).toBe(1);
+    expect(selectEngine.notifyDOMNavigation.mock.calls.length).toBe(1);
+    expect(selectEngine.notifyDOMNavigation.mock.calls[0][0]).toEqual(
         { msg: Messages.SELECTED, nodes: [firstLike, secondLike] }
     );
     expect(undoRedoStore.pushUndo.mock.calls.length).toBe(1);
@@ -81,8 +66,8 @@ test('try select already selected', () => {
     classes.map(cls => {
         expect(secondLike.classList.contains(cls)).toBe(true);
     });
-    expect(controller.invalidateData.mock.calls.length).toBe(0);
-    expect(domNavigation.notify.mock.calls.length).toBe(0);
+    expect(selectEngine.invalidateData.mock.calls.length).toBe(0);
+    expect(selectEngine.notifyDOMNavigation.mock.calls.length).toBe(0);
     expect(undoRedoStore.pushUndo.mock.calls.length).toBe(0);
 });
 
@@ -98,8 +83,8 @@ test('try select invalid', () => {
     classes.map(cls => {
         expect(hiddenDiv.classList.contains(cls)).toBe(false);
     });
-    expect(controller.invalidateData.mock.calls.length).toBe(0);
-    expect(domNavigation.notify.mock.calls.length).toBe(0);
+    expect(selectEngine.invalidateData.mock.calls.length).toBe(0);
+    expect(selectEngine.notifyDOMNavigation.mock.calls.length).toBe(0);
     expect(undoRedoStore.pushUndo.mock.calls.length).toBe(0);
 });
 
@@ -117,9 +102,9 @@ test('unselect columns', () => {
     classes.map(cls => {
         expect(secondLike.classList.contains(cls)).toBe(false);
     });
-    expect(controller.invalidateData.mock.calls.length).toBe(1);
-    expect(domNavigation.notify.mock.calls.length).toBe(1);
-    expect(domNavigation.notify.mock.calls[0][0]).toEqual(
+    expect(selectEngine.invalidateData.mock.calls.length).toBe(1);
+    expect(selectEngine.notifyDOMNavigation.mock.calls.length).toBe(1);
+    expect(selectEngine.notifyDOMNavigation.mock.calls[0][0]).toEqual(
         { msg: Messages.UNSELECTED, nodes: [firstLike, secondLike] }
     );
     expect(undoRedoStore.pushUndo.mock.calls.length).toBe(1);
@@ -144,9 +129,9 @@ test('unselect rows', () => {
     classes2.map(cls => {
         expect(secondLike.classList.contains(cls)).toBe(false);
     });
-    expect(controller.invalidateData.mock.calls.length).toBe(1);
-    expect(domNavigation.notify.mock.calls.length).toBe(1);
-    expect(domNavigation.notify.mock.calls[0][0]).toEqual(
+    expect(selectEngine.invalidateData.mock.calls.length).toBe(1);
+    expect(selectEngine.notifyDOMNavigation.mock.calls.length).toBe(1);
+    expect(selectEngine.notifyDOMNavigation.mock.calls[0][0]).toEqual(
         { msg: Messages.UNSELECTED, nodes: [firstLike, secondLike] }
     );
     expect(undoRedoStore.pushUndo.mock.calls.length).toBe(1);
@@ -163,9 +148,9 @@ test('toggle selection', () => {
     classes.map(cls => {
         expect(secondLike.classList.contains(cls)).toBe(true);
     });
-    expect(controller.invalidateData.mock.calls.length).toBe(1);
-    expect(domNavigation.notify.mock.calls.length).toBe(1);
-    expect(domNavigation.notify.mock.calls[0][0]).toEqual(
+    expect(selectEngine.invalidateData.mock.calls.length).toBe(1);
+    expect(selectEngine.notifyDOMNavigation.mock.calls.length).toBe(1);
+    expect(selectEngine.notifyDOMNavigation.mock.calls[0][0]).toEqual(
         { msg: Messages.SELECTED, nodes: [firstLike, secondLike] }
     );
     expect(undoRedoStore.pushUndo.mock.calls.length).toBe(1);
@@ -175,9 +160,9 @@ test('toggle selection', () => {
     classes.map(cls => {
         expect(secondLike.classList.contains(cls)).toBe(false);
     });
-    expect(controller.invalidateData.mock.calls.length).toBe(2);
-    expect(domNavigation.notify.mock.calls.length).toBe(2);
-    expect(domNavigation.notify.mock.calls[1][0]).toEqual(
+    expect(selectEngine.invalidateData.mock.calls.length).toBe(2);
+    expect(selectEngine.notifyDOMNavigation.mock.calls.length).toBe(2);
+    expect(selectEngine.notifyDOMNavigation.mock.calls[1][0]).toEqual(
         { msg: Messages.UNSELECTED, nodes: [firstLike, secondLike] }
     );
     expect(undoRedoStore.pushUndo.mock.calls.length).toBe(2);

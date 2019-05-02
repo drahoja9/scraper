@@ -2,7 +2,8 @@ import { Controller } from "/src/contentScripts/controller.js";
 import { Messages } from "/src/constants.js";
 import { ChromeAPI } from "./mocks.js";
 import { JSDOM } from 'jsdom';
-import { _mouseover } from "../utils";
+import { _click, _mouseover } from "../utils";
+import { MAIN_PANEL_PAGE } from "/src/constants";
 
 
 // -------------------------------------------- Setup and teardown ----------------------------------------------
@@ -33,8 +34,7 @@ beforeAll(function () {
         }
     );
 
-    chromeAPI = new ChromeAPI();
-    global.chrome = chromeAPI.get();
+    global.chrome = ChromeAPI.mock();
     global.fetch = url => new Promise(resolve => resolve({
         text: () => new Promise(resolve => {
             readFileContents(url, resolve);
@@ -43,9 +43,23 @@ beforeAll(function () {
 });
 
 let controller;
-let controlPanelDocument;
-let chromeAPI;
+let panelDocument;
 let mainPanelInit;
+
+async function testIframe(doc) {
+    return new Promise(resolve => {
+        const iframe = doc.createElement('iframe');
+        iframe.setAttribute('src', chrome.runtime.getURL(MAIN_PANEL_PAGE));
+        doc.body.appendChild(iframe);
+        iframe.onload = () => {
+            console.log('IFRAME LOADED!');
+            iframe.contentWindow.addEventListener('message', () => {
+                console.log('YAAY');
+            });
+            resolve(iframe);
+        };
+    });
+}
 
 beforeEach(async function () {
     const path = require('path');
@@ -57,15 +71,12 @@ beforeEach(async function () {
     });
     document.body.innerHTML = dom.window.document.body.innerHTML;
 
+    // const iframe = await testIframe(dom.window.document);
+
     // const tmp = window.document;
     // delete global.window.document;
     // global.window.document = dom.window.document;
-    // const iframe = document.createElement('iframe');
-    // iframe.src = chrome.runtime.getURL(MAIN_PANEL_PAGE);
-    // document.body.appendChild(iframe);
-    // iframe.onload = () => {
-    //     console.log('IFRAME LOADED!');
-    // };
+
     // delete global.window.document;
     // global.window.document = tmp;
 
@@ -74,6 +85,9 @@ beforeEach(async function () {
     delete global.window.document;
     global.window.document = dom.window.document;
     global.window.MouseEvent = dom.window.MouseEvent;
+
+    const test = document.querySelector('#container');
+    console.log(getComputedStyle(test));
 
     // Need to set non-inline CSS via JS
     let style = document.createElement('style');
@@ -93,7 +107,7 @@ beforeEach(async function () {
 
 // -------------------------------------------------- Tests -----------------------------------------------------
 
-function onControlPanelLoad(testCallback, done) {
+function onMainPanelDOMLoad(testCallback, done) {
     const fs = require('fs');
     const path = require('path');
     const mainPanelScripts = [
@@ -121,20 +135,36 @@ function onControlPanelLoad(testCallback, done) {
     }
 
     const panelIframe = controller._mainPanelController.iframe;
-    controlPanelDocument = panelIframe.contentWindow.window.document;
-    const scriptEl = controlPanelDocument.createElement("script");
+    panelDocument = panelIframe.contentWindow.window.document;
+    const scriptEl = panelDocument.createElement("script");
     scriptEl.textContent = uglifiedCode;
 
-    controlPanelDocument.onload = () => {
-        controlPanelDocument.body.appendChild(scriptEl);
+    panelDocument.addEventListener('load', () => {
+        panelDocument.body.appendChild(scriptEl);
         mainPanelInit = panelIframe.contentWindow.window.init;
+
+        panelIframe.contentWindow.window.parent.postMessage = jest.fn((message, targetOrigin) => {
+            controller._communication._communicationWithMainPanel({
+                data: message,
+                origin: chrome.runtime.getURL(MAIN_PANEL_PAGE)
+            });
+        });
+
         testCallback();
         done();
-    };
+    });
+}
+
+function onMainPanelLoad(testCallback, done) {
+    const panelIframe = controller._mainPanelController.iframe;
+    panelIframe.addEventListener('load', () => {
+        testCallback();
+        done();
+    });
 }
 
 test('insert all parts inside a page after clicking on browser icon', done => {
-    chromeAPI.messageHandler({
+    chrome.runtime.onMessage.listener({
         msg: Messages.BROWSER_ACTION_CLICKED
     }, null, null);
 
@@ -147,13 +177,13 @@ test('insert all parts inside a page after clicking on browser icon', done => {
     expect(document.querySelector('.scraping-dom-navigation')).toBe(domNavigation);
     expect(document.querySelector('.scraping-modal')).toBe(previewTable);
 
-    onControlPanelLoad(() => {
-        expect(controlPanelDocument.querySelector('#control-panel-content')).not.toBe(null);
+    onMainPanelDOMLoad(() => {
+        expect(panelDocument.querySelector('#control-panel-content')).not.toBe(null);
     }, done);
 });
 
 test('insert all parts inside a page after a reload', done => {
-    chromeAPI.messageHandler({
+    chrome.runtime.onMessage.listener({
         msg: Messages.TAB_UPDATED,
         shouldBeVisible: true
     }, null, null);
@@ -167,8 +197,8 @@ test('insert all parts inside a page after a reload', done => {
     expect(document.querySelector('.scraping-dom-navigation')).toBe(domNavigation);
     expect(document.querySelector('.scraping-modal')).toBe(previewTable);
 
-    onControlPanelLoad(() => {
-        expect(controlPanelDocument.querySelector('#control-panel-content')).not.toBe(null);
+    onMainPanelDOMLoad(() => {
+        expect(panelDocument.querySelector('#control-panel-content')).not.toBe(null);
     }, done);
 });
 
@@ -185,20 +215,20 @@ test('insert all parts inside a page after a reload (before the message handler 
     expect(document.querySelector('.scraping-dom-navigation')).toBe(domNavigation);
     expect(document.querySelector('.scraping-modal')).toBe(previewTable);
 
-    onControlPanelLoad(() => {
-        expect(controlPanelDocument.querySelector('#control-panel-content')).not.toBe(null);
+    onMainPanelDOMLoad(() => {
+        expect(panelDocument.querySelector('#control-panel-content')).not.toBe(null);
     }, done);
 });
 
 test('ensure the control panel is in correct state after injecting', done => {
-    chromeAPI.messageHandler({
+    chrome.runtime.onMessage.listener({
         msg: Messages.TAB_UPDATED,
         shouldBeVisible: true,
         minimized: true,
         onLeft: true
     }, null, null);
 
-    onControlPanelLoad(() => {
+    onMainPanelLoad(() => {
         const controlPanel = document.querySelector('.scraping-iframe-panel');
         expect(controlPanel.classList.contains('scraping-minimized')).toBe(true);
         expect(controlPanel.classList.contains('scraping-left')).toBe(true);
@@ -209,7 +239,7 @@ test('ensure the control panel is in correct state after injecting (before the m
     controller = new Controller();
     await controller.init(true, true, true);
 
-    onControlPanelLoad(() => {
+    onMainPanelLoad(() => {
         const controlPanel = document.querySelector('.scraping-iframe-panel');
         expect(controlPanel.classList.contains('scraping-minimized')).toBe(true);
         expect(controlPanel.classList.contains('scraping-left')).toBe(true);
@@ -217,27 +247,34 @@ test('ensure the control panel is in correct state after injecting (before the m
 });
 
 test('select an element', done => {
-    chromeAPI.messageHandler({ msg: Messages.BROWSER_ACTION_CLICKED }, null, null);
+    chrome.runtime.onMessage.listener({
+        msg: Messages.BROWSER_ACTION_CLICKED
+    }, null, null);
 
-    onControlPanelLoad(() => {
-        const basicsCard = controlPanelDocument.querySelector('#select-basics');
-        const minMaxBtn = controlPanelDocument.querySelector('#min-max-btn');
-        const selectSwitch = controlPanelDocument.querySelector('#select-elements-checkbox');
+    onMainPanelDOMLoad(() => {
+        const basicsCard = panelDocument.querySelector('#select-basics');
+        const minMaxBtn = panelDocument.querySelector('#min-max-btn');
+        const selectSwitch = panelDocument.querySelector('#select-elements-checkbox');
         const hiddenDiv = document.querySelector('#hidden-div-1');
         const firstP = document.querySelector('#first-p');
         mainPanelInit();
 
-        basicsCard.click();
-        minMaxBtn.click();
+        _click(basicsCard);
+        _click(minMaxBtn);
         expect(basicsCard.classList.contains('collapsed')).toBe(false);
         expect(minMaxBtn.classList.contains('rotated')).toBe(true);
 
-        selectSwitch.click();
+        // Start selecting elements -- activate MouseSelector
+        _click(selectSwitch);
+
         _mouseover(hiddenDiv);
-        expect(hiddenDiv.classList.contains('scraping-highlighted-row')).toBe(false);
+        hiddenDiv.click();
+        console.log(hiddenDiv.className);
+        // expect(hiddenDiv.classList.contains('scraping-highlighted-row')).toBe(false);
+
         _mouseover(firstP);
-        firstP.click();
-        console.log(firstP.classList);
+        // firstP.click();
+        console.log(firstP.className);
         // expect(firstP.classList.contains('scraping-highlighted-row')).toBe(true);
     }, done);
 });

@@ -21,17 +21,16 @@ class CommunicationInterface {
 
 
 export class Communication extends CommunicationInterface {
-    constructor(controller, mainPanelController) {
+    constructor(controller) {
         super();
         this._controller = controller;
-        this._mainPanelController = mainPanelController;
 
         this._communicationWithMainPanel = this._communicationWithMainPanel.bind(this);
         this.listenToBackground();
     }
 
     toggle() {
-        if (this._mainPanelController.isVisible) {
+        if (this._controller.isMainPanelVisible) {
             window.addEventListener('message', this._communicationWithMainPanel);
         } else {
             window.removeEventListener('message', this._communicationWithMainPanel);
@@ -46,11 +45,11 @@ export class Communication extends CommunicationInterface {
                 const pageUpdatedWithExtensionOn = request => (
                     request.msg === Messages.TAB_UPDATED &&
                     request.shouldBeVisible === true &&
-                    !this._mainPanelController.isInjected
+                    !this._controller.isMainPanelInjected
                 );
 
                 if (extensionIconClicked(request) || pageUpdatedWithExtensionOn(request)) {
-                    this._mainPanelController.toggleMainPanel(
+                    this._controller.toggleMainPanel(
                         request.minimized,
                         request.onLeft
                     );
@@ -65,7 +64,7 @@ export class Communication extends CommunicationInterface {
     }
 
     sendMessageToMainPanel(msg) {
-        this._mainPanelController.iframe.contentWindow.postMessage(
+        this._controller.mainPanelIframe.contentWindow.postMessage(
             { ...msg, type: Messages.FROM_CONTROLLER },
             chrome.runtime.getURL(MAIN_PANEL_PAGE)
         );
@@ -79,11 +78,11 @@ export class Communication extends CommunicationInterface {
 
         switch (event.data.msg) {
             case Messages.MINIMIZE_MAXIMIZE:
-                this._mainPanelController.toggleMinMax();
+                this._controller.toggleMainPanelMinMax();
                 this.sendMessageToBackground({ msg: event.data.msg });
                 break;
             case Messages.SWITCH_SIDES:
-                this._mainPanelController.switchSides();
+                this._controller.switchMainPanelSides();
                 this.sendMessageToBackground({ msg: event.data.msg });
                 break;
             case Messages.SELECTING_ROWS:
