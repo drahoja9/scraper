@@ -1,8 +1,8 @@
 import { PreviewTable } from '/src/contentScripts/previewTable/previewTable.js';
-import { ControllerMockup } from './mocks.js';
+import { ControllerMockup } from '../../mocks.js';
 import { DATA_PREVIEW } from "/src/constants.js";
-import { prepareTestPage } from "./setup";
-import { _click } from "../utils";
+import { prepareTestPage } from "../../setup";
+import { _click } from "../../utils";
 
 
 // -------------------------------------------- Setup and teardown ----------------------------------------------

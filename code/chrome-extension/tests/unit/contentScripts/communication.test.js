@@ -1,7 +1,7 @@
 import { Communication } from "/src/contentScripts/communication.js";
 import { Messages } from "/src/constants.js";
-import { ChromeAPI, ControllerMockup } from "./mocks";
-import { _postMessage } from "../utils.js";
+import { ChromeAPI, ControllerMockup } from "../../mocks.js";
+import { _postMessage } from "../../utils.js";
 
 
 // -------------------------------------------- Setup and teardown ----------------------------------------------

@@ -1,8 +1,8 @@
 import { DOMNavigaton } from "/src/contentScripts/selectEngine/selectors/domNavigation/domNavigation.js";
 import { Messages } from "/src/constants.js";
-import { SelectEngineMockup } from "./mocks.js";
-import { _mouseenter, _mouseleave } from "../utils.js";
-import { defineHTMLProperties, prepareTestPage } from "./setup";
+import { SelectEngineMockup } from "../../mocks.js";
+import { _mouseenter, _mouseleave } from "../../utils.js";
+import { defineHTMLProperties, prepareTestPage } from "../../setup.js";
 
 
 // -------------------------------------------- Setup and teardown ----------------------------------------------

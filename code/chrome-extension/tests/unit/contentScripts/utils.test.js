@@ -1,5 +1,5 @@
 import { isValid } from '/src/contentScripts/utils.js';
-import { defineHTMLProperties, prepareTestPage } from "./setup";
+import { defineHTMLProperties, prepareTestPage } from "../../setup.js";
 
 
 // ------------------------------------------------- Helpers -----------------------------------------------------

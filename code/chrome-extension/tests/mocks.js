@@ -219,7 +219,7 @@ export class ChromeAPI {
         const path = require('path');
         return {
             runtime: {
-                getURL: jest.fn(url => 'file://' + path.resolve(__dirname, '../../..' + url)),
+                getURL: jest.fn(url => 'file://' + path.resolve(__dirname, '../' + url)),
                 sendMessage: jest.fn(msg => {
                 }),
                 onMessage: {

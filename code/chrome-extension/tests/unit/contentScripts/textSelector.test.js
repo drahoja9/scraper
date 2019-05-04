@@ -1,6 +1,6 @@
 import { TextSelector } from '/src/contentScripts/selectEngine/selectors/textSelector.js';
-import { SelectEngineMockup } from './mocks.js';
-import { defineHTMLProperties, prepareTestPage } from "./setup";
+import { SelectEngineMockup } from '../../mocks.js';
+import { defineHTMLProperties, prepareTestPage } from "../../setup";
 
 
 // -------------------------------------------- Setup and teardown ----------------------------------------------

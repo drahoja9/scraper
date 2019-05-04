@@ -1,7 +1,7 @@
 import { MainPanelController } from "/src/contentScripts/mainPanelController.js";
-import { ControllerMockup } from "./mocks.js";
+import { ControllerMockup } from "../../mocks.js";
 import { Messages } from "/src/constants.js";
-import { prepareTestPage } from "./setup";
+import { prepareTestPage } from "../../setup.js";
 
 
 // -------------------------------------------- Setup and teardown ----------------------------------------------

@@ -1,6 +1,6 @@
 import { UndoRedoStore } from '/src/contentScripts/selectEngine/undoRedoStore.js';
 import { Messages } from "/src/constants.js";
-import { SelectionMockup } from "./mocks.js";
+import { SelectionMockup } from "../../mocks.js";
 
 
 // -------------------------------------------- Setup and teardown ----------------------------------------------

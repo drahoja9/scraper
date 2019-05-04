@@ -1,5 +1,5 @@
 import { DataEngine } from "/src/contentScripts/dataEngine/dataEngine.js";
-import { defineHTMLProperties, prepareTestPage } from "./setup";
+import { defineHTMLProperties, prepareTestPage } from "../../setup";
 
 
 // -------------------------------------------- Setup and teardown ----------------------------------------------

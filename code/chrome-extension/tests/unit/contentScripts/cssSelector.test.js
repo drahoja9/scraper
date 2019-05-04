@@ -1,6 +1,6 @@
 import { CSSSelector } from "/src/contentScripts/selectEngine/selectors/cssSelector";
-import { SelectEngineMockup } from './mocks.js';
-import { prepareTestPage } from "./setup";
+import { SelectEngineMockup } from '../../mocks.js';
+import { prepareTestPage } from "../../setup";
 
 
 // -------------------------------------------- Setup and teardown ----------------------------------------------

@@ -7,7 +7,7 @@
         "moduleNameMapper": {
             "^/src/(.*)$": "<rootDir>/src/$1"
         },
-      "testURL": "http://localhost/"
+      "testURL": "http://localhost"
     },
     "jest.showCoverageOnLoad": true,
     "devDependencies": {

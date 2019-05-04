@@ -19,7 +19,7 @@
       ],
       "css": [
         "src/contentScripts/contentScript.css",
-        "src/previewTable/previewTable.css"
+        "src/contentScripts/previewTable/previewTable.css"
       ],
       "js": [
         "lib/js/jquery-3.3.1.min.js",

@@ -1,7 +1,7 @@
 import { MouseSelector } from '/src/contentScripts/selectEngine/selectors/mouseSelector.js';
-import { SelectEngineMockup } from './mocks.js';
-import { _click, _clickWithCtrl, _mouseout, _mouseover } from '../utils.js';
-import { prepareTestPage } from "./setup";
+import { SelectEngineMockup } from '../../mocks.js';
+import { _click, _clickWithCtrl, _mouseout, _mouseover } from '../../utils.js';
+import { prepareTestPage } from "../../setup";
 
 
 // -------------------------------------------- Setup and teardown ----------------------------------------------
@@ -22,7 +22,7 @@ afterEach(function () {
 
 // -------------------------------------------------- Tests -----------------------------------------------------
 
-test('toggle selector on and off', () => {
+test('listenToMainPanel selector on and off', () => {
     const firstHeader = document.querySelector('#first-header');
     const highlightClass1 = 'scraping-highlighted-1';
 

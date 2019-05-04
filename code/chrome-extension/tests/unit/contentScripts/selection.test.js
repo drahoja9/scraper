@@ -1,7 +1,7 @@
 import { ColumnSelection, RowSelection } from "/src/contentScripts/selectEngine/selection.js";
 import { Messages } from "/src/constants.js";
-import { SelectEngineMockup, UndoRedoStoreMockup } from "./mocks.js";
-import { defineHTMLProperties, prepareTestPage } from "./setup";
+import { SelectEngineMockup, UndoRedoStoreMockup } from '../../mocks.js';
+import { defineHTMLProperties, prepareTestPage } from "../../setup.js";
 
 
 // -------------------------------------------- Setup and teardown ----------------------------------------------
@@ -139,7 +139,7 @@ test('unselect rows', () => {
     expect(rowSelection.classes).toEqual(['scraping-selected-row', 'scraping-row-999']);
 });
 
-test('toggle selection', () => {
+test('listenToMainPanel selection', () => {
     const firstLike = document.querySelector('#first-like');
     const secondLike = document.querySelector('#second-like');
     const classes = colSelection.classes;

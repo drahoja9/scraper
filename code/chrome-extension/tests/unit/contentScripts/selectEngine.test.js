@@ -1,7 +1,7 @@
 import { SelectEngine } from '/src/contentScripts/selectEngine/selectEngine.js';
 import { Messages } from '/src/constants.js';
-import { ControllerMockup } from "./mocks";
-import { prepareTestPage } from "./setup";
+import { ControllerMockup } from "../../mocks.js";
+import { prepareTestPage } from "../../setup.js";
 
 
 // -------------------------------------------- Setup and teardown ----------------------------------------------
@@ -53,7 +53,7 @@ test('selecting rows', () => {
     selectEngine._mouseSelector._isTurnedOn = true;
 
     selectEngine.selectingRows();
-    expect(selectEngine._selection).toBe(selectEngine._rows);
+    expect(selectEngine._currentSelection).toBe(selectEngine._rows);
     expect(controller.notify.mock.calls.length).toBe(2);
     expect(controller.notify.mock.calls[0][0]).toEqual({ msg: Messages.DISABLE_UNDO });
     expect(controller.notify.mock.calls[1][0]).toEqual({ msg: Messages.DISABLE_REDO });
@@ -66,7 +66,7 @@ test('selecting columns', () => {
     selectEngine._mouseSelector._isTurnedOn = true;
 
     selectEngine.selectingCols();
-    expect(selectEngine._selection).toBe(selectEngine._columns[selectEngine._currentCol]);
+    expect(selectEngine._currentSelection).toBe(selectEngine._columns[selectEngine._currentCol]);
     expect(controller.notify.mock.calls.length).toBe(2);
     expect(controller.notify.mock.calls[0][0]).toEqual({ msg: Messages.DISABLE_UNDO });
     expect(controller.notify.mock.calls[1][0]).toEqual({ msg: Messages.DISABLE_REDO });
@@ -75,7 +75,7 @@ test('selecting columns', () => {
 
     selectEngine._currentCol = 1234;
     selectEngine.selectingCols();
-    expect(selectEngine._selection).toBe(selectEngine._columns[selectEngine._currentCol]);
+    expect(selectEngine._currentSelection).toBe(selectEngine._columns[selectEngine._currentCol]);
     expect(Object.keys(selectEngine._columns).length).toBe(2);
 });
 
@@ -100,7 +100,7 @@ test('change column', () => {
 
     selectEngine.changeCol({ colId: 123 });
     expect(selectEngine._currentCol).toBe(123);
-    expect(selectEngine._selection).toBe(selectEngine._columns[selectEngine._currentCol]);
+    expect(selectEngine._currentSelection).toBe(selectEngine._columns[selectEngine._currentCol]);
     expect(Object.keys(selectEngine._columns).length).toBe(2);
     expect(selectEngine._mouseSelector._current).toBe(undefined);
     expect(selectEngine._mouseSelector._isTurnedOn).toBe(true);
