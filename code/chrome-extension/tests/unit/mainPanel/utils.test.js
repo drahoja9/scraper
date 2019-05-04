@@ -107,7 +107,7 @@ test('correct input event handling without exact check', () => {
 
     global.window.parent.postMessage = jest.fn((msg, origin) => {
         expect(msg.msg).toBe(message);
-        expect(msg.payload).toEqual({ value, exactCheck: null });
+        expect(msg.payload).toEqual({ value, exact: null });
         expect(origin).toEqual('*');
     });
 
@@ -127,7 +127,7 @@ test('correct input event handling with exact check', () => {
 
     global.window.parent.postMessage = jest.fn((msg, origin) => {
         expect(msg.msg).toBe(message);
-        expect(msg.payload).toEqual({ value, exactCheck: exactCheck.checked });
+        expect(msg.payload).toEqual({ value, exact: exactCheck.checked });
         expect(origin).toEqual('*');
     });
 

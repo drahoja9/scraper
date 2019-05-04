@@ -20,15 +20,14 @@ export class Controller {
             await this._previewTable.init();
             if (shouldBeVisible) {
                 this._mainPanelController.toggleMainPanel(minimized, onLeft);
-                this._communication.toggle();
             }
             resolve();
         });
     }
 
-    injectParts() {
+    async injectParts() {
         this._selectEngine.injectDomNavigation();
-        this._previewTable.inject();
+        await this._previewTable.inject();
     }
 
     previewData({ cols }) {

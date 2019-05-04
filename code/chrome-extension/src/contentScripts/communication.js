@@ -2,7 +2,7 @@ import { MAIN_PANEL_PAGE, Messages } from '../constants.js';
 
 
 class CommunicationInterface {
-    toggle() {
+    listenToMainPanel() {
         throw Error('Not implemented!');
     }
 
@@ -25,38 +25,20 @@ export class Communication extends CommunicationInterface {
         super();
         this._controller = controller;
 
-        this._communicationWithMainPanel = this._communicationWithMainPanel.bind(this);
+        this._backgroundHandler = this._backgroundHandler.bind(this);
+        this._mainPanelHandler = this._mainPanelHandler.bind(this);
+
         this.listenToBackground();
+        this.listenToMainPanel();
     }
 
-    toggle() {
-        if (this._controller.isMainPanelVisible) {
-            window.addEventListener('message', this._communicationWithMainPanel);
-        } else {
-            window.removeEventListener('message', this._communicationWithMainPanel);
-        }
+    listenToMainPanel() {
+        window.addEventListener('message', this._mainPanelHandler);
     }
 
     listenToBackground() {
         // Communication with backrground.js (something like "backend" of the extension)
-        chrome.runtime.onMessage.addListener(
-            (request, sender, sendResponse) => {
-                const extensionIconClicked = request => request.msg === Messages.BROWSER_ACTION_CLICKED;
-                const pageUpdatedWithExtensionOn = request => (
-                    request.msg === Messages.TAB_UPDATED &&
-                    request.shouldBeVisible === true &&
-                    !this._controller.isMainPanelInjected
-                );
-
-                if (extensionIconClicked(request) || pageUpdatedWithExtensionOn(request)) {
-                    this._controller.toggleMainPanel(
-                        request.minimized,
-                        request.onLeft
-                    );
-                    this.toggle();
-                }
-            }
-        );
+        chrome.runtime.onMessage.addListener(this._backgroundHandler);
     }
 
     sendMessageToBackground(msg) {
@@ -70,7 +52,21 @@ export class Communication extends CommunicationInterface {
         );
     }
 
-    _communicationWithMainPanel(event) {
+    _backgroundHandler(request, sender, sendResponse) {
+        const extensionIconClicked = request => request.msg === Messages.BROWSER_ACTION_CLICKED;
+        const pageUpdatedWithExtensionOn = request => (
+            request.msg === Messages.TAB_UPDATED &&
+            request.shouldBeVisible === true &&
+            !this._controller.isMainPanelInjected
+        );
+
+        if (extensionIconClicked(request) || pageUpdatedWithExtensionOn(request)) {
+            this._controller.toggleMainPanel(request.minimized, request.onLeft);
+        }
+    }
+
+    _mainPanelHandler(event) {
+        console.log('XXX');
         // Message is not from our main panel
         if (chrome.runtime.getURL(MAIN_PANEL_PAGE).indexOf(event.origin) === -1) {
             return;

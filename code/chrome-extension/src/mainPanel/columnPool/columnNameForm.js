@@ -1,6 +1,3 @@
-import { ENTER_KEY } from '/src/constants.js';
-
-
 export class ColumnNameForm {
     constructor(value, renameFunc, displayNameForm) {
         this._form = document.createElement('textarea');
@@ -11,7 +8,7 @@ export class ColumnNameForm {
             renameFunc(event.currentTarget.value)
         });
         this._form.addEventListener('keydown', (event) => {
-            if (event.keyCode === ENTER_KEY) {
+            if (event.key === 'Enter') {
                 renameFunc(event.currentTarget.value);
             }
         });

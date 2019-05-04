@@ -27,8 +27,8 @@ export class TextSelector extends TextSelectorInterface {
         this._highlight(value, (innerText, value) => innerText.endsWith(value));
     }
 
-    contains({ value, exactCheck }) {
-        if (exactCheck) {
+    contains({ value, exact }) {
+        if (exact) {
             this._highlight(value, (innerText, value) => innerText === value);
         } else {
             this._highlight(value, (innerText, value) => innerText.includes(value));

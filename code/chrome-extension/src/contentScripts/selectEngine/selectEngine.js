@@ -122,17 +122,29 @@ export class SelectEngine extends SelectEngineInterface {
         this._columns = {
             [this._currentCol]: new ColumnSelection(this._currentCol, this)
         };
-        this._selection = this._rows;
+        this._currentSelection = this._rows;
 
         this._scrapingId = 'scraping-0';
     }
 
+    get isSelectingRows() {
+        return this._currentSelection.isSelectingRows;
+    }
+
+    get classes() {
+        return this._currentSelection.classes;
+    }
+
+    set classes(classList) {
+        this._currentSelection.classes = classList;
+    }
+
     select(elements) {
-        this._selection.select(elements);
+        this._currentSelection.select(elements);
     }
 
     unselect(elements) {
-        this._selection.unselect(elements);
+        this._currentSelection.unselect(elements);
     }
 
     unselectRow(rowData) {
@@ -143,7 +155,7 @@ export class SelectEngine extends SelectEngineInterface {
 
         this.selectingCols();
         for (const col of targetCols) {
-            this.changeCol({ colId: this._selection.getColId(col) });
+            this.changeCol({ colId: this._currentSelection.getColId(col) });
             this.unselect([col]);
         }
 
@@ -156,28 +168,16 @@ export class SelectEngine extends SelectEngineInterface {
     }
 
     toggle(elements) {
-        return this._selection.toggle(elements);
+        return this._currentSelection.toggle(elements);
     }
 
     areSelected(elements) {
-        return this._selection.areSelected(elements);
-    }
-
-    get isSelectingRows() {
-        return this._selection.isSelectingRows;
-    }
-
-    get classes() {
-        return this._selection.classes;
-    }
-
-    set classes(classList) {
-        this._selection.classes = classList;
+        return this._currentSelection.areSelected(elements);
     }
 
     selectingRows() {
-        this._selection = this._rows;
-        this._selection.checkUndoRedo();
+        this._currentSelection = this._rows;
+        this._currentSelection.checkUndoRedo();
         this.resetMouseSelector();
     }
 
@@ -185,15 +185,15 @@ export class SelectEngine extends SelectEngineInterface {
         if (!this._columns[this._currentCol]) {
             this._columns[this._currentCol] = new ColumnSelection(this._currentCol, this);
         }
-        this._selection = this._columns[this._currentCol];
-        this._selection.checkUndoRedo();
+        this._currentSelection = this._columns[this._currentCol];
+        this._currentSelection.checkUndoRedo();
         this.resetMouseSelector();
     }
 
     changeCol({ colId }) {
         this._currentCol = colId;
         this.selectingCols();
-        this._selection.activateColumn();
+        this._currentSelection.activateColumn();
     }
 
     injectDomNavigation() {
@@ -201,7 +201,7 @@ export class SelectEngine extends SelectEngineInterface {
     }
 
     toggleMouseSelector() {
-        this._mouseSelector.toggle(this._selection.highlightingClass);
+        this._mouseSelector.toggle(this._currentSelection.highlightingClass);
     }
 
     contains(payload) {
@@ -231,11 +231,11 @@ export class SelectEngine extends SelectEngineInterface {
     }
 
     undo() {
-        this._selection.undo();
+        this._currentSelection.undo();
     }
 
     redo() {
-        this._selection.redo();
+        this._currentSelection.redo();
     }
 
     generateId() {

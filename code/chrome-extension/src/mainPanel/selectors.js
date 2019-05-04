@@ -1,4 +1,4 @@
-import { ENTER_KEY, Messages } from '../constants.js';
+import { Messages } from '../constants.js';
 import { registerClickHandler, registerInputHandler, sendMessageToContentScript } from './utils.js';
 
 
@@ -60,12 +60,11 @@ class TextSelector {
 class CSSSelector {
     constructor() {
         this._cssSelectorInput = document.querySelector('#css-input');
-        this._error = document.querySelector('#css-form-error');
         this._cssSelectorInput.addEventListener('keydown', this._inputHandler.bind(this));
     }
 
     _inputHandler(event) {
-        if (event.keyCode === ENTER_KEY) {
+        if (event.key === 'Enter') {
             event.preventDefault();
             const selector = this._cssSelectorInput.value;
 

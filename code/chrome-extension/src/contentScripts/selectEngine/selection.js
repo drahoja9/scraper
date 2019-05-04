@@ -50,6 +50,7 @@ class Selection extends SelectionInterface {
     constructor(selectEngine) {
         super();
         this._scrapingClasses = undefined;
+        this.highlightingClass = undefined;
         this._selectEngine = selectEngine;
         this._undoRedoStore = new UndoRedoStore(this);
     }

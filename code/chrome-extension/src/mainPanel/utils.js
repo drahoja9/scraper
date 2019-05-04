@@ -1,4 +1,4 @@
-import { Messages, ENTER_KEY } from '../constants.js';
+import { Messages } from '../constants.js';
 
 
 export function sendMessageToContentScript(message, payload = null) {
@@ -18,11 +18,11 @@ export function registerHandler(element, eventType, message, callback = () => { 
 
 export function registerInputHandler(textInput, message, exactCheck = null) {
     textInput.addEventListener('keydown', function (event) {
-        if (event.keyCode === ENTER_KEY) {
+        if (event.key === 'Enter') {
             event.preventDefault();
             sendMessageToContentScript(message, {
                 value: textInput.value,
-                exactCheck: exactCheck ? exactCheck.checked : null
+                exact: exactCheck ? exactCheck.checked : null
             });
         }
     });

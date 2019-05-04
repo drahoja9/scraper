@@ -104,6 +104,7 @@ export class MouseSelector extends MouseSelectorInterface {
     }
 
     _selectingFunc(event) {
+        console.log('SELECTING');
         if (event.target.classList.contains('scraping-protected')) return;
 
         event.stopImmediatePropagation();
@@ -120,15 +121,16 @@ export class MouseSelector extends MouseSelectorInterface {
     }
 
     _highlightingFunc(event) {
+        console.log('Highlightining');
         if (event.target.classList.contains('scraping-protected')) return;
         event.target.classList.toggle(this._highlightingClass);
     }
 
-    _toggleEventListener(eventType, toggleFunc, capture = false) {
+    _toggleEventListener(eventType, listener, capture = false) {
         if (this._isTurnedOn) {
-            document.addEventListener(eventType, toggleFunc, capture);
+            document.addEventListener(eventType, listener, capture);
         } else {
-            document.removeEventListener(eventType, toggleFunc, capture);
+            document.removeEventListener(eventType, listener, capture);
         }
     }
 
@@ -138,6 +140,7 @@ export class MouseSelector extends MouseSelectorInterface {
     }
 
     _toggleOnClickSelecting() {
+        console.log('ADD');
         this._toggleEventListener('click', this._selectingFunc, true);
     }
 }

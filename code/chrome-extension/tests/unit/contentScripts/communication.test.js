@@ -22,7 +22,6 @@ test('processing messages from main panel', () => {
     });
     controller.isVisible = true;
 
-    communication.toggle();
     _postMessage(Messages.MINIMIZE_MAXIMIZE);
     expect(controller.toggleMainPanelMinMax.mock.calls.length).toBe(1);
     expect(communication.sendMessageToBackground.mock.calls.length).toBe(1);
@@ -67,28 +66,6 @@ test('processing messages from main panel', () => {
     }
 });
 
-test('turn communication on and off', () => {
-    controller.isVisible = true;
-    communication.toggle();
-    _postMessage(Messages.ADDED_COL);
-    expect(controller.invalidateData.mock.calls.length).toBe(1);
-
-    controller.isVisible = true;
-    communication.toggle();
-    _postMessage(Messages.ADDED_COL);
-    expect(controller.invalidateData.mock.calls.length).toBe(2);
-
-    controller.isVisible = false;
-    communication.toggle();
-    _postMessage(Messages.ADDED_COL);
-    expect(controller.invalidateData.mock.calls.length).toBe(2);
-
-    controller.isVisible = false;
-    communication.toggle();
-    _postMessage(Messages.ADDED_COL);
-    expect(controller.invalidateData.mock.calls.length).toBe(2);
-});
-
 test('send message to background script', () => {
     const msg = { msg: 'some message', payload: 'some data' };
     communication.sendMessageToBackground(msg);
@@ -115,7 +92,6 @@ test('listening for messages from background script', () => {
         onLeft: false
     }, null, null);
     expect(controller.toggleMainPanel.mock.calls.length).toBe(1);
-    expect(communication.toggle.mock.calls.length).toBe(1);
     expect(controller.toggleMainPanel.mock.calls[0][0]).toBe(false);
     expect(controller.toggleMainPanel.mock.calls[0][1]).toBe(false);
 
@@ -127,7 +103,6 @@ test('listening for messages from background script', () => {
         onLeft: true
     }, null, null);
     expect(controller.toggleMainPanel.mock.calls.length).toBe(1);
-    expect(communication.toggle.mock.calls.length).toBe(1);
 
     controller.isInjected = true;
     chrome.runtime.onMessage.listener({
@@ -137,7 +112,6 @@ test('listening for messages from background script', () => {
         onLeft: true
     }, null, null);
     expect(controller.toggleMainPanel.mock.calls.length).toBe(1);
-    expect(communication.toggle.mock.calls.length).toBe(1);
 
     controller.isInjected = false;
     chrome.runtime.onMessage.listener({
@@ -147,7 +121,6 @@ test('listening for messages from background script', () => {
         onLeft: true
     }, null, null);
     expect(controller.toggleMainPanel.mock.calls.length).toBe(2);
-    expect(communication.toggle.mock.calls.length).toBe(2);
     expect(controller.toggleMainPanel.mock.calls[1][0]).toBe(true);
     expect(controller.toggleMainPanel.mock.calls[1][1]).toBe(true);
 });
