@@ -13,13 +13,15 @@ class ActionButtons {
         registerClickHandler(
             this._previewBtn,
             Messages.DISPLAY_PREVIEW,
-            () => { },
+            () => {
+            },
             () => ({ cols: colsPool.getCols() })
         );
         registerClickHandler(
             this._downloadBtn,
             Messages.DOWNLOAD,
-            () => { },
+            () => {
+            },
             () => ({ format: this._formatSelect.value, cols: colsPool.getCols() })
         );
     }
@@ -95,6 +97,9 @@ class MainPanel {
 
     minimizeMaximize() {
         this._minMaxBtn.classList.toggle('rotated');
+        this._minMaxBtn.title = this._minMaxBtn.title === 'Minimize'
+            ? 'Maximize'
+            : 'Minimize';
     }
 
     enableUndo() {
@@ -157,7 +162,7 @@ function init() {
         }
     });
 
-    // $('[data-toggle="tooltip"]').tooltip();
+    $('[data-toggle="tooltip"]').tooltip();
 }
 
 document.addEventListener('DOMContentLoaded', function () {

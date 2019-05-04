@@ -70,7 +70,6 @@ export class Communication extends CommunicationInterface {
     }
 
     _mainPanelHandler(event) {
-        console.log('XXX');
         // Message is not from our main panel
         if (chrome.runtime.getURL(MAIN_PANEL_PAGE).indexOf(event.origin) === -1) {
             return;

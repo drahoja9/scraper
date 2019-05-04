@@ -13,6 +13,8 @@ export const _areSelected = (selectEngine, selected) => {
     }
 };
 
+// ------------------------------------------------- Events -----------------------------------------------------------
+
 export const _mouseover = (node) => {
     node.dispatchEvent(new MouseEvent('mouseover', { bubbles: true }));
 };
@@ -40,6 +42,20 @@ export const _click = (node) => {
     }));
 };
 
+export const _doubleClick = (node) => {
+    node.dispatchEvent(new MouseEvent('dblclick', {
+        bubbles: true,
+        cancelable: true
+    }));
+};
+
+export const _focusOut = (node) => {
+    node.dispatchEvent(new FocusEvent('focusout', {
+        bubbles: true,
+        cancelable: true
+    }));
+};
+
 export const _clickWithCtrl = (node) => {
     node.dispatchEvent(new MouseEvent('click', {
         bubbles: true,
@@ -58,11 +74,12 @@ export const _postMessage = (msg, payload = null) => window.dispatchEvent(
     )
 );
 
+// ------------------------------------------------ Script loading ----------------------------------------------------
 
 function removeImports(code) {
     let importIdx = code.indexOf('import');
     while (importIdx !== -1) {
-        const newlineIdx = code.indexOf('\n');
+        const newlineIdx = code.indexOf('\n', importIdx);
         code = code.substring(0, importIdx) + code.substring(newlineIdx + 1);
         importIdx = code.indexOf('import');
     }
@@ -101,3 +118,5 @@ export function insertMainPanelScripts(panelDocument) {
     scriptEl.textContent = mainPanelCode;
     panelDocument.body.appendChild(scriptEl);
 }
+
+// ------------------------------------------------- XXXXXX -----------------------------------------------------------

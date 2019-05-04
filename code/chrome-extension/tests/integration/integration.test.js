@@ -52,6 +52,36 @@ beforeEach(async function () {
 
 // -------------------------------------------------- Tests -----------------------------------------------------
 
+function action(cb, waitForMsg) {
+    return new Promise(resolve => {
+        window.addEventListener('message', event => {
+            if (event.data.msg === waitForMsg) {
+                resolve();
+            }
+        });
+        cb();
+    });
+}
+
+async function startMouseSelection() {
+    chrome.runtime.onMessage.listener({
+        msg: Messages.BROWSER_ACTION_CLICKED
+    }, null, null);
+
+    await loadMainPanel();
+
+    const basicsCard = panelDocument.querySelector('#select-basics');
+    const selectSwitch = panelDocument.querySelector('#select-elements-checkbox');
+
+    mainPanelInit();
+    _click(basicsCard);
+
+    // Start selecting elements -- activate MouseSelector
+    await action(() => {
+        _click(selectSwitch)
+    }, Messages.SELECTING_ELEMENTS);
+}
+
 function onContentScriptLoad(testCallback) {
     // return new Promise(resolve => {
     controller._communication._mainPanelHandler = event => {
@@ -153,20 +183,7 @@ test('ensure the control panel is in correct state after injecting (before the m
     expect(controlPanel.classList.contains('scraping-left')).toBe(true);
 });
 
-test('select an element', async done => {
-    // controller._communication._mainPanelHandler = event => {
-    //     controller._communication._mainPanelHandler(event);
-    //
-    //     console.log(hiddenDiv.className);
-    //     // expect(hiddenDiv.classList.contains('scraping-highlighted-row')).toBe(false);
-    //
-    //     // _mouseover(firstP);
-    //     // _click(firstP);
-    //     // console.log(firstP.className);
-    //     // expect(firstP.classList.contains('scraping-highlighted-row')).toBe(true);
-    //     done();
-    // };
-
+test('something?', async done => {
     chrome.runtime.onMessage.listener({
         msg: Messages.BROWSER_ACTION_CLICKED
     }, null, null);
@@ -186,32 +203,95 @@ test('select an element', async done => {
     expect(minMaxBtn.classList.contains('rotated')).toBe(true);
 
     // Start selecting elements -- activate MouseSelector
-    _click(selectSwitch);
-
-    const wait = () => new Promise(resolve => {
-        setTimeout(resolve, 200)
-    });
-    await wait();
+    await action(() => {
+        _click(selectSwitch)
+    }, Messages.SELECTING_ELEMENTS);
 
     _mouseover(hiddenDiv);
     _click(hiddenDiv);
-    console.log(hiddenDiv.className);
+    expect(hiddenDiv.classList.contains('scraping-highlighted-row')).toBe(true);
+    expect(hiddenDiv.classList.contains('scraping-selected-row')).toBe(false);
+    expect(hiddenDiv.classList.contains('scraping-row-0')).toBe(false);
 
     _mouseover(firstP);
     _click(firstP);
-    console.log(firstP.className);
+    expect(firstP.classList.contains('scraping-highlighted-row')).toBe(true);
+    expect(firstP.classList.contains('scraping-selected-row')).toBe(true);
+    expect(firstP.classList.contains('scraping-row-0')).toBe(true);
 
     done();
 });
 
-test('', () => {
+test('highlight an element on hover', async () => {
+    const firstImg = document.querySelector('#first-img');
+    await startMouseSelection();
+
+    _mouseover(firstImg);
+    expect(firstImg.classList.contains('scraping-highlighted-row')).toBe(true);
+});
+
+test('select an element with mouse selector', async () => {
+    const firstP = document.querySelector('#first-p');
+    await startMouseSelection();
+
+    _click(firstP);
+    expect(firstP.classList.contains('scraping-selected-row')).toBe(true);
+    expect(firstP.classList.contains('scraping-row-0')).toBe(true);
+});
+
+test('do not select an invalid element', async () => {
+    const hiddenDiv = document.querySelector('#hidden-div-1');
+    await startMouseSelection();
+
+    _click(hiddenDiv);
+    expect(hiddenDiv.classList.contains('scraping-selected-row')).toBe(false);
+    expect(hiddenDiv.classList.contains('scraping-row-0')).toBe(false);
+});
+
+test('each selected row has unique row number', async () => {
+    const container = document.querySelector('#container');
+    const firstPost = document.querySelector('#post-1');
+    const firstArticleHeader = document.querySelector('#first-article-header');
+    await startMouseSelection();
+
+    _click(container);
+    _click(firstPost);
+    _click(firstArticleHeader);
+
+    expect(container.classList.contains('scraping-row-0')).toBe(true);
+    expect(container.classList.contains('scraping-row-1')).toBe(false);
+    expect(container.classList.contains('scraping-row-2')).toBe(false);
+
+    expect(firstPost.classList.contains('scraping-row-0')).toBe(false);
+    expect(firstPost.classList.contains('scraping-row-1')).toBe(true);
+    expect(firstPost.classList.contains('scraping-row-2')).toBe(false);
+
+    expect(firstArticleHeader.classList.contains('scraping-row-0')).toBe(false);
+    expect(firstArticleHeader.classList.contains('scraping-row-1')).toBe(false);
+    expect(firstArticleHeader.classList.contains('scraping-row-2')).toBe(true);
+});
+
+// test('each column has unique col number, but columns can contain multiple elements', async () => {
+//     const container = document.querySelector('#container');
+//     const firstPost = document.querySelector('#post-1');
+//     const firstArticleHeader = document.querySelector('#first-article-header');
+//     await startMouseSelection();
+//
+//
+// });
+
+test('', async () => {
 
 });
 
-test('', () => {
+test('', async () => {
 
 });
 
-test('', () => {
+test('', async () => {
+
+});
+
+test('', async () => {
 
 });

@@ -104,7 +104,6 @@ export class MouseSelector extends MouseSelectorInterface {
     }
 
     _selectingFunc(event) {
-        console.log('SELECTING');
         if (event.target.classList.contains('scraping-protected')) return;
 
         event.stopImmediatePropagation();
@@ -121,7 +120,6 @@ export class MouseSelector extends MouseSelectorInterface {
     }
 
     _highlightingFunc(event) {
-        console.log('Highlightining');
         if (event.target.classList.contains('scraping-protected')) return;
         event.target.classList.toggle(this._highlightingClass);
     }
@@ -140,7 +138,6 @@ export class MouseSelector extends MouseSelectorInterface {
     }
 
     _toggleOnClickSelecting() {
-        console.log('ADD');
         this._toggleEventListener('click', this._selectingFunc, true);
     }
 }
