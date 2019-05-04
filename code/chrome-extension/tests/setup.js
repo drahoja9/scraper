@@ -23,6 +23,13 @@ export function defineHTMLProperties() {
             }
         });
     }
+
+    global.chrome = ChromeAPI.mock();
+    global.fetch = url => new Promise(resolve => resolve({
+        text: () => new Promise(resolve => {
+            resolve(readFileContents(url));
+        })
+    }));
 }
 
 
@@ -33,14 +40,7 @@ export async function prepareTestPage() {
         .readFileSync(url.split('file://')[1])
         .toString();
 
-    global.chrome = ChromeAPI.mock();
-    global.fetch = url => new Promise(resolve => resolve({
-        text: () => new Promise(resolve => {
-            resolve(readFileContents(url));
-        })
-    }));
-
-    const testingPage = path.resolve(__dirname, '../testingPage.html');
+    const testingPage = path.resolve(__dirname, '../../testingPage.html');
     const dom = await JSDOM.fromFile(testingPage);
     document.body.innerHTML = dom.window.document.body.innerHTML;
 
