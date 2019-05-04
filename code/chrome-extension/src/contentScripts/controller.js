@@ -107,10 +107,6 @@ export class Controller {
         return this._mainPanelController.isInjected;
     }
 
-    get isMainPanelVisible() {
-        return this._mainPanelController.isVisible;
-    }
-
     get mainPanelIframe() {
         return this._mainPanelController.iframe;
     }

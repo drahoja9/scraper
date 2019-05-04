@@ -20,6 +20,10 @@ class MainPanelControllerInterface {
 }
 
 
+/**
+ * Handles actions with the main control panel -- which is just a regular HTML page with its own scripts and CSS files
+ * embedded inside an HTML iframe element.
+ */
 export class MainPanelController extends MainPanelControllerInterface {
     constructor(controller) {
         super();

@@ -20,6 +20,9 @@ class DataEngineInterface {
 }
 
 
+/**
+ * Class responsible for extracting the data from selected elements and exporting them to given format.
+ */
 export class DataEngine extends DataEngineInterface {
     constructor() {
         super();

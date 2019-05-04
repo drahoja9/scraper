@@ -46,6 +46,9 @@ class SelectionInterface {
 }
 
 
+/**
+ * Handles the selection itself -- adding/removing correct classes to/from the elements.
+ */
 class Selection extends SelectionInterface {
     constructor(selectEngine) {
         super();

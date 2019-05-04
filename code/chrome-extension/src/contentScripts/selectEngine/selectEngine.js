@@ -108,6 +108,10 @@ class SelectEngineInterface {
 }
 
 
+/**
+ * Class responsible for all the selecting -- delegates most of the concerns to its child classes. Switches between
+ * selecting rows and each of the columns.
+ */
 export class SelectEngine extends SelectEngineInterface {
     constructor(controller) {
         super();

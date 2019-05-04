@@ -20,6 +20,10 @@ class CommunicationInterface {
 }
 
 
+/**
+ * Handles communication of content scripts (Controller) with other parts of the application -- background script and
+ * main control panel.
+ */
 export class Communication extends CommunicationInterface {
     constructor(controller) {
         super();

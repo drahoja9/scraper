@@ -1,3 +1,7 @@
+/**
+ * Subclasses of this class should accept rows data (array of objects, each representing a single row of data), create
+ * a JavaScript Blob and return its URL.
+ */
 class Exporter {
     static get extension() {
         throw Error('Not implemented!');
@@ -36,8 +40,8 @@ export class JSONExporter extends Exporter {
 export class CSVExporter extends Exporter {
     static getFileUrl({ columnNames, rowsData }) {
         const header = columnNames
-            .map(colName => CSVExporter._escape(colName))
-            .join(',') +
+                .map(colName => CSVExporter._escape(colName))
+                .join(',') +
             '\n';
         const csv = rowsData.map(row => {
             const rowData = columnNames.map(
