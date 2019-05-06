@@ -84,13 +84,12 @@
 \author{Jakub Drahoš} %jméno autora bez akademických titulů
 \supervisor{Mgr. Martin Podloucký}
 \acknowledgements{Doplňte, máte-li komu a za co děkovat. V~opačném případě úplně odstraňte tento příkaz.}
-\abstractCS{V~několika větách shrňte obsah a přínos této práce v~češtině. Po přečtení abstraktu by se čtenář měl mít čtenář dost informací pro rozhodnutí, zda chce Vaši práci číst.}
+\abstractCS{Tato práce se zabývá vývojem nástroje umožňující web scraping. Cílí přede-vším na uživatele, kteří nedisponují znalostmi programování a tvorby webo-vých stránek. Původním záměrem byla tvorba webové aplikace, avšak ukázalo se, že takové řešení není svou složitostí adekvátní k danému problému. Z tohoto důvodu bylo nakonec řešení implementováno jako rozšíření do internetového prohlížeče Google Chrome. Software byl úspěšně navrhnut, realizován a otestován. Zároveň byla provedena analýza stávajících řešení, díky níž bylo možné najít nedostatky konkurenčních nástrojů (především pak složité ovládání) a nabídnout uživatelům aplikaci, jež těmito neduhy netrpí. Práce čtenáři nabídne také úvod do právní problematiky web scrapingu a shrnuje důležité poznatky z českého, evropského i kontinentálního práva na jednom místě.}
 \abstractEN{Sem doplňte ekvivalent abstraktu Vaší práce v~angličtině.}
 \placeForDeclarationOfAuthenticity{V~Praze}
 \declarationOfAuthenticityOption{4} %volba Prohlášení (číslo 1-6)
 \keywordsCS{web scraping, extrakce dat, aplikace, JavaScript, rozšíření prohlížeče Chrome, právní rozbor}
 \keywordsEN{web scraping, data extraction, application, JavaScript, Chrome extension, legal analysis}
-% \website{http://site.example/thesis} %volitelná URL práce, objeví se v tiráži - úplně odstraňte, nemáte-li URL práce
 
 \begin{document}
 
@@ -272,7 +271,7 @@ Pro tuto práci mnohem relevantnější kategorií je konkurenční nabídka ná
 
 Mezi ty největší představitele patří ParseHub~\cite{parsehub}, Octoparse~\cite{octoparse}, WebScraper~\cite{webscraper}, Dexi.io~\cite{dexio} a Data Scraper~\cite{data_scraper}. Čtyři ze zmíněných nástrojů jsou volně dostupné (které mají však velmi omezenou funkcionalitu a pokročilejší operace se odemknou až s~určitým platebním plánem -- tzv. freemium model) a jeden poskytuje bezplatně pouze 7denní zkušební verzi.
 
-Předtím, než bude možné jednotlivé nástroje porovnávat, je nutné určit kritéria, podle kterých lze hodnotit kvalitu daného nástroje. Především půjde o~jednoduchost používání, celkovou přehlednost a rychlost, se kterou se uživatel dostane k~požadovaným datům. Důležitý je také způsob výběru dat, možnosti exportu získaných dat, jak aplikace sama dokáže uživatele seznámit s~použí-váním a také, v~jaké formě se nástroj vůbec používá a čím se od ostatních odlišuje (ať už v~pozitivním či negativním smyslu). 
+Předtím, než bude možné jednotlivé nástroje porovnávat, je nutné určit kritéria, podle kterých lze hodnotit kvalitu daného nástroje. Především půjde o~jednoduchost používání, celkovou přehlednost a rychlost, se kterou se uživa-tel dostane k~požadovaným datům. Důležitý je také způsob výběru dat, mož-nosti exportu získaných dat, jak aplikace sama dokáže uživatele seznámit s~používáním a také, v~jaké formě se nástroj vůbec používá a čím se od ostatních odlišuje (ať už v~pozitivním či negativním smyslu). 
 
 Poj\v{d}me se tedy na některé nástroje podívat blíže:
 
@@ -604,7 +603,7 @@ Dle zadání v~kapitole \hyperref[sec:requirements_specification]{Návrh, sekce 
 \end{figure}
 
 \newpage
-Může se stát, že požadovaný element nejde označit ručně. Pro tyto případy je každý vybraný prvek opatřen čtveřicí tlačítek, která se objeví, pokud uživatel najede kurzorem na daný element, viz obrázek \ref{fig:scraper_dom_navigation}. Tlačítko \textsf{$+$} posune označení na prvního syna prvku, \textsf{$-$} na otce, \textsf{$\leftarrow$} na předchozího sourozence a tlačítko \textsf{$\rightarrow$} na následujícího sourozence. Tímto způsobem může uživatel traverzovat napříč celým DOMem a vybrat tak libovolný prvek.
+Může se stát, že požadovaný element nejde označit ručně. Pro tyto případy je každý vybraný prvek opatřen čtveřicí tlačítek, která se objeví, pokud uživa-tel najede kurzorem na daný element, viz obrázek \ref{fig:scraper_dom_navigation}. Tlačítko \textsf{$+$} posune označení na prvního syna prvku, \textsf{$-$} na otce, \textsf{$\leftarrow$} na předchozího sourozence a tlačítko \textsf{$\rightarrow$} na následujícího sourozence. Tímto způsobem může uživatel traverzovat napříč celým DOMem a vybrat tak libovolný prvek.
 
 Někdy je také vhodné mít ovládací panel na levé straně, případně ho minimalizovat, aby nezabíral místo a nepřekrýval prvky, které by mohl uživatel chtít vybrat. K tomu slouží dvě šipky v horní části nástroje vedle ikon pro akce undo a redo.
 \begin{figure}
@@ -648,10 +647,10 @@ Výběr dat má na starosti třída SelectEngine, která téměř všechnu svou 
 	
 	\item[Selector] najde požadované prvky na stránce a předá je rodičovské třídě SelectEngine k označení, viz diagram \ref{fig:sequence_diagram}. Jednotlivé Selectory fungují následovně:
 	\begin{itemize}
-		\item MouseSelector -- po zapnutí jsou na celém dokumentu zaregistrovány dva handlery. První reaguje na události typu \emph{mouseover}/\emph{mouseout} a zajišťuje, že je daný HTML element barevně podbarven, pokud na něj uživatel najede kurzorem myši. Druhý pak naslouchá události \emph{click}. Pokud nastane, přeruší její probublávání do dalších handlerů a zabrání provedení defaultní akce. Tím je zajištěno, že kliknutí myší se zapnutým MouseSelectorem pouze označí vybraný prvek, ale nespustí žádnou akci, kterou by normálně spustit mělo.\footnote{Jako příklad si můžeme představit kliknutí na odkaz, které defaultně přesměruje uživatel na adresu obsaženou v atributu \textsf{href}.}
+		\item MouseSelector -- po zapnutí jsou na celém dokumentu zaregistro-vány dva handlery. První reaguje na události \emph{mouseover}/\emph{mouseout} a zajišťuje, že je daný HTML element barevně podbarven, pokud na něj uživatel najede kurzorem myši. Druhý pak naslouchá události \emph{click}. Pokud nastane, přeruší její probublávání do dalších handlerů a zabrání provedení defaultní akce. Tím je zajištěno, že kliknutí myší se zapnutým MouseSelectorem pouze označí vybraný prvek, ale nespustí žádnou akci, kterou by normálně spustit mělo.\footnote{Jako příklad si můžeme představit kliknutí na odkaz, které defaultně přesměruje uživatel na adresu obsaženou v atributu \textsf{href}.}
 		
-		Selekce všech podobných prvků na základě momentálního a předchozího výběru (auto-select) není nic jiného než hledání společných vlastností těchto dvou elementů -- porovnává se jméno HTML tagu, třídy, které element nese a všechny jeho atributy. Vlastnosti, v nichž se elementy shodují, vytvoří CSS selektor, podle kterého jsou vybrány všechny podobné prvky.
-		\item TextSelector -- obdrží hledaný řetězec a poté iteruje přes všechny HTML elementy na stránce od toho nejvyššího (\textsf{\textless body\textgreater}) po ty nejvíce zanořené. Pokud narazí na prvek, jenž neobsahuje žádný text, pokračuje ve zpracování následujícího elementu. Pokud má prvek nějaké potomky, zařadí ho do fronty procházení, jinak porovná jeho text s hledaným řetězcem a v případě shody ho uloží do pole prvků určených k označení. Hledání shody nerozlišuje velká a malá písmena.
+		Selekce všech podobných prvků na základě momentálního a před-chozího výběru (auto-select) není nic jiného než hledání společných vlastností těchto dvou elementů -- porovnává se jméno HTML tagu, třídy, které element nese a všechny jeho atributy. Vlastnosti, v nichž se elementy shodují, vytvoří CSS selektor, podle kterého jsou vybrány všechny podobné prvky.
+		\item TextSelector -- obdrží hledaný řetězec a poté iteruje přes všechny HTML elementy na stránce od toho nejvyššího (\textless \textsf{body}\textgreater) po ty nejvíce zanořené. Pokud narazí na prvek, jenž neobsahuje žádný text, pokračuje ve zpracování následujícího elementu. Pokud má prvek nějaké potomky, zařadí ho do fronty procházení, jinak porovná jeho text s hledaným řetězcem a v případě shody ho uloží do pole prvků určených k označení. Hledání shody nerozlišuje velká a malá písmena.
 		\item CSSSelector -- obdrží libovolný CSS selektor a pomocí volání metody \verb|document.querySelectorAll()| vybere všechny odpovídající prvky, které předá k označení.
 		\item DOMNavigation -- ovládací tlačítka jsou vložena do stránky spolu s ovládacím panelem hned při prvním spuštění rozšíření na dané stránce, akorát jsou ihned schována. Každému označenému HTML elementu je po vybrání zaregistrována obsluha událostí \emph{mouseenter} a \emph{mouseleave} (viz diagram \ref{fig:sequence_diagram}). Ta zajišťuje, že po najetí kurzorem myši na již vybraný prvek jsou ovládací tlačítka tohoto Selectoru zobrazena nad nebo pod daným elementem a po opuštění této oblasti zase zmizí. Samotná tlačítka pomocí Select enginu pouze zruší momentální výběr a vyberou nový prvek skrze atributy HTML elementu \emph{parentElement}, \emph{firstElementChild}, \emph{nextElementSibling} nebo \emph{previousElementSibling}.\footnote{Záměrně je použita vždy varianta s \emph{Element} (tedy např. \emph{firstElementChild} a ne \emph{firstChild}), neboť vždy chceme vybrat Element node a ne například Text node, který nemá nic jako CSS třídy apod.}
 	\end{itemize}
@@ -678,13 +677,13 @@ Jednotlivé třídy spolu interagují nepřímo, vždy přes rodičovskou kompon
 
 Tento postup však není možný v případě třídy MainPanel reprezentující ovládací panel vložený do stránky skrze iframe. Panelu není jak předat Controller, neboť to z bezpečnostních důvodů lze pouze v situaci, kdy je iframe i stránka, v níž je vložený, ze stejné domény\footnote{Opět narážíme na tzv. \emph{same-origin policy}.}. A to v tomto případě nejsou -- HTML stránka reprezentující ovládací panel pochází z domény rozšíření \verb|chrome-extension://<extension-id>|. 
 
-Třídy MainPanel a Controller tak spolu komunikují skrze zasílání zpráv pomocí funkce \verb|window.postMessage()|, na které reaguje třída Communication, jež je součástí hlavního Controlleru. Tato třída taktéž zajišťuje komunikaci mezi background scriptem a Controllerem. Diagram ... pak právě tuto komunikaci ilustruje.
+Třídy MainPanel a Controller tak spolu komunikují skrze zasílání zpráv pomocí funkce \verb|window.postMessage()|, na které reaguje třída Communica-tion, jež je součástí hlavního Controlleru. Tato třída taktéž zajišťuje komunikaci mezi background scriptem a Controllerem. Diagram ... pak právě tuto komunikaci ilustruje.
 
 \subsection{Extrakce dat}
 Návrh aplikace pouze říká, že extrakce dat proběhne v prohlížeči na straně klienta a konkrétním implementacím ponechává volnost v řešení tohoto problému. Jelikož je nutné již vybrané prvky zvýraznit, přidává se ke každému takovému elementu příslušná CSS třída. Toho lze velmi jednoduše využít i při samotné extrakci dat -- aplikace nejdříve načte všechny elementy s třídou reprezentující řádky výsledné tabulky a v každém tomto elementu posléze načte všechny dostupné prvky s třídou reprezentující sloupce, z nichž vyextrahuje text (HTML atribut \textsf{innerText}), případně zdroj (HTML atribut \textsf{src}) v případě obrázků. To vše opět s pomocí funkce \verb|document.querySelectorAll()|, díky čemuž se jedná o velmi rychlý a efektivní způsob extrakce dat bez nutnosti zasílání požadavků na vzdálený server a je tak splněn nefunkční požadavek na rychlost samotné extrakce dat (N6).
 
 Výsledná data jsou uložena v třídě DataEngine do doby, než je provedena operace, jež je nějakým způsobem ovlivňuje -- výběr nového prvku, zrušení stávajícího výběru, vytvoření nového sloupce, zrušení stávajícího sloupce. Poté se extrakce opakuje nanovo.
-
+\clearpage
 Na závěr jsou data převedena do požadovaného formátu pomocí třídy Exporter a je vytvořena URL adresa souboru. Ta se zašle background scriptu, který se už postará o samotné stažení -- otevře dialog vyzývající uživatele k vybrání umístění souboru.
 
 \subsection{Ostatní}
@@ -755,7 +754,7 @@ Zatím se stále nepodařilo zprovoznit...
 Součástí každého projektu by mělo být také zhodnocení předsevzatých cílů, především pak splnění všech definovaných požadavků na vyvíjený software. Těmi hlavními byly:
 
 \begin{itemize}
-	\item Aplikace umožňující extrahovat data z webových stránek uživatelům neznalých programování -- to jest splněno, neboť primární způsob užití nástroje je založen na visual scrapingu (označování prvků myší na stránce) nebo textovém vyhledávání a nevyžaduje od uživatelů žádné znalosti z oblasti IT.
+	\item Aplikace umožňující extrahovat data z webových stránek uživatelům neznalých programování -- to jest splněno, neboť primární způsob užití nástroje je založen na visual scrapingu (označování prvků myší na strán-ce) nebo textovém vyhledávání a nevyžaduje od uživatelů žádné znalosti z oblasti IT.
 	\item Jednoduché a intuitivní ovládání, přehledné grafické rozhraní, jenž nebude zahlcené přebytkem možností -- v porovnání s ostatními nástroji je užívání vyvinuté aplikace velmi rychlé a počet kroků požadovaných od uživatele minimální. To je z velké míry docíleno úzkým zaměřením nástroje. 
 	\item Snadná rozšiřitelnost pro přidávání další funkcionality -- viz kapitoly Návrh a Realizace.
 \end{itemize}
