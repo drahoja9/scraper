@@ -43,19 +43,20 @@
 \contentsline {paragraph}{Background script}{28}{section*.25}
 \contentsline {paragraph}{Browser action}{28}{section*.26}
 \contentsline {paragraph}{Content script}{29}{section*.27}
-\contentsline {section}{\numberline {3.3}P\IeC {\v r}edstaven\IeC {\'\i } n\IeC {\'a}stroje}{29}{section.3.3}
-\contentsline {section}{\numberline {3.4}Implementace zvolen\IeC {\'e}ho \IeC {\v r}e\IeC {\v s}en\IeC {\'\i }}{33}{section.3.4}
-\contentsline {subsection}{\numberline {3.4.1}Inicializace a spu\IeC {\v s}t\IeC {\v e}n\IeC {\'\i }}{33}{subsection.3.4.1}
-\contentsline {subsection}{\numberline {3.4.2}V\IeC {\'y}b\IeC {\v e}r dat}{34}{subsection.3.4.2}
-\contentsline {subsection}{\numberline {3.4.3}Komunikace mezi t\IeC {\v r}\IeC {\'\i }dami}{36}{subsection.3.4.3}
-\contentsline {subsection}{\numberline {3.4.4}Extrakce dat}{37}{subsection.3.4.4}
-\contentsline {subsection}{\numberline {3.4.5}Ostatn\IeC {\'\i }}{38}{subsection.3.4.5}
-\contentsline {chapter}{\chapternumberline {4}Testov\IeC {\'a}n\IeC {\'\i }}{39}{chapter.4}
-\contentsline {section}{\numberline {4.1}Unit testy}{39}{section.4.1}
-\contentsline {section}{\numberline {4.2}Integra\IeC {\v c}n\IeC {\'\i } testy}{40}{section.4.2}
-\contentsline {section}{\numberline {4.3}Napln\IeC {\v e}n\IeC {\'\i } zadan\IeC {\'y}ch po\IeC {\v z}adavk\IeC {\r u}}{40}{section.4.3}
-\contentsline {section}{\numberline {4.4}Nedostatky aplikace}{41}{section.4.4}
-\contentsline {chapter}{Z{\' a}v{\v e}r}{43}{chapter*.38}
-\contentsline {chapter}{Literatura}{45}{section*.40}
-\contentsline {appendix}{\chapternumberline {A}Seznam pou\IeC {\v z}it\IeC {\'y}ch zkratek}{49}{appendix.A}
-\contentsline {appendix}{\chapternumberline {B}Obsah p\IeC {\v r}ilo\IeC {\v z}en\IeC {\'e}ho CD}{51}{appendix.B}
+\contentsline {section}{\numberline {3.3}Instalace a spu\IeC {\v s}t\IeC {\v e}n\IeC {\'\i } n\IeC {\'a}stroje}{29}{section.3.3}
+\contentsline {section}{\numberline {3.4}P\IeC {\v r}edstaven\IeC {\'\i } n\IeC {\'a}stroje}{29}{section.3.4}
+\contentsline {section}{\numberline {3.5}Implementace zvolen\IeC {\'e}ho \IeC {\v r}e\IeC {\v s}en\IeC {\'\i }}{34}{section.3.5}
+\contentsline {subsection}{\numberline {3.5.1}Inicializace a spu\IeC {\v s}t\IeC {\v e}n\IeC {\'\i }}{34}{subsection.3.5.1}
+\contentsline {subsection}{\numberline {3.5.2}V\IeC {\'y}b\IeC {\v e}r dat}{34}{subsection.3.5.2}
+\contentsline {subsection}{\numberline {3.5.3}Komunikace mezi t\IeC {\v r}\IeC {\'\i }dami}{36}{subsection.3.5.3}
+\contentsline {subsection}{\numberline {3.5.4}Extrakce dat}{38}{subsection.3.5.4}
+\contentsline {subsection}{\numberline {3.5.5}Ostatn\IeC {\'\i }}{39}{subsection.3.5.5}
+\contentsline {chapter}{\chapternumberline {4}Testov\IeC {\'a}n\IeC {\'\i }}{41}{chapter.4}
+\contentsline {section}{\numberline {4.1}Unit testy}{41}{section.4.1}
+\contentsline {section}{\numberline {4.2}Integra\IeC {\v c}n\IeC {\'\i } testy}{42}{section.4.2}
+\contentsline {section}{\numberline {4.3}Napln\IeC {\v e}n\IeC {\'\i } zadan\IeC {\'y}ch po\IeC {\v z}adavk\IeC {\r u}}{43}{section.4.3}
+\contentsline {section}{\numberline {4.4}Nedostatky aplikace}{45}{section.4.4}
+\contentsline {chapter}{Z{\' a}v{\v e}r}{47}{chapter*.39}
+\contentsline {chapter}{Literatura}{49}{section*.41}
+\contentsline {appendix}{\chapternumberline {A}Seznam pou\IeC {\v z}it\IeC {\'y}ch zkratek}{53}{appendix.A}
+\contentsline {appendix}{\chapternumberline {B}Obsah p\IeC {\v r}ilo\IeC {\v z}en\IeC {\'e}ho CD}{55}{appendix.B}

@@ -35,9 +35,9 @@
 \definecolor{lightred}{rgb}{0.99, 0.9, 0.9}
 
 \lstdefinelanguage{JavaScript}{
-	keywords={typeof, new, true, false, catch, function, return, null, catch, switch, var, if, in, while, do, else, case, break,class, export, boolean, throw, implements, import, this, const},
+	keywords={typeof, new, true, false, catch, function, return, null, catch, switch, var, if, in, while, do, else, case, break,class, export, boolean, throw, implements, import, this, const, async, await, for, from},
 	keywordstyle=\color{blue}\bfseries,
-	ndkeywords={expect, undo, toBe},
+	ndkeywords={expect, undo, toBe, _click, _clickWithCtrl, startMouseSelection, isSelected},
 	ndkeywordstyle=\color{azure}\bfseries,
 	identifierstyle=\color{black},
 	sensitive=false,
@@ -46,7 +46,7 @@
 	commentstyle=\color{dkgreen}\ttfamily,
 	stringstyle=\color{purple}\ttfamily,
 	morestring=[b]',
-	morestring=[b]"
+	morestring=[b]`
 }
 \lstset{
 	backgroundcolor=\color{lightgray},
@@ -452,6 +452,7 @@ V~předchozích dvou sekcích jsem uvedl, jaké požadavky by aplikace v~každé
 % ------------------------------------------------------------------------------------------------
 
 \section{Případy užití}
+\label{sec:use_cases}
 Hlavní užití vyvíjeného nástroje je přímočaré -- uživatel navštíví stránku, vybere elementy nesoucí požadovaná data a exportuje je do zvoleného formátu. Mohou však nastat různé situace, kterým se věnuje následující popis.
 
 \begin{enumerate}
@@ -690,12 +691,11 @@ Na závěr jsou data převedena do požadovaného formátu pomocí třídy Expor
 ?
 
 % ================================================================================================
-% Návod na instalaci extensionu, spuštění testů??
+% Návod na instalaci extensionu, spuštění testů --- asi až v README
 
 \chapter{Testování}
-K testování celého kódu je použit JavaScriptový testovací framework Jest. Testy jsou rozděleny do dvou kategorií, a sice jednotkové (unit) testy a integrační testy.
+K testování celého kódu je použit JavaScriptový testovací framework Jest. Testy jsou rozděleny do dvou kategorií, a sice jednotkové (unit) testy a integrační testy, které víceméně simulují běžné používání nástroje. V posledních dvou sekcích se pak věnuji zhodnocení zadaných požadavků a nedostatkům, na něž by uživatelé mohli narazit.
 
-% Přidat code coverage??
 % ------------------------------------------------------------------------------------------------
 
 \section{Unit testy}
@@ -746,7 +746,47 @@ Object.defineProperty(target, property, { get: getter });
 % ------------------------------------------------------------------------------------------------
 
 \section{Integrační testy}
-Zatím se stále nepodařilo zprovoznit...
+Zatímco jednotkové testy ověřují funkčnost jednotlivých tříd izolovaně od ostatních, integrační testy mají za úkol prověřit jejich korektní funkci při spolupráci celého systému. Jsou tak velmi užitečné k odhalování chyb při komunikaci mezi různými komponentami nebo předávání parametrů. V těchto testech tedy není využita technika \textit{mockování} -- výjimkou je celé Chrome API, které poskytuje právě prohlížeč Google Chrome. To samozřejmě při testování dostupné není, je tak nutné zařídit dostupnost funkcí, jež jsou v kódu volány. Z tohoto důvodu není vůbec testována funkcionalita komponenty background script, neboť bychom ověřovali pouze \textit{mockované} funkce.
+
+Všechny integrační testy mají podobný průběh a cílí především na co nejvěrnější simulaci reálného používání. Na začátku je vytvořena instance třídy JSDOM, která načte testovací HTML stránku. Zpřístupní se tak klasické globální proměnné jako \verb|window|, \verb|window.document| a jejich metody jako \verb|document.querySelector()| nebo \verb|document.createElement()|. Poté je vytvořena a inicializována instance třídy Controller, jež je za normálních pod-mínek zavedena prohlížečem (pomocí komponenty \hyperref[def:content_script]{content script}, viz sekce \ref{sec:used_technology} Použité technologie). Po tomto kroku je celé rozšíření připravené k testování a chová se téměř stejně jako v obyčejném prohlížeči.
+
+Jedním z problému, jež nastaly při testování, byl fakt, že JSDOM nepodporuje skripty využívající moduly, resp. syntaxi ES6 (\verb|import| a \verb|export|). Avšak všechen kód je psaný právě s touto syntaxí a vkládán do HTML stránky pomocí \verb|<script type="module"></script>|. Řešením tak je načtení všech skriptů, jež jsou načítány tímto způsobem, do paměti, smazání problematických klíčových slov a vytvoření jediného skriptu, který obsahuje všechen potřebný kód.
+
+V neposlední řadě pak integrační testy také simulují všechny popsané případy užití v sekci \ref{sec:use_cases} Případy užití a demonstrují běžné zacházení s nástro-jem, jako je možné vidět v ukázce kódu \ref{code:integration_test}.
+
+\begin{figure}
+	\begin{lstlisting}[language=JavaScript]
+	import { startMouseSelection } from './integrationUtils.js';
+	import { _click, _clickWithCtrl } from '../utils.js';
+	
+	function isSelected(node, id) {
+		const c1 = node.classList.contains('scraping-selected-row');
+		const c2 = node.classList.contains(`scraping-row-${id}`);
+		expect(c1).toBe(true);
+		expect(c2).toBe(true);
+	}
+	
+	test('use case #1', async () => {
+		const selector = 'tr:not(.scraping-protected)';
+		const rows = document.querySelectorAll(selector);
+		const firstRow = allTableRows[0];
+		const secondRow = allTableRows[1];
+		
+		await startMouseSelection(panelDocument);
+		_click(firstRow);
+		isSelected(firstRow, 0);
+	
+		_clickWithCtrl(secondRow);
+		isSelected(secondRow, 0);
+	
+		for (let i = 0; i < rows.length; i++) {
+			isSelected(rows[i], i);
+		}
+	});
+	\end{lstlisting}
+	\caption{Způsob definování HTML atributů}
+	\label{code:integration_test}
+\end{figure}
 
 % ------------------------------------------------------------------------------------------------
 
@@ -834,7 +874,7 @@ Naopak byl splněn požadavek +2) na přesouvání a minimalizaci ovládacího p
 \section{Nedostatky aplikace}
 Za hlavní nedostatek nástroje považuji chybějící web crawling, kvůli čemuž je aplikace vhodná pouze na statické extrahování dat z jedné stránky. Na druhou stranu je takto vymezená již od začátku a právě díky absenci této funkcionality je její ovládaní velice jednoduché a přímočaré.
 
-Tím, že se jedná o rozšíření do internetové prohlížeče Google Chrome, nemá uživatel na výběr a musí (alespoň po dobu využívání nástroje) používat právě tento prohlížeč. V tom spatřuji další nedostatek, neboť by pro někoho mohlo jít o překážku. Tento problém má ale částečné řešení -- dle \cite{extension_porting} mají prohlížeče Chrome, Firefox a Opera téměř stejné API, které jejich rozšíření používají. Tím pádem je možné rozšíření psané primárně pro prohlížeč Chrome s minimální námahou převést na rozšíření pro prohlížeče Firefox a Opera podle návodu uvedeného v \cite{extension_porting}.
+Tím, že se jedná o rozšíření do internetové prohlížeče Google Chrome, nemá uživatel na výběr a musí (alespoň po dobu využívání nástroje) používat právě tento prohlížeč. V tom spatřuji další nedostatek, neboť by pro někoho mohlo jít o překážku. Tento problém má ale částečné řešení -- dle \cite{extension_porting} mají prohlížeče Chrome, Firefox a Opera téměř stejné API, které jejich rozšíření používají. Tím pádem je možné rozšíření psané primárně pro prohlížeč Chrome s minimální námahou převést na rozšíření pro prohlížeče Firefox a Opera.
 
 % ================================================================================================
 
