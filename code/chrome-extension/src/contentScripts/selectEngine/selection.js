@@ -77,6 +77,8 @@ class Selection extends SelectionInterface {
         if (shouldPushUndo) {
             this._undoRedoStore.pushUndo(filtered);
         }
+
+        return filtered;
     }
 
     unselect(elements, shouldPushUndo = true) {

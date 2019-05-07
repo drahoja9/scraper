@@ -1,6 +1,6 @@
 import { TextSelector } from '/src/contentScripts/selectEngine/selectors/textSelector.js';
 import { SelectEngineMockup } from '../../mocks.js';
-import { defineHTMLProperties, prepareTestPage } from "../../setup";
+import { defineHTMLProperties, prepareTestPage } from "../../setup.js";
 
 
 // -------------------------------------------- Setup and teardown ----------------------------------------------
@@ -40,15 +40,34 @@ test('select nodes that contains `text` text', () => {
     const firstP = document.querySelector('#first-p');
     const secondHeaderText = document.querySelector('#second-header-text');
     const secondP = document.querySelector('#second-p');
+    const protectedFields = document.querySelectorAll('.scraping-protected');
 
-    selector.contains({ value: 'teXT', exactCheck: false });
-    expect(selectEngine.selected).toEqual([secondP, secondHeaderText, firstP, firstHeader]);
+    selector.contains({ value: 'teXT', exact: false });
+    expect(selectEngine.selected).toEqual([...protectedFields, secondP, secondHeaderText, firstP, firstHeader]);
 });
 
 test('select nodes whose text is equal to `Like`', () => {
     const firstLike = document.querySelector('#first-like');
     const secondLike = document.querySelector('#second-like');
 
-    selector.contains({ value: 'like', exactCheck: true });
+    selector.contains({ value: 'like', exact: true });
     expect(selectEngine.selected).toEqual([secondLike, firstLike]);
+});
+
+test('empty input does nothing', () => {
+    selector.startsWith({ value: '' });
+    selector.endsWith({ value: '' });
+    selector.contains({ value: '', exact: false });
+    selector.contains({ value: '', exact: true });
+
+    expect(selectEngine.selected).toEqual([]);
+});
+
+test('input of only whitespace characters does nothing', () => {
+    selector.startsWith({ value: '       ' });
+    selector.endsWith({ value: '    \t\t\n' });
+    selector.contains({ value: ' \n \n \t \n', exact: false });
+    selector.contains({ value: '    \t \n  ', exact: true });
+
+    expect(selectEngine.selected).toEqual([]);
 });

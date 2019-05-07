@@ -1,8 +1,8 @@
 import { Controller } from "/src/contentScripts/controller.js";
 import { Messages } from "/src/constants.js";
-import { _click, insertMainPanelScripts } from "../utils.js";
+import { _click, _doubleClick, _enterKeyDown, _focusOut } from "../utils.js";
 import { DOMWindowSetup } from "./integrationSetup.js";
-import { _doubleClick, _enterKeyDown, _focusOut } from "../utils";
+import { action, startExtension } from "./integrationUtils.js";
 
 
 // -------------------------------------------- Setup and teardown ----------------------------------------------
@@ -14,44 +14,10 @@ beforeEach(async function () {
     await DOMWindowSetup();
     controller = new Controller();
     await controller.init(false, false, false);
-    await startExtension();
+    panelDocument = await startExtension(controller);
 });
 
 // -------------------------------------------------- Tests -----------------------------------------------------
-
-function action(cb, waitForMsg) {
-    return new Promise(resolve => {
-        window.addEventListener('message', event => {
-            if (event.data.msg === waitForMsg) {
-                resolve();
-            }
-        });
-        cb();
-    });
-}
-
-function loadMainPanel() {
-    return new Promise(resolve => {
-        const panelIframe = controller._mainPanelController.iframe;
-        panelDocument = panelIframe.contentWindow.window.document;
-
-        panelIframe.addEventListener('load', () => {
-            insertMainPanelScripts(panelDocument);
-            const mainPanelInit = panelIframe.contentWindow.window.init;
-            mainPanelInit();
-            resolve();
-        });
-    });
-}
-
-async function startExtension() {
-    chrome.runtime.onMessage.listener({
-        msg: Messages.BROWSER_ACTION_CLICKED
-    }, null, null);
-    await loadMainPanel();
-}
-
-// -------------------------------------------------- Helpers -----------------------------------------------------
 
 test('switch sides of the control panel', async () => {
     const switchBtn = panelDocument.querySelector('#switch-sides-btn');

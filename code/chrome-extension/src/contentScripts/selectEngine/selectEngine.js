@@ -144,7 +144,7 @@ export class SelectEngine extends SelectEngineInterface {
     }
 
     select(elements) {
-        this._currentSelection.select(elements);
+        return this._currentSelection.select(elements);
     }
 
     unselect(elements) {

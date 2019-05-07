@@ -27,7 +27,8 @@ export function defineHTMLProperties(targetWindow = window) {
 }
 
 
-export async function prepareTestPage() {
+export async function prepareTestPage(additionalCallback = dom => {
+}) {
     const path = require('path');
     const fs = require('fs');
 
@@ -38,7 +39,7 @@ export async function prepareTestPage() {
         runScripts: 'dangerously'
     });
     document.body.innerHTML = dom.window.document.body.innerHTML;
-
+    additionalCallback(dom);
 
     const readFileContents = url => fs
         .readFileSync(url.split('file://')[1])

@@ -54,7 +54,7 @@ test('get data', () => {
                 'col-3': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. ' +
                     'Suspendisse ornare ipsum vel augue sodales, non dapibus neque sodales. ' +
                     'Maecenas cursus sed sem dapibus elementum. ' +
-                    'Some random latin text.'
+                    'Some random latin-like text.'
             },
             {
                 rowId: '2',
@@ -62,7 +62,7 @@ test('get data', () => {
                 'col-2': 'Article header This text is inside a paragraph HTML tag.',
                 'col-3': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. ' +
                     'Aenean luctus felis in fringilla convallis. Curabitur ut pharetra ipsum. ' +
-                    'Some random latin text.'
+                    'Some random latin-like text.'
             }
         ]
     });
@@ -140,7 +140,7 @@ test('remove row', () => {
         'col-2': 'Article header This text is inside a paragraph HTML tag.',
         'col-3': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. ' +
             'Aenean luctus felis in fringilla convallis. Curabitur ut pharetra ipsum. ' +
-            'Some random latin text.'
+            'Some random latin-like text.'
     };
     dataEngine.removeRow(row);
     expect(dataEngine.getData(columns)).toEqual({
@@ -153,7 +153,7 @@ test('remove row', () => {
                 'col-3': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. ' +
                     'Suspendisse ornare ipsum vel augue sodales, non dapibus neque sodales. ' +
                     'Maecenas cursus sed sem dapibus elementum. ' +
-                    'Some random latin text.'
+                    'Some random latin-like text.'
             }
         ]
     });

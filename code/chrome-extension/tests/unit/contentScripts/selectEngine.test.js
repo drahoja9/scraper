@@ -95,11 +95,11 @@ test('change column', () => {
     selectEngine._mouseSelector._current = { id: 'some-element' };
     selectEngine._mouseSelector._isTurnedOn = true;
 
-    expect(selectEngine._currentCol).toBe(0);
+    expect(selectEngine._currentCol).toBe('0');
     expect(Object.keys(selectEngine._columns).length).toBe(1);
 
-    selectEngine.changeCol({ colId: 123 });
-    expect(selectEngine._currentCol).toBe(123);
+    selectEngine.changeCol({ colId: '123' });
+    expect(selectEngine._currentCol).toBe('123');
     expect(selectEngine._currentSelection).toBe(selectEngine._columns[selectEngine._currentCol]);
     expect(Object.keys(selectEngine._columns).length).toBe(2);
     expect(selectEngine._mouseSelector._current).toBe(undefined);

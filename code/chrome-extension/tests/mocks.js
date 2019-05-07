@@ -20,6 +20,7 @@ export class SelectEngineMockup {
                 this.selected.push(el);
             }
         }
+        return elements;
     }
 
     unselect(elements) {

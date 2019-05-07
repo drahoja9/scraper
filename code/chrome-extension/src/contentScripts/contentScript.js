@@ -15,7 +15,7 @@
     // the beginning) for our controller before it is even loaded (due to dynamic imports)
     chrome.runtime.onMessage.addListener(beforeLoadListener);
 
-    const controllerSrc = chrome.extension.getURL('src/contentScripts/controller.js');
+    const controllerSrc = chrome.extension.getURL('/src/contentScripts/controller.js');
     const controllerModule = await import(controllerSrc);
     const controller = new controllerModule.Controller();
     controller.init(shouldBeVisible, minimized, onLeft);

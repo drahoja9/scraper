@@ -19,8 +19,7 @@ export class CSSSelector extends CSSSelectorInteface {
     select({ selector }) {
         this.unselectCurrent();
         const toSelect = document.querySelectorAll(selector);
-        this._selectEngine.select(toSelect);
-        this._current = toSelect;
+        this._current = this._selectEngine.select(toSelect);
     }
 
     unselectCurrent() {

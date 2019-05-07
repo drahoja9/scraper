@@ -36,7 +36,7 @@ export class TextSelector extends TextSelectorInterface {
     }
 
     _searchDOM(selectNode) {
-        let nodes = [document.body];
+        let nodes = [document.querySelector('body')];
 
         const hasChildren = node => node.children.length > 0;
         const hasText = node => !!node.innerText;
