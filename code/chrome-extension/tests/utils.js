@@ -1,18 +1,3 @@
-export const _areSelected = (selectEngine, selected) => {
-    let nodes = [document.body];
-    while (nodes.length !== 0) {
-        let current = nodes.pop();
-        for (let child of current.children) {
-            if (selected.includes(child)) {
-                expect(selectEngine.areSelected([child])).toBe(true);
-            } else {
-                expect(selectEngine.areSelected([child])).toBe(false);
-            }
-            nodes.push(child);
-        }
-    }
-};
-
 // ------------------------------------------------- Events -----------------------------------------------------------
 
 export const _mouseover = (node) => {
@@ -118,5 +103,3 @@ export function insertMainPanelScripts(panelDocument) {
     scriptEl.textContent = mainPanelCode;
     panelDocument.body.appendChild(scriptEl);
 }
-
-// ------------------------------------------------- XXXXXX -----------------------------------------------------------
