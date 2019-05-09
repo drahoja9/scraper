@@ -5,6 +5,7 @@ import { registerClickHandler, registerInputHandler, sendMessageToContentScript 
 export class Selectors {
     constructor() {
         this._mouseSelector = new MouseSelector();
+        this._templateSelector = new TemplateSelector();
         this._textSelector = new TextSelector();
         this._cssSelector = new CSSSelector();
     }
@@ -29,6 +30,23 @@ class MouseSelector {
     switchColor() {
         this._selectElementsSwitch.classList.toggle('switch-row');
         this._selectElementsSwitch.classList.toggle('switch-col');
+    }
+}
+
+
+class TemplateSelector {
+    constructor() {
+        this._images = document.querySelector('#template-imgs');
+        this._emails = document.querySelector('#template-emails');
+
+        registerClickHandler(
+            this._images,
+            Messages.SELECT_ALL_IMAGES
+        );
+        registerClickHandler(
+            this._emails,
+            Messages.SELECT_ALL_EMAILS
+        );
     }
 }
 

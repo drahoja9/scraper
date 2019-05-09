@@ -59,6 +59,14 @@ export class Controller {
         });
     }
 
+    selectAllEmails() {
+        this._selectEngine.contains({ value: '@', exact: false });
+    }
+
+    selectAllImages() {
+        this._selectEngine.cssSelect({ selector: 'img' });
+    }
+
     selectingRows() {
         this._selectEngine.selectingRows();
     }

@@ -101,6 +101,12 @@ export class Communication extends CommunicationInterface {
             case Messages.SELECTING_ELEMENTS:
                 this._controller.toggleMouseSelector();
                 break;
+            case Messages.SELECT_ALL_IMAGES:
+                this._controller.selectAllImages();
+                break;
+            case Messages.SELECT_ALL_EMAILS:
+                this._controller.selectAllEmails();
+                break;
             case Messages.UNDO:
                 this._controller.undo();
                 break;
