@@ -37,7 +37,7 @@
 \lstdefinelanguage{JavaScript}{
 	keywords={typeof, new, true, false, catch, function, return, null, catch, switch, var, if, in, while, do, else, case, break,class, export, boolean, throw, implements, import, this, const, async, await, for, from},
 	keywordstyle=\color{blue}\bfseries,
-	ndkeywords={expect, undo, toBe, _click, _clickWithCtrl, startMouseSelection, isSelected},
+	ndkeywords={expect, undo, toBe, _click, _clickWithCtrl, startMouseSelection, isSelectedAsRow, Object},
 	ndkeywordstyle=\color{azure}\bfseries,
 	identifierstyle=\color{black},
 	sensitive=false,
@@ -76,7 +76,7 @@
 % ODTUD DAL VSE ZMENTE
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
 
-\department{Obor Webové a softwarové inženýrství (BI-WSI), zaměření Softwarové inženýrství\\Katedra softwarového inženýrství}
+\department{Katedra softwarového inženýrství}
 \title{Webová aplikace pro online web scraping}
 \authorGN{Jakub} %(křestní) jméno (jména) autora
 \authorFN{Drahoš} %příjmení autora
@@ -112,10 +112,10 @@
 	\newpage
 	Tedy důvod k~vytvoření softwaru umožňující extrahovat data z~webových stránek je jasný. Ač podobných nástrojů existuje několik, jejich obsluha je~po-měrně složitá a je nutné strávit určitý čas, než se uživatel seznámí s~jejich fungováním a může je naplno využít. Právě tento aspekt se snaží aplikace vyvíjená v~rámci bakalářské práce eliminovat -- motivací je tak poskytnout uživatelům možnost jednoduše a rychle vytěžit požadovaná data bez zbytečného zdržování a dlouhého času stráveného seznamováním se s~nástrojem.
 	
-	To, čím je tato práce unikátní, je ale rozbor právního aspektu web scrapingu. V~žádném případě se nejedná o~hlubokou analýzu, která by byla očeká-vána od studenta právnické fakulty. Zároveň ale shrnuje podstatné poznatky a fakta z~dané oblasti na jednom místě. Velké množství textů dostupných na internetu, jenž se týkají tohoto tématu, totiž často začíná odstavcem ve stylu \uv{...nejsem právník a toto je jen můj názor...}, informace jsou velmi kusé a chybí jim nějaká ucelená struktura. To se práce snaží napravit a představuje tak vstupní bránu do této rozsáhlé problematiky. Zároveň může pomoct všem vývojářům, kteří tvoří software určený k~web scrapingu.
+	To, čím je tato práce unikátní, je ale rozbor právního aspektu web scrapingu. V~žádném případě se nejedná o~hlubokou analýzu, která by byla očeká-vána od studenta právnické fakulty. Zároveň ale shrnuje podstatné poznatky a fakta z~dané oblasti na jednom místě. Velké množství textů dostupných na internetu, jenž se týkají tohoto tématu, totiž často začíná odstavcem ve stylu \uv{...nejsem právník a toto je jen můj názor...}, informace jsou velmi kusé a chybí jim určitá ucelená struktura. To se práce snaží napravit a představuje tak vstupní bránu do této rozsáhlé problematiky. Zároveň může pomoci všem vývojářům, kteří tvoří software určený k~web scrapingu.
 	
 	\section*{Členění práce}
-	Kapitola 1 je věnována analýze tématiky web scrapingu. První sekce shrnuje obecné informace, následuje pohled z~právní strany věci a nakonec analýza stávajících řešení problému. Kapitola 2 se zaměřuje na návrh aplikace -- specifikace požadavků, vymezení případů užití, architektura systému, návrh uživatel-ského rozhraní. Ve třetí kapitole je popsána realizace daného návrhu, výběr použitých technologií a odůvodnění rozhodnutí, která byla učiněna. Poslední kapitola je věnovaná testování celé aplikace. V~samotném závěru se pak zabý-vám vyhodnocením jednotlivých cílů zadaných výše.
+	Kapitola 1 je věnována analýze tématiky web scrapingu. První sekce shrnuje obecné informace, následuje pohled z~právní strany věci a nakonec analýza stávajících řešení problému. Kapitola 2 se zaměřuje na návrh aplikace -- specifikace požadavků, vymezení případů užití, architektura systému, návrh uživatel-ského rozhraní. Ve třetí kapitole je představen výsledný software, popsána realizace daného návrhu, výběr použitých technologií a odůvodnění rozhodnutí, která byla učiněna. Poslední kapitola je věnovaná testování celé aplikace a zhodnocení zadaných požadavků. V~samotném závěru se pak zabývám vyhodnocením jednotlivých cílů zadaných výše.
 	
 	\section*{Poznámka}
 	V~průběhu práce se objevily okolnosti (detailně jsou diskutovány v~kapitole \hyperref[sec:possible_solutions]{Realizace, sekce Diskuze možných řešení}), které mě donutily přehodnotit původní záměr tvorby webové aplikace na tvorbu rozšíření do internetového prohlížeče Google Chrome. To jsem bohužel nevěděl při formulaci a odevzdání zadání do systému závěrečných prací, tedy název této práce neodpovídá úplně přesně výslednému produktu. Nicméně všechny cíle zůstaly naprosto totožné.
@@ -251,11 +251,11 @@ Výsledkem jednání bylo, že i~\emph{rozpis fotbalových utkání je databáz�
 Soudní dvůr rozhodl ve prospěch Ryanair -- \emph{jestliže se autor databáze, která není chráněna autorským zákonem nebo právem pořizovatele, rozhodne poskytnout souhlas s~jejím využitím, nic mu nebrání ve stanovení smluvních podmínek}, jež by omezily používání databáze ze strany třetích osob, aniž by přitom bylo dotčeno použitelné vnitrostátní právo.~\cite{C-30/14}
 
 \subsection{Důležité soudní případy ve Spojených státech}
-Úprava v USA je postavena na jiné právní úpravě, a závěry tak nejsou automaticky přenositelné do našeho práva (což ovšem nevylučuje možnost použití těchto rozhodnutí pro účely argumentace). Představíme si dva nejdůležitější případy v~právní historii web scrapingu, se kterými mimo jiné vyvstávají otázky jako \uv{Komu doopravdy patří data uživatelů na internetu?} a \uv{Kdo má rozhodovat o~přístupu k~veřejným datům, jestli o~tom vůbec má někdo rozhodovat?}.
+Úprava v USA je postavena na jiné právní úpravě, a závěry tak nejsou automaticky přenositelné do našeho práva (což ovšem nevylučuje možnost použití těchto rozhodnutí pro účely argumentace). Představíme si dva nejdůležitější případy v~právní historii web scrapingu, se kterými mimo jiné vyvstávají otázky jako \uv{Komu doopravdy patří data uživatelů na internetu?} a \uv{Kdo má rozhodovat o~přístupu k~veřejným datům, jestli o~tom vůbec má kdosi rozhodovat?}.
 
-\paragraph{hiQ v. LinkedIn} kdy analytická společnost hiQ automatizovaně extrahovala veřejně dostupná (bez nutnosti registrace účtu) data z~profilů uživatelů sítě LinkedIn. Ta společnosti hiQ zaslala tzv. \textit{cease and desist letter} a požado-vala okamžité ukončení činnosti ze strany hiQ pod pohrůžkou porušení CFAA. \cite{hiq_linkedin_1}
+\paragraph{hiQ v. LinkedIn} kdy analytická společnost hiQ automatizovaně extrahovala veřejně dostupná (bez nutnosti registrace účtu) data z~profilů uživatelů sítě LinkedIn. Ta společnosti hiQ zaslala tzv. \textit{cease and desist letter} a požado-vala okamžité ukončení činnosti ze strany hiQ pod pohrůžkou porušení CFAA (zákon věnující se neoprávněnému přístupu k počítačovým systémům). \cite{hiq_linkedin_1}
 
-K~dispozici je zatím pouze předběžné opatření ve prospěch hiQ, které říká, že \textit{nelze zabránit přístupu k~veřejně dostupným informacím} -- k~porušení CFAA (jako neoprávněný přístup) by došlo pouze v~případě obejití systému autentizace. Ze strany společnosti LinkedIn padl argument, že automatizovaný přístup k~veřejným datům není to samé jako normální \uv{osobní} užití, stejně jako je odlišné dlouhodobé sledování osoby přes GPS zařízení od letmého potkávání~\cite{linkedin_arg}. hiQ mimo jiné argumentoval i~tím, že sociální sítě jsou novodobá veřejná fóra (místa pro veřejné projevy, zejména politického charak-teru~\cite{public_forum}) a rozhodování o~udělení přístupu k~nim (ať už ze strany státu či soukromé společnosti) je porušením svobody slova a vyjadřování, a tím i~samotné ústavy státu Kalifornie.~\cite{hiq_linkedin_2}
+K~dispozici je zatím pouze předběžné opatření ve prospěch hiQ, které říká, že \textit{nelze zabránit přístupu k~veřejně dostupným informacím} -- k~porušení CFAA (jako neoprávněný přístup) by došlo pouze v~případě obejití systému autentizace (přihlášení). Ze strany společnosti LinkedIn padl argument, že automatizovaný přístup k~veřejným datům není to samé jako normální \uv{osobní} užití, stejně jako je odlišné dlouhodobé sledování osoby přes GPS zařízení od letmého potkávání~\cite{linkedin_arg}. hiQ mimo jiné argumentoval i~tím, že sociální sítě jsou novodobá veřejná fóra (místa pro veřejné projevy, zejména politického charakteru~\cite{public_forum}) a rozhodování o~udělení přístupu k~nim (ať už ze strany státu či soukromé společnosti) je porušením svobody slova a vyjadřování, a tím i~samotné ústavy státu Kalifornie.~\cite{hiq_linkedin_2}
 
 \paragraph{Facebook v. Power Venture (Vachani)} kdy společnost Power Venture (CEO Steven Suraj Vachani), jež umožňovala agregovat různé sociální sítě a používat všechny jejich klíčové funkce z~jednoho místa, byla žalována sociální sítí Facebook kvůli neoprávněnému vytěžování profilů a zasílání e-mailů uživa-telům, které úmyslně vypadaly jako odeslané společností Facebook (údajné porušení CFAA, CAN-SPAM a California Penal Code, sekce 502). Facebook zaslal Power Venture \textit{cease and desist letter} a snažil se zamezit přístupu k~datům pomocí blokování IP adres. Power Venture přesto pokračoval ve své činnosti.~\cite{facebook_venture_1}
 
@@ -265,11 +265,11 @@ Soud rozhodl ve prospěch společnosti Facebook -- jednání Power Venture bylo 
 
 \newpage
 \section{Analýza konkurenčních nástrojů}
-První skupinou, na kterou můžeme při hledání na internetu narazit, jsou společnosti, které nabízejí zákazníkům kompletní péči v~rámci extrakce dat. Cílí především na velké korporace, jimž postaví scrapovací nástroj přesně na míru, který poté také hostují a spravují. Zákazník tedy dostane data a o~nic víc se již nemusí starat. Jako příklad lze jmenovat třeba ContentGrabber~\cite{content_grabber}, Mozenda~\cite{mozenda} a další.
+První skupinou, na niž můžeme při hledání na internetu narazit, jsou společ-nosti, které nabízejí zákazníkům kompletní péči v~rámci extrakce dat. Cílí především na velké korporace, jimž postaví scrapovací nástroj přesně na míru, který poté také hostují a spravují. Zákazník tedy dostane data a o~nic víc se již nemusí starat. Jako příklad lze jmenovat třeba ContentGrabber~\cite{content_grabber}, Mozenda~\cite{mozenda} a další.
 
 Pro tuto práci mnohem relevantnější kategorií je konkurenční nabídka nástrojů poskytujících uživatelům rozhraní k~web scrapingu. Zaměřím se pouze na takové nástroje, které nevyžadují jakoukoli znalost programování -- tedy žádné knihovny, API a nástroje pro budování vlastních scraperů.
 
-Mezi ty největší představitele patří ParseHub~\cite{parsehub}, Octoparse~\cite{octoparse}, WebScraper~\cite{webscraper}, Dexi.io~\cite{dexio} a Data Scraper~\cite{data_scraper}. Čtyři ze zmíněných nástrojů jsou volně dostupné (které mají však velmi omezenou funkcionalitu a pokročilejší operace se odemknou až s~určitým platebním plánem -- tzv. freemium model) a jeden poskytuje bezplatně pouze 7denní zkušební verzi.
+Mezi ty největší představitele patří ParseHub~\cite{parsehub}, Octoparse~\cite{octoparse}, WebScraper~\cite{webscraper}, Dexi.io~\cite{dexio} a Data Scraper~\cite{data_scraper}. Čtyři ze zmíněných nástrojů jsou volně dostupné (mají však velmi omezenou funkcionalitu a pokročilejší operace se odemknou až s~určitým platebním plánem -- tzv. freemium model) a jeden poskytuje bezplatně pouze sedmidenní zkušební verzi.
 
 Předtím, než bude možné jednotlivé nástroje porovnávat, je nutné určit kritéria, podle kterých lze hodnotit kvalitu daného nástroje. Především půjde o~jednoduchost používání, celkovou přehlednost a rychlost, se kterou se uživa-tel dostane k~požadovaným datům. Důležitý je také způsob výběru dat, mož-nosti exportu získaných dat, jak aplikace sama dokáže uživatele seznámit s~používáním a také, v~jaké formě se nástroj vůbec používá a čím se od ostatních odlišuje (ať už v~pozitivním či negativním smyslu). 
 
@@ -300,7 +300,7 @@ Poj\v{d}me se tedy na některé nástroje podívat blíže:
 \begin{itemize}
 	\item výběr dat jak pomocí klikání (inteligentní hledání vzorců/podobností na základě prvních dvou kliknutí), tak pomocí XPath nebo regulárních výrazů
 	\item nástroj obsahuje hotové šablony, které mohou velmi urychlit práci
-	\item pestrá paleta možností (branch judgment, tvoření smyček apod.) -- dá se vytvořit téměř jakákoli logika procházení webu a extrakce dat
+	\item pestrá paleta možností (branch judgment, tvoření smyček apod.) -- lze vytvořit téměř jakákoli logika procházení webu a extrakce dat
 	\item lehký způsob, jak scrapování automatizovat
 	\item možnost řídit tasky přes API (a získávat tak data taktéž přes API); data jdou nahrát rovnou i~do lokální databáze
 \end{itemize}
@@ -333,7 +333,7 @@ Poj\v{d}me se tedy na některé nástroje podívat blíže:
 	\item možnost získání dat různými formami -- přes API, jako CSV/XLS nebo do Dropboxu
 	\item klávesové zkratky při výběru elementů velmi usnadňují práci
 	\item možnost využít jejich cloud k~automatizaci celého procesu
-	\item oproti konkurenci nabízí přehledné rozhraní a ne tak složité používání
+	\item oproti konkurenci nabízí přehlednější rozhraní a ne tak složité používání
 \end{itemize}
 \newpage
 \textbf{Nevýhody:}
@@ -369,7 +369,7 @@ Poj\v{d}me se tedy na některé nástroje podívat blíže:
 \textbf{Výhody:}
 \begin{itemize}
 	\item jednoduchá instalace (jedná se pouze o~rozšíření do prohlížeče Google Chrome).
-	\item velmi jednoduché ovládání a přehledné rozhraní
+	\item oproti konkurenci není tak složité na používání
 	\item výběr dat probíhá pomocí klikání
 	\item klikáním se utváří JQuery selektor, který si uživatel může podle svého upravit a doladit tak drobné detaily, jež by jinak nutně zahltily uživatel-ské rozhraní (tedy je možné vyhledávat i~podle HTML tagů, id, CSS selektorů -- zkrátka vše, co umí klasické JQuery)
 	\item různé druhy kliknutí
@@ -410,12 +410,12 @@ Pojďme si nyní všechny požadavky shrnout do několika bodů a rozdělit na f
 	\item Hlavní činností uživatele bude výběr elementů na jím zadané webové stránce, ze kterých bude na konci procesu vyextrahován text. Tento výběr bude probíhat následujícími způsoby:
 	\begin{enumerate}[F3.1)]
 		\item Kliknutím myši na požadované elementy.
-		\item Na základě textové shody. Zde bude mít uživatel 4 možnosti na výběr:
+		\item Na základě textové shody. Zde bude mít uživatel 4 možnosti na výběr. Prvek bude vybrán, pokud jeho text
 		\begin{enumerate}[a)]
-			\item Prvek bude vybrán, pokud jeho text začíná hledaným výrazem.
-			\item Prvek bude vybrán, pokud jeho text končí hledaným výrazem.
-			\item Prvek bude vybrán, pokud jeho text obsahuje hledaný výraz.
-			\item Prvek bude vybrán, pokud se jeho text přesně shoduje s~hledaným výrazem.
+			\item začíná hledaným výrazem,
+			\item končí hledaným výrazem,
+			\item obsahuje hledaný výraz,
+			\item přesně koresponduje s~hledaným výrazem.
 		\end{enumerate}
 		\item Pomocí CSS selektorů (tedy HTML tagy, třídy, id, hodnoty atributu, různé následnosti a vše ostatní, co CSS selektory umožňují, viz přehled CSS selektorů\footnote{\url{https://www.w3schools.com/cssref/css_selectors.asp}}).
 		\item K~dispozici bude přibližování (první potomek) a oddalování (otec) momentálního výběru pomocí ikony $+$ a $-$, případně přesunutí výběru na předchozího/následujícího sourozence v~DOMu (uživatel může pomocí této funkce traverzovat napříč zanořenými prvky vše-mi směry).
@@ -486,10 +486,10 @@ Celý systém se skládá z~5 hlavních komponent (viz diagram \ref{fig:conceptu
 \end{description}
 Tato modularizace je hlavním předpokladem ke splnění požadavku snadné rozšiřitelnosti (N4) a je ukázkou tzv. \emph{open-closed} principu. Podporuje nízkou provázanost a vysokou soudržnost, což je v~softwarovém inženýrství vždycky jeden z~hlavních cílů. V~případě přidání nového způsobu výběru stačí vytvořit další Selector, který prvky vybere podle požadovaných kritérií a Select engine se postará o~zpracování. Přidání automatizace bude také bez zásahu do původní implementace, neboť je jedno, jestli samotné vybírání provádí uživatel nebo jiná část programu. Pokud budeme chtít kompletně změnit uživatelské rozhraní, postačí vyměnit komponentu představující ovládací panel za novou.
 
-Splnění nefunkčního požadavku na rychlost samotné extrakce (N6) nahrá-vá rozhodnutí vytvořit pouze frontendovou aplikaci, neboť se ušetří čas strá-vený komunikací se serverem a po načtení požadované stránky může celý scraping probíhat vlastně offline. Tím se eliminují rizika spojená s~pomalým internetovým připojením. Je ale klíčové vymyslet rychlý a efektivní způsob, jak vybraná data extrahovat v~prohlížeči -- tento úkol je ponechán na konkrétních implementacích.
+Splnění nefunkčního požadavku na rychlost samotné extrakce (N6) nahrá-vá rozhodnutí vytvořit pouze frontendovou aplikaci, neboť se ušetří čas strá-vený komunikací se serverem a po načtení požadované stránky může celý scraping probíhat offline. Tím se eliminují rizika spojená s~pomalým internetovým připojením. Je ale klíčové vymyslet rychlý a efektivní způsob, jak vybraná data extrahovat v~prohlížeči -- tento úkol je ponechán na konkrétních implementacích.
 
 \begin{figure}
-	\includegraphics[width=\linewidth]{images/conceptual_diagram.png}
+	\includegraphics[width=\linewidth]{images/conceptual_diagram.pdf}
 	\caption[Analytický doménový model]{Diagram představující analytický doménový model}
 	\label{fig:conceptual_diagram}
 \end{figure}
@@ -499,7 +499,7 @@ Splnění nefunkčního požadavku na rychlost samotné extrakce (N6) nahrá-vá
 \section{Návrh uživatelského rozhraní}
 Při návrhu uživatelského rozhraní je nutné zohlednit ten nejdůležitější aspekt vyvíjené aplikace, a sice intuitivní, jednoduché a přehledné ovládání (N3), kterým se tento nástroj chce odlišit od stávajícího softwaru zabývající se stejnou problematikou. V~potaz je nutné brát i~požadavek na co nejmenší čas strávený vybíráním dat (N5) -- od uživatele je potřeba co nejmenší počet kroků.
 
-Dle požadavku F1 je aplikace rozdělena na pracovní plochu s~uživatelem zadanou stránkou a postranní panel, skrz který probíhá veškeré ovládání. Dle F2 je pak panel rozdělen na záložky obsahující jednotlivé způsoby výběru. V~horní části panelu nalezneme ovládací tlačítka akcí undo a redo. Zbývá už jen tlačítko \textsf{Preview} a \textsf{Download} spolu s~výběrem formátu exportu.
+Dle požadavku F1 je aplikace rozdělena na pracovní plochu s~uživatelem zadanou stránkou a postranní panel, skrz který probíhá veškeré ovládání. Dle F2 je pak panel rozdělen na záložky obsahující jednotlivé způsoby výběru. V~horní části panelu nalezneme ovládací tlačítka akcí undo a redo. Pod nimi se nachází přepínání výběru řádků a sloupců. Zbývají už jen tlačítka \textsf{Preview} a \textsf{Download} spolu s~výběrem formátu exportu.
 
 Následující obrázky \ref{fig:scraper_main_wireframe} a \ref{fig:scraper_text_search_wireframe} představují wireframy uživatelského rozhraní aplikace.
 \begin{figure}[h]
@@ -540,10 +540,10 @@ Na problém se však lze dívat i~opačně a základní myšlenku invertovat, co
 Celé řešení zadaného problému je tedy nakonec implementováno jako rozšíření do internetového prohlížeče Google Chrome (jehož popisu se věnuji níže). Z~tohoto důvodu je zvoleným programovacím jazykem čistý JavaScript, resp. ECMA-Script 2018 verze 9. Dále je použit značkovací jazyk HTML k~definici struktury celého ovládacího panelu a zbylých kontrolních prvků spolu s~CSS jazykem určujícím styl zobrazení jednotlivých elementů. K~testování aplikace byl použit JavaScriptový testovací framework Jest. Jako verzovací sytém jsem použil Git.
 
 \subsection{Rozšíření do prohlížeče Google Chrome}
-Chrome-extensions se skládají z~několika různých komponent (viz oficiální dokumentace\footnote{\url{https://developer.chrome.com/extensions}}). Nás budou zajímat následující tři:
+Chrome-extension se skládají z~několika různých komponent (viz oficiální dokumentace\footnote{\url{https://developer.chrome.com/extensions}}). Nás budou zajímat následující tři:
 \paragraph{Background script} je základní komponenta (můžeme si ji představit jako takový backend celého rozšíření), která se vykoná při každém spuštění prohlí-žeče. Zde je možné registrovat obsluhy různých událostí (např. když se otevře nová záložka v~prohlížeči nebo když je dané rozšíření poprvé nainstalováno). 
 \paragraph{Browser action} představuje tlačítko rozšíření umístěné v~hlavním panelu nástrojů prohlížeče Google Chrome (vedle pole pro zadávání adresy). Po kliknutí na něj je vypuštěna událost mířící do background scriptu, kde se odehrává následné zpracování.
-\paragraph{Content script}\label{def:content_script} je zajisté tím nejsilnějším mechanismem, které Chrome extensions nabízí. Zároveň je nejdůležitější částí tohoto ekosystému, jenž nás bude zajímat. Jedná se o~kód, který je vložen do požadované stránky a spustí se v~rámci jejího kontextu. To znamená, že každý takto vložený skript má \emph{kompletní přístup k~DOMu} dané stránky i~všem ostatním skriptům. Stane se validní součástí stránky, může \emph{vytvářet, mazat nebo měnit prvky}, a sice do doby, než je stránka obnovena a znovu načtena.
+\paragraph{Content script}\label{def:content_script} je zajisté tím nejsilnějším mechanismem, které Chrome extensions nabízí. Zároveň je nejdůležitější částí tohoto ekosystému, jež nás bude zajímat. Jedná se o~kód, který je vložen do požadované stránky a spustí se v~rámci jejího kontextu. To znamená, že každý takto vložený skript má \emph{kompletní přístup k~DOMu} dané stránky i~všem ostatním skriptům. Stane se validní součástí stránky, může \emph{vytvářet, mazat nebo měnit prvky}, a sice do doby, než je stránka obnovena a znovu načtena.
 
 % ------------------------------------------------------------------------------------------------
 
@@ -569,7 +569,7 @@ Jak již bylo zmíněno v~úvodu, výsledná data budou ve formě tabulky, tedy 
 	\label{fig:scraper_rows_cols}
 \end{figure}
 
-Dle zadání v~kapitole \hyperref[sec:requirements_specification]{Návrh, sekce Specifikace požadavků}, probíhá selekce třemi způsoby -- ruční označování prvků, hledání na základě textové shody a výběr pomocí CSS selektorů. Tyto tři druhy výběru jsou stejné jak pro výběr řádků, tak pro výběr sloupců. Jakýkoli výběr lze vzít zpět nebo následně provést znovu pomocí tlačítek \textsf{Undo} a \textsf{Redo} v~horní části nástroje. Následuje popis každého ze způsobů výběru:
+Dle zadání v~kapitole \hyperref[sec:requirements_specification]{Návrh, sekce Specifikace požadavků} probíhá selekce třemi způsoby -- ruční označování prvků, hledání na základě textové shody a výběr pomocí CSS selektorů. Tyto tři druhy výběru jsou stejné jak pro výběr řádků, tak pro výběr sloupců. Jakýkoli výběr lze vzít zpět nebo následně provést znovu pomocí tlačítek \textsf{Undo} a \textsf{Redo} v~horní části nástroje. Následuje popis každého ze způsobů výběru:
 \begin{description}
 	\item[Ruční označování] probíhá klikáním myši na požadované elementy a zapíná se přepínačem nacházejícím se na kartě \textsf{Basics}. Pokud uživatel při vybí-rání podrží klávesu \textsc{Ctrl}, aplikace se pokusí vybrat všechny podobné prvky na základě předchozího kliknutí. Kliknutím na již označený element se výběr zruší.
 	
@@ -629,7 +629,7 @@ Na závěr stačí pomocí rozbalovacího výběru zvolit formát, do kterého c
 \subsection{Inicializace a spuštění}
 Jak již bylo řečeno v~úvodu této kapitoly, použité řešení spočívá ve vložení ovládacího panelu do libovolné stránky. To umožňuje právě komponenta \hyperref[def:content_script]{content script}, jež byla zmíněna v sekci \ref{sec:used_technology} Použité technologie. Tuto komponentu reprezentují v aplikaci komponenty Controller, SelectEngine a DataEngine. Spuštění aplikace vypadá následovně:
 \begin{enumerate}
-	\item Po instalaci rozšíření (a každém jeho spuštění) do prohlížeče Google Chrome je vykonán kód, který je obsažen v~background scriptu. Zde se nachází obsluha vyzývající content script k~zobrazení nebo schování ovládacího panelu.
+	\item Po instalaci rozšíření a každém spuštění prohlížeče Google Chrome je vykonán kód, který je obsažen v~background scriptu. Zde se nachází obsluha vyzývající content script k~zobrazení nebo schování ovládacího panelu.
 	\item Když je rozšíření aktivní, do \emph{každé} načtené stránky je vložen content script, jenž poslouchá zprávy od background scriptu.
 	\item Kliknutím na ikonu rozšíření v~hlavním panelu nástrojů je vyvolána událost, na kterou reaguje background script -- aktivnímu oknu/záložce zašle zprávu, aby byl otevřen ovládací panel. 
 	\item Tu odchytí content script, jenž na dané stránce poslouchá a vloží do těla stránky nový iframe, do něhož načte HTML dokument, který představuje samotný ovládací panel. Při dalších žádostech je iframe pouze skryt/zob-razen.
@@ -653,7 +653,7 @@ Výběr dat má na starosti třída SelectEngine, která téměř všechnu svou 
 		Selekce všech podobných prvků na základě momentálního a před-chozího výběru (auto-select) není nic jiného než hledání společných vlastností těchto dvou elementů -- porovnává se jméno HTML tagu, třídy, které element nese a všechny jeho atributy. Vlastnosti, v nichž se elementy shodují, vytvoří CSS selektor, podle kterého jsou vybrány všechny podobné prvky.
 		\item TextSelector -- obdrží hledaný řetězec a poté iteruje přes všechny HTML elementy na stránce od toho nejvyššího (\textless \textsf{body}\textgreater) po ty nejvíce zanořené. Pokud narazí na prvek, jenž neobsahuje žádný text, pokračuje ve zpracování následujícího elementu. Pokud má prvek nějaké potomky, zařadí ho do fronty procházení, jinak porovná jeho text s hledaným řetězcem a v případě shody ho uloží do pole prvků určených k označení. Hledání shody nerozlišuje velká a malá písmena.
 		\item CSSSelector -- obdrží libovolný CSS selektor a pomocí volání metody \verb|document.querySelectorAll()| vybere všechny odpovídající prvky, které předá k označení.
-		\item DOMNavigation -- ovládací tlačítka jsou vložena do stránky spolu s ovládacím panelem hned při prvním spuštění rozšíření na dané stránce, akorát jsou ihned schována. Každému označenému HTML elementu je po vybrání zaregistrována obsluha událostí \emph{mouseenter} a \emph{mouseleave} (viz diagram \ref{fig:sequence_diagram}). Ta zajišťuje, že po najetí kurzorem myši na již vybraný prvek jsou ovládací tlačítka tohoto Selectoru zobrazena nad nebo pod daným elementem a po opuštění této oblasti zase zmizí. Samotná tlačítka pomocí Select enginu pouze zruší momentální výběr a vyberou nový prvek skrze atributy HTML elementu \emph{parentElement}, \emph{firstElementChild}, \emph{nextElementSibling} nebo \emph{previousElementSibling}.\footnote{Záměrně je použita vždy varianta s \emph{Element} (tedy např. \emph{firstElementChild} a ne \emph{firstChild}), neboť vždy chceme vybrat Element node a ne například Text node, který nemá nic jako CSS třídy apod.}
+		\item DOMNavigation -- ovládací tlačítka jsou vložena do stránky spolu s ovládacím panelem hned při prvním spuštění rozšíření na dané stránce, pouze jsou ihned schována. Každému označenému HTML elementu je po vybrání zaregistrována obsluha událostí \emph{mouseenter} a \emph{mouseleave} (viz diagram \ref{fig:sequence_diagram}, metoda \verb|registerHandler()|). Ta zajišťuje, že po najetí kurzorem myši na již vybraný prvek jsou ovládací tlačítka tohoto Selectoru zobrazena nad nebo pod daným elementem a po opuštění této oblasti zase zmizí. Samotná tlačítka pomocí Select enginu pouze zruší momentální výběr a vyberou nový prvek skrze atributy HTML elementu \emph{parentElement}, \emph{firstElementChild}, \emph{nextElementSibling} nebo \emph{previousElementSibling}.\footnote{Záměrně je použita vždy varianta s \emph{Element} (tedy např. \emph{firstElementChild} a ne \emph{firstChild}), neboť vždy chceme vybrat Element node a ne například Text node, který nemá nic jako CSS třídy apod.}
 	\end{itemize}
 
 	\item[UndoRedoStore] -- jak název napovídá, tato třída se stará o undo a redo akce. Každá instance třídy Selection obsahuje svůj vlastní UndoRedoStore. To umožňuje zvrátit výběr pouze v aktivním sloupci bez ovlivnění ostatních sloupců nebo řádků. Stejně tak pokud jsou zrovna vybírány řádky, akce undo a redo neovlivní žádný sloupec.
@@ -662,7 +662,7 @@ Výběr dat má na starosti třída SelectEngine, která téměř všechnu svou 
 \end{description}
 
 \begin{figure}
-	\includegraphics[width=\linewidth]{images/sequence_diagram.png}
+	\includegraphics[width=\linewidth]{images/sequence_diagram.pdf}
 	\caption{Sekvenční diagram naznačující průběh výběru dat}
 	\label{fig:sequence_diagram}
 \end{figure}
@@ -671,7 +671,7 @@ Výběr dat má na starosti třída SelectEngine, která téměř všechnu svou 
 Jednotlivé třídy spolu interagují nepřímo, vždy přes rodičovskou komponentu (například třída TextSelector potřebuje volat metodu z třídy Selection, děje se tak ale přes rodičovskou třídu SelectEngine, viz diagram \ref{fig:sequence_diagram}). Důsledek tohoto faktu je patrný z diagramu \ref{fig:content_scripts_diagram}, který zobrazuje veškeré třídy reprezentující komponentu content script, kde se nachází téměř veškeré logika. Graf tříd tvoří stromovou strukturu a nikde nevznikají žádné cyklické závislosti. Díky tomu je dosaženo slabé provázanosti, jednoduché nahraditelnosti libovolné třídy a snadné rozšiřitelnosti.
 
 \begin{figure}
-	\includegraphics[width=\linewidth]{images/content_scripts_class_diagram.png}
+	\includegraphics[width=\linewidth]{images/content_scripts_class_diagram.pdf}
 	\caption[Diagram tříd reprezentujících komponentu content script]{Diagram tříd reprezentujících komponentu content script (pro přehlednost celého diagramu jsou uvedeny u každé třídy pouze ty nejdůležitější atributy a metody)}
 	\label{fig:content_scripts_diagram}
 \end{figure}
@@ -750,7 +750,7 @@ Zatímco jednotkové testy ověřují funkčnost jednotlivých tříd izolovaně
 
 Všechny integrační testy mají podobný průběh a cílí především na co nejvěrnější simulaci reálného používání. Na začátku je vytvořena instance třídy JSDOM, která načte testovací HTML stránku. Zpřístupní se tak klasické globální proměnné jako \verb|window|, \verb|window.document| a jejich metody jako \verb|document.querySelector()| nebo \verb|document.createElement()|. Poté je vytvořena a inicializována instance třídy Controller, jež je za normálních pod-mínek zavedena prohlížečem (pomocí komponenty \hyperref[def:content_script]{content script}, viz sekce \ref{sec:used_technology} Použité technologie). Po tomto kroku je celé rozšíření připravené k testování a chová se téměř stejně jako v obyčejném prohlížeči.
 
-Jedním z problému, jež nastaly při testování, byl fakt, že JSDOM nepodporuje skripty využívající moduly, resp. syntaxi ES6 (\verb|import| a \verb|export|). Avšak všechen kód je psaný právě s touto syntaxí a vkládán do HTML stránky pomocí \verb|<script type="module"></script>|. Řešením tak je načtení všech skriptů, jež jsou načítány tímto způsobem, do paměti, smazání problematických klíčových slov a vytvoření jediného skriptu, který obsahuje všechen potřebný kód.
+Jedním z problému, jež nastaly při testování, byl fakt, že JSDOM nepodporuje skripty využívající moduly, resp. syntaxi ES6 (\verb|import| a \verb|export|). Avšak všechen kód je psaný právě s touto syntaxí a vkládán do HTML stránky pomocí \verb|<script type="module"></script>|. Řešením je tak načtení všech skriptů, jež jsou vkládány tímto způsobem, do paměti, smazání problematických klíčových slov a vytvoření jediného skriptu, který obsahuje všechen potřebný kód.
 
 V neposlední řadě pak integrační testy také simulují všechny popsané případy užití v sekci \ref{sec:use_cases} Případy užití a demonstrují běžné zacházení s nástro-jem, jako je možné vidět v ukázce kódu \ref{code:integration_test}.
 
@@ -759,9 +759,10 @@ V neposlední řadě pak integrační testy také simulují všechny popsané p�
 	import { startMouseSelection } from './integrationUtils.js';
 	import { _click, _clickWithCtrl } from '../utils.js';
 	
-	function isSelected(node, id) {
+	function isSelectedAsRow(node, id) {
 		const c1 = node.classList.contains('scraping-selected-row');
 		const c2 = node.classList.contains(`scraping-row-${id}`);
+		
 		expect(c1).toBe(true);
 		expect(c2).toBe(true);
 	}
@@ -772,19 +773,20 @@ V neposlední řadě pak integrační testy také simulují všechny popsané p�
 		const firstRow = allTableRows[0];
 		const secondRow = allTableRows[1];
 		
-		await startMouseSelection(panelDocument);
+		await startMouseSelection();
+		
 		_click(firstRow);
-		isSelected(firstRow, 0);
-	
+		isSelectedAsRow(firstRow, '0');
+		
 		_clickWithCtrl(secondRow);
-		isSelected(secondRow, 0);
+		isSelectedAsRow(secondRow, '1');
 	
 		for (let i = 0; i < rows.length; i++) {
-			isSelected(rows[i], i);
+			isSelectedAsRow(rows[i], i);
 		}
 	});
 	\end{lstlisting}
-	\caption{Způsob definování HTML atributů}
+	\caption{Ukázka testování jednoho z případů užití}
 	\label{code:integration_test}
 \end{figure}
 
@@ -803,7 +805,7 @@ Všechny tyto požadavky byly úspěšně splněny a výsledkem je funkční ná
 
 Zároveň nebyly dotaženy do konce všechny zadané požadavky. Požadavek F9) říká, že data půjdou exportovat do tří formátů -- JSON, CSV a XLS. To bylo splněno pouze částečně, neboť XLS formát (používaný programem Microsoft Excel) se ukázal jako zbytečně složitý na implementaci a zároveň nepřináší v rámci vyvíjené aplikace žádné benefity. Microsoft Excel podporuje i soubory formátu CSV a jelikož jsou exportovaná data vždy pouze tabulkou s textovými hodnotami, nemá formát XLS smysl (žádné funkce, grafy, makra ani jiné podobné výhody tohoto formátu nejsou využity). V průběhu vývoje od něj tedy bylo nakonec upuštěno a byly implementovány pouze formáty JSON a CSV.
 
-Naopak byl splněn požadavek +2) na přesouvání a minimalizaci ovládacího panelu. Pro úplnost je pak uvedena tabulka \ref{table:requirements} se všemi požadavky a přehled jejich naplnění (zelená barva značí kompletní splnění, žlutá částečně splnění a červená nesplnění požadavku).
+Naopak byl splněn požadavek +2) na přesouvání a minimalizaci ovládacího panelu. Částečně pak také požadavek +4). Aplikace sice neposkytuje interaktivní tutoriál, jsou zde ale nápovědy v podobě HTML tooltips v částech, které to vyžadují. Pro úplnost je pak uvedena tabulka \ref{table:requirements} se všemi požadavky a přehled jejich naplnění (zelená barva značí kompletní splnění, žlutá částečně splnění a červená nesplnění požadavku).
 
 \begin{table}
 	\centering
@@ -874,7 +876,7 @@ Naopak byl splněn požadavek +2) na přesouvání a minimalizaci ovládacího p
 \section{Nedostatky aplikace}
 Za hlavní nedostatek nástroje považuji chybějící web crawling, kvůli čemuž je aplikace vhodná pouze na statické extrahování dat z jedné stránky. Na druhou stranu je takto vymezená již od začátku a právě díky absenci této funkcionality je její ovládaní velice jednoduché a přímočaré.
 
-Tím, že se jedná o rozšíření do internetové prohlížeče Google Chrome, nemá uživatel na výběr a musí (alespoň po dobu využívání nástroje) používat právě tento prohlížeč. V tom spatřuji další nedostatek, neboť by pro někoho mohlo jít o překážku. Tento problém má ale částečné řešení -- dle \cite{extension_porting} mají prohlížeče Chrome, Firefox a Opera téměř stejné API, které jejich rozšíření používají. Tím pádem je možné rozšíření psané primárně pro prohlížeč Chrome s minimální námahou převést na rozšíření pro prohlížeče Firefox a Opera.
+Tím, že se jedná o rozšíření do internetové prohlížeče Google Chrome, nemá uživatel na výběr a musí (alespoň po dobu využívání nástroje) používat právě tento prohlížeč. V tom spatřuji další nedostatek, neboť by pro někoho mohlo jít o překážku. Tento problém má ale částečné řešení -- dle \cite{extension_porting} mají prohlížeče Chrome, Firefox a Opera téměř stejné API, které jejich rozšíření používají. Tím pádem je možné rozšíření psané primárně pro prohlížeč Chrome s minimální námahou převést na rozšíření pro prohlížeče Firefox a Opera dle návodu uvedeného v \cite{extension_porting}.
 
 % ================================================================================================
 
