@@ -339,7 +339,7 @@ sp\^ osobom, ktor\'y nezni\v zuje hodnotu Diela (vr\'atane komer\v cn\'eho vyu\v
 \DeclareRobustCommand{\titlepage}{
         \begin{titlingpage}
         \noindent
-        \if\@lang1{\includegraphics[width=0.5\textwidth]{cvut-logo-bw}}\else\if\@lang2{\includegraphics[width=0.5\textwidth]{cvut-logo-bw}}\else{\includegraphics[width=0.5\textwidth]{cvut-logo-bw-en}}\fi\fi
+        \if\@lang1{\includegraphics[width=0.5\textwidth]{images/cvut-logo-bw}}\else\if\@lang2{\includegraphics[width=0.5\textwidth]{images/cvut-logo-bw}}\else{\includegraphics[width=0.5\textwidth]{images/cvut-logo-bw-en}}\fi\fi
         
         \vfill
 		
