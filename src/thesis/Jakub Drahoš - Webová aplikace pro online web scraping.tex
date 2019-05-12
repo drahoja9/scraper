@@ -2,21 +2,11 @@
 % arara: pdflatex
 % arara: pdflatex
 
-% options:
-% thesis=B bachelor's thesis
-% thesis=M master's thesis
-% czech thesis in Czech language
-% slovak thesis in Slovak language
-% english thesis in English language
-% hidelinks remove colour boxes around hyperlinks
-
 \documentclass[thesis=B,czech]{FITthesis}[2012/06/26]
 
 \usepackage[utf8]{inputenc} % LaTeX source encoded as UTF-8
 
 \usepackage{graphicx} %graphics files inclusion
-% \usepackage{amsmath} %advanced maths
-% \usepackage{amssymb} %additional math symbols
 
 \usepackage{dirtree} %directory tree visualisation
 
@@ -64,14 +54,6 @@
 }
 \renewcommand{\lstlistingname}{Ukázka kódu}
 
-% % list of acronyms
-% \usepackage[acronym,nonumberlist,toc,numberedsection=autolabel]{glossaries}
-% \iflanguage{czech}{\renewcommand*{\acronymname}{Seznam pou{\v z}it{\' y}ch zkratek}}{}
-% \makeglossaries
-
-\newcommand{\tg}{\mathop{\mathrm{tg}}} %cesky tangens
-\newcommand{\cotg}{\mathop{\mathrm{cotg}}} %cesky cotangens
-
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
 % ODTUD DAL VSE ZMENTE
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
@@ -83,7 +65,7 @@
 \authorWithDegrees{Jakub Drahoš} %jméno autora včetně současných akademických titulů
 \author{Jakub Drahoš} %jméno autora bez akademických titulů
 \supervisor{Mgr. Martin Podloucký}
-\acknowledgements{Doplňte, máte-li komu a za co děkovat. V~opačném případě úplně odstraňte tento příkaz.}
+\acknowledgements{Děkuji vedoucímu bakalářské práce, Mgr. Martinu Podlouckému, za odborné vedení, mentoring a ochotu po dobu tvorby této práce. Dále chci poděkovat své }
 \abstractCS{Tato práce se zabývá vývojem nástroje umožňující web scraping. Cílí přede-vším na uživatele, kteří nedisponují znalostmi programování a tvorby webo-vých stránek. Původním záměrem byla tvorba webové aplikace, avšak ukázalo se, že takové řešení není svou složitostí adekvátní k danému problému. Z tohoto důvodu bylo nakonec řešení implementováno jako rozšíření do internetového prohlížeče Google Chrome. Software byl úspěšně navrhnut, realizován a otestován. Zároveň byla provedena analýza stávajících řešení, díky níž bylo možné najít nedostatky konkurenčních nástrojů (především pak složité ovládání) a nabídnout uživatelům aplikaci, jež těmito neduhy netrpí. Práce čtenáři nabídne také úvod do právní problematiky web scrapingu a shrnuje důležité poznatky z českého, evropského i kontinentálního práva na jednom místě.}
 \abstractEN{Sem doplňte ekvivalent abstraktu Vaší práce v~angličtině.}
 \placeForDeclarationOfAuthenticity{V~Praze}
@@ -687,11 +669,7 @@ Výsledná data jsou uložena v třídě DataEngine do doby, než je provedena o
 \clearpage
 Na závěr jsou data převedena do požadovaného formátu pomocí třídy Exporter a je vytvořena URL adresa souboru. Ta se zašle background scriptu, který se už postará o samotné stažení -- otevře dialog vyzývající uživatele k vybrání umístění souboru.
 
-\subsection{Ostatní}
-?
-
 % ================================================================================================
-% Návod na instalaci extensionu, spuštění testů --- asi až v README
 
 \chapter{Testování}
 K testování celého kódu je použit JavaScriptový testovací framework Jest. Testy jsou rozděleny do dvou kategorií, a sice jednotkové (unit) testy a integrační testy, které víceméně simulují běžné používání nástroje. V posledních dvou sekcích se pak věnuji zhodnocení zadaných požadavků a nedostatkům, na něž by uživatelé mohli narazit.
@@ -1036,12 +1014,9 @@ Tím, že se jedná o rozšíření do internetové prohlížeče Google Chrome,
 
 \chapter{Obsah přiloženého CD}
 
-%upravte podle skutecnosti
-
 \begin{figure}
 	\dirtree{%
-		.1 readme.txt\DTcomment{stručný popis obsahu CD}.
-		.1 exe\DTcomment{adresář se spustitelnou formou implementace}.
+		.1 README.md\DTcomment{stručný popis obsahu CD}.
 		.1 src.
 		.2 impl\DTcomment{zdrojové kódy implementace}.
 		.2 thesis\DTcomment{zdrojová forma práce ve formátu \LaTeX{}}.

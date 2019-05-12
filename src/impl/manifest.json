@@ -9,7 +9,7 @@
     "downloads"
   ],
   "background": {
-    "page": "src/background/background.html",
+    "page": "src/backgroundScripts/background.html",
     "persistent": false
   },
   "content_scripts": [

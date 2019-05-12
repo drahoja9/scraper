@@ -1,13 +1,15 @@
-# Scraper
+# Webová aplikace pro online web scraping
+#### Autor: Jakub Drahoš
 
-Scraper is a Chrome-extension aiming to facilitate the basic web scraping tasks for everyone - without the need for any knowledge about programming. 
-It was created as part of the bachelor's thesis at FIT CTU in Prague.
+Nacházíte se v kořenové složce celé bakalářské práce. Ve složce `src/` se nachází zdrojové kódy -- `src/impl/` obsahuje kód samotné aplikace, `src/thesis/` pak zdrojovou formu práce ve formátu LaTeX.
 
-### How to install
-1. Clone this repository to your machine: `git clone git@gitlab.fit.cvut.cz:drahoja9/bachelors-thesis.git`.
-2. Open your Chrome internet browser.
-3. Navigate to extensions page: visit the `chrome://extensions/` URL in Chrome browser.
-4. Turn on the Developer mode (switch is located in the top right corner).
-5. Click the `Load unpacked` button in top left corner.
-6. Navigate to previously cloned repository and chose the whole `src/impl/` directory.
-7. That's it, your extension should be now properly installed and ready to scrape!
+Ve složce `text/` je zkompilovaný text práce ve formátech PDF a PS.
+
+
+## Návod ke spuštění
+1. Otevřete Váš internetový prohlížeč Google Chrome.
+2. Přejděte na stránku rozšíření: `chrome://extensions/`.
+3. Zapněte Delevoper mode (přepínač se nachází v pravém horním rohu).
+4. Klikněte na tlačítko `Load unpacked` nacházející se v levém horním rohu.
+5. V otevřeném dialogu vyberte celou složku `src/impl/`.
+6. Rozšíření by mělo být úspěšně nainstalováno a připraveno k použití.
