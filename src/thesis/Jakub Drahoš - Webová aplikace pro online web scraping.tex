@@ -66,12 +66,13 @@
 \author{Jakub Drahoš} %jméno autora bez akademických titulů
 \supervisor{Mgr. Martin Podloucký}
 \acknowledgements{Děkuji vedoucímu bakalářské práce, Mgr. Martinu Podlouckému, za odborné vedení, mentoring a ochotu po dobu tvorby této práce. Dále chci poděkovat své přítelkyni a rodičům za jejich podporu během celého studia.}
-\abstractCS{Tato práce se zabývá vývojem nástroje umožňující web scraping. Cílí přede-vším na uživatele, kteří nedisponují znalostmi programování a tvorby webo-vých stránek. Původním záměrem byla tvorba webové aplikace, avšak ukázalo se, že takové řešení není svou složitostí adekvátní k danému problému. Z tohoto důvodu bylo nakonec řešení implementováno jako rozšíření do internetového prohlížeče Google Chrome. Software byl úspěšně navrhnut, realizován a otestován. Zároveň byla provedena analýza stávajících řešení, díky níž bylo možné najít nedostatky konkurenčních nástrojů (především pak složité ovládání) a nabídnout uživatelům aplikaci, jež těmito neduhy netrpí. Práce čtenáři nabídne také úvod do právní problematiky web scrapingu a shrnuje důležité poznatky z českého, evropského i kontinentálního práva na jednom místě.}
-\abstractEN{Sem doplňte ekvivalent abstraktu Vaší práce v~angličtině.}
+\abstractCS{Tato práce se zabývá vývojem nástroje umožňující web scraping. Cílí přede-vším na uživatele, kteří nedisponují znalostmi programování a tvorby webo-vých stránek. Původním záměrem byla tvorba webové aplikace, avšak ukázalo se, že takové řešení není svou složitostí adekvátní k danému problému. Z tohoto důvodu byl nakonec nástroj implementován jako rozšíření do internetového prohlížeče Google Chrome. Software byl úspěšně navrhnut, realizován a otestován. Zároveň byla provedena analýza stávajících řešení, díky níž bylo možné najít nedostatky konkurenčních nástrojů (především pak složité ovládání) a nabídnout uživatelům aplikaci, jež těmito neduhy netrpí. Práce čtenáři poskytne také úvod do právní problematiky web scrapingu a shrnuje důležité poznatky z českého, evropského i kontinentálního práva na jednom místě.}
+\abstractEN{This thesis focuses on the development of a web scraping tool. It aims particularly on non-programmer users, who don't have any web development background. The original intention was to create a web application. However, such a solution has proven to be inadequate in its complexity to the given problem. Therefore the tool was eventually implemented as a Google Chrome extension. The software has been successfully designed, implemented and tested. Also, an analysis of existing solutions was done, which made it possible to find shortcomings of competing tools (especially complex manipulation) and to offer users an application that does not suffer from these insufficiencies. The thesis also provides the reader with an introduction to the legal issues of web scraping and summarizes essential knowledge from Czech, European and continental law in one place.}
 \placeForDeclarationOfAuthenticity{V~Praze}
-\declarationOfAuthenticityOption{4} %volba Prohlášení (číslo 1-6)
+\declarationOfAuthenticityOption{1} %volba Prohlášení (číslo 1-6)
 \keywordsCS{web scraping, extrakce dat, aplikace, JavaScript, rozšíření prohlížeče Chrome, právní rozbor}
 \keywordsEN{web scraping, data extraction, application, JavaScript, Chrome extension, legal analysis}
+\website{https://gitlab.fit.cvut.cz/drahoja9/bachelors-thesis} %volitelná URL práce, objeví se v tiráži - úplně odstraňte, nemáte-li URL práce
 
 \begin{document}
 
@@ -100,7 +101,7 @@
 	Kapitola 1 je věnována analýze tématiky web scrapingu. První sekce shrnuje obecné informace, následuje pohled z~právní strany věci a nakonec analýza stávajících řešení problému. Kapitola 2 se zaměřuje na návrh aplikace -- specifikace požadavků, vymezení případů užití, architektura systému, návrh uživatel-ského rozhraní. Ve třetí kapitole je představen výsledný software, popsána realizace daného návrhu, výběr použitých technologií a odůvodnění rozhodnutí, která byla učiněna. Poslední kapitola je věnovaná testování celé aplikace a zhodnocení zadaných požadavků. V~samotném závěru se pak zabývám vyhodnocením jednotlivých cílů zadaných výše.
 	
 	\section*{Poznámka}
-	V~průběhu práce se objevily okolnosti (detailně jsou diskutovány v~kapitole \hyperref[sec:possible_solutions]{Realizace, sekce Diskuze možných řešení}), které mě donutily přehodnotit původní záměr tvorby webové aplikace na tvorbu rozšíření do internetového prohlížeče Google Chrome. To jsem bohužel nevěděl při formulaci a odevzdání zadání do systému závěrečných prací, tedy název této práce neodpovídá úplně přesně výslednému produktu. Nicméně všechny cíle zůstaly naprosto totožné.
+	Okolnosti a výzvy ohledně vývoje webové aplikace vyplynuly na povrch až po detailnější analýze problému (viz kapitola \hyperref[sec:possible_solutions]{Realizace, sekce Diskuze možných řešení}). Technické řešení aplikace tedy bylo nutné pozměnit oproti tomu, co uvádí název práce. Nicméně všechny cíle práce zůstaly zcela totožné.
 \end{introduction}
 
 
@@ -401,7 +402,7 @@ Pojďme si nyní všechny požadavky shrnout do několika bodů a rozdělit na f
 		\end{enumerate}
 		\item Pomocí CSS selektorů (tedy HTML tagy, třídy, id, hodnoty atributu, různé následnosti a vše ostatní, co CSS selektory umožňují, viz přehled CSS selektorů\footnote{\url{https://www.w3schools.com/cssref/css_selectors.asp}}).
 		\item K~dispozici bude přibližování (první potomek) a oddalování (otec) momentálního výběru pomocí ikony $+$ a $-$, případně přesunutí výběru na předchozího/následujícího sourozence v~DOMu (uživatel může pomocí této funkce traverzovat napříč zanořenými prvky vše-mi směry).
-		\item Na ovládacím panelu nalezneme i~tlačítka s~hotovými akcemi před-stavující šablonu pro nejpoužívanější operace (stažení všech e-mail-ových adres ze stránky, všech obrázků atd.).
+		\item Na ovládacím panelu nalezneme i~tlačítka s~hotovými akcemi před-stavující šablonu pro nejpoužívanější operace (označení všech e-mailových adres na stránce, všech obrázků atd.).
 	\end{enumerate}
 	\item Pokud vybraným prvkem bude \textless img\textgreater~HTML tag, bude místo jeho textu extrahován atribut \textsf{src} (tedy zdroj obrázku).
 	\item Po kliknutí na určitý prvek s~přidrženou klávesou \textsc{Ctrl/control} se program pokusí vybrat všechny podobné prvky na základě předchozí selekce (tzv. \emph{auto-selection}).
@@ -660,7 +661,7 @@ Jednotlivé třídy spolu interagují nepřímo, vždy přes rodičovskou kompon
 
 Tento postup však není možný v případě třídy MainPanel reprezentující ovládací panel vložený do stránky skrze iframe. Panelu není jak předat Controller, neboť to z bezpečnostních důvodů lze pouze v situaci, kdy je iframe i stránka, v níž je vložený, ze stejné domény\footnote{Opět narážíme na tzv. \emph{same-origin policy}.}. A to v tomto případě nejsou -- HTML stránka reprezentující ovládací panel pochází z domény rozšíření \verb|chrome-extension://<extension-id>|. 
 
-Třídy MainPanel a Controller tak spolu komunikují skrze zasílání zpráv pomocí funkce \verb|window.postMessage()|, na které reaguje třída Communica-tion, jež je součástí hlavního Controlleru. Tato třída taktéž zajišťuje komunikaci mezi background scriptem a Controllerem. Diagram ... pak právě tuto komunikaci ilustruje.
+Třídy MainPanel a Controller tak spolu komunikují skrze zasílání zpráv pomocí funkce \verb|window.postMessage()|, na které reaguje třída Communica-tion, jež je součástí hlavního Controlleru. Tato třída taktéž zajišťuje komunikaci mezi background scriptem a Controllerem.
 
 \subsection{Extrakce dat}
 Návrh aplikace pouze říká, že extrakce dat proběhne v prohlížeči na straně klienta a konkrétním implementacím ponechává volnost v řešení tohoto problému. Jelikož je nutné již vybrané prvky zvýraznit, přidává se ke každému takovému elementu příslušná CSS třída. Toho lze velmi jednoduše využít i při samotné extrakci dat -- aplikace nejdříve načte všechny elementy s třídou reprezentující řádky výsledné tabulky a v každém tomto elementu posléze načte všechny dostupné prvky s třídou reprezentující sloupce, z nichž vyextrahuje text (HTML atribut \textsf{innerText}), případně zdroj (HTML atribut \textsf{src}) v případě obrázků. To vše opět s pomocí funkce \verb|document.querySelectorAll()|, díky čemuž se jedná o velmi rychlý a efektivní způsob extrakce dat bez nutnosti zasílání požadavků na vzdálený server a je tak splněn nefunkční požadavek na rychlost samotné extrakce dat (N6).
@@ -778,7 +779,7 @@ Součástí každého projektu by mělo být také zhodnocení předsevzatých c
 	\item Jednoduché a intuitivní ovládání, přehledné grafické rozhraní, jenž nebude zahlcené přebytkem možností -- v porovnání s ostatními nástroji je užívání vyvinuté aplikace velmi rychlé a počet kroků požadovaných od uživatele minimální. To je z velké míry docíleno úzkým zaměřením nástroje. 
 	\item Snadná rozšiřitelnost pro přidávání další funkcionality -- viz kapitoly Návrh a Realizace.
 \end{itemize}
-
+\newpage
 Všechny tyto požadavky byly úspěšně splněny a výsledkem je funkční nástroj, připravený k použití. Tím, že se jedná o rozšíření do internetového prohlížeče Google Chrome, v podstatě odpadá fáze nasazení -- výslednou aplikaci stačí publikovat v internetovém obchodě Chrome (Chrome Web Store).\footnote{To se reálně v rámci této práce nestalo, neboť před prvním zveřejněním libovolného rozšíření je nutné zaplatit jednorázový poplatek.}
 
 Zároveň nebyly dotaženy do konce všechny zadané požadavky. Požadavek F9) říká, že data půjdou exportovat do tří formátů -- JSON, CSV a XLS. To bylo splněno pouze částečně, neboť XLS formát (používaný programem Microsoft Excel) se ukázal jako zbytečně složitý na implementaci a zároveň nepřináší v rámci vyvíjené aplikace žádné benefity. Microsoft Excel podporuje i soubory formátu CSV a jelikož jsou exportovaná data vždy pouze tabulkou s textovými hodnotami, nemá formát XLS smysl (žádné funkce, grafy, makra ani jiné podobné výhody tohoto formátu nejsou využity). V průběhu vývoje od něj tedy bylo nakonec upuštěno a byly implementovány pouze formáty JSON a CSV.
@@ -854,7 +855,7 @@ Naopak byl splněn požadavek +2) na přesouvání a minimalizaci ovládacího p
 \section{Nedostatky aplikace}
 Za hlavní nedostatek nástroje považuji chybějící web crawling, kvůli čemuž je aplikace vhodná pouze na statické extrahování dat z jedné stránky. Na druhou stranu je takto vymezená již od začátku a právě díky absenci této funkcionality je její ovládaní velice jednoduché a přímočaré.
 
-Tím, že se jedná o rozšíření do internetové prohlížeče Google Chrome, nemá uživatel na výběr a musí (alespoň po dobu využívání nástroje) používat právě tento prohlížeč. V tom spatřuji další nedostatek, neboť by pro někoho mohlo jít o překážku. Tento problém má ale částečné řešení -- dle \cite{extension_porting} mají prohlížeče Chrome, Firefox a Opera téměř stejné API, které jejich rozšíření používají. Tím pádem je možné rozšíření psané primárně pro prohlížeč Chrome s minimální námahou převést na rozšíření pro prohlížeče Firefox a Opera dle návodu uvedeného v \cite{extension_porting}.
+Tím, že se jedná o rozšíření do internetové prohlížeče Google Chrome, nemá uživatel na výběr a musí (alespoň po dobu využívání nástroje) používat právě tento prohlížeč. V tom spatřuji další nedostatek, neboť by pro někoho mohlo jít o překážku. Tento problém má ale částečné řešení -- dle \cite{extension_porting} sdílejí prohlížeče Chrome, Firefox a Opera téměř stejné API, které jejich rozšíření používají. Tím pádem je možné rozšíření psané primárně pro prohlížeč Chrome s minimální námahou převést na rozšíření pro prohlížeče Firefox a Opera dle návodu uvedeného v \cite{extension_porting}.
 
 % ================================================================================================
 
