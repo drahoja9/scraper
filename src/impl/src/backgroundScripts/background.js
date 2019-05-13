@@ -73,7 +73,7 @@ chrome.runtime.onMessage.addListener(async function (request, sender, sendRespon
         }, function downloadStarted(downloadId) {
             // When the download is completed, revoke the file URL
             chrome.downloads.onChanged.addListener(function ({ id, state }) {
-                if (id === downloadId && state.current === 'complete') {
+                if (id === downloadId && state && state.current === 'complete') {
                     URL.revokeObjectURL(request.url);
                 }
             });

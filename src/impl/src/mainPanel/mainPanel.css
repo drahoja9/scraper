@@ -166,6 +166,7 @@ body {
     position: relative;
     left: 7px;
     transition: color 0.5s;
+    font-family: Arial;
 }
 
 .tooltip-help.active {
@@ -265,7 +266,7 @@ button {
     border: none;
     outline: none !important;
     font-size: 1em;
-    font-weight: 800;
+    font-weight: 600;
 }
 
 .primary-btn {
