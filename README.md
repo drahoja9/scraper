@@ -1,7 +1,8 @@
 # Webová aplikace pro online web scraping
 #### Autor: Jakub Drahoš
 
-Nacházíte se v kořenové složce celé bakalářské práce. Ve složce `src/` se nachází zdrojové kódy -- `src/impl/` obsahuje kód samotné aplikace, `src/thesis/` pak zdrojovou formu práce ve formátu LaTeX.
+## Struktura projektu
+Nacházíte se v kořenové složce celé bakalářské práce. Ve složce `src/` najdete  zdrojové kódy -- `src/impl/` obsahuje kód samotné aplikace, `src/thesis/` pak zdrojovou formu práce ve formátu LaTeX.
 
 Ve složce `text/` je zkompilovaný text práce ve formátech PDF a PS.
 
