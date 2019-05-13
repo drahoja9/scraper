@@ -13,9 +13,9 @@
 }
 
 .scraping-highlighted-col {
-    z-index: 2147483646 !important;
+    /* z-index: 2147483646 !important; */
     background: rgba(105, 54, 117, 0.45) !important;
-    box-shadow: rgba(105, 54, 117, 0.45) 0 0 1px 3px !important;
+    /* box-shadow: rgba(105, 54, 117, 0.45) 0 0 1px 3px !important; */
     cursor: crosshair !important;
 }
 

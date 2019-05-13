@@ -165,10 +165,28 @@ body {
     color: var(--light-gray);
     position: relative;
     left: 7px;
+    transition: color 0.5s;
 }
 
 .tooltip-help.active {
     display: flex;
+}
+
+.tooltip-help.unvisited {
+    color: var(--turquoise);
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        color: var(--turquoise);
+    }
+    50% {
+        color: var(--light-gray);
+    }
+    100% {
+        color: var(--turquoise);
+    }
 }
 
 .cols-pool-border {

@@ -165,7 +165,7 @@ test('activate a column', async () => {
 
     const col0 = panelDocument.querySelectorAll('.col-btn')[0];
     expect(col0.classList.contains('active')).toBe(true);
-    expect(controller._selectEngine._currentCol).toBe('0');
+    expect(controller._selectEngine._currentCol).toBe(0);
 
     await action(() => {
         _click(addBtn);
@@ -173,7 +173,7 @@ test('activate a column', async () => {
 
     const col1 = panelDocument.querySelectorAll('.col-btn')[1];
     expect(col1.classList.contains('active')).toBe(false);
-    expect(controller._selectEngine._currentCol).toBe('0');
+    expect(controller._selectEngine._currentCol).toBe(0);
 
     await action(() => {
         _click(col1);
@@ -181,7 +181,7 @@ test('activate a column', async () => {
 
     expect(col0.classList.contains('active')).toBe(false);
     expect(col1.classList.contains('active')).toBe(true);
-    expect(controller._selectEngine._currentCol).toBe('1');
+    expect(controller._selectEngine._currentCol).toBe(1);
 });
 
 test('rename a column', async () => {

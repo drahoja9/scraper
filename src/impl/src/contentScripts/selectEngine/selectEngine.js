@@ -121,7 +121,7 @@ export class SelectEngine extends SelectEngineInterface {
         this._domNavigation = new DOMNavigaton(this);
         this._cssSelector = new CSSSelector(this);
 
-        this._currentCol = '0';
+        this._currentCol = 0;
         this._rows = new RowSelection(this);
         this._columns = {
             [this._currentCol]: new ColumnSelection(this._currentCol, this)
@@ -195,7 +195,7 @@ export class SelectEngine extends SelectEngineInterface {
     }
 
     changeCol({ colId }) {
-        this._currentCol = colId;
+        this._currentCol = Number(colId);
         this.selectingCols();
         this._currentSelection.activateColumn();
     }

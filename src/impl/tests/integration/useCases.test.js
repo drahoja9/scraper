@@ -257,6 +257,7 @@ test('use case #8', async () => {
     expect(tableBody.children[6].children[4].innerText).toEqual('580219/0492');
 
     removeRowFromPreview(tableBody.children[4]);
+    removeRowFromPreview(tableBody.children[0]);
 
     expect(tableHeader.children.length).toBe(5);
     expect(tableHeader.children[1].innerText).toEqual('Name');

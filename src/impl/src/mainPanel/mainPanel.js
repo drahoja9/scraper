@@ -162,7 +162,9 @@ function init() {
         }
     });
 
-    $('[data-toggle="tooltip"]').tooltip();
+    $('[data-toggle="tooltip"]')
+        .tooltip()
+        .mouseover(event => { event.target.classList.remove('unvisited') });
 }
 
 document.addEventListener('DOMContentLoaded', function () {
