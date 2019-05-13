@@ -1,3 +1,4 @@
+
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{FITthesis}[2018/03/12 CTU FIT standard class for theses]
 
@@ -40,6 +41,7 @@
 \setsecnumdepth{subsubsection}
 \chapterstyle{madsen}
 
+\RequirePackage{pdfpages}
 \RequirePackage{babel}[2008/07/06]
 \RequirePackage[unicode,pdfusetitle]{hyperref}
 
@@ -503,6 +505,7 @@ sp\^ osobom, ktor\'y nezni\v zuje hodnotu Diela (vr\'atane komer\v cn\'eho vyu\v
 }
 
 \AfterEndPreamble{
+	\includepdf[pages={1}]{zadani.pdf}
 	\thispagestyle{empty}
 
 	\frontmatter
