@@ -285,3 +285,5 @@ venv.bak/
 *.out
 *.synctex.gz
 *.toc
+*.nav
+*.snm
