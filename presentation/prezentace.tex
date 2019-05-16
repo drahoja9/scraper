@@ -41,7 +41,9 @@
 \usepackage{graphicx}
 \usepackage{hyperref}
 \usepackage{media9}
+\usepackage{multimedia}
 \usepackage{tikz}
+\usetikzlibrary{calc}
 \usetikzlibrary{chains,fit,shapes}
 
 % Údaje o prezentaci
@@ -84,7 +86,7 @@
 	% ---------------------------------------------------------------------------
 	
 	\section{Stávající řešení}
-	\begin{frame}{Nedostatky konkurenčních nástrojů}
+	\begin{frame}{Nevýhody konkurence}
 		\begin{itemize}
 			\item Složité a neintuitivní ovládání
 			\item Nepřehledné grafické rozhraní
@@ -116,6 +118,10 @@
 	\end{frame}
 
 	\begin{frame}
+		\movie[showcontrols=true]{\includegraphics[width=0.8\linewidth,height=0.45\linewidth]{assets/video_snapshot.png}}{assets/ukazka2.mp4}
+	\end{frame}
+
+	\begin{frame}
 		\begin{center}
 			\includemedia[
 				label=scraper,
@@ -127,7 +133,8 @@
 				flashvars={
 					source=assets/ukazka2.mp4&
 					screencolor=white&
-					autostart=true
+					autostart=true&
+					autoPlay=true
 				}
 			]{\includegraphics[width=0.8\linewidth,height=0.45\linewidth]{assets/video_snapshot.png}}{VPlayer.swf}
 		\end{center}
