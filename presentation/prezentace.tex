@@ -43,6 +43,7 @@
 \usepackage{media9}
 \usepackage{multimedia}
 \usepackage{tikz}
+\usepackage{csquotes}[language=czech]
 \usetikzlibrary{calc}
 \usetikzlibrary{chains,fit,shapes}
 
@@ -51,9 +52,22 @@
 \subtitle{Bakalářská práce}
 \institute[FIT ČVUT v Praze]{Fakulta informačních technologií \\ České vysoké učení technické v Praze}
 \author[J. Drahoš]{Jakub Drahoš \\ Vedoucí práce: Mgr. Martin Podloucký}
-\date{12. 5. 2019}
-\titlegraphic{\includegraphics[width=.1\textwidth]{assets/logo-cvut}}
+\date{18. 6. 2019}
 
+
+% pro vypínání navigačních "miniframes" na určitých slajdech
+\makeatletter
+\let\beamer@writeslidentry@miniframeson=\beamer@writeslidentry
+\def\beamer@writeslidentry@miniframesoff{%
+	\expandafter\beamer@ifempty\expandafter{\beamer@framestartpage}{}% does not happen normally
+	{%else
+		% removed \addtocontents commands
+		\clearpage\beamer@notesactions%
+	}
+}
+\newcommand*{\miniframeson}{\let\beamer@writeslidentry=\beamer@writeslidentry@miniframeson}
+\newcommand*{\miniframesoff}{\let\beamer@writeslidentry=\beamer@writeslidentry@miniframesoff}
+\makeatother
 
 \begin{document}
 	\begin{frame}
@@ -61,7 +75,7 @@
 	\end{frame}
 
 	\begin{frame}
-		\tableofcontents 
+		\tableofcontents
 	\end{frame}
 	
 	% ---------------------------------------------------------------------------
@@ -136,7 +150,7 @@
 
 	\begin{frame}{Výhody oproti konkurenci}
 		\begin{itemize}
-			\item Jednoduchá na používání
+			\item Jednoduché na používání
 			\item Přehledné grafické rozhraní
 			\item Extrakce během pár okamžiků 
 		\end{itemize}
@@ -152,5 +166,16 @@
 	 		\item Vytvoření aplikace se zaměřením na uživatelský zážitek
 	 	\end{itemize}
 	 \end{frame}
+ 
+	% ---------------------------------------------------------------------------
+	
+	\miniframesoff
+	\begin{frame}[noframenumbering]{Dotazy}
+		Otázka č. 1: \enquote{\textit{Plánujete na projektu dále pracovat a otevřeně rozšíření distribuovat? Pokud ano, pod jakou licencí a proč?}}
+	\end{frame}
+
+	\begin{frame}[noframenumbering]{Dotazy}
+		Otázka č. 2: \enquote{\textit{ Bylo by možné (a případně jak) jednoduše rozšířit Váš Scraper o crawling například výčtem adres či označením typu odkazů k následování tak, aby bylo zachováno intuitivní rozhraní (viz sekce 4.4)? Jak byste případně postupoval?}}
+	\end{frame}
 
 \end{document}
