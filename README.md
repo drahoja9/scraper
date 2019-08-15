@@ -1,26 +1,30 @@
-# Webová aplikace pro online web scraping
-#### Autor: Jakub Drahoš
+# Web application for online web scraping
+#### Author: Jakub Drahoš
 
-## Struktura projektu
-Nacházíte se v kořenové složce celé bakalářské práce. Ve složce `src/` najdete  zdrojové kódy -- `src/impl/` obsahuje kód samotné aplikace, `src/thesis/` pak zdrojovou formu práce ve formátu LaTeX.
+## Project structure
+All the source files are located inside the `src/` folder - `src/impl/` contains
+the code of the applicatin, whereas in `src/thesis/` you will find source files 
+of the thesis in the LaTeX format.
 
-Ve složce `text/` je zkompilovaný text práce ve formátech PDF a PS.
+You can also find compiled text (PDF and PS formats) inside the `text/` folder.
 
-## Návod ke kompilaci textu
-1. Přejděte do složky se zdrojovou formou práce: `cd src/thesis`
-2. Spusťte příkaz `pdflatex thesis.tex`
-3. Pro převod do formátu PS lze využít příkaz `pdf2ps thesis.pdf`
+## Instalation of the app
+1. Open your internet browser Google Chrome
+2. Go to the `chrome://extensions/` or alternatively click on the controls menu 
+(in the top right corner) -> "More tools" -> "Extensions"
+3. Turn on the Developer mode (switch is located in the top right corner)
+4. Click on the `Load unpacked` button in the top left corner
+5. Select the whole `src/impl/` folder in the opened file dialog
+6. The extension should be successfully installed by now and ready to use
 
-## Návod k instalaci aplikace
-1. Otevřete Váš internetový prohlížeč Google Chrome
-2. Přejděte na stránku rozšíření: `chrome://extensions/`
-3. Zapněte Delevoper mode (přepínač se nachází v pravém horním rohu)
-4. Klikněte na tlačítko `Load unpacked` nacházející se v levém horním rohu
-5. V otevřeném dialogu vyberte celou složku `src/impl/`
-6. Rozšíření by mělo být úspěšně nainstalováno a připraveno k použití
+## Running the tests
+1. Make sure you have installed the npm package manager: `npm --version`
+2. Go to the folder with source files of the app: `cd src/impl/`
+3. Install all the required packages: `npm install`
+4. Run the tests `npm test`
 
-## Návod ke spuštění testů
-1. Ujistěte se, že máte nainstalovaný balíčkovací manažer npm: `npm --version`
-2. Přejděte do složky se zdrojovými kódy: `cd src/imp`
-3. Nainstalujte všechny potřebné balíčky: `npm install`
-4. Spusťte testy: `npm test`
+## Compilation of the text
+1. Go to the folder with source files of the thesis: `cd src/thesis/`
+2. Run the command `pdflatex thesis.tex` to compile into PDF format
+3. For PS format you can use `pdf2ps thesis.pdf` (if you've already got the PDF
+file)
